@@ -1,0 +1,13 @@
+.matchCard{
+  background-color: #fff;
+  box-sizing: border-box;
+  margin: 8px;
+  padding: 8px;
+  /* border-radius: 5px; */
+  /* box-shadow: 0px 0px 2px rgba(42, 42, 42, 0.54); */
+  border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+li{
+  list-style: none;
+}
