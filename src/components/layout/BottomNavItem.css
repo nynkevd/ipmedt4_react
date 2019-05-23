@@ -1,0 +1,12 @@
+.bottomNavItem {
+  text-decoration: none;
+  color: #000;
+}
+
+.bottomNavItemImg {
+  width: 25px;
+}
+
+.bottomNavItemText {
+  font-size: 0.7em;
+}

@@ -1,0 +1,21 @@
+.bottomNav {
+  bottom: 0;
+  width: 100%;
+  position: fixed;
+}
+
+.bottomNavGrid{
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: center;
+  background-color: #CBCBCB;
+}
+
+.bottomNavItem {
+  padding: 15px 0;
+}
+
+.bottomNavItem:hover, .bottomNavItem::selection{
+  background-color: #ABABAB;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Zoek extends React.Component{
+class Search extends React.Component{
   render(){
     return(
       <h1>Zoek</h1>
@@ -8,4 +8,4 @@ class Zoek extends React.Component{
   }
 }
 
-export default Zoek;
+export default Search;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Registreren extends React.Component{
+class Register extends React.Component{
   render(){
     return(
       <h1>Registreren</h1>
@@ -8,4 +8,4 @@ class Registreren extends React.Component{
   }
 }
 
-export default Registreren;
+export default Register;

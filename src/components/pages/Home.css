@@ -1,0 +1,20 @@
+.HomePage {
+  width: 100vw;
+  height: 100vh;
+  background-color: #FCC63F;
+}
+
+.HomePageImg {
+  width: 50%;
+  display: block;
+  margin: -25% -25%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.HomePageText {
+  text-align: center;
+  vertical-align: center;
+  line-height: 100vh;
+}
