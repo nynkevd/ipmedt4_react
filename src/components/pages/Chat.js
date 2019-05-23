@@ -1,9 +1,14 @@
 import React from 'react';
 
+import BottomNav from '../layout/BottomNav';
+
 class Chat extends React.Component{
   render(){
     return(
-      <h1>Chat</h1>
+      <div>
+        <h1>Chat</h1>
+        <BottomNav />
+      </div>
     )
   }
 }

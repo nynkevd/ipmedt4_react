@@ -10,3 +10,7 @@
 .bottomNavItemText {
   font-size: 0.7em;
 }
+
+.bottomNavItemSelected {
+  background-color: #ABABAB;
+}

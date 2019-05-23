@@ -4,17 +4,35 @@
   background-color: #FCC63F;
 }
 
-.HomePageImg {
-  width: 50%;
-  display: block;
-  margin: -25% -25%;
+.HomePageContainer {
+  width: 60%;
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.HomePageImg {
+  width: 100%;
+  padding-bottom: 1em;
 }
 
 .HomePageText {
   text-align: center;
-  vertical-align: center;
-  line-height: 100vh;
+}
+
+.HomePageLink {
+  text-decoration: none;
+  color: #000;
+}
+
+.HomePageLinkTekst {
+  text-align: center;
+  text-decoration: none;
+  color: #222;
+  padding: 50px 0;
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

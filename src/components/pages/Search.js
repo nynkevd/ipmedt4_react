@@ -1,9 +1,14 @@
 import React from 'react';
 
+import BottomNav from '../layout/BottomNav';
+
 class Search extends React.Component{
   render(){
     return(
-      <h1>Zoek</h1>
+      <div>
+        <h1>Zoek</h1>
+        <BottomNav />
+      </div>
     )
   }
 }

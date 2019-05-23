@@ -4,7 +4,7 @@
   position: fixed;
 }
 
-.bottomNavGrid{
+.bottomNavGrid {
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -14,8 +14,4 @@
 
 .bottomNavItem {
   padding: 15px 0;
-}
-
-.bottomNavItem:hover, .bottomNavItem::selection{
-  background-color: #ABABAB;
 }

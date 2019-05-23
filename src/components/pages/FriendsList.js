@@ -1,9 +1,14 @@
 import React from 'react';
 
+import BottomNav from '../layout/BottomNav';
+
 class FriendsList extends React.Component{
   render(){
     return(
-      <h1>Travel Buddies</h1>
+      <div>
+        <h1>Travel Buddies</h1>
+        <BottomNav />
+      </div>
     )
   }
 }
