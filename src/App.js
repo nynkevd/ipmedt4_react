@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './App.css';
 
 import Home from './components/pages/Home';
-import Login from './components/pages/Login';
+import LoginOrRegister from './components/pages/LoginOrRegister';
 import Register from './components/pages/Register';
 import Search from './components/pages/Search';
 import Chat from './components/pages/Chat';
@@ -17,7 +17,7 @@ class App extends React.Component {
         <div className="app">
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
+            <Route path="/loginorregister" component={LoginOrRegister} />
             <Route path="/register" component={Register} />
             <Route path="/search" component={Search} />
             <Route path="/chat" component={Chat} />
