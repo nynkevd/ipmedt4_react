@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import "./Register.css"
+import {Link} from 'react-router-dom';
 
 export default class Register extends Component{
 
@@ -21,7 +22,7 @@ export default class Register extends Component{
   }
 
   getUsers = _ => {
-    fetch('http://localhost:4000/user_test')
+    fetch('http://localhost:4000/users')
       .then(response => this.setState({inputEmail: "", inputWachtwoord: "",inputGebruikersnaam: "" }))
         .catch(err => console.error(err))
   }
@@ -99,8 +100,10 @@ export default class Register extends Component{
             disabled={!this.valideerInput()}
             type="submit"
             onClick={this.addUsers}
-          > Login </Button>
+          > Registreer </Button>
         </form>
+
+        <Link to="/search">Doorgaan</Link>
       </div>
     );
   }

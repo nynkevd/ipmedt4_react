@@ -4,6 +4,7 @@ import './App.css';
 
 import Home from './components/pages/Home';
 import LoginOrRegister from './components/pages/LoginOrRegister';
+import Login from './components/pages/Login';
 import Register from './components/pages/Register';
 import Search from './components/pages/Search';
 import Chat from './components/pages/Chat';
@@ -18,6 +19,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/loginorregister" component={LoginOrRegister} />
+            <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/search" component={Search} />
             <Route path="/chat" component={Chat} />
