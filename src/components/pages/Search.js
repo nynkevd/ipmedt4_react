@@ -3,6 +3,8 @@ import Matches from '../matches/Matches';
 import SearchBar from '../matches/SearchBar';
 import axios from "axios";
 
+import BottomNav from '../layout/BottomNav';
+
 class Search extends React.Component{
   state = { matches:{} };
 
@@ -22,6 +24,7 @@ class Search extends React.Component{
         <h1>Zoek</h1>
         <SearchBar onSearch={this.onSubmit}></SearchBar>
         <Matches matches={this.state.matches}></Matches>
+        <BottomNav />
       </div>
 
     )

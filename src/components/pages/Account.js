@@ -1,9 +1,14 @@
 import React from 'react';
 
+import BottomNav from '../layout/BottomNav';
+
 class Account extends React.Component{
   render(){
     return(
-      <h1>Account</h1>
+      <div>
+        <h1>Account</h1>
+        <BottomNav />
+      </div>
     )
   }
 }

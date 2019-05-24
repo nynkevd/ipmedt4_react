@@ -1,9 +1,13 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 class Register extends React.Component{
   render(){
     return(
-      <h1>Registreren</h1>
+      <div>
+        <h1>Registreren</h1>
+        <Link to="/search">Registreren</Link>
+      </div>
     )
   }
 }

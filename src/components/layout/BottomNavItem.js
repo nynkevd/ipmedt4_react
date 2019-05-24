@@ -1,18 +1,18 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import './BottomNavItem.css';
 
 class BottomNavItem extends React.Component{
   render(){
     return(
-      <Link className="bottomNavItem" to={this.props.link}>
+      <NavLink className="bottomNavItem" activeClassName="bottomNavItemSelected" to={this.props.link}>
         <div>
-          <img className="bottomNavItemImg" src={this.props.icon} />
+          <img className="bottomNavItemImg" src={this.props.icon} alt="Icon dat hoort bij de pagina"/>
           <br />
           <p className="bottomNavItemText">{this.props.name}</p>
         </div>
-      </Link>
+      </NavLink>
     )
   }
 }
