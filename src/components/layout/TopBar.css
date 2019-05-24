@@ -3,7 +3,9 @@
   width: 100%;
   position: fixed;
   background-color: #f7d117;
-  height: 8%;;
+  height: 8%;
+  overflow: hidden;
+  margin-bottom: 4vh;
 }
 
 .topBarFoto {

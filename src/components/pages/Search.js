@@ -4,6 +4,7 @@ import SearchBar from '../matches/SearchBar';
 import axios from "axios";
 
 import BottomNav from '../layout/BottomNav';
+import TopBar from '../layout/TopBar';
 
 class Search extends React.Component{
   state = { matches:{} };
