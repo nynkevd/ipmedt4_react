@@ -1,0 +1,21 @@
+.topBar {
+  top: 0;
+  width: 100%;
+  position: fixed;
+  background-color: #f7d117;
+  height: 8%;;
+}
+
+.topBarFoto {
+  width: 16%;
+  position: absolute;
+  margin-top: 3.6%;
+  margin-left: 3.5%;
+}
+
+.topBarTekst {
+  font-size: 1.3em;
+  font-family: sans-serif, Arial;
+  margin-left: 25%;
+  margin-top: 0.7em;
+}
