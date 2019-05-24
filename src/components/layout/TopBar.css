@@ -2,22 +2,19 @@
   top: 0;
   width: 100%;
   position: fixed;
-  background-color: #f7d117;
-  height: 8%;
-  overflow: hidden;
+  background-color: #FCC63F;
+  height: 8vh;
   margin-bottom: 4vh;
 }
 
-.topBarFoto {
+.topBarImg {
   width: 16%;
   position: absolute;
   margin-top: 3.6%;
   margin-left: 3.5%;
 }
 
-.topBarTekst {
+.topBarText {
   font-size: 1.3em;
-  font-family: sans-serif, Arial;
-  margin-left: 25%;
-  margin-top: 0.7em;
+  margin: 0.8em 25%;
 }

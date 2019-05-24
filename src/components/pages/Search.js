@@ -6,6 +6,8 @@ import axios from "axios";
 import BottomNav from '../layout/BottomNav';
 import TopBar from '../layout/TopBar';
 
+import './Search.css';
+
 class Search extends React.Component{
   state = { matches:{} };
 
@@ -22,12 +24,14 @@ class Search extends React.Component{
   render(){
     return(
       <div>
-        <h1>Zoek</h1>
-        <SearchBar onSearch={this.onSubmit}></SearchBar>
-        <Matches matches={this.state.matches}></Matches>
+        <TopBar />
+        <div className="searchPageContainer">
+          <h1>Zoek</h1>
+          <SearchBar onSearch={this.onSubmit}></SearchBar>
+          <Matches matches={this.state.matches}></Matches>
+        </div>
         <BottomNav />
       </div>
-
     )
   }
 }
