@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import axios from 'axios';
 
 import TopBar from '../layout/TopBar';
@@ -44,7 +43,7 @@ class Login extends React.Component{
    onSubmit = event => {
      event.preventDefault();
      this.getInfo();
-     if(this.state.checkWachtwoord == md5(this.state.inputWachtwoord)){
+     if(this.state.checkWachtwoord === md5(this.state.inputWachtwoord)){
        console.log('gelijk');
      }
      else{
@@ -52,7 +51,7 @@ class Login extends React.Component{
      }
  }
   valideerInput(){
-    return(this.state.checkWachtwoord == md5(this.state.inputWachtwoord));
+    return(this.state.checkWachtwoord === md5(this.state.inputWachtwoord));
   }
 
   render() {
@@ -60,7 +59,7 @@ class Login extends React.Component{
       <div>
         <TopBar />
         <div className="LoginPageContainer">
-          <form onSubmit={this.onSubmit} className="form">
+          <form onSubmit={this.onSubmit} className="formLogin">
             <div className="containerFormItem" id="gebruikersnaam" >
               <label className="label">Gebruikersnaam</label>
               <input
@@ -92,7 +91,6 @@ class Login extends React.Component{
               <Link to="/register" className="linkRegister">Klik hier om te registreren</Link>
             </div>
           </form>
-          <Link to="/search">Doorgaan </Link>
         </div>
       </div>
     );

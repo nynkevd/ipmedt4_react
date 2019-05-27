@@ -90,7 +90,6 @@ export default class Register extends Component{
               <label className="label">Gebruikersnaam</label>
               <input
                 className="inputGebruikersnaam"
-                autoFocus
                 type="text"
                 value={this.state.inputGebruikersnaam}
                 onChange={this.onChangeUser} />
@@ -99,7 +98,6 @@ export default class Register extends Component{
               <label className="label">E-mailadres</label>
               <input
                 className="inputEmail"
-                autoFocus
                 type="email"
                 value={this.state.inputEmail}
                 onChange={this.onChangeEmail} />
@@ -112,16 +110,16 @@ export default class Register extends Component{
                 onChange={this.onChangePass}
                 type="password" />
             </div>
-            <input
-              className="button"
-              disabled={!this.valideerInput()}
-              type="submit"
-              value="Registreer"
-              onClick={this.addUsers}
-            />
+            <Link to="/search">
+              <input
+                className="button"
+                disabled={!this.valideerInput()}
+                type="submit"
+                value="Registreer"
+                onClick={this.addUsers}
+              />
+            </Link>
           </form>
-
-          <Link to="/search">Doorgaan</Link>
         </div>
       </div>
     );

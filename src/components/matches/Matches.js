@@ -1,6 +1,5 @@
 import React from 'react';
 import MatchCard from './MatchCard';
-import axios from "axios";
 
 class Matches extends React.Component{
   constructor(props){
