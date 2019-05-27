@@ -1,0 +1,58 @@
+.userInfoFriendsContainer{
+  position: relative;
+  margin-top: 24%;
+  margin-left: 10%;
+}
+
+.pf {
+  border-radius: 100%;
+  width: 100px;
+}
+
+.usernameFriends {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  margin-left: 15px;
+}
+
+.whereFromFriends {
+  position: absolute;
+  margin-left: 35%;
+  margin-top: -22%;
+}
+
+.travelRouteFriendsContainer {
+  position: relative;
+  width: 90%;
+  margin-left: 9.3%;
+  margin-top: 6%;
+}
+
+.travelRouteName {
+  font-size: 0.8em;
+  position: absolute;
+  margin-top: -24%;
+  margin-left: 35%;
+}
+
+.whereFromFriends {
+  position: absolute;
+  margin-top: -19%;
+}
+
+.interestsFriendsContainer {
+  position: relative;
+  margin-left: 40.8%;
+  margin-top: 3%;
+}
+
+.interestsNameFriends {
+  position: absolute;
+  font-size: 0.8em;
+}
+
+.interestsListFriends {
+  position: absolute;
+  margin-top: 8.5%;
+}

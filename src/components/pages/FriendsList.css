@@ -1,3 +1,16 @@
 .friendsListPageContainer {
   margin-top: 8vh;
+  margin-bottom: 173px;
+}
+
+.friendsListPageContainer2 {
+  margin-top: 8vh;
+}
+
+.friendsListPageContainer3 {
+  margin-top: -14%;
+}
+
+.LineBetweenFriends {
+  margin-top: 29%;
 }
