@@ -4,7 +4,7 @@ const mysql = require('mysql');
 
 const app = express();
 
-const selectAll = 'SELECT * FROM user_test';
+const selectAll = 'SELECT * FROM accounts';
 
 const connection = mysql.createConnection({
   host: '136.144.230.97',
@@ -26,8 +26,8 @@ app.get('/', (req,res) =>{
 });
 
 app.get('/users/add', (req, res) =>{
-  const {name, email, password} = req.query;
-  const insertUser = `INSERT INTO user_test (name, email, password) VALUES('${name}', '${email}', '${password}')`
+  const {username, name, email, password} = req.query;
+  const insertUser = `INSERT INTO accounts ( username, name, email, password) VALUES('${username}','${name}', '${email}', md5('${password}'))`
   connection.query(insertUser, (err, results) =>{
     if(err){
       return res.send(err);
