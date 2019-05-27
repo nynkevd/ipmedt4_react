@@ -11,7 +11,7 @@
   box-sizing: border-box;
 }
 
-.formgroup {
+.containerFormItem {
   display: grid;
   grid-template-columns: 1fr;
   margin-top: 1.5em;
@@ -22,7 +22,7 @@
   font-size: 1.4em;
 }
 
-.formcontrol {
+.inputGebruikersnaam, .inputWachtwoord {
   margin-top: 1em;
   padding: 10px;
   font-size: 110%;
@@ -31,7 +31,18 @@
   border-radius: 5px;
 }
 
-.formcontrol:focus{
-  border: 1px solid rgb(199, 199, 199);
+.inputGebruikersnaam:focus, .inputWachtwoord:focus {
+  border: 1px solid #FCC63F;
+  border-radius: 0;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 10px;
+  margin-top: 2.5em;
+  border: none;
   border-radius: 5px;
+  font-size: 1.3em;
+  background-color: #FCC63F;
+  box-shadow: 5px 5px 5px #CDCDCD;
 }
