@@ -1,12 +1,49 @@
-.login {
-  padding: 60px 0;
+.registerPageContainer {
+  margin-top: 8vh;
 }
 
-.login form{
-  margin: 1em auto;
-  max-width: 320px;
+.formRegister {
+  width: 70%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
 }
 
-.formgroup, .button {
+.containerFormItem {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 1.5em;
+}
+
+.label {
+  margin-top: 0.5em;
+  font-size: 1.4em;
+}
+
+.inputNaam, .inputGebruikersnaam, .inputEmail, .inputWachtwoord{
   margin-top: 1em;
+  padding: 10px;
+  font-size: 110%;
+  box-sizing: border-box;
+  border: 1px solid rgb(199, 199, 199);
+  border-radius: 5px;
+}
+
+.inputNaam:focus, .inputGebruikersnaam:focus, .inputEmail:focus, .inputWachtwoord:focus{
+  border: 1px solid #FCC63F;
+  border-radius: 0;
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 2.5em;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.3em;
+  color: #000;
+  background-color: #FCC63F;
+  box-shadow: 5px 5px 5px #CDCDCD;
 }

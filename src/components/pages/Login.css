@@ -2,10 +2,10 @@
   margin-top: 8vh;
 }
 
-.form {
+.formLogin {
   width: 70%;
   position: absolute;
-  top: 45%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
@@ -45,4 +45,17 @@
   font-size: 1.3em;
   background-color: #FCC63F;
   box-shadow: 5px 5px 5px #CDCDCD;
+}
+
+.textNoAccount {
+  margin-top: 1.5em;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.linkRegister {
+  color: #000;
+  margin-top: 0.5em;
+  text-align: center;
+  font-size: 0.9em;
 }

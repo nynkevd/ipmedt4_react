@@ -87,6 +87,10 @@ class Login extends React.Component{
                 disabled={!this.valideerInput()} />
             </Link>
             </div>
+            <div className="containerFormItem">
+              <p className="textNoAccount">Nog geen account?</p>
+              <Link to="/register" className="linkRegister">Klik hier om te registreren</Link>
+            </div>
           </form>
           <Link to="/search">Doorgaan </Link>
         </div>
