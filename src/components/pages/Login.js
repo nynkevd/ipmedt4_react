@@ -35,28 +35,25 @@ class Login extends React.Component{
     });
   }
   onChangePassword = event =>{
+    this.getInfo();
     this.setState({
       inputWachtwoord: event.target.value
     });
   }
-   valideerInput(){
-     //ophalen wachtwoord uit database
-     //bekijken wachtwoordinput veld
-     //vergelijken van de hashwaardes van de wachtwoorden
-     //als het gelijk is dan mag je inloggen, alert ingelogd
-     // console.log(md5('hallo'));
-   };
 
    onSubmit = event => {
      event.preventDefault();
      this.getInfo();
-     if(this.state.checkWachtwoord == this.state.inputWachtwoord){
+     if(this.state.checkWachtwoord == md5(this.state.inputWachtwoord)){
        console.log('gelijk');
      }
      else{
        console.log('mislukt');
      }
  }
+  valideerInput(){
+    return(this.state.checkWachtwoord == md5(this.state.inputWachtwoord));
+  }
 
   render() {
     return(
@@ -82,7 +79,13 @@ class Login extends React.Component{
                 onChange={this.onChangePassword} />
             </div>
             <div>
-              <input className="loginButton" type="submit" value="Login"  />
+            <Link to="/search">
+              <input
+                className="loginButton"
+                type="submit"
+                value="Login"
+                disabled={!this.valideerInput()} />
+            </Link>
             </div>
           </form>
           <Link to="/search">Doorgaan </Link>
