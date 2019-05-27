@@ -14,3 +14,21 @@
 .bottomNavItemSelected {
   background-color: #ABABAB;
 }
+
+@media(width: 768px){
+  .bottomNavItemText {
+    font-size: 0.9em;
+  }
+}
+
+@media(width: 1024px){
+  .bottomNavItemText {
+    font-size: 0.9em;
+  }
+}
+
+@media(min-width: 1280px){
+  .bottomNavItemText {
+    font-size: 1em;
+  }
+}

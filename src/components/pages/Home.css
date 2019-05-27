@@ -36,3 +36,54 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+@media(width: 768px){
+  .HomePageText {
+    font-size: 2em;
+  }
+
+  .HomePageLinkTekst {
+    top: 88%;
+    font-size: 1.3em;
+  }
+}
+
+@media(width: 1024px){
+  .HomePageImg {
+    width: 70%;
+    position: absolute;
+    margin-top: 0%;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .HomePageText {
+    margin-top: 20%;
+    font-size: 2em;
+  }
+
+  .HomePageLinkTekst {
+    top: 88%;
+    font-size: 1.3em;
+  }
+}
+
+@media(min-width: 1280px){
+  .HomePageImg {
+    width: 60%;
+    position: absolute;
+    margin-top: 0%;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .HomePageText {
+    margin-top: 15%;
+    font-size: 2.5em;
+  }
+
+  .HomePageLinkTekst {
+    top: 88%;
+    font-size: 1.5em;
+  }
+}

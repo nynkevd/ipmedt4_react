@@ -1,6 +1,7 @@
 .userInfoContainer{
   position: relative;
-  margin-top: 10px;
+  margin-top: 20%;
+  margin-left: 3%;
 }
 
 .pf {
@@ -20,4 +21,36 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.travelRouteContainer {
+  position: relative;
+  margin-left: 3%;
+  margin-top: 5%;
+}
+
+.travelName {
+  position: absolute;
+  margin-top: 3%;
+}
+
+.whereFrom {
+  position: absolute;
+  margin-top: 10%;
+}
+
+.interestsContainer {
+  position: relative;
+  margin-top: 30%;
+  margin-left: 3%;
+}
+
+.interestName {
+  position: absolute;
+  margin-top: 5%;
+}
+
+.interestsList {
+  position: absolute;
+  margin-top: 24%;
 }

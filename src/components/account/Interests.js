@@ -1,5 +1,8 @@
 import React from 'react';
 
+import SearchBarInterests from "./SearchBarInterests";
+import './UserInfo.css';
+
 class Interests extends React.Component{
   constructor(props){
     super(props);
@@ -9,7 +12,8 @@ class Interests extends React.Component{
     return(
       <div>
         <h3>Interesses</h3>
-        <ul>
+        <SearchBarInterests className="searchbarInterests" onSearch={this.onSubmit}></SearchBarInterests>
+        <ul className="interestsList">
           {
             this.props.interests.map((interest, index) =>
               <li key={index}>{interest}</li>
