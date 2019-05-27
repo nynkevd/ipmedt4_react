@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 
 import TopBar from '../layout/TopBar';
 
@@ -12,7 +11,7 @@ class Login extends React.Component{
       <div>
         <TopBar />
         <div className="LoginPageContainer">
-          <form className="form">
+          <form className="formLogin">
             <div className="containerFormItem" id="gebruikersnaam" >
               <label className="label">Gebruikersnaam</label>
               <input className="inputGebruikersnaam" autoFocus type="text" />
@@ -23,6 +22,10 @@ class Login extends React.Component{
             </div>
             <div>
               <input className="loginButton" type="submit" value="Login" />
+            </div>
+            <div className="containerFormItem">
+              <p className="textNoAccount">Nog geen account?</p>
+              <Link to="/register" className="linkRegister">Klik hier om te registreren</Link>
             </div>
           </form>
           <Link to="/search">Doorgaan </Link>

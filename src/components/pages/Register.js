@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import "./Register.css"
 import {Link} from 'react-router-dom';
 
+import TopBar from '../layout/TopBar';
+
 export default class Register extends Component{
 
   constructor(props){
@@ -71,49 +73,56 @@ export default class Register extends Component{
   //geef de pagina terug
   render(){
     return(
-      <div className="login">
-        <form onSubmit={this.onSubmit}>
-        <div className="formgroup" id="naam" >
-          <label>Naam</label>
-          <input
-            autoFocus
-            type="text"
-            value={this.state.inputNaam}
-            onChange={this.onChangeName} />
-        </div>
-          <div className="formgroup" id="gebruikersnaam" >
-            <label>Gebruikersnaam</label>
+      <div>
+        <TopBar />
+        <div className="registerPageContainer">
+          <form className="formRegister" onSubmit={this.onSubmit}>
+            <div className="containerFormItem" id="naam" >
+              <label className="label">Naam</label>
+              <input
+                className="inputNaam"
+                autoFocus
+                type="text"
+                value={this.state.inputNaam}
+                onChange={this.onChangeName} />
+            </div>
+            <div className="containerFormItem" id="gebruikersnaam" >
+              <label className="label">Gebruikersnaam</label>
+              <input
+                className="inputGebruikersnaam"
+                autoFocus
+                type="text"
+                value={this.state.inputGebruikersnaam}
+                onChange={this.onChangeUser} />
+            </div>
+            <div className="containerFormItem" id="email" >
+              <label className="label">E-mailadres</label>
+              <input
+                className="inputEmail"
+                autoFocus
+                type="email"
+                value={this.state.inputEmail}
+                onChange={this.onChangeEmail} />
+            </div>
+            <div className="containerFormItem" id="wachtwoord" >
+              <label className="label">Wachtwoord</label>
+              <input
+                className="inputWachtwoord"
+                value={this.state.inputWachtwoord}
+                onChange={this.onChangePass}
+                type="password" />
+            </div>
             <input
-              autoFocus
-              type="text"
-              value={this.state.inputGebruikersnaam}
-              onChange={this.onChangeUser} />
-          </div>
-          <div className="formgroup" id="email" >
-            <label>E-mailadres</label>
-            <input
-              autoFocus
-              type="email"
-              value={this.state.inputEmail}
-              onChange={this.onChangeEmail} />
-          </div>
-          <div className="formgroup" id="wachtwoord" >
-            <label>Wachtwoord</label>
-            <input
-              value={this.state.inputWachtwoord}
-              onChange={this.onChangePass}
-              type="password" />
-          </div>
-          <input
-            className="button"
-            disabled={!this.valideerInput()}
-            type="submit"
-            value="Registreer"
-            onClick={this.addUsers}
-          />
-        </form>
+              className="button"
+              disabled={!this.valideerInput()}
+              type="submit"
+              value="Registreer"
+              onClick={this.addUsers}
+            />
+          </form>
 
-        <Link to="/search">Doorgaan</Link>
+          <Link to="/search">Doorgaan</Link>
+        </div>
       </div>
     );
   }
