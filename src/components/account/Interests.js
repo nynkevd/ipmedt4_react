@@ -5,16 +5,16 @@ class Interests extends React.Component{
     super(props);
   }
 
-  interestsList = this.props.interests.map((interest) =>
-    <li key={interest}>{interest}</li>
-  );
-
   render(){
     return(
       <div>
         <h3>Interesses</h3>
         <ul>
-          {this.interestsList}
+          {
+            this.props.interests.map((interest, index) =>
+              <li key={index}>{interest}</li>
+            )
+          }
         </ul>
       </div>
     );

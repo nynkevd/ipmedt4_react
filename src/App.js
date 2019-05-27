@@ -10,6 +10,7 @@ import Search from './components/pages/Search';
 import Chat from './components/pages/Chat';
 import FriendsList from './components/pages/FriendsList';
 import Account from './components/pages/Account';
+import AccountEdit from './components/pages/AccountEdit';
 
 class App extends React.Component {
   render(){
@@ -25,6 +26,7 @@ class App extends React.Component {
             <Route path="/chat" component={Chat} />
             <Route path="/friendsList" component={FriendsList} />
             <Route path="/account" component={Account} />
+            <Route path="/editAccount" component={AccountEdit} />
           </Switch>
         </div>
       </Router>
