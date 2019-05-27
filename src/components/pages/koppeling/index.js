@@ -36,13 +36,28 @@ app.get('/users/add', (req, res) =>{
     }
   });
 });
+// haal de informatie van een gebruiker op
+app.get('/login', (req,res) =>{
+  const {username, password} = req.query;
+  const getInfo = `SELECT password FROM accounts WHERE username ='${username}'`
+  connection.query(getInfo, (err,results) =>{
+    if(err){
+      return res.send(err);
+    }else{
+      // return res.send('Succesfully fetched password');
+      res.send({
+        data:results
+      })
+    }
+  })
+});
 
 app.get('/users', (req,res) => {
   connection.query(selectAll, (err,results) =>{
     if(err){
       return res.send(err)
     } else{
-      res.json({
+      res.send({
         data: results
       })
     }
