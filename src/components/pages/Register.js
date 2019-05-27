@@ -1,6 +1,4 @@
 import React, {Component} from "react";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import { Auth } from "aws-amplify";
 import "./Register.css"
 import {Link} from 'react-router-dom';
 
@@ -22,24 +20,28 @@ export default class Register extends Component{
     this.getUsers();
   }
 
+  //bekijken van de gebruikers in een browser
   getUsers = _ => {
     fetch('http://localhost:4000/users')
       .then(response => this.setState({inputEmail: "", inputWachtwoord: "",inputGebruikersnaam: "", inputNaam:"" }))
         .catch(err => console.error(err))
   }
 
+  //toevoegen van users aan de accounts tabel via een url
   addUsers = _ =>{
-    fetch(`http://localhost:4000/users/add?username=${this.state.inputGebruikersnaam}&name=${this.state.inputGebruikersnaam}&email=${this.state.inputEmail}&password=${this.state.inputWachtwoord}`)
+    fetch(`http://localhost:4000/users/add?username=${this.state.inputGebruikersnaam}&name=${this.state.inputNaam}&email=${this.state.inputEmail}&password=${this.state.inputWachtwoord}`)
       .then(this.getUsers)
       .catch(err => console.error(err))
   }
 
   renderUser = ({name, email}) => <div key={name}>{email}</div>
 
+  //check of de invoervelden aan de voorwaarden voldoen, zodat een veld niet leeg kan zijn
   valideerInput(){
     return this.state.inputEmail.length > 0 && this.state.inputWachtwoord.length > 4 &&this.state.inputGebruikersnaam.length > 3 && this.state.inputNaam.length > 1 ;
   };
 
+  //zet de juiste state-informatie naar de waarde van het invoerveld
   onChangeName = event =>{
     this.setState({
       inputNaam: event.target.value
@@ -60,61 +62,55 @@ export default class Register extends Component{
       inputWachtwoord: event.target.value
     });
   }
- // ervoor zorgen dat de info niet verdwijnt als de pagina ververst
+ // ervoor zorgen dat de informatie niet verdwijnt als de pagina ververst
   onSubmit = event => {
     event.preventDefault();
 
-  //   try {
-  //      Auth.signIn(this.state.inputGebruikersnaam, this.state.inputEmail, this.state.inputWachtwoord);
-  //      alert("Ingelogd!");
-  //   } catch (e) {
-  //     alert(e.message);
-  // }
 }
 
-  //elke klasse een renderfunctie
+  //geef de pagina terug
   render(){
     return(
       <div className="login">
         <form onSubmit={this.onSubmit}>
-        <FormGroup className="formgroup" controlId="naam" >
+        <div className="formgroup" id="naam" >
           <label>Naam</label>
-          <FormControl
+          <input
             autoFocus
             type="text"
             value={this.state.inputNaam}
             onChange={this.onChangeName} />
-        </FormGroup>
-          <FormGroup className="formgroup" controlId="gebruikersnaam" >
+        </div>
+          <div className="formgroup" id="gebruikersnaam" >
             <label>Gebruikersnaam</label>
-            <FormControl
+            <input
               autoFocus
               type="text"
               value={this.state.inputGebruikersnaam}
               onChange={this.onChangeUser} />
-          </FormGroup>
-          <FormGroup className="formgroup" controlId="email" >
+          </div>
+          <div className="formgroup" id="email" >
             <label>E-mailadres</label>
-            <FormControl
+            <input
               autoFocus
               type="email"
               value={this.state.inputEmail}
               onChange={this.onChangeEmail} />
-          </FormGroup>
-          <FormGroup className="formgroup" controlId="wachtwoord" >
+          </div>
+          <div className="formgroup" id="wachtwoord" >
             <label>Wachtwoord</label>
-            <FormControl
+            <input
               value={this.state.inputWachtwoord}
               onChange={this.onChangePass}
               type="password" />
-          </FormGroup>
-          <Button
+          </div>
+          <input
             className="button"
-            block
             disabled={!this.valideerInput()}
             type="submit"
+            value="Registreer"
             onClick={this.addUsers}
-          > Registreer </Button>
+          />
         </form>
 
         <Link to="/search">Doorgaan</Link>
