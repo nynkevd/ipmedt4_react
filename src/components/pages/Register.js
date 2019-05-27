@@ -14,6 +14,7 @@ export default class Register extends Component{
       inputEmail: "",
       inputWachtwoord: "",
       inputGebruikersnaam: "",
+      inputNaam: "",
     }
   }
 
@@ -23,12 +24,12 @@ export default class Register extends Component{
 
   getUsers = _ => {
     fetch('http://localhost:4000/users')
-      .then(response => this.setState({inputEmail: "", inputWachtwoord: "",inputGebruikersnaam: "" }))
+      .then(response => this.setState({inputEmail: "", inputWachtwoord: "",inputGebruikersnaam: "", inputNaam:"" }))
         .catch(err => console.error(err))
   }
 
   addUsers = _ =>{
-    fetch(`http://localhost:4000/users/add?name=${this.state.inputGebruikersnaam}&email=${this.state.inputEmail}&password=${this.state.inputWachtwoord}`)
+    fetch(`http://localhost:4000/users/add?username=${this.state.inputGebruikersnaam}&name=${this.state.inputGebruikersnaam}&email=${this.state.inputEmail}&password=${this.state.inputWachtwoord}`)
       .then(this.getUsers)
       .catch(err => console.error(err))
   }
@@ -36,9 +37,14 @@ export default class Register extends Component{
   renderUser = ({name, email}) => <div key={name}>{email}</div>
 
   valideerInput(){
-    return this.state.inputEmail.length > 0 && this.state.inputWachtwoord.length > 4 &&this.state.inputGebruikersnaam.length > 1;
+    return this.state.inputEmail.length > 0 && this.state.inputWachtwoord.length > 4 &&this.state.inputGebruikersnaam.length > 3 && this.state.inputNaam.length > 1 ;
   };
 
+  onChangeName = event =>{
+    this.setState({
+      inputNaam: event.target.value
+    });
+  }
   onChangeEmail = event =>{
     this.setState({
       inputEmail: event.target.value
@@ -71,12 +77,20 @@ export default class Register extends Component{
     return(
       <div className="login">
         <form onSubmit={this.onSubmit}>
+        <FormGroup className="formgroup" controlId="naam" >
+          <label>Naam</label>
+          <FormControl
+            autoFocus
+            type="text"
+            value={this.state.inputNaam}
+            onChange={this.onChangeName} />
+        </FormGroup>
           <FormGroup className="formgroup" controlId="gebruikersnaam" >
             <label>Gebruikersnaam</label>
             <FormControl
               autoFocus
               type="text"
-              value={this.state.hallo}
+              value={this.state.inputGebruikersnaam}
               onChange={this.onChangeUser} />
           </FormGroup>
           <FormGroup className="formgroup" controlId="email" >
