@@ -1,0 +1,23 @@
+.userInfoContainer{
+  position: relative;
+  margin-top: 10px;
+}
+
+.pf {
+  border-radius: 100%;
+  width: 100px;
+}
+
+.username {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  margin-left: 15px;
+}
+
+.editIcon {
+  width: 24px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
