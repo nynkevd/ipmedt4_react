@@ -14,11 +14,11 @@ class ReisTraject extends React.Component{
   ];
 
   setFrom = (event) => {
-    console.log(event)
+    this.setState({from: event.target.value});
   }
 
   setTo = (event) => {
-    console.log(event)
+    this.setState({to: event.target.value});
   }
 
   render(){
