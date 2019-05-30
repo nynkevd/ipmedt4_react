@@ -10,10 +10,10 @@ class BottomNav extends React.Component{
       <div>
         <div className="bottomNav">
           <div className="bottomNavGrid">
-            <BottomNavItem className="bottomNavItem" name="Zoek" link="/search" icon="./icons/search_icon.svg"/>
-            <BottomNavItem className="bottomNavItem" name="Chat" link="/chat" icon="./icons/chat_icon.svg"/>
-            <BottomNavItem className="bottomNavItem" name="Travel Buddies" link="/friendsList" icon="./icons/people_icon.svg"/>
-            <BottomNavItem className="bottomNavItem" name="Account" link="/account" icon="./icons/account_icon.svg"/>
+            <BottomNavItem className="bottomNavItem" name="Zoek" link="/search" icon="./img/icons/search_icon.svg"/>
+            <BottomNavItem className="bottomNavItem" name="Chat" link="/chat" icon="./img/icons/chat_icon.svg"/>
+            <BottomNavItem className="bottomNavItem" name="Travel Buddies" link="/friendsList" icon="./img/icons/people_icon.svg"/>
+            <BottomNavItem className="bottomNavItem" name="Account" link="/account" icon="./img/icons/account_icon.svg"/>
           </div>
         </div>
       </div>
