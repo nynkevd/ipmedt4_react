@@ -1,8 +1,20 @@
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
-
+const http = require('http');
 const app = express();
+
+
+// maak een nieuwe server aan
+const server = http.createServer(function(request, response){
+  if(request.url === '/'){
+    response.setHeader('Content-Type', 'text/html');
+    response.end('<h1>Hallo</h1>');
+  }
+});
+
+//luisteren naar poort 4000 van de VPS (136.144.230.97)
+server.listen(4000);
 
 const selectAll = 'SELECT * FROM accounts';
 
@@ -36,6 +48,7 @@ app.get('/users/add', (req, res) =>{
     }
   });
 });
+
 // haal de informatie van een gebruiker op
 app.get('/login', (req,res) =>{
   const {username, password} = req.query;
@@ -44,7 +57,6 @@ app.get('/login', (req,res) =>{
     if(err){
       return res.send(err);
     }else{
-      // return res.send('Succesfully fetched password');
       res.send({
         data:results
       })
@@ -52,6 +64,7 @@ app.get('/login', (req,res) =>{
   })
 });
 
+//bekijk de users om het te testen
 app.get('/users', (req,res) => {
   connection.query(selectAll, (err,results) =>{
     if(err){
@@ -62,8 +75,4 @@ app.get('/users', (req,res) => {
       })
     }
   })
-})
-
-app.listen(4000, () =>{
-  console.log('Listening');
 })

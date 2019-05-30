@@ -23,7 +23,7 @@ class Login extends React.Component{
   }
 
   getInfo = _ => {
-    axios.get(`http://localhost:4000/login?username=${this.state.inputGebruikersnaam}`)
+    axios.get(`http://136.144.230.97:4000/login?username=${this.state.inputGebruikersnaam}`)
       .then(response => this.setState({checkWachtwoord: response.data.data[0].password}))
         .catch(err => console.error(err))
   }
