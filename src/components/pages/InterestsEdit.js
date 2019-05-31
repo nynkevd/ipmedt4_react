@@ -2,7 +2,6 @@ import React from "react";
 
 import TopBar from '../layout/TopBar';
 import MyInterests from '../editInterests/MyInterests';
-import SearchBarInterests from '../editInterests/SearchBarInterests'
 
 import './InterestsEdit.css';
 
@@ -34,7 +33,7 @@ class InterestsEdit extends React.Component {
       <div className="interestPageContainer">
         <h1> Mijn interesses </h1>
         <MyInterests className="myinterests" interests={this.state.myInterests}> </ MyInterests>
-        <SearchBarInterests onSubmit={this.onSearch} > </SearchBarInterests>
+
       </div>
     </div>
   )}

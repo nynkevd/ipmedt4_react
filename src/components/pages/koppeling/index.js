@@ -67,4 +67,18 @@ app.get('/users', (req,res) => {
       })
     }
   })
-})
+});
+
+app.get('/userinfo/update', (req,res) => {
+  const {username, profilepicture} = req.query;
+  const editProfilePicture = `UPDATE user_info SET profile_picture = '${profilepicture}' WHERE username = '${username}'`
+  connection.query(editProfilePicture, (err,results) =>{
+    if(err){
+      return res.send(err)
+    } else {
+      res.send({
+        data: results
+      })
+    }
+  })
+});
