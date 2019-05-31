@@ -9,33 +9,26 @@ class ReisTraject extends React.Component{
   stations = [
     "Leiden",
     "Voorschoten",
-    "Alphen",
+    "Alphen aan den Rijn",
     "Nieuw Vennep"
   ];
-
-  setFrom = (event) => {
-    this.setState({from: event.target.value});
-  }
-
-  setTo = (event) => {
-    this.setState({to: event.target.value});
-  }
 
   render(){
     return(
       <div>
-        <h3>Standaard Reistraject</h3>
+        <label className="labelEditAccount">Reistraject</label>
         <form action="">
-          <label htmlFor="from">Van:</label>
-
-          <select value={this.state.from} onChange={this.setFrom}>
+          <label className="errorMessage hideErrorMessage" id="fromErrorMessage">De stations kunnen niet hetzelfde zijn</label>
+          <select value={this.props.from} onChange={this.props.setFrom} className="selectTraject">
             {this.stations.map((station) =>
               <option value={station} key={station}>{station}</option>
             )}
           </select>
 
-          <label htmlFor="to">Naar:</label>
-          <select value={this.state.to} onChange={this.setTo}>
+          <img src="./img/icons/double-arrow.svg" alt="Van/naar pijltjes" className="doubleArrow"/>
+
+          <label className="errorMessage hideErrorMessage" id="toErrorMessage">De stations kunnen niet hetzelfde zijn</label>
+          <select value={this.props.to} onChange={this.props.setTo} className="selectTraject">
             {this.stations.map((station) =>
               <option value={station} key={station}>{station}</option>
             )}
