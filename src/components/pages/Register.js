@@ -24,14 +24,14 @@ export default class Register extends Component{
 
   //bekijken van de gebruikers in een browser
   getUsers = _ => {
-    fetch('http://localhost:4000/users')
+    fetch('http://136.144.230.97:4000/users')
       .then(response => this.setState({inputEmail: "", inputWachtwoord: "",inputGebruikersnaam: "", inputNaam:"" }))
         .catch(err => console.error(err))
   }
 
   //toevoegen van users aan de accounts tabel via een url
   addUsers = _ =>{
-    fetch(`http://localhost:4000/users/add?username=${this.state.inputGebruikersnaam}&name=${this.state.inputNaam}&email=${this.state.inputEmail}&password=${this.state.inputWachtwoord}`)
+    fetch(`http://136.144.230.97:4000/users/add?username=${this.state.inputGebruikersnaam}&name=${this.state.inputNaam}&email=${this.state.inputEmail}&password=${this.state.inputWachtwoord}`)
       .then(this.getUsers)
       .catch(err => console.error(err))
   }

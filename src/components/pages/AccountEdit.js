@@ -6,6 +6,7 @@ import BottomNav from '../layout/BottomNav';
 import ProfilePictureList from '../editAccount/ProfilePictureList';
 import UserName from '../editAccount/UserName';
 import ReisTraject from '../editAccount/ReisTraject';
+import {Link} from 'react-router-dom';
 
 import './AccountEdit.css';
 
@@ -28,6 +29,23 @@ class AccountEdit extends React.Component{
       // De userinfo wordt opgevraag en de lijst van profielfotos wordt meegegeven
       this.getUserInfo(res.data);
     });
+  }
+
+  updateUserInfo = _ => {
+    // fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}`)
+    // .then()
+    var htmlCollection = document.getElementsByClassName("selected");
+    var arr = Array.prototype.slice.call( htmlCollection );
+    arr = arr[0];
+    arr = arr.getAttribute('id');
+    var newPicId = (parseInt(arr.toString().slice(-1)) + 1);
+
+    this.setState({profilePicture: newPicId});
+    console.log(this.state.profilePicture);
+
+    fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}'`)
+    .then(this.getUserInfo)
+    .catch(err => console.error(err))
   }
 
   getUserInfo = (pictureList) => {
@@ -88,6 +106,8 @@ class AccountEdit extends React.Component{
           <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
           <ReisTraject from={this.state.travelFrom} to={this.state.travelTo} setFrom={this.setFrom} setTo={this.setTo}/>
 
+          <button className="button" onClick={this.updateUserInfo}> Bevestig </button>
+          <Link to="/account"> <p> Terug naar account </p> </ Link>
         </div>
         <BottomNav />
       </div>
