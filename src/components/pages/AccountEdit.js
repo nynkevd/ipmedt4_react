@@ -9,11 +9,15 @@ import ReisTraject from '../editAccount/ReisTraject';
 import {Link} from 'react-router-dom';
 
 import './AccountEdit.css';
+import {store} from "./store";
+import {Provider} from "react-redux";
+import {changeUserName} from "./actions";
+import {connect} from "react-redux";
 
 import axios from "axios";
 
 class AccountEdit extends React.Component{
-  state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: "", username: "Anouk"} // username moet aangepast worden naar het ingelogde account
+  state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: "", username: this.props.username} // username moet aangepast worden naar het ingelogde account
   BASE_URL = "http://136.144.230.97:8080/api/";
   api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
@@ -115,4 +119,12 @@ class AccountEdit extends React.Component{
   }
 }
 
-export default AccountEdit;
+const mapStateToProps = state =>{
+  return {username: state.username};
+}
+
+export default connect(mapStateToProps,{
+  changeUserName: changeUserName,
+})(AccountEdit);
+
+//export default AccountEdit;

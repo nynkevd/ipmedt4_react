@@ -8,14 +8,18 @@ import Interests from '../account/Interests';
 import Reistraject from '../account/Reistraject';
 
 import './Account.css';
+import {store} from "./store";
+import {Provider} from "react-redux";
+import {changeUserName} from "./actions";
+import {connect} from "react-redux";
 
 import axios from "axios";
 
 class Account extends React.Component{
-  state = { interests:[], profilePicture: "", travelFrom: "", travelTo: "" };
+  state = { interests:[], profilePicture: "", travelFrom: "", travelTo: ""};
   BASE_URL = "http://136.144.230.97:8080/api/";
   api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
-  username = "Anouk"; // Moet aangepast worden naar de ingelogde gebruiker
+  username = this.props.username; // Moet aangepast worden naar de ingelogde gebruiker
 
   componentDidMount(){
     //Userinfo api -> profielfoto, van, naar
@@ -52,4 +56,12 @@ class Account extends React.Component{
   }
 }
 
-export default Account;
+const mapStateToProps = state =>{
+  return {username: state.username};
+}
+
+export default connect(mapStateToProps,{
+  changeUserName: changeUserName,
+})(Account);
+
+//export default Account;

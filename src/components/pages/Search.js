@@ -34,7 +34,6 @@ class Search extends React.Component{
       <div>
         <TopBar />
         <div className="searchPageContainer">
-          <h1>Zoek</h1>
           <h1>Welkom {this.props.username}</h1>
           <h3>Dit zijn jouw matches:</h3>
 
