@@ -5,5 +5,7 @@
 
 .selected {
   box-sizing: border-box;
-  border: 3px solid rgb(0, 252, 25);
+  border: 3px solid rgb(250, 197, 64);
+  /* box-shadow: 0px 0px 10px rgb(0, 252, 25); */
+  /* border: 3px solid rgb(0, 252, 25); */
 }
