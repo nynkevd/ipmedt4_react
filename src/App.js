@@ -27,12 +27,12 @@ class App extends React.Component {
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route path="/search" component={Search} />
+              <Route path="/chat" component={Chat} />
+              <Route path="/friendsList" component={FriendsList} />
+              <Route path="/account" component={Account} />
+              <Route path="/editAccount" component={AccountEdit} />
+              <Route path="/editInterests" component={InterestsEdit} />
             </Provider>
-            <Route path="/chat" component={Chat} />
-            <Route path="/friendsList" component={FriendsList} />
-            <Route path="/account" component={Account} />
-            <Route path="/editAccount" component={AccountEdit} />
-            <Route path="/editInterests" component={InterestsEdit} />
           </Switch>
         </div>
       </Router>

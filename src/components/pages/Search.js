@@ -15,6 +15,10 @@ import {connect} from "react-redux";
 class Search extends React.Component{
   state = { matches:{} };
 
+  componentDidMount(){
+    this.onSubmit(this.props.username);
+  }
+
   onSubmit = searchTerm => {
     const base_url = "http://136.144.230.97:8080/api/match/";
     const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
@@ -24,7 +28,7 @@ class Search extends React.Component{
       this.setState({matches: {matches}})
     });
   };
-
+// <SearchBar onSearch={this.onSubmit}></SearchBar>
   render(){
     return(
       <div>
@@ -32,7 +36,8 @@ class Search extends React.Component{
         <div className="searchPageContainer">
           <h1>Zoek</h1>
           <h1>Welkom {this.props.username}</h1>
-          <SearchBar onSearch={this.onSubmit}></SearchBar>
+          <h3>Dit zijn jouw matches:</h3>
+
           <Matches matches={this.state.matches}></Matches>
         </div>
         <BottomNav />
