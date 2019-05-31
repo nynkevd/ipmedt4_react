@@ -8,3 +8,34 @@
   grid-row-gap: 20px;
   justify-items: center;
 }
+
+.inputUsername, .selectTraject {
+  margin-top: 1em;
+  padding: 10px;
+  font-size: 110%;
+  box-sizing: border-box;
+  border: 1px solid rgb(199, 199, 199);
+  border-radius: 5px;
+}
+
+.inputUsername:focus {
+  border: 1px solid #FCC63F;
+  border-radius: 0;
+}
+
+.labelEditAccount {
+  margin-top: .5em;
+  font-size: 1.4em;
+}
+
+.doubleArrow{
+  width: 25px;
+}
+
+.errorMessage{
+  color: red;
+}
+
+.hideErrorMessage{
+  display: none;
+}
