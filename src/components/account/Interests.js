@@ -10,7 +10,7 @@ class Interests extends React.Component{
 
   render(){
     return(
-      <div>
+      <div className="interestsContainer">
         <h3>Interesses</h3>
         <SearchBarInterests className="searchbarInterests" onSearch={this.onSubmit}></SearchBarInterests>
         <ul className="interestsList">

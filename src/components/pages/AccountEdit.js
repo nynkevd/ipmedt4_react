@@ -3,7 +3,7 @@ import React from 'react';
 import TopBar from '../layout/TopBar';
 import BottomNav from '../layout/BottomNav';
 
-import ProfilePicture from '../editAccount/ProfilePicture';
+import ProfilePictureList from '../editAccount/ProfilePictureList';
 import UserName from '../editAccount/UserName';
 import ReisTraject from '../editAccount/ReisTraject';
 
@@ -11,54 +11,43 @@ import './AccountEdit.css';
 
 import axios from "axios";
 
-class Chat extends React.Component{
-  state = { profilePicture: "profilePicture0",  pictureList: []}
+class AccountEdit extends React.Component{
+  state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: ""}
+  BASE_URL = "http://136.144.230.97:8080/api/";
+  username = "Anouk"; //Moet aangepast worden naar de ingelogde gebruiker
+  api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
   componentDidMount(){
-    var picturesUrl = "http://136.144.230.97:8080/api/pictures?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
-    var user_url = "http://136.144.230.97:8080/api/userinfo/";
-    var api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
-
-    var test = "http://136.144.230.97:8080/api/userinfo/nynke";
-
-    axios.get(picturesUrl).then(res => {
+    // Lijst van de mogelijke profielfotos
+    axios.get(this.BASE_URL + "pictures" + this.api_token).then(res => {
       console.log(res);
       this.setState({pictureList: res.data});
-    });
 
-    axios.get(`http://136.144.230.97:8080/api/userinfo/anouk?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL`).then(res => {
-      console.log(res);
+      // De userinfo wordt opgevraag en de lijst van profielfotos wordt meegegeven
+      this.getUserInfo(res.data);
     });
   }
 
+  getUserInfo = (pictureList) => {
+    axios.get(this.BASE_URL + "userinfo/" + this.username + this.api_token).then(res => {
+      // De huidige profielfoto wordt opgevraagd en meegegeven
+      this.selectCurrentPicture(res.data.picture, pictureList);
 
-
-  stations = [
-    "Leiden Centraal",
-    "De Vink",
-    "Voorschoten",
-    "Den Haag Mariahoeve",
-    "Den Haag Laan van NOI",
-    "Den Haag Centraal"
-  ];
-
-  username = "Anouk";
-
-
-  pictureOnClick = (event) => {
-    var picturesList = document.getElementById("profilePicturesContainer").childNodes;
-
-    picturesList.forEach(function(picture){
-      var image = picture.childNodes;
-      image[0].classList.remove("selected");
+      this.setState({
+        travelFrom: res.data.from,
+        travelTo: res.data.to
+      });
     });
+  }
 
-    var clickedPicture = document.getElementById(event.target.id);
-    clickedPicture.classList.add("selected");
-
-    this.setState({profilePicture: event.target.id});
-
-    // Profielfoto moet aangepast worden in de database
+  selectCurrentPicture = (picture, pictureList) => {
+    // De huidige profielfoto wordt geselecteerd
+    for(var i = 0; i < pictureList.length; i++){
+      if(pictureList[i] == picture){
+        var currentPicture = document.getElementById("profilePicture" + i);
+        currentPicture.classList.add("selected");
+      }
+    }
   }
 
   render(){
@@ -67,15 +56,10 @@ class Chat extends React.Component{
         <TopBar />
         <div className="accountEditPageContainer">
           <h1>Edit account</h1>
-          <div className="profilePictures" id="profilePicturesContainer">
-            {
-              this.state.pictureList.map((picture, index) =>
-                <ProfilePicture picture={picture} className="profilePicture" click={this.pictureOnClick} key={index} index={index} />
-              )
-            }
-          </div>
-          <UserName />
-          <ReisTraject />
+
+          <ProfilePictureList pictureList={this.state.pictureList} click={this.pictureOnClick}/>
+          <UserName username={this.username}/>
+          <ReisTraject from={this.state.travelFrom} to={this.state.travelTo}/>
 
         </div>
         <BottomNav />
@@ -84,4 +68,4 @@ class Chat extends React.Component{
   }
 }
 
-export default Chat;
+export default AccountEdit;
