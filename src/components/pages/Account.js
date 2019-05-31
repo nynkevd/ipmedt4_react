@@ -12,16 +12,28 @@ import './Account.css';
 import axios from "axios";
 
 class Account extends React.Component{
-  state = { interests:[] };
+  state = { interests:[], profilePicture: "", travelFrom: "", travelTo: "" };
+  BASE_URL = "http://136.144.230.97:8080/api/";
+  api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
+  username = "Anouk"; // Moet aangepast worden naar de ingelogde gebruiker
 
   componentDidMount(){
-    console.log("mount");
-    var base_url = "http://127.0.0.1:8000/api/interests/";
-    var api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
+    //Userinfo api -> profielfoto, van, naar
+    axios.get(this.BASE_URL + "userinfo/" + this.username + this.api_token).then(res => {
+      console.log(res);
+      this.setState({
+        profilePicture: res.data.picture,
+        travelFrom: res.data.from,
+        travelTo: res.data.to,
+      });
+    });
 
-    axios.get(base_url + "anouk" + api_token).then(res => {
-      let interests = res.data;
-      this.setState({interests: interests});
+    //Interests api -> interests array
+    axios.get(this.BASE_URL + "interests/" + this.username + this.api_token).then(res => {
+      console.log(res.data);
+      this.setState({
+        interests: res.data
+      });
     });
   }
 
@@ -30,8 +42,8 @@ class Account extends React.Component{
       <div>
         <TopBar />
         <div className="accountPageContainer">
-          <UserInfo profielfoto="https://is4-ssl.mzstatic.com/image/thumb/Purple128/v4/54/4f/9b/544f9b86-5073-2793-f825-699c9f547375/AppIcon-1x_U007emarketing-0-85-220-0-5.png/246x0w.jpg" naam="Anouk"></UserInfo>
-          <Reistraject van="Voorschoten" naar="Leiden Centraal"></Reistraject>
+          <UserInfo profielfoto={this.state.profilePicture} naam={this.username}></UserInfo>
+          <Reistraject van={this.state.travelFrom} naar={this.state.travelTo}></Reistraject>
           <Interests interests={this.state.interests}></Interests>
         </div>
         <BottomNav />
