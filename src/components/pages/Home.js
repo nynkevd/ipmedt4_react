@@ -1,23 +1,32 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import './Home.css';
 
 class Home extends React.Component{
+  state = {
+    redirect: false
+  }
+
+  componentDidMount() {
+    this.id = setTimeout(() => this.setState({ redirect: true }), 3000)
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.id)
+  }
+
   render(){
-    return(
-      <div>
-        <Link className="HomePageLink" to="/login">
-          <div className="HomePage">
-            <div className="HomePageContainer">
-              <img className="HomePageImg" src="./img/NS_logo.png" alt="NS logo"/>
-              <h1 className="HomePageText">Travel Buddy</h1>
-            </div>
-            <p className="HomePageLinkTekst">Klik om verder te gaan</p>
+    return this.state.redirect
+      ? <Redirect to="/login" />
+      : <div>
+        <div className="HomePage">
+          <div className="HomePageContainer">
+            <img className="HomePageImg" src="./img/NS_logo.png" alt="NS logo"/>
+            <h1 className="HomePageText">Travel Buddy</h1>
           </div>
-        </Link>
+        </div>
       </div>
-    )
   }
 }
 
