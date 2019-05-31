@@ -12,7 +12,7 @@ class Search extends React.Component{
   state = { matches:{} };
 
   onSubmit = searchTerm => {
-    const base_url = "http://localhost:8000/api/match/";
+    const base_url = "http://136.144.230.97:8080/api/match/";
     const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
     axios.get(base_url + searchTerm + api_token).then(res => {

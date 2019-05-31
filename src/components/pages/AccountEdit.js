@@ -15,18 +15,18 @@ class Chat extends React.Component{
   state = { profilePicture: "profilePicture0",  pictureList: []}
 
   componentDidMount(){
-    var picturesUrl = "http://127.0.0.1:8000/api/pictures?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
-    var user_url = "http://127.0.0.1:8000/api/userinfo/";
+    var picturesUrl = "http://136.144.230.97:8080/api/pictures?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
+    var user_url = "http://136.144.230.97:8080/api/userinfo/";
     var api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
-    var test = "http://127.0.0.1:8000/api/userinfo/nynke";
+    var test = "http://136.144.230.97:8080/api/userinfo/nynke";
 
     axios.get(picturesUrl).then(res => {
       console.log(res);
       this.setState({pictureList: res.data});
     });
 
-    axios.get(`http://127.0.0.1:8000/api/userinfo/anouk?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL`).then(res => {
+    axios.get(`http://136.144.230.97:8080/api/userinfo/anouk?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL`).then(res => {
       console.log(res);
     });
   }

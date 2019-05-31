@@ -16,7 +16,7 @@ class Account extends React.Component{
 
   componentDidMount(){
     console.log("mount");
-    var base_url = "http://127.0.0.1:8000/api/interests/";
+    var base_url = "http://136.144.230.97:8080/api/interests/";
     var api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
     axios.get(base_url + "anouk" + api_token).then(res => {
