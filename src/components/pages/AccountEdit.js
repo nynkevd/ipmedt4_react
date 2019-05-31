@@ -22,8 +22,6 @@ class AccountEdit extends React.Component{
   api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
   componentDidMount(){
-    this.setState({username: "Anouk"});
-
 
     // Lijst van de mogelijke profielfotos
     axios.get(this.BASE_URL + "pictures" + this.api_token).then(res => {
@@ -99,6 +97,11 @@ class AccountEdit extends React.Component{
     }
   }
 
+  //Later toevoegen:
+  // <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
+  // <ReisTraject from={this.state.travelFrom} to={this.state.travelTo} setFrom={this.setFrom} setTo={this.setTo}/>
+
+
   render(){
     return(
       <div>
@@ -107,8 +110,6 @@ class AccountEdit extends React.Component{
           <h1>Edit account</h1>
 
           <ProfilePictureList pictureList={this.state.pictureList} click={this.pictureOnClick}/>
-          <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
-          <ReisTraject from={this.state.travelFrom} to={this.state.travelTo} setFrom={this.setFrom} setTo={this.setTo}/>
 
           <button className="button" onClick={this.updateUserInfo}> Bevestig </button>
           <Link to="/account"> <p> Terug naar account </p> </ Link>
