@@ -5,3 +5,11 @@
 .hidden {
   display: none;
 }
+
+.interestsList {
+  margin-top: 2em;
+}
+
+.searchbarInterests {
+  margin-top: 25em;
+}

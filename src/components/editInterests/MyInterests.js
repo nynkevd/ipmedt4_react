@@ -23,7 +23,7 @@ class MyInterests extends React.Component {
       <ul className="interestsList">
         {
           this.props.interests.map((interest, index) =>
-            <li className="interest" key={index}>{interest}  <img onClick={this.deleteOnClick} id={interest} className="icon" src="./img/icons/pencil-edit-button.svg" alt=""/></li>
+            <li className="interest" key={index}>{interest}  <img onClick={this.deleteOnClick} id={interest} className="icon" src="./img/icons/trash.svg" alt=""/></li>
           )
         }
       </ul>
