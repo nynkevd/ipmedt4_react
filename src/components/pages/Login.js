@@ -4,6 +4,10 @@ import axios from 'axios';
 
 import TopBar from '../layout/TopBar';
 
+//redux
+import {connect} from "react-redux";
+import {changeUserName} from "./actions";
+
 import './Login.css';
 const md5 = require('md5');
 
@@ -12,7 +16,7 @@ class Login extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      inputGebruikersnaam: "",
+      // inputGebruikersnaam: "",
       inputWachtwoord: "",
       checkWachtwoord: "",
     }
@@ -23,15 +27,16 @@ class Login extends React.Component{
   }
 
   getInfo = _ => {
-    axios.get(`http://136.144.230.97:4000/login?username=${this.state.inputGebruikersnaam}`)
+    axios.get(`http://136.144.230.97:4000/login?username=${this.props.username}`)
       .then(response => this.setState({checkWachtwoord: response.data.data[0].password}))
         .catch(err => console.error(err))
   }
 
   onChangeUserName = event =>{
-    this.setState({
-      inputGebruikersnaam: event.target.value
-    });
+    // this.setState({
+    //   inputGebruikersnaam: event.target.value
+    // });
+    this.props.changeUserName(event.target.value);
   }
   onChangePassword = event =>{
     this.getInfo();
@@ -43,6 +48,7 @@ class Login extends React.Component{
    onSubmit = event => {
      event.preventDefault();
      this.getInfo();
+     this.props.changeUserName(event.target.value);
      if(this.state.checkWachtwoord === md5(this.state.inputWachtwoord)){
        console.log('gelijk');
      }
@@ -55,6 +61,7 @@ class Login extends React.Component{
   }
 
   render() {
+    console.log(this.props.username);
     return(
       <div>
         <TopBar />
@@ -66,7 +73,7 @@ class Login extends React.Component{
                 className="inputGebruikersnaam"
                 autoFocus
                 type="text"
-                value={this.state.inputGebruikersnaam}
+                value={this.props.username}
                 onChange={this.onChangeUserName} />
             </div>
             <div className="containerFormItem" id="wachtwoord" >
@@ -97,4 +104,12 @@ class Login extends React.Component{
   }
 }
 
-export default Login;
+const mapStateToProps = state =>{
+  return{username: state.username};
+}
+
+export default connect(mapStateToProps,{
+  changeUserName: changeUserName,
+})(Login);
+
+// export default Login;

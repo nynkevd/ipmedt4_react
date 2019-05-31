@@ -7,6 +7,10 @@ import BottomNav from '../layout/BottomNav';
 import TopBar from '../layout/TopBar';
 
 import './Search.css';
+import {store} from "./store";
+import {Provider} from "react-redux";
+import {changeUserName} from "./actions";
+import {connect} from "react-redux";
 
 class Search extends React.Component{
   state = { matches:{} };
@@ -27,6 +31,7 @@ class Search extends React.Component{
         <TopBar />
         <div className="searchPageContainer">
           <h1>Zoek</h1>
+          <h1>Welkom {this.props.username}</h1>
           <SearchBar onSearch={this.onSubmit}></SearchBar>
           <Matches matches={this.state.matches}></Matches>
         </div>
@@ -36,4 +41,11 @@ class Search extends React.Component{
   }
 }
 
-export default Search;
+const mapStateToProps = state =>{
+  return {username: state.username};
+}
+
+export default connect(mapStateToProps,{
+  changeUserName: changeUserName,
+})(Search);
+//export default Search;

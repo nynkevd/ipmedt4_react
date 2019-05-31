@@ -5,16 +5,8 @@ const http = require('http');
 const app = express();
 
 
-// maak een nieuwe server aan
-const server = http.createServer(function(request, response){
-  if(request.url === '/'){
-    response.setHeader('Content-Type', 'text/html');
-    response.end('<h1>Hallo</h1>');
-  }
-});
-
-//luisteren naar poort 4000 van de VPS (136.144.230.97)
-server.listen(4000);
+// maak een nieuwe server aan en luister naar poort 4000 van de VPS (136.144.230.97)
+const server = http.createServer(app).listen(4000);
 
 const selectAll = 'SELECT * FROM accounts';
 
