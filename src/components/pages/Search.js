@@ -17,7 +17,7 @@ class Search extends React.Component{
   state = { matches:{} };
 
   componentDidMount(){
-    this.onSubmit(this.props.userName);
+    this.getMatches(this.props.userName);
     //Kijken of er ingelogd is
     if(this.props.userName !== ""){
       this.props.changeLoggedIn(true);
@@ -26,11 +26,12 @@ class Search extends React.Component{
     }
   }
 
-  onSubmit = searchTerm => {
+  getMatches = username => {
+    console.log(username);
     const base_url = "http://136.144.230.97:8080/api/match/";
     const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
     //Matches ophalen
-    axios.get(base_url + searchTerm + api_token).then(res => {
+    axios.get(base_url + username + api_token).then(res => {
       let matches = res.data;
       this.setState({matches: {matches}})
     });
