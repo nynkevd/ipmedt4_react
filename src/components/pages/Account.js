@@ -19,7 +19,7 @@ class Account extends React.Component{
   state = { interests:[], profilePicture: "", travelFrom: "", travelTo: ""};
   BASE_URL = "http://136.144.230.97:8080/api/";
   api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
-  username = this.props.username; // Moet aangepast worden naar de ingelogde gebruiker
+  username = this.props.userName;
 
   componentDidMount(){
     //Userinfo api -> profielfoto, van, naar
@@ -57,7 +57,7 @@ class Account extends React.Component{
 }
 
 const mapStateToProps = state =>{
-  return {username: state.username};
+  return {userName: state.userName};
 }
 
 export default connect(mapStateToProps,{
