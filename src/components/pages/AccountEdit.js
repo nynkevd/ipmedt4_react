@@ -17,6 +17,7 @@ import {connect} from "react-redux";
 import axios from "axios";
 
 var firstClick = true;
+var close = document.getElementsByClassName("close")[0];
 
 class AccountEdit extends React.Component{
   state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: "", username: this.props.userName} // username moet aangepast worden naar het ingelogde account
@@ -45,6 +46,7 @@ class AccountEdit extends React.Component{
     console.log(this.state.profilePicture);
 
     if (firstClick) {
+      document.getElementById("myModal").style.display = "block";
       console.log("ḧier komt een pop-up");
       firstClick = false;
     } else {
@@ -115,6 +117,11 @@ class AccountEdit extends React.Component{
   newFirstClick = _ => {
     firstClick = true;
   }
+  close = _ => {
+    console.log("hallo");
+    document.getElementById("myModal").style.display = "none";
+    this.newFirstClick();
+  }
 
   //Later toevoegen:
   // <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
@@ -132,8 +139,21 @@ class AccountEdit extends React.Component{
 
           <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
 
-          <button className="button" onClick={this.updateUserInfo}> Bevestig </button>
-          <Link to="/account" onClick={this.newFirstClick}> <p> Terug naar account </p> </ Link>
+          <div className="next">
+              <button className="button" onClick={this.updateUserInfo}> Bevestig </button> <br /> <br />
+              <Link to="/account" onClick={this.newFirstClick} id="back"> <p> Terug naar account </p> </ Link>
+          </div>
+
+          <div id="myModal" class="modal">
+            <div class="modal-content">
+              <span class="close" onClick={this.close}>&times;</span>
+              <h2>Weet je het zeker?</h2>
+              <Link to="/account">
+              <button className="button" onClick={this.updateUserInfo}> Bevestig </button>
+              </Link>
+            </div>
+          </div>
+
         </div>
         <BottomNav />
       </div>
