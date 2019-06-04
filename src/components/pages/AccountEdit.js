@@ -20,7 +20,7 @@ var firstClick = true;
 var close = document.getElementsByClassName("close")[0];
 
 class AccountEdit extends React.Component{
-  state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: "", username: this.props.userName} // username moet aangepast worden naar het ingelogde account
+  state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: "", username: this.props.userName, displayname: ""} // username moet aangepast worden naar het ingelogde account
   BASE_URL = "http://136.144.230.97:8080/api/";
   api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
@@ -73,6 +73,10 @@ class AccountEdit extends React.Component{
         travelTo: res.data.to
       });
 
+    axios.get(this.BASE_URL + "userinfo/" + this.state.username + this.api_token).then(res =>{
+      this.setState({displayname: res.data.name,});
+    });
+
       // De huidige profielfoto wordt opgevraagd en meegegeven
       this.selectCurrentPicture(res.data.picture, pictureList);
     });
@@ -89,8 +93,8 @@ class AccountEdit extends React.Component{
     }
   }
 
-  onUsernameChange = (username) =>{
-    this.setState({username: username})
+  onDisplaynameChange = (displayname) =>{
+    this.setState({displayname: displayname});
   }
 
   setFrom = (event) => {
@@ -137,16 +141,16 @@ class AccountEdit extends React.Component{
 
           <ProfilePictureList pictureList={this.state.pictureList} click={this.pictureOnClick}/>
 
-          <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
+          <UserName username={this.displayname} onSubmit={this.onDisplaynameChange}/>
 
           <div className="next">
               <button className="button" onClick={this.updateUserInfo}> Bevestig </button> <br /> <br />
               <Link to="/account" onClick={this.newFirstClick} id="back"> <p> Terug naar account </p> </ Link>
           </div>
 
-          <div id="myModal" class="modal">
-            <div class="modal-content">
-              <span class="close" onClick={this.close}>&times;</span>
+          <div id="myModal" className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={this.close}>&times;</span>
               <h2>Weet je het zeker?</h2>
               <Link to="/account">
               <button className="button" onClick={this.updateUserInfo}> Bevestig </button>
