@@ -4,6 +4,9 @@ import {Link} from 'react-router-dom';
 
 import TopBar from '../layout/TopBar';
 
+import Chatkit from '@pusher/chatkit-client';
+import axios from 'axios';
+
 export default class Register extends Component{
 
   constructor(props){
@@ -31,9 +34,26 @@ export default class Register extends Component{
 
   //toevoegen van users aan de accounts tabel via een url
   addUsers = _ =>{
+    this.addUserToChatkit(this.state.inputGebruikersnaam);
     fetch(`http://136.144.230.97:4000/users/add?username=${this.state.inputGebruikersnaam}&name=${this.state.inputNaam}&email=${this.state.inputEmail}&password=${this.state.inputWachtwoord}`)
       .then(this.getUsers)
       .catch(err => console.error(err))
+  }
+
+  addUserToChatkit = user => {
+    console.log(user);
+    const userId = user;
+
+    if (userId === null || userId.trim() === '') {
+    alert('Invalid userId');
+  }
+
+    axios.post('http://localhost:5200/users', { userId })
+      .then(() => {
+        const tokenProvider = new Chatkit.TokenProvider({
+          url: 'http://localhost:5200/authenticate',
+        });
+      });
   }
 
   renderUser = ({name, email}) => <div key={name}>{email}</div>
