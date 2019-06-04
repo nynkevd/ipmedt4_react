@@ -17,7 +17,7 @@ import {connect} from "react-redux";
 import axios from "axios";
 
 class AccountEdit extends React.Component{
-  state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: "", username: this.props.username} // username moet aangepast worden naar het ingelogde account
+  state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: "", username: this.props.userName} // username moet aangepast worden naar het ingelogde account
   BASE_URL = "http://136.144.230.97:8080/api/";
   api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
@@ -69,7 +69,7 @@ class AccountEdit extends React.Component{
       if(pictureList[i] === picture){
         var currentPicture = document.getElementById("profilePicture" + i);
         currentPicture.classList.add("selected");
-        this.setState({profilePicture: i})
+        this.setState({profilePicture: i});
       }
     }
   }
@@ -125,7 +125,7 @@ class AccountEdit extends React.Component{
 }
 
 const mapStateToProps = state =>{
-  return {username: state.username};
+  return {userName: state.userName};
 }
 
 export default connect(mapStateToProps,{
