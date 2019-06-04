@@ -1,15 +1,18 @@
+//React en benodigheden importeren
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+//Redux importeren
+import {connect} from "react-redux";
+import {changeUserName, changeLoggedIn} from "./actions";
+//Eigen componeten importeren
+import TopBar from '../layout/TopBar';
+//CSS importeren
+import './Login.css';
+
 import Chatkit from '@pusher/chatkit-client';
 
-import TopBar from '../layout/TopBar';
-
-//redux
-import {connect} from "react-redux";
-import {changeUserName} from "./actions";
-
-import './Login.css';
+//Hash wachtwoord
 const md5 = require('md5');
 
 class Login extends React.Component{
@@ -17,7 +20,6 @@ class Login extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      // inputGebruikersnaam: "",
       inputWachtwoord: "",
       checkWachtwoord: "",
     }
@@ -28,15 +30,13 @@ class Login extends React.Component{
   }
 
   getInfo = _ => {
-    axios.get(`http://136.144.230.97:4000/login?username=${this.props.username}`)
+    //Checken van ingevoerde wachtwoord met de database
+    axios.get(`http://136.144.230.97:4000/login?username=${this.props.userName}`)
       .then(response => this.setState({checkWachtwoord: response.data.data[0].password}))
         .catch(err => console.error(err))
   }
 
   onChangeUserName = event =>{
-    // this.setState({
-    //   inputGebruikersnaam: event.target.value
-    // });
     this.props.changeUserName(event.target.value);
   }
   onChangePassword = event =>{
@@ -59,10 +59,12 @@ class Login extends React.Component{
  }
 
     onClick = event => {
-      const userId = this.props.username;
+      const userId = this.props.userName;
+      console.log(userId);
       const tokenProvider = new Chatkit.TokenProvider({
-      url: 'http://136.144.230.97:5200/authenticate',
-    });
+        url: 'http://136.144.230.97:5200/authenticate',
+      });
+
       const chatManager = new Chatkit.ChatManager({
           instanceLocator: 'v1:us1:a6e72788-6919-4ade-a86a-7beeaa73aa7d',
           userId,
@@ -75,11 +77,16 @@ class Login extends React.Component{
   }
 
   valideerInput(){
-    return(this.state.checkWachtwoord === md5(this.state.inputWachtwoord));
+    if(this.state.checkWachtwoord === md5(this.state.inputWachtwoord)){
+      this.props.changeLoggedIn(true);
+      return true;
+    } else {
+      this.props.changeLoggedIn(false);
+      return false;
+    }
   }
 
   render() {
-    console.log(this.props.username);
     return(
       <div>
         <TopBar />
@@ -91,7 +98,7 @@ class Login extends React.Component{
                 className="inputGebruikersnaam"
                 autoFocus
                 type="text"
-                value={this.props.username}
+                value={this.props.userName}
                 onChange={this.onChangeUserName} />
             </div>
             <div className="containerFormItem" id="wachtwoord" >
@@ -124,11 +131,13 @@ class Login extends React.Component{
 }
 
 const mapStateToProps = state =>{
-  return{username: state.username};
+  return{
+    userName: state.userName,
+    loggedIn: state.loggedIn,
+  };
 }
 
 export default connect(mapStateToProps,{
   changeUserName: changeUserName,
+  changeLoggedIn: changeLoggedIn,
 })(Login);
-
-// export default Login;

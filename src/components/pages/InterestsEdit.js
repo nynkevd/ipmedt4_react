@@ -33,7 +33,6 @@ class InterestsEdit extends React.Component {
       <div className="interestPageContainer">
         <h1> Mijn interesses </h1>
         <MyInterests className="myinterests" interests={this.state.myInterests}> </ MyInterests>
-
       </div>
     </div>
   )}
