@@ -1,37 +1,35 @@
+//React en benodigheden importeren
 import React, {Component} from "react";
-import "./Register.css"
 import {Link} from 'react-router-dom';
-
+//Redux importeren
+import {connect} from "react-redux";
+import {
+  changeInputUserName,
+  changeInputName,
+  changeInputEmail,
+  changeInputPassword
+} from "./actions";
+//Eigen componenten importeren
 import TopBar from '../layout/TopBar';
+import "./Register.css"
 
-export default class Register extends Component{
-
-  constructor(props){
-    super(props);
-
-    // declareer de state -> kan elke keer veranderd worden voor een nieuwe gebruiker
-    this.state = {
-      inputEmail: "",
-      inputWachtwoord: "",
-      inputGebruikersnaam: "",
-      inputNaam: "",
-    }
-  }
+class Register extends Component{
 
   componentDidMount(){
     this.getUsers();
   }
 
-  //bekijken van de gebruikers in een browser
+  //set de values leeg
   getUsers = _ => {
-    fetch('http://136.144.230.97:4000/users')
-      .then(response => this.setState({inputEmail: "", inputWachtwoord: "",inputGebruikersnaam: "", inputNaam:"" }))
-        .catch(err => console.error(err))
-  }
+    this.props.changeInputName("");
+    this.props.changeInputUserName("");
+    this.props.changeInputEmail("");
+    this.props.changeInputPassword("");
+    }
 
   //toevoegen van users aan de accounts tabel via een url
   addUsers = _ =>{
-    fetch(`http://136.144.230.97:4000/users/add?username=${this.state.inputGebruikersnaam}&name=${this.state.inputNaam}&email=${this.state.inputEmail}&password=${this.state.inputWachtwoord}`)
+    fetch(`http://136.144.230.97:4000/users/add?username=${this.props.inputUserName}&name=${this.props.inputName}&email=${this.props.inputEmail}&password=${this.props.inputPassword}`)
       .then(this.getUsers)
       .catch(err => console.error(err))
   }
@@ -40,29 +38,21 @@ export default class Register extends Component{
 
   //check of de invoervelden aan de voorwaarden voldoen, zodat een veld niet leeg kan zijn
   valideerInput(){
-    return this.state.inputEmail.length > 0 && this.state.inputWachtwoord.length > 4 &&this.state.inputGebruikersnaam.length > 3 && this.state.inputNaam.length > 1 ;
+    return this.props.inputEmail.length > 0 && this.props.inputPassword.length > 4 &&this.props.inputUserName.length > 3 && this.props.inputName.length > 1 ;
   };
 
   //zet de juiste state-informatie naar de waarde van het invoerveld
   onChangeName = event =>{
-    this.setState({
-      inputNaam: event.target.value
-    });
+    this.props.changeInputName(event.target.value);
   }
   onChangeEmail = event =>{
-    this.setState({
-      inputEmail: event.target.value
-    });
+    this.props.changeInputEmail(event.target.value);
   }
   onChangeUser = event =>{
-    this.setState({
-      inputGebruikersnaam: event.target.value
-    });
+    this.props.changeInputUserName(event.target.value);
   }
   onChangePass = event =>{
-    this.setState({
-      inputWachtwoord: event.target.value
-    });
+    this.props.changeInputPassword(event.target.value);
   }
  // ervoor zorgen dat de informatie niet verdwijnt als de pagina ververst
   onSubmit = event => {
@@ -83,7 +73,7 @@ export default class Register extends Component{
                 className="inputNaam"
                 autoFocus
                 type="text"
-                value={this.state.inputNaam}
+                value={this.props.inputName}
                 onChange={this.onChangeName} />
             </div>
             <div className="containerFormItem" id="gebruikersnaam" >
@@ -91,7 +81,7 @@ export default class Register extends Component{
               <input
                 className="inputGebruikersnaam"
                 type="text"
-                value={this.state.inputGebruikersnaam}
+                value={this.props.inputUserName}
                 onChange={this.onChangeUser} />
             </div>
             <div className="containerFormItem" id="email" >
@@ -99,14 +89,14 @@ export default class Register extends Component{
               <input
                 className="inputEmail"
                 type="email"
-                value={this.state.inputEmail}
+                value={this.props.inputEmail}
                 onChange={this.onChangeEmail} />
             </div>
             <div className="containerFormItem" id="wachtwoord" >
               <label className="label">Wachtwoord</label>
               <input
                 className="inputWachtwoord"
-                value={this.state.inputWachtwoord}
+                value={this.props.inputPassword}
                 onChange={this.onChangePass}
                 type="password" />
             </div>
@@ -125,3 +115,19 @@ export default class Register extends Component{
     );
   }
 }
+
+const mapStateToProps = state =>{
+  return{
+    inputUserName: state.inputUserName,
+    inputName: state.inputName,
+    inputEmail: state.inputEmail,
+    inputPassword: state.inputPassword,
+  };
+}
+
+export default connect(mapStateToProps,{
+  changeInputUserName: changeInputUserName,
+  changeInputName: changeInputName,
+  changeInputEmail: changeInputEmail,
+  changeInputPassword: changeInputPassword,
+})(Register);

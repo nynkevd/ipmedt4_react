@@ -29,7 +29,7 @@ class Login extends React.Component{
 
   getInfo = _ => {
     //Checken van ingevoerde wachtwoord met de database
-    axios.get(`http://136.144.230.97:4000/login?username=${this.props.username}`)
+    axios.get(`http://136.144.230.97:4000/login?username=${this.props.userName}`)
       .then(response => this.setState({checkWachtwoord: response.data.data[0].password}))
         .catch(err => console.error(err))
   }
@@ -77,7 +77,7 @@ class Login extends React.Component{
                 className="inputGebruikersnaam"
                 autoFocus
                 type="text"
-                value={this.props.username}
+                value={this.props.userName}
                 onChange={this.onChangeUserName} />
             </div>
             <div className="containerFormItem" id="wachtwoord" >
@@ -110,7 +110,7 @@ class Login extends React.Component{
 
 const mapStateToProps = state =>{
   return{
-    username: state.username,
+    userName: state.userName,
     loggedIn: state.loggedIn,
   };
 }

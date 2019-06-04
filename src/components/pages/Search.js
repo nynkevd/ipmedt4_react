@@ -17,9 +17,9 @@ class Search extends React.Component{
   state = { matches:{} };
 
   componentDidMount(){
-    this.onSubmit(this.props.username);
+    this.onSubmit(this.props.userName);
     //Kijken of er ingelogd is
-    if(this.props.username !== ""){
+    if(this.props.userName !== ""){
       this.props.changeLoggedIn(true);
     } else {
       this.props.changeLoggedIn(false);
@@ -41,7 +41,7 @@ class Search extends React.Component{
     ? <div>
         <TopBar />
         <div className="searchPageContainer">
-          <h1>Welkom {this.props.username}</h1>
+          <h1>Welkom {this.props.userName}</h1>
           <h3>Dit zijn jouw matches:</h3>
 
           <Matches matches={this.state.matches}></Matches>
@@ -55,7 +55,7 @@ class Search extends React.Component{
 
 const mapStateToProps = state =>{
   return {
-    username: state.username,
+    userName: state.userName,
     loggedIn: state.loggedIn,
   };
 }
