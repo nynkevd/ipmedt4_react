@@ -1,11 +1,12 @@
+//React en benodigheden importeren
 import React from "react";
-
+import axios from "axios";
+//Redux importeren
+//Eigen componenten importeren
 import TopBar from '../layout/TopBar';
 import MyInterests from '../editInterests/MyInterests';
-
+//CSS importeren
 import './InterestsEdit.css';
-
-import axios from "axios";
 
 class InterestsEdit extends React.Component {
   state = { myInterests:[]}

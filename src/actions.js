@@ -4,7 +4,10 @@ export const CHANGE_INPUTNAME = "CHANGE_INPUTNAME";
 export const CHANGE_INPUTUSERNAME= "CHANGE_INPUTUSERNAME";
 export const CHANGE_INPUTEMAIL = "CHANGE_INPUTEMAIL";
 export const CHANGE_INPUTPASSWORD = "CHANGE_INPUTPASSWORD";
-
+export const CHANGE_CHATKITUSER = "CHANGE_CHATKITUSER";
+export const CHANGE_CHECKPASSWORD = "CHANGE_CHECKPASSWORD";
+export const CHANGE_INPUTPASSWORDLOGIN = "CHANGE_INPUTPASSWORDLOGIN";
+export const CHANGE_MATCHES = "CHANGE_MATCHES";
 
 //login
 export const changeUserName = userName =>({
@@ -36,3 +39,25 @@ export const changeInputPassword = inputPassword =>({
   type: CHANGE_INPUTPASSWORD,
   payload: inputPassword,
 });
+
+//ChatKit User
+export const changeChatKitUser = chatKitUser =>({
+  type: CHANGE_CHATKITUSER,
+  payload: chatKitUser,
+});
+
+//Login
+export const changeCheckPassword = checkPassword =>({
+  type: CHANGE_CHECKPASSWORD,
+  payload: checkPassword,
+})
+export const changeInputPasswordLogin = inputPasswordLogin =>({
+  type: CHANGE_INPUTPASSWORDLOGIN,
+  payload: inputPasswordLogin,
+})
+
+//Matches
+export const changeMatches = matches =>({
+  type: CHANGE_MATCHES,
+  payload: matches,
+})

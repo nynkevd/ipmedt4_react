@@ -5,7 +5,11 @@ import {
   inputName,
   inputUserName,
   inputEmail,
-  inputPassword
+  inputPassword,
+  chatKitUser,
+  checkPassword,
+  inputPasswordLogin,
+  matches,
   } from "./reducer";
 
 export const store = createStore(
@@ -15,6 +19,10 @@ export const store = createStore(
     inputName,
     inputUserName,
     inputEmail,
-    inputPassword
+    inputPassword,
+    chatKitUser,
+    checkPassword,
+    inputPasswordLogin,
+    matches,
   })
 )

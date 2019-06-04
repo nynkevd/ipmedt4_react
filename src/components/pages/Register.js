@@ -1,6 +1,8 @@
 //React en benodigheden importeren
 import React, {Component} from "react";
 import {Link} from 'react-router-dom';
+import Chatkit from '@pusher/chatkit-client';
+import axios from 'axios';
 //Redux importeren
 import {connect} from "react-redux";
 import {
@@ -8,13 +10,11 @@ import {
   changeInputName,
   changeInputEmail,
   changeInputPassword
-} from "./actions";
+} from "./../../actions";
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
+//CSS importeren
 import "./Register.css"
-
-import Chatkit from '@pusher/chatkit-client';
-import axios from 'axios';
 
 class Register extends Component{
 
