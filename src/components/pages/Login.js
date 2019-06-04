@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Chatkit from '@pusher/chatkit-client';
 
 import TopBar from '../layout/TopBar';
 
@@ -56,6 +57,23 @@ class Login extends React.Component{
        console.log('mislukt');
      }
  }
+
+    onClick = event => {
+      const userId = this.props.username;
+      const tokenProvider = new Chatkit.TokenProvider({
+      url: 'http://136.144.230.97:5200/authenticate',
+    });
+      const chatManager = new Chatkit.ChatManager({
+          instanceLocator: 'v1:us1:a6e72788-6919-4ade-a86a-7beeaa73aa7d',
+          userId,
+          tokenProvider,
+      });
+
+      chatManager.connect().then(currentUser =>{
+        console.log(currentUser);
+      });
+  }
+
   valideerInput(){
     return(this.state.checkWachtwoord === md5(this.state.inputWachtwoord));
   }
@@ -90,6 +108,7 @@ class Login extends React.Component{
                 className="loginButton"
                 type="submit"
                 value="Login"
+                onClick={this.onClick}
                 disabled={!this.valideerInput()} />
             </Link>
             </div>
