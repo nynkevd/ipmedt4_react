@@ -22,7 +22,6 @@ class AccountEdit extends React.Component{
   api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
   componentDidMount(){
-
     // Lijst van de mogelijke profielfotos
     axios.get(this.BASE_URL + "pictures" + this.api_token).then(res => {
       console.log(res);
@@ -45,9 +44,11 @@ class AccountEdit extends React.Component{
     this.setState({profilePicture: newPicId});
     console.log(this.state.profilePicture);
 
-    fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}'`)
+    fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}`)
     .then(this.getUserInfo)
     .catch(err => console.error(err))
+
+    console.log('gelukt');
   }
 
   getUserInfo = (pictureList) => {
@@ -68,6 +69,7 @@ class AccountEdit extends React.Component{
       if(pictureList[i] === picture){
         var currentPicture = document.getElementById("profilePicture" + i);
         currentPicture.classList.add("selected");
+        this.setState({profilePicture: i})
       }
     }
   }
@@ -110,6 +112,8 @@ class AccountEdit extends React.Component{
           <h1>Edit account</h1>
 
           <ProfilePictureList pictureList={this.state.pictureList} click={this.pictureOnClick}/>
+
+          <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
 
           <button className="button" onClick={this.updateUserInfo}> Bevestig </button>
           <Link to="/account"> <p> Terug naar account </p> </ Link>

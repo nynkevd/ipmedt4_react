@@ -22,7 +22,7 @@ class UserName extends React.Component{
     return(
       <div>
         <form onSubmit={this.onSubmit}>
-          <label className="labelEditAccount">Gebruikersnaam</label>
+          <label className="labelEditAccount">Naam</label>
           <input type="text" value={this.state.username} className="inputUsername" onChange={this.onChange}></input>
         </form>
       </div>
