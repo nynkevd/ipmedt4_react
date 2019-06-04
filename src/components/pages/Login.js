@@ -1,14 +1,16 @@
+//React en benodigheden importeren
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-
-import TopBar from '../layout/TopBar';
-
-//redux
+//Redux importeren
 import {connect} from "react-redux";
-import {changeUserName} from "./actions";
-
+import {changeUserName, changeLoggedIn} from "./actions";
+//Eigen componeten importeren
+import TopBar from '../layout/TopBar';
+//CSS importeren
 import './Login.css';
+
+//Hash wachtwoord
 const md5 = require('md5');
 
 class Login extends React.Component{
@@ -16,7 +18,6 @@ class Login extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      // inputGebruikersnaam: "",
       inputWachtwoord: "",
       checkWachtwoord: "",
     }
@@ -27,15 +28,13 @@ class Login extends React.Component{
   }
 
   getInfo = _ => {
+    //Checken van ingevoerde wachtwoord met de database
     axios.get(`http://136.144.230.97:4000/login?username=${this.props.username}`)
       .then(response => this.setState({checkWachtwoord: response.data.data[0].password}))
         .catch(err => console.error(err))
   }
 
   onChangeUserName = event =>{
-    // this.setState({
-    //   inputGebruikersnaam: event.target.value
-    // });
     this.props.changeUserName(event.target.value);
   }
   onChangePassword = event =>{
@@ -57,11 +56,16 @@ class Login extends React.Component{
      }
  }
   valideerInput(){
-    return(this.state.checkWachtwoord === md5(this.state.inputWachtwoord));
+    if(this.state.checkWachtwoord === md5(this.state.inputWachtwoord)){
+      this.props.changeLoggedIn(true);
+      return true;
+    } else {
+      this.props.changeLoggedIn(false);
+      return false;
+    }
   }
 
   render() {
-    console.log(this.props.username);
     return(
       <div>
         <TopBar />
@@ -105,11 +109,13 @@ class Login extends React.Component{
 }
 
 const mapStateToProps = state =>{
-  return{username: state.username};
+  return{
+    username: state.username,
+    loggedIn: state.loggedIn,
+  };
 }
 
 export default connect(mapStateToProps,{
   changeUserName: changeUserName,
+  changeLoggedIn: changeLoggedIn,
 })(Login);
-
-// export default Login;
