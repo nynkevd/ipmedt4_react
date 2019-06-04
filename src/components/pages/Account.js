@@ -1,19 +1,17 @@
+//React en benodigheden importeren
 import React from 'react';
-
+import axios from "axios";
+//Redux importeren
+import { connect } from "react-redux";
+import { changeUserName } from "./../../actions";
+//Eigen componenten importeren
 import TopBar from '../layout/TopBar';
 import BottomNav from '../layout/BottomNav';
-
 import UserInfo from '../account/UserInfo';
 import Interests from '../account/Interests';
 import Reistraject from '../account/Reistraject';
-
+//CSS importeren
 import './Account.css';
-import {store} from "./store";
-import {Provider} from "react-redux";
-import {changeUserName} from "./actions";
-import {connect} from "react-redux";
-
-import axios from "axios";
 
 class Account extends React.Component{
   state = { interests:[], profilePicture: "", travelFrom: "", travelTo: ""};

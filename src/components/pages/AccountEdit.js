@@ -1,20 +1,18 @@
+//React en benodigheden importeren
 import React from 'react';
-
+import { Link } from 'react-router-dom';
+import axios from "axios";
+//Redux importeren
+import { connect } from "react-redux";
+import { changeUserName } from "./../../actions";
+//Eigen componenten importeren
 import TopBar from '../layout/TopBar';
 import BottomNav from '../layout/BottomNav';
-
 import ProfilePictureList from '../editAccount/ProfilePictureList';
 import UserName from '../editAccount/UserName';
 import ReisTraject from '../editAccount/ReisTraject';
-import {Link} from 'react-router-dom';
-
+//CSS importeren
 import './AccountEdit.css';
-import {store} from "./store";
-import {Provider} from "react-redux";
-import {changeUserName} from "./actions";
-import {connect} from "react-redux";
-
-import axios from "axios";
 
 class AccountEdit extends React.Component{
   state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: "", username: this.props.username} // username moet aangepast worden naar het ingelogde account

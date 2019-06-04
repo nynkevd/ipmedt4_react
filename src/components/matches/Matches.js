@@ -7,7 +7,7 @@ class Matches extends React.Component{
   }
 
   render(){
-    let matches = this.props.matches.matches;
+    let matches = this.props.matches;
     let matchList = [];
 
     for(var user in matches){
