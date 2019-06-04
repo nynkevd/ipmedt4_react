@@ -16,6 +16,8 @@ import {connect} from "react-redux";
 
 import axios from "axios";
 
+var firstClick = true;
+
 class AccountEdit extends React.Component{
   state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: "", username: this.props.userName} // username moet aangepast worden naar het ingelogde account
   BASE_URL = "http://136.144.230.97:8080/api/";
@@ -33,8 +35,6 @@ class AccountEdit extends React.Component{
   }
 
   updateUserInfo = _ => {
-    // fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}`)
-    // .then()
     var htmlCollection = document.getElementsByClassName("selected");
     var arr = Array.prototype.slice.call( htmlCollection );
     arr = arr[0];
@@ -44,11 +44,24 @@ class AccountEdit extends React.Component{
     this.setState({profilePicture: newPicId});
     console.log(this.state.profilePicture);
 
-    fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}`)
-    .then(this.getUserInfo)
-    .catch(err => console.error(err))
+    if (firstClick) {
+      console.log("ḧier komt een pop-up");
+      firstClick = false;
+    } else {
 
-    console.log('gelukt');
+      console.log(firstClick);
+      // fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}`)
+      // .then()
+
+      fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}`)
+      .then(this.getUserInfo)
+      .catch(err => console.error(err))
+
+      console.log('gelukt');
+
+      firstClick = true;
+    }
+
   }
 
   getUserInfo = (pictureList) => {
@@ -69,7 +82,7 @@ class AccountEdit extends React.Component{
       if(pictureList[i] === picture){
         var currentPicture = document.getElementById("profilePicture" + i);
         currentPicture.classList.add("selected");
-        this.setState({profilePicture: i});
+        this.setState({profilePicture: i++});
       }
     }
   }
@@ -99,6 +112,10 @@ class AccountEdit extends React.Component{
     }
   }
 
+  newFirstClick = _ => {
+    firstClick = true;
+  }
+
   //Later toevoegen:
   // <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
   // <ReisTraject from={this.state.travelFrom} to={this.state.travelTo} setFrom={this.setFrom} setTo={this.setTo}/>
@@ -116,7 +133,7 @@ class AccountEdit extends React.Component{
           <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
 
           <button className="button" onClick={this.updateUserInfo}> Bevestig </button>
-          <Link to="/account"> <p> Terug naar account </p> </ Link>
+          <Link to="/account" onClick={this.newFirstClick}> <p> Terug naar account </p> </ Link>
         </div>
         <BottomNav />
       </div>
