@@ -102,7 +102,7 @@ class Register extends Component{
             <div className="containerFormItem" id="naam" >
               <label className="label">Naam</label>
               <input
-                className="inputNaam"
+                className="input input--name"
                 autoFocus
                 type="text"
                 value={this.props.inputName}
@@ -111,7 +111,7 @@ class Register extends Component{
             <div className="containerFormItem" id="gebruikersnaam" >
               <label className="label">Gebruikersnaam</label>
               <input
-                className="inputGebruikersnaam"
+                className="input input--username"
                 type="text"
                 value={this.props.inputUserName}
                 onChange={this.onChangeUser} />
@@ -119,7 +119,7 @@ class Register extends Component{
             <div className="containerFormItem" id="email" >
               <label className="label">E-mailadres</label>
               <input
-                className="inputEmail"
+                className="input input--email"
                 type="email"
                 value={this.props.inputEmail}
                 onChange={this.onChangeEmail} />
@@ -127,7 +127,7 @@ class Register extends Component{
             <div className="containerFormItem" id="wachtwoord" >
               <label className="label">Wachtwoord</label>
               <input
-                className="inputWachtwoord"
+                className="input input--password"
                 value={this.props.inputPassword}
                 onChange={this.onChangePass}
                 type="password" />

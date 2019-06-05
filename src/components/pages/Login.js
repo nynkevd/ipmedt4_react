@@ -91,20 +91,20 @@ class Login extends React.Component{
       <div>
         <TopBar />
         <div className="LoginPageContainer">
-          <form onSubmit={this.onSubmit} className="formLogin">
-            <div className="containerFormItem" id="gebruikersnaam" >
+          <form onSubmit={this.onSubmit} className="form--login">
+            <div className="form__item" id="gebruikersnaam" >
               <label className="label">Gebruikersnaam</label>
               <input
-                className="inputGebruikersnaam"
+                className="input"
                 autoFocus
                 type="text"
                 value={this.props.userName}
                 onChange={this.onChangeUserName} />
             </div>
-            <div className="containerFormItem" id="wachtwoord" >
+            <div className="form__item" id="wachtwoord" >
               <label className="label">Wachtwoord</label>
               <input
-                className="inputWachtwoord"
+                className="input"
                 type="password"
                 value={this.state.inputWachtwoord}
                 onChange={this.onChangePassword} />
@@ -112,7 +112,7 @@ class Login extends React.Component{
             <div>
             <Link to="/search">
               <input
-                className="loginButton"
+                className="button--login"
                 type="submit"
                 value="Login"
                 onClick={this.onClick}
@@ -120,8 +120,8 @@ class Login extends React.Component{
             </Link>
             </div>
             <div className="containerFormItem">
-              <p className="textNoAccount">Nog geen account?</p>
-              <Link to="/register" className="linkRegister">Klik hier om te registreren</Link>
+              <p className="text text--noAccount">Nog geen account?</p>
+              <Link to="/register" className="text text--register">Klik hier om te registreren</Link>
             </div>
           </form>
         </div>
