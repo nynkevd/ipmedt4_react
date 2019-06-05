@@ -42,8 +42,6 @@ class AccountEdit extends React.Component{
 
     this.setState({profilePicture: newPicId});
     console.log(this.state.profilePicture);
-    console.log(this.state.travelFrom);
-    console.log(this.state.travelTo);
 
     if (firstClick) {
       document.getElementById("myModal").style.display = "block";
@@ -55,7 +53,7 @@ class AccountEdit extends React.Component{
       // fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}`)
       // .then()
 
-      fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}&travelFrom=${this.state.travelFrom}&travelTo=${this.state.travelTo}`)
+      fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}`)
       .then(this.getUserInfo)
       .catch(err => console.error(err))
 
@@ -71,6 +69,10 @@ class AccountEdit extends React.Component{
         travelFrom: res.data.from,
         travelTo: res.data.to
       });
+
+    axios.get(this.BASE_URL + "userinfo/" + this.state.username + this.api_token).then(res =>{
+      this.setState({displayname: res.data.name,});
+    });
 
       // De huidige profielfoto wordt opgevraagd en meegegeven
       this.selectCurrentPicture(res.data.picture, pictureList);
@@ -120,7 +122,7 @@ class AccountEdit extends React.Component{
 
   //Later toevoegen:
   // <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
-
+  // <ReisTraject from={this.state.travelFrom} to={this.state.travelTo} setFrom={this.setFrom} setTo={this.setTo}/>
 
 
   render(){
@@ -131,7 +133,6 @@ class AccountEdit extends React.Component{
           <h1>Edit account</h1>
 
           <ProfilePictureList pictureList={this.state.pictureList} click={this.pictureOnClick}/>
-          <ReisTraject from={this.state.travelFrom} to={this.state.travelTo} setFrom={this.setFrom} setTo={this.setTo}/>
 
           <div className="next">
               <button className="button" onClick={this.updateUserInfo}> Bevestig </button> <br /> <br />
@@ -149,7 +150,7 @@ class AccountEdit extends React.Component{
           </div>
 
         </div>
-
+        <BottomNav />
       </div>
     );
   }
