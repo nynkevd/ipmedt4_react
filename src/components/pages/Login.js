@@ -22,15 +22,7 @@ const md5 = require('md5');
 
 class Login extends React.Component{
 
-  constructor(props){
-    super(props);
-  }
-
-  componentDidMount(){
-    this.getInfo();
-  }
-
-  getInfo = _ => {
+  getUserInfoFromDatabase = _ => {
     //Checken van ingevoerde wachtwoord met de database
     axios.get(`http://136.144.230.97:4000/login?username=${this.props.userName}`)
       .then(response => this.props.changeCheckPassword(response.data.data[0].password))
@@ -41,13 +33,12 @@ class Login extends React.Component{
     this.props.changeUserName(event.target.value);
   }
   onChangePassword = event =>{
-    this.getInfo();
+    this.getUserInfoFromDatabase();
     this.props.changeInputPasswordLogin(event.target.value);
   }
 
   onSubmit = event => {
     event.preventDefault();
-    this.getInfo();
     this.props.changeUserName(event.target.value);
     if(this.props.checkPassword === md5(this.props.inputPasswordLogin)){
       console.log('gelijk');
@@ -56,7 +47,7 @@ class Login extends React.Component{
     }
   }
 
-  valideerInput(){
+  validatePasswordInput(){
     if(this.props.checkPassword === md5(this.props.inputPasswordLogin)){
       this.props.changeLoggedIn(true);
       return true;
@@ -96,7 +87,7 @@ class Login extends React.Component{
                 type="submit"
                 value="Login"
                 onClick={this.onClick}
-                disabled={!this.valideerInput()} />
+                disabled={!this.validatePasswordInput()} />
             </Link>
             </div>
             <div className="containerFormItem">

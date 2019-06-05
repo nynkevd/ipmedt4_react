@@ -1,5 +1,5 @@
 //React en benodigheden importeren
-import React, {Component} from "react";
+import React from "react";
 import {Link} from 'react-router-dom';
 import Chatkit from '@pusher/chatkit-client';
 import axios from 'axios';
@@ -16,64 +16,49 @@ import TopBar from '../layout/TopBar';
 //CSS importeren
 import "./Register.css"
 
-class Register extends Component{
-
-  constructor(props){
-    super(props);
-
-    // declareer de state -> kan elke keer veranderd worden voor een nieuwe gebruiker
-    this.state = {
-      inputEmail: "",
-      inputWachtwoord: "",
-      inputGebruikersnaam: "",
-      inputNaam: "",
-    }
-  }
+class Register extends React.Component{
 
   componentDidMount(){
-    this.getUsers();
+    this.setUserValuesToEmpty();
   }
 
-  //set de values leeg
-  getUsers = _ => {
+  //Zet de values van de user leeg
+  setUserValuesToEmpty = _ => {
     this.props.changeInputName("");
     this.props.changeInputUserName("");
     this.props.changeInputEmail("");
     this.props.changeInputPassword("");
-    }
+  }
 
-  //toevoegen van users aan de accounts tabel via een url
-  addUsers = _ =>{
+  //Toevoegen van user aan de accounts tabel via een url
+  addUserToDatabase = _ =>{
     this.addUserToChatkit(this.props.inputUserName);
-    fetch(`http://136.144.230.97:4000/users/add?username=${this.state.inputGebruikersnaam}&name=${this.state.inputNaam}&email=${this.state.inputEmail}&password=${this.state.inputWachtwoord}`)
-      .then(this.getUsers)
+    fetch(`http://136.144.230.97:4000/users/add?username=${this.props.inputUserName}&name=${this.props.inputName}&email=${this.props.inputEmail}&password=${this.props.inputPassword}`)
+      .then(this.setUserValuesToEmpty)
       .catch(err => console.error(err))
   }
 
+  //User toevoegn aan Chatkit
   addUserToChatkit = user => {
-    console.log(user);
     const userId = user;
 
     if (userId === null || userId.trim() === '') {
       alert('Invalid userId');
     }
 
-    axios.post('http://localhost:5200/users', { userId })
-      .then(() => {
-        const tokenProvider = new Chatkit.TokenProvider({
-          url: 'http://localhost:5200/authenticate',
-        });
+    axios.post('http://localhost:5200/users', { userId }).then(() => {
+      const tokenProvider = new Chatkit.TokenProvider({
+        url: 'http://localhost:5200/authenticate',
       });
+    });
   }
 
-  renderUser = ({name, email}) => <div key={name}>{email}</div>
-
-  //check of de invoervelden aan de voorwaarden voldoen, zodat een veld niet leeg kan zijn
+  //Check of de invoervelden aan de voorwaarden voldoen, zodat een veld niet leeg kan zijn
   valideerInput(){
     return this.props.inputEmail.length > 0 && this.props.inputPassword.length > 4 &&this.props.inputUserName.length > 3 && this.props.inputName.length > 1 ;
   };
 
-  //zet de juiste state-informatie naar de waarde van het invoerveld
+  //Zet de juiste state-informatie naar de waarde van het invoerveld
   onChangeName = event =>{
     this.props.changeInputName(event.target.value);
   }
@@ -86,13 +71,11 @@ class Register extends Component{
   onChangePass = event =>{
     this.props.changeInputPassword(event.target.value);
   }
- // ervoor zorgen dat de informatie niet verdwijnt als de pagina ververst
+  //Ervoor zorgen dat de informatie niet verdwijnt als de pagina ververst
   onSubmit = event => {
     event.preventDefault();
+  }
 
-}
-
-  //geef de pagina terug
   render(){
     return(
       <div>
@@ -138,7 +121,7 @@ class Register extends Component{
                 disabled={!this.valideerInput()}
                 type="submit"
                 value="Registreer"
-                onClick={this.addUsers}
+                onClick={this.addUserToDatabase}
               />
             </Link>
           </form>
