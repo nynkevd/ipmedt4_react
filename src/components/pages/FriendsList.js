@@ -45,7 +45,7 @@ class FriendsList extends React.Component{
         </div>
         <BottomNav />
       </div>
-    )
+    );
   }
 }
 
