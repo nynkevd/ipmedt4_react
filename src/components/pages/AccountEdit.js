@@ -61,7 +61,6 @@ class AccountEdit extends React.Component{
 
       firstClick = true;
     }
-
   }
 
   getUserInfo = (pictureList) => {
@@ -153,7 +152,7 @@ class AccountEdit extends React.Component{
         </div>
         <BottomNav />
       </div>
-    )
+    );
   }
 }
 

@@ -27,7 +27,7 @@ class Account extends React.Component{
         profilePicture: res.data.picture,
         travelFrom: res.data.from,
         travelTo: res.data.to,
-        displayname: res.data.name,
+        displayName: res.data.name,
       });
     });
 
@@ -45,13 +45,13 @@ class Account extends React.Component{
       <div>
         <TopBar />
         <div className="accountPageContainer">
-          <UserInfo profielfoto={this.state.profilePicture} naam={this.state.displayname}></UserInfo>
+          <UserInfo profielfoto={this.state.profilePicture} naam={this.state.displayName}></UserInfo>
           <Reistraject van={this.state.travelFrom} naar={this.state.travelTo}></Reistraject>
           <Interests interests={this.state.interests}></Interests>
         </div>
         <BottomNav />
       </div>
-    )
+    );
   }
 }
 

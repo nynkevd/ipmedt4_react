@@ -4,12 +4,12 @@
   margin-left: 3%;
 }
 
-.pf {
+.profilePicture {
   border-radius: 100%;
   width: 100px;
 }
 
-.username {
+.userName {
   display: inline-block;
   position: absolute;
   top: 0;
