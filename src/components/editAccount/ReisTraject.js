@@ -10,7 +10,8 @@ class ReisTraject extends React.Component{
     "Leiden",
     "Voorschoten",
     "Alphen aan den Rijn",
-    "Nieuw Vennep"
+    "Nieuw-Vennep",
+    "De Vink"
   ];
 
   render(){
