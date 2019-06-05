@@ -20,7 +20,12 @@ class Account extends React.Component{
   username = this.props.userName;
 
   componentDidMount(){
-    //Userinfo api -> profielfoto, van, naar
+    this.getUserInfoFromApi();
+    this.getUserInterestsFromApi();
+  }
+
+  //Userinfo ophalen van de API (profielfoto, van, naar)
+  getUserInfoFromApi = () => {
     axios.get(this.BASE_URL + "userinfo/" + this.username + this.api_token).then(res => {
       console.log(res.data.name);
       this.setState({
@@ -30,8 +35,10 @@ class Account extends React.Component{
         displayName: res.data.name,
       });
     });
+  }
 
-    //Interests api -> interests array
+  //Intresses ophalen van de API
+  getUserInterestsFromApi = () => {
     axios.get(this.BASE_URL + "interests/" + this.username + this.api_token).then(res => {
       console.log(res.data);
       this.setState({
@@ -56,11 +63,11 @@ class Account extends React.Component{
 }
 
 const mapStateToProps = state =>{
-  return {userName: state.userName};
+  return {
+    userName: state.userName,
+  };
 }
 
 export default connect(mapStateToProps,{
   changeUserName: changeUserName,
 })(Account);
-
-//export default Account;
