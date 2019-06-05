@@ -2,37 +2,30 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Chatkit from '@pusher/chatkit-client';
 //Redux importeren
-import {connect} from "react-redux";
-import {changeUserName, changeLoggedIn} from "./actions";
-//Eigen componeten importeren
+import { connect } from "react-redux";
+import {
+  changeUserName,
+  changeLoggedIn,
+  changeChatKitUser,
+  changeCheckPassword,
+  changeInputPasswordLogin
+} from "./../../actions";
+//Eigen componenten importeren
 import TopBar from '../layout/TopBar';
 //CSS importeren
 import './Login.css';
-
-import Chatkit from '@pusher/chatkit-client';
 
 //Hash wachtwoord
 const md5 = require('md5');
 
 class Login extends React.Component{
 
-  constructor(props){
-    super(props);
-    this.state = {
-      inputWachtwoord: "",
-      checkWachtwoord: "",
-    }
-  }
-
-  componentDidMount(){
-    this.getInfo();
-  }
-
-  getInfo = _ => {
+  getUserInfoFromDatabase = _ => {
     //Checken van ingevoerde wachtwoord met de database
     axios.get(`http://136.144.230.97:4000/login?username=${this.props.userName}`)
-      .then(response => this.setState({checkWachtwoord: response.data.data[0].password}))
+      .then(response => this.props.changeCheckPassword(response.data.data[0].password))
         .catch(err => console.error(err))
   }
 
@@ -40,44 +33,22 @@ class Login extends React.Component{
     this.props.changeUserName(event.target.value);
   }
   onChangePassword = event =>{
-    this.getInfo();
-    this.setState({
-      inputWachtwoord: event.target.value
-    });
+    this.getUserInfoFromDatabase();
+    this.props.changeInputPasswordLogin(event.target.value);
   }
 
-   onSubmit = event => {
-     event.preventDefault();
-     this.getInfo();
-     this.props.changeUserName(event.target.value);
-     if(this.state.checkWachtwoord === md5(this.state.inputWachtwoord)){
-       console.log('gelijk');
-     }
-     else{
-       console.log('mislukt');
-     }
- }
-
-    onClick = event => {
-      const userId = this.props.userName;
-      console.log(userId);
-      const tokenProvider = new Chatkit.TokenProvider({
-        url: 'http://136.144.230.97:5200/authenticate',
-      });
-
-      const chatManager = new Chatkit.ChatManager({
-          instanceLocator: 'v1:us1:a6e72788-6919-4ade-a86a-7beeaa73aa7d',
-          userId,
-          tokenProvider,
-      });
-
-      chatManager.connect().then(currentUser =>{
-        console.log(currentUser);
-      });
+  onSubmit = event => {
+    event.preventDefault();
+    this.props.changeUserName(event.target.value);
+    if(this.props.checkPassword === md5(this.props.inputPasswordLogin)){
+      console.log('gelijk');
+    } else{
+      console.log('mislukt');
+    }
   }
 
-  valideerInput(){
-    if(this.state.checkWachtwoord === md5(this.state.inputWachtwoord)){
+  validatePasswordInput(){
+    if(this.props.checkPassword === md5(this.props.inputPasswordLogin)){
       this.props.changeLoggedIn(true);
       return true;
     } else {
@@ -106,7 +77,7 @@ class Login extends React.Component{
               <input
                 className="input"
                 type="password"
-                value={this.state.inputWachtwoord}
+                value={this.props.inputPasswordLogin}
                 onChange={this.onChangePassword} />
             </div>
             <div>
@@ -116,7 +87,7 @@ class Login extends React.Component{
                 type="submit"
                 value="Login"
                 onClick={this.onClick}
-                disabled={!this.valideerInput()} />
+                disabled={!this.validatePasswordInput()} />
             </Link>
             </div>
             <div className="containerFormItem">
@@ -134,10 +105,16 @@ const mapStateToProps = state =>{
   return{
     userName: state.userName,
     loggedIn: state.loggedIn,
+    chatKitUser: state.chatKitUser,
+    checkPassword: state.checkPassword,
+    inputPasswordLogin: state.inputPasswordLogin,
   };
 }
 
 export default connect(mapStateToProps,{
   changeUserName: changeUserName,
   changeLoggedIn: changeLoggedIn,
+  changeChatKitUser: changeChatKitUser,
+  changeCheckPassword: changeCheckPassword,
+  changeInputPasswordLogin: changeInputPasswordLogin,
 })(Login);

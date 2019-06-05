@@ -1,6 +1,9 @@
+//React en benodigheden importeren
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-
+//Redux importeren
+//Eigen componenten importeren
+//CSS importeren
 import './Home.css';
 
 class Home extends React.Component{
