@@ -16,7 +16,7 @@ import {connect} from "react-redux";
 import axios from "axios";
 
 class Account extends React.Component{
-  state = { interests:[], profilePicture: "", travelFrom: "", travelTo: ""};
+  state = { interests:[], profilePicture: "", travelFrom: "", travelTo: "", displayname: ""};
   BASE_URL = "http://136.144.230.97:8080/api/";
   api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
   username = this.props.userName;
@@ -24,11 +24,12 @@ class Account extends React.Component{
   componentDidMount(){
     //Userinfo api -> profielfoto, van, naar
     axios.get(this.BASE_URL + "userinfo/" + this.username + this.api_token).then(res => {
-      console.log(res);
+      console.log(res.data.name);
       this.setState({
         profilePicture: res.data.picture,
         travelFrom: res.data.from,
         travelTo: res.data.to,
+        displayname: res.data.name,
       });
     });
 
@@ -46,7 +47,7 @@ class Account extends React.Component{
       <div>
         <TopBar />
         <div className="accountPageContainer">
-          <UserInfo profielfoto={this.state.profilePicture} naam={this.username}></UserInfo>
+          <UserInfo profielfoto={this.state.profilePicture} naam={this.state.displayname}></UserInfo>
           <Reistraject van={this.state.travelFrom} naar={this.state.travelTo}></Reistraject>
           <Interests interests={this.state.interests}></Interests>
         </div>

@@ -20,7 +20,7 @@ var firstClick = true;
 var close = document.getElementsByClassName("close")[0];
 
 class AccountEdit extends React.Component{
-  state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: "", username: this.props.userName, displayname: ""} // username moet aangepast worden naar het ingelogde account
+  state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: "", username: this.props.userName} // username moet aangepast worden naar het ingelogde account
   BASE_URL = "http://136.144.230.97:8080/api/";
   api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
@@ -93,10 +93,6 @@ class AccountEdit extends React.Component{
     }
   }
 
-  onDisplaynameChange = (displayname) =>{
-    this.setState({displayname: displayname});
-  }
-
   setFrom = (event) => {
     if(event.target.value != this.state.travelTo){
       this.setState({travelFrom: event.target.value});
@@ -140,8 +136,6 @@ class AccountEdit extends React.Component{
           <h1>Edit account</h1>
 
           <ProfilePictureList pictureList={this.state.pictureList} click={this.pictureOnClick}/>
-
-          <UserName username={this.displayname} onSubmit={this.onDisplaynameChange}/>
 
           <div className="next">
               <button className="button" onClick={this.updateUserInfo}> Bevestig </button> <br /> <br />
