@@ -10,11 +10,6 @@ import {
   checkPassword,
   inputPasswordLogin,
   matches,
-  userInterests,
-  userProfilePicture,
-  userTravelFrom,
-  userTravelTo,
-  userDisplayName,
   } from "./reducer";
 
 export const store = createStore(
@@ -29,10 +24,5 @@ export const store = createStore(
     checkPassword,
     inputPasswordLogin,
     matches,
-    userInterests,
-    userProfilePicture,
-    userTravelFrom,
-    userTravelTo,
-    userDisplayName,
   })
 )
