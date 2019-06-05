@@ -1,4 +1,6 @@
+//React en benodigheden importeren
 import React from 'react';
+//Eigen componenten importeren
 import MatchCard from './MatchCard';
 
 class Matches extends React.Component{
@@ -7,7 +9,7 @@ class Matches extends React.Component{
   }
 
   render(){
-    let matches = this.props.matches.matches;
+    let matches = this.props.matches;
     let matchList = [];
 
     for(var user in matches){
@@ -17,7 +19,6 @@ class Matches extends React.Component{
       <div>
         {matchList}
       </div>
-
     );
   }
 

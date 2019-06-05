@@ -1,12 +1,13 @@
+//React en benodigheden importeren
 import React from 'react';
-
+//Redux importeren
+//Eigen componenten importeren
 import TopBar from '../layout/TopBar';
 import BottomNav from '../layout/BottomNav';
-
 import UserinfoFriends from '../friendslist/UserinfoFriends';
 import ReistrajectFriends from '../friendslist/ReistrajectFriends';
 import InterestsFriends from '../friendslist/InterestsFriends';
-
+//CSS importeren
 import './FriendsList.css';
 
 class FriendsList extends React.Component{
@@ -44,7 +45,7 @@ class FriendsList extends React.Component{
         </div>
         <BottomNav />
       </div>
-    )
+    );
   }
 }
 

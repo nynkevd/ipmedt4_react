@@ -1,10 +1,11 @@
+//React importeren
 import React from 'react';
-
+//Eigen componenten importeren
 import './UserinfoFriends.css';
 
 class InterestsFriends extends React.Component{
   constructor(props){
-    super(props); 
+    super(props);
   }
 
   interestsList = this.props.interests.map((interest) =>

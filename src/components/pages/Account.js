@@ -1,19 +1,17 @@
+//React en benodigheden importeren
 import React from 'react';
-
+import axios from "axios";
+//Redux importeren
+import { connect } from "react-redux";
+import { changeUserName } from "./../../actions";
+//Eigen componenten importeren
 import TopBar from '../layout/TopBar';
 import BottomNav from '../layout/BottomNav';
-
 import UserInfo from '../account/UserInfo';
 import Interests from '../account/Interests';
 import Reistraject from '../account/Reistraject';
-
+//CSS importeren
 import './Account.css';
-import {store} from "./store";
-import {Provider} from "react-redux";
-import {changeUserName} from "./actions";
-import {connect} from "react-redux";
-
-import axios from "axios";
 
 class Account extends React.Component{
   state = { interests:[], profilePicture: "", travelFrom: "", travelTo: "", displayname: ""};
@@ -22,18 +20,25 @@ class Account extends React.Component{
   username = this.props.userName;
 
   componentDidMount(){
-    //Userinfo api -> profielfoto, van, naar
+    this.getUserInfoFromApi();
+    this.getUserInterestsFromApi();
+  }
+
+  //Userinfo ophalen van de API (profielfoto, van, naar)
+  getUserInfoFromApi = () => {
     axios.get(this.BASE_URL + "userinfo/" + this.username + this.api_token).then(res => {
       console.log(res.data.name);
       this.setState({
         profilePicture: res.data.picture,
         travelFrom: res.data.from,
         travelTo: res.data.to,
-        displayname: res.data.name,
+        displayName: res.data.name,
       });
     });
+  }
 
-    //Interests api -> interests array
+  //Intresses ophalen van de API
+  getUserInterestsFromApi = () => {
     axios.get(this.BASE_URL + "interests/" + this.username + this.api_token).then(res => {
       console.log(res.data);
       this.setState({
@@ -47,22 +52,22 @@ class Account extends React.Component{
       <div>
         <TopBar />
         <div className="accountPageContainer">
-          <UserInfo profielfoto={this.state.profilePicture} naam={this.state.displayname}></UserInfo>
+          <UserInfo profielfoto={this.state.profilePicture} naam={this.state.displayName}></UserInfo>
           <Reistraject van={this.state.travelFrom} naar={this.state.travelTo}></Reistraject>
           <Interests interests={this.state.interests}></Interests>
         </div>
         <BottomNav />
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state =>{
-  return {userName: state.userName};
+  return {
+    userName: state.userName,
+  };
 }
 
 export default connect(mapStateToProps,{
   changeUserName: changeUserName,
 })(Account);
-
-//export default Account;
