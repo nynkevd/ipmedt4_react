@@ -1,6 +1,6 @@
 //React en benodigheden importeren
 import React from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Chatkit from '@pusher/chatkit-client';
 import axios from 'axios';
 //Redux importeren
@@ -38,7 +38,7 @@ class Register extends React.Component{
       .catch(err => console.error(err))
   }
 
-  //User toevoegn aan Chatkit
+  //User toevoegen aan Chatkit
   addUserToChatkit = user => {
     const userId = user;
 

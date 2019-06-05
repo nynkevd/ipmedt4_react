@@ -2,7 +2,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import Chatkit from '@pusher/chatkit-client';
 //Redux importeren
 import { connect } from "react-redux";
 import {
@@ -32,7 +31,7 @@ class Login extends React.Component{
   onChangeUserName = event =>{
     this.props.changeUserName(event.target.value);
   }
-  
+
   onChangePassword = event =>{
     this.getUserInfoFromDatabase();
     this.props.changeInputPasswordLogin(event.target.value);

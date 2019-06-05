@@ -1,12 +1,11 @@
+//React importeren
 import React from 'react';
-
+//Eigen componenten importeren
 import SearchBarInterests from "./SearchBarInterests";
+//CSS importeren
 import './UserInfo.css';
 
 class Interests extends React.Component{
-  constructor(props){
-    super(props);
-  }
 
   render(){
     return(

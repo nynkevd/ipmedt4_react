@@ -1,12 +1,9 @@
-//React en benodigheden importeren
+//React importeren
 import React from 'react';
 //Eigen componenten importeren
 import MatchCard from './MatchCard';
 
 class Matches extends React.Component{
-  constructor(props){
-    super(props);
-  }
 
   render(){
     let matches = this.props.matches;

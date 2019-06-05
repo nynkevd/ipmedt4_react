@@ -4,9 +4,6 @@ import React from 'react';
 import './UserinfoFriends.css';
 
 class InterestsFriends extends React.Component{
-  constructor(props){
-    super(props);
-  }
 
   interestsList = this.props.interests.map((interest) =>
     <li key={interest}>{interest}</li>
