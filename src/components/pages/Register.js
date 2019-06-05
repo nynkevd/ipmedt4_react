@@ -54,7 +54,7 @@ class Register extends React.Component{
   }
 
   //Check of de invoervelden aan de voorwaarden voldoen, zodat een veld niet leeg kan zijn
-  valideerInput(){
+  validateInputFields(){
     return this.props.inputEmail.length > 0 && this.props.inputPassword.length > 4 &&this.props.inputUserName.length > 3 && this.props.inputName.length > 1 ;
   };
 
@@ -62,15 +62,19 @@ class Register extends React.Component{
   onChangeName = event =>{
     this.props.changeInputName(event.target.value);
   }
+
   onChangeEmail = event =>{
     this.props.changeInputEmail(event.target.value);
   }
+
   onChangeUser = event =>{
     this.props.changeInputUserName(event.target.value);
   }
-  onChangePass = event =>{
+
+  onChangePassword = event =>{
     this.props.changeInputPassword(event.target.value);
   }
+
   //Ervoor zorgen dat de informatie niet verdwijnt als de pagina ververst
   onSubmit = event => {
     event.preventDefault();
@@ -82,7 +86,7 @@ class Register extends React.Component{
         <TopBar />
         <div className="registerPageContainer">
           <form className="formRegister" onSubmit={this.onSubmit}>
-            <div className="containerFormItem" id="naam" >
+            <div className="containerFormItem" >
               <label className="label">Naam</label>
               <input
                 className="input input--name"
@@ -91,7 +95,7 @@ class Register extends React.Component{
                 value={this.props.inputName}
                 onChange={this.onChangeName} />
             </div>
-            <div className="containerFormItem" id="gebruikersnaam" >
+            <div className="containerFormItem" >
               <label className="label">Gebruikersnaam</label>
               <input
                 className="input input--username"
@@ -99,7 +103,7 @@ class Register extends React.Component{
                 value={this.props.inputUserName}
                 onChange={this.onChangeUser} />
             </div>
-            <div className="containerFormItem" id="email" >
+            <div className="containerFormItem" >
               <label className="label">E-mailadres</label>
               <input
                 className="input input--email"
@@ -107,18 +111,18 @@ class Register extends React.Component{
                 value={this.props.inputEmail}
                 onChange={this.onChangeEmail} />
             </div>
-            <div className="containerFormItem" id="wachtwoord" >
+            <div className="containerFormItem" >
               <label className="label">Wachtwoord</label>
               <input
                 className="input input--password"
                 value={this.props.inputPassword}
-                onChange={this.onChangePass}
+                onChange={this.onChangePassword}
                 type="password" />
             </div>
             <Link to="/search">
               <input
                 className="button"
-                disabled={!this.valideerInput()}
+                disabled={!this.validateInputFields()}
                 type="submit"
                 value="Registreer"
                 onClick={this.addUserToDatabase}

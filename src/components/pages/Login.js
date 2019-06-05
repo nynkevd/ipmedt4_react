@@ -32,6 +32,7 @@ class Login extends React.Component{
   onChangeUserName = event =>{
     this.props.changeUserName(event.target.value);
   }
+  
   onChangePassword = event =>{
     this.getUserInfoFromDatabase();
     this.props.changeInputPasswordLogin(event.target.value);
@@ -40,11 +41,6 @@ class Login extends React.Component{
   onSubmit = event => {
     event.preventDefault();
     this.props.changeUserName(event.target.value);
-    if(this.props.checkPassword === md5(this.props.inputPasswordLogin)){
-      console.log('gelijk');
-    } else{
-      console.log('mislukt');
-    }
   }
 
   validatePasswordInput(){
