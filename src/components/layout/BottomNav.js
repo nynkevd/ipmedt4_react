@@ -1,7 +1,8 @@
+//React en benodigheden importeren
 import React from 'react';
-
+//Eigen componenten importeren
 import BottomNavItem from './BottomNavItem';
-
+//CSS importeren
 import './BottomNav.css';
 
 class BottomNav extends React.Component{

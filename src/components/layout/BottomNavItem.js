@@ -1,6 +1,7 @@
+//React en benodigheden importeren
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
+//CSS importeren
 import './BottomNavItem.css';
 
 class BottomNavItem extends React.Component{

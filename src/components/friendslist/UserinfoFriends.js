@@ -1,5 +1,6 @@
+//React importeren
 import React from 'react';
-
+//Eigen componenten importeren
 import './UserinfoFriends.css';
 
 const UserinfoFriends = (props) => {
