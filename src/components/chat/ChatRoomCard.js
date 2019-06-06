@@ -18,19 +18,20 @@ class ChatRoomCard extends React.Component {
   }
 
   onClick = event => {
-    this.props.changeChatroomClicked(this.props.clickedChatroom);
-    console.log(this.props.chatKitUser.rooms[this.props.id].id);
+    this.props.changeChatroomClicked(this.props.room.id);
+    console.log(this.props.clickedChatroom);
+    // console.log(this.props.chatKitUser.rooms[this.props.id].id);
   }
 // .customData.userIds
 
   render(){
-    console.log(this.props.chatKitUser.rooms[this.props.id].id);
-    console.log(this.props.chatKitUser.rooms[this.props.id].userIds);
+    // console.log(this.props.chatKitUser.rooms[this.props.id].id);
+    // console.log(this.props.chatKitUser.rooms[this.props.id].userIds);
     return(
       <Link to='/chatRoom'>
         <div className="chatCardContainer" onClick={this.onClick}>
           <div>
-            <h3 className="chatCardContainer__text">Username</h3>
+            <h3 className="chatCardContainer__text">{this.props.room.name}</h3>
             <p className="chatCardContainer__text">Last message</p>
           </div>
         </div>

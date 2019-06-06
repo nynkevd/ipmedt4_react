@@ -6,6 +6,7 @@ import {
   changeUserName,
   changeLoggedIn,
   changeChatKitUser,
+  changeChatroomClicked,
 } from "./../../actions";
 
 import TopBarChat from './TopBarChat';
@@ -28,7 +29,7 @@ class SendMessage extends React.Component {
     console.log(message);
     console.log(this.props.chatKitUser);
     const currentUser = this.props.chatKitUser;
-    const currentRoomId = Object.keys(currentUser.roomSubscriptions)[0]; //Ik weet niet of dit altijd werkt + misschien moet het iets duidelijker
+    const currentRoomId = this.props.clickedChatroom; //Ik weet niet of dit altijd werkt + misschien moet het iets duidelijker
     if(message.trim() === '') return;
 
     currentUser.sendMessage({
@@ -57,9 +58,11 @@ class SendMessage extends React.Component {
 const mapStateToProps = state =>{
   return {
     chatKitUser: state.chatKitUser,
+    clickedChatroom: state.clickedChatroom,
   };
 }
 
 export default connect(mapStateToProps,{
   changeChatKitUser: changeChatKitUser,
+  changeChatroomClicked: changeChatroomClicked,
 })(SendMessage);

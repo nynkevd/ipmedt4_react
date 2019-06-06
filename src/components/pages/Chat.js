@@ -16,9 +16,14 @@ import ChatRoomCard from '../chat/ChatRoomCard'
 import './Chat.css';
 
 const Chat = props => {
+  var roomExists = []; //Als de gebruiker niet is ingelogd zorgt het voor een error als er geen roomExists bestaat
+
   // roomExists is een array van alle rooms die bestaan
-  const roomExists = props.chatKitUser.rooms;
-  console.log(roomExists);
+  if(props.chatKitUser !== null){
+    roomExists = props.chatKitUser.rooms;
+    console.log(roomExists);
+  }
+
 
     return props.loggedIn
       ? <div>
