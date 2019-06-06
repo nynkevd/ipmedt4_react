@@ -8,53 +8,53 @@
   z-index: 100;
 }
 
-.topBarImg {
+.topBar__Img {
   width: 16%;
   position: absolute;
   margin-top: 3.8%;
   margin-left: 3.5%;
 }
 
-.topBarText {
+.topBar__Text {
   font-size: 1.3em;
   margin: 0.85em 23%;
 }
 
 @media(width: 768px){
-  .topBarImg {
+  .topBar__Img {
     width: 14%;
     position: absolute;
     margin-top: 2.5%;
     margin-left: 2.5%;
   }
 
-  .topBarText {
+  .topBar__Text {
     font-size: 1.6em;
     margin: 1em 19%;
   }
 }
 
 @media(width: 1024px){
-  .topBarImg {
+  .topBar__Img {
     width: 8%;
     margin-top: 1.4%;
     margin-left: 1.2%;
   }
 
-  .topBarText {
+  .topBar__Text {
     font-size: 1.6em;
     margin: 0.63em 10.4%;
   }
 }
 
 @media(min-width: 1280px){
-  .topBarImg {
+  .topBar__Img {
     width: 6%;
     margin-top: 0.8%;
     margin-left: 0.8%;
   }
 
-  .topBarText {
+  .topBar__Text {
     font-size: 1.7em;
     margin: 0.8em 7.5%;
   }

@@ -1,7 +1,6 @@
 //React en benodigheden importeren
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import Chatkit from '@pusher/chatkit-client';
 //Redux importeren
 import { connect } from "react-redux";
 import {

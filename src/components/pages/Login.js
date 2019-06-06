@@ -2,7 +2,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import Chatkit from '@pusher/chatkit-client';
 //Redux importeren
 import { connect } from "react-redux";
 import {
@@ -22,15 +21,7 @@ const md5 = require('md5');
 
 class Login extends React.Component{
 
-  constructor(props){
-    super(props);
-  }
-
-  componentDidMount(){
-    this.getInfo();
-  }
-
-  getInfo = _ => {
+  getUserInfoFromDatabase = _ => {
     //Checken van ingevoerde wachtwoord met de database
     axios.get(`http://136.144.230.97:4000/login?username=${this.props.userName}`)
       .then(response => this.props.changeCheckPassword(response.data.data[0].password))
@@ -40,23 +31,18 @@ class Login extends React.Component{
   onChangeUserName = event =>{
     this.props.changeUserName(event.target.value);
   }
+
   onChangePassword = event =>{
-    this.getInfo();
+    this.getUserInfoFromDatabase();
     this.props.changeInputPasswordLogin(event.target.value);
   }
 
   onSubmit = event => {
     event.preventDefault();
-    this.getInfo();
     this.props.changeUserName(event.target.value);
-    if(this.props.checkPassword === md5(this.props.inputPasswordLogin)){
-      console.log('gelijk');
-    } else{
-      console.log('mislukt');
-    }
   }
 
-  valideerInput(){
+  validatePasswordInput(){
     if(this.props.checkPassword === md5(this.props.inputPasswordLogin)){
       this.props.changeLoggedIn(true);
       return true;
@@ -71,20 +57,20 @@ class Login extends React.Component{
       <div>
         <TopBar />
         <div className="LoginPageContainer">
-          <form onSubmit={this.onSubmit} className="formLogin">
-            <div className="containerFormItem" id="gebruikersnaam" >
+          <form onSubmit={this.onSubmit} className="form--login">
+            <div className="form__item" id="gebruikersnaam" >
               <label className="label">Gebruikersnaam</label>
               <input
-                className="inputGebruikersnaam"
+                className="input"
                 autoFocus
                 type="text"
                 value={this.props.userName}
                 onChange={this.onChangeUserName} />
             </div>
-            <div className="containerFormItem" id="wachtwoord" >
+            <div className="form__item" id="wachtwoord" >
               <label className="label">Wachtwoord</label>
               <input
-                className="inputWachtwoord"
+                className="input"
                 type="password"
                 value={this.props.inputPasswordLogin}
                 onChange={this.onChangePassword} />
@@ -92,16 +78,16 @@ class Login extends React.Component{
             <div>
             <Link to="/search">
               <input
-                className="loginButton"
+                className="button--login"
                 type="submit"
                 value="Login"
                 onClick={this.onClick}
-                disabled={!this.valideerInput()} />
+                disabled={!this.validatePasswordInput()} />
             </Link>
             </div>
             <div className="containerFormItem">
-              <p className="textNoAccount">Nog geen account?</p>
-              <Link to="/register" className="linkRegister">Klik hier om te registreren</Link>
+              <p className="text text--noAccount">Nog geen account?</p>
+              <Link to="/register" className="text text--register">Klik hier om te registreren</Link>
             </div>
           </form>
         </div>

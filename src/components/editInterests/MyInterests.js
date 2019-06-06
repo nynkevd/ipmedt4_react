@@ -1,11 +1,9 @@
+//React importeren
 import React from "react";
-
+//CSS importeren
 import './MyInterests.css';
 
 class MyInterests extends React.Component {
-  constructor(props){
-    super(props);
-  }
 
   deleteOnClick = (event) => {
     var interestsList = document.getElementById("interestsList").childNodes;

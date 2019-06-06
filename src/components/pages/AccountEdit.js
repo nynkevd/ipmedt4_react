@@ -14,6 +14,9 @@ import ReisTraject from '../editAccount/ReisTraject';
 //CSS importeren
 import './AccountEdit.css';
 
+var firstClick = true;
+var close = document.getElementsByClassName("close")[0];
+
 class AccountEdit extends React.Component{
   state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: "", username: this.props.userName} // username moet aangepast worden naar het ingelogde account
   BASE_URL = "http://136.144.230.97:8080/api/";
@@ -31,8 +34,6 @@ class AccountEdit extends React.Component{
   }
 
   updateUserInfo = _ => {
-    // fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}`)
-    // .then()
     var htmlCollection = document.getElementsByClassName("selected");
     var arr = Array.prototype.slice.call( htmlCollection );
     arr = arr[0];
@@ -41,12 +42,27 @@ class AccountEdit extends React.Component{
 
     this.setState({profilePicture: newPicId});
     console.log(this.state.profilePicture);
+    console.log(this.state.travelFrom);
+    console.log(this.state.travelTo);
 
-    fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}`)
-    .then(this.getUserInfo)
-    .catch(err => console.error(err))
+    if (firstClick) {
+      document.getElementById("myModal").style.display = "block";
+      console.log("ḧier komt een pop-up");
+      firstClick = false;
+    } else {
 
-    console.log('gelukt');
+      console.log(firstClick);
+      // fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}`)
+      // .then()
+
+      fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}&travelFrom=${this.state.travelFrom}&travelTo=${this.state.travelTo}`)
+      .then(this.getUserInfo)
+      .catch(err => console.error(err))
+
+      console.log('gelukt');
+
+      firstClick = true;
+    }
   }
 
   getUserInfo = (pictureList) => {
@@ -67,13 +83,9 @@ class AccountEdit extends React.Component{
       if(pictureList[i] === picture){
         var currentPicture = document.getElementById("profilePicture" + i);
         currentPicture.classList.add("selected");
-        this.setState({profilePicture: i});
+        this.setState({profilePicture: i++});
       }
     }
-  }
-
-  onUsernameChange = (username) =>{
-    this.setState({username: username})
   }
 
   setFrom = (event) => {
@@ -97,9 +109,18 @@ class AccountEdit extends React.Component{
     }
   }
 
+  newFirstClick = _ => {
+    firstClick = true;
+  }
+  close = _ => {
+    console.log("hallo");
+    document.getElementById("myModal").style.display = "none";
+    this.newFirstClick();
+  }
+
   //Later toevoegen:
   // <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
-  // <ReisTraject from={this.state.travelFrom} to={this.state.travelTo} setFrom={this.setFrom} setTo={this.setTo}/>
+
 
 
   render(){
@@ -110,15 +131,27 @@ class AccountEdit extends React.Component{
           <h1>Edit account</h1>
 
           <ProfilePictureList pictureList={this.state.pictureList} click={this.pictureOnClick}/>
+          <ReisTraject from={this.state.travelFrom} to={this.state.travelTo} setFrom={this.setFrom} setTo={this.setTo}/>
 
-          <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
+          <div className="next">
+              <button className="button" onClick={this.updateUserInfo}> Bevestig </button> <br /> <br />
+              <Link to="/account" onClick={this.newFirstClick} id="back"> <p> Terug naar account </p> </ Link>
+          </div>
 
-          <button className="button" onClick={this.updateUserInfo}> Bevestig </button>
-          <Link to="/account"> <p> Terug naar account </p> </ Link>
+          <div id="myModal" className="modal">
+            <div className="modal-content">
+              <span className="close" onClick={this.close}>&times;</span>
+              <h2>Weet je het zeker?</h2>
+              <Link to="/account">
+              <button className="button" onClick={this.updateUserInfo}> Bevestig </button>
+              </Link>
+            </div>
+          </div>
+
         </div>
-        <BottomNav />
+
       </div>
-    )
+    );
   }
 }
 

@@ -1,4 +1,6 @@
+//React en benodigheden importeren
 import React from "react";
+//CSS importeren
 import './MatchCard.css';
 
 const MatchCard = props => {

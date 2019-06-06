@@ -1,6 +1,9 @@
 //React en benodigheden importeren
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 //Redux importeren
+import { connect } from "react-redux";
+import { changeLoggedIn } from "./../../actions";
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
 import BottomNav from '../layout/BottomNav';
@@ -12,8 +15,8 @@ import './FriendsList.css';
 
 class FriendsList extends React.Component{
   render(){
-    return(
-      <div>
+    return this.props.loggedIn
+      ? <div>
         <TopBar />
         <div className="friendsListPageContainer">
           <div className="friendsListPageContainer2">
@@ -45,8 +48,17 @@ class FriendsList extends React.Component{
         </div>
         <BottomNav />
       </div>
-    )
+      //Naar de login pagina sturen als er niet ingelogd is
+      : <Redirect to="/login" />
   }
 }
 
-export default FriendsList;
+const mapStateToProps = state =>{
+  return {
+    loggedIn: state.loggedIn,
+  };
+}
+
+export default connect(mapStateToProps,{
+  changeLoggedIn: changeLoggedIn,
+})(FriendsList);

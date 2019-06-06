@@ -9,8 +9,14 @@ import {
   CHANGE_CHECKPASSWORD,
   CHANGE_INPUTPASSWORDLOGIN,
   CHANGE_MATCHES,
+  CHANGE_USERINTERESTS,
+  CHANGE_USERPROFILEPICTURE,
+  CHANGE_USERTRAVELFROM,
+  CHANGE_USERTRAVELTO,
+  CHANGE_USERDISPLAYNAME,
  } from "./actions";
 
+//Username van de ingelogde gebruiker veranderen
 export const userName = (state="", action) =>{
   switch(action.type){
     case CHANGE_USERNAME:
@@ -20,6 +26,7 @@ export const userName = (state="", action) =>{
   }
 }
 
+//Bijhouden in een boolean of er ingelogd is
 export const loggedIn = (state=false, action) =>{
   switch(action.type){
     case CHANGE_LOGGEDIN:
@@ -38,6 +45,7 @@ export const inputName = (state="", action) =>{
       return state;
   }
 }
+
 export const inputUserName = (state="", action) =>{
   switch(action.type){
     case CHANGE_INPUTUSERNAME:
@@ -46,6 +54,7 @@ export const inputUserName = (state="", action) =>{
       return state;
   }
 }
+
 export const inputEmail = (state="", action) =>{
   switch(action.type){
     case CHANGE_INPUTEMAIL:
@@ -54,6 +63,7 @@ export const inputEmail = (state="", action) =>{
       return state;
   }
 }
+
 export const inputPassword = (state="", action) =>{
   switch(action.type){
     case CHANGE_INPUTPASSWORD:
@@ -62,6 +72,7 @@ export const inputPassword = (state="", action) =>{
       return state;
   }
 }
+
 //ChatKit User
 export const chatKitUser = (state=null, action) =>{
   switch(action.type){
@@ -72,7 +83,7 @@ export const chatKitUser = (state=null, action) =>{
   }
 }
 
-//Login
+//Login pagina
 export const checkPassword = (state="", action) =>{
   switch(action.type){
     case CHANGE_CHECKPASSWORD:
@@ -81,6 +92,7 @@ export const checkPassword = (state="", action) =>{
       return state;
   }
 }
+
 export const inputPasswordLogin = (state="", action) =>{
   switch(action.type){
     case CHANGE_INPUTPASSWORDLOGIN:
@@ -94,6 +106,52 @@ export const inputPasswordLogin = (state="", action) =>{
 export const matches = (state=[], action) =>{
   switch(action.type){
     case CHANGE_MATCHES:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+//Account pagina
+export const userInterests = (state=[], action) =>{
+  switch(action.type){
+    case CHANGE_USERINTERESTS:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+export const userProfilePicture = (state="", action) =>{
+  switch(action.type){
+    case CHANGE_USERPROFILEPICTURE:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+export const userTravelFrom = (state="", action) =>{
+  switch(action.type){
+    case CHANGE_USERTRAVELFROM:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+export const userTravelTo = (state="", action) =>{
+  switch(action.type){
+    case CHANGE_USERTRAVELTO:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+export const userDisplayName = (state="", action) =>{
+  switch(action.type){
+    case CHANGE_USERDISPLAYNAME:
       return action.payload;
     default:
       return state;

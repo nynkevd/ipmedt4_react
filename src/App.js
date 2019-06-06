@@ -1,11 +1,10 @@
+//React en benodigheden importeren
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
-
-//redux
-import {Provider} from "react-redux";
-import {store} from "./store";
-
+//Redux importeren
+import { Provider } from "react-redux";
+import { store } from "./store";
+//Eigen componenten importeren
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import Register from './components/pages/Register';
@@ -16,6 +15,8 @@ import FriendsList from './components/pages/FriendsList';
 import Account from './components/pages/Account';
 import AccountEdit from './components/pages/AccountEdit';
 import InterestsEdit from './components/pages/InterestsEdit';
+//CSS importeren
+import './App.css';
 
 class App extends React.Component {
   render(){

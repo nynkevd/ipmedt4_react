@@ -22,7 +22,7 @@
   font-size: 1.4em;
 }
 
-.inputNaam, .inputGebruikersnaam, .inputEmail, .inputWachtwoord{
+.input{
   margin-top: 1em;
   padding: 10px;
   font-size: 110%;
@@ -31,7 +31,7 @@
   border-radius: 5px;
 }
 
-.inputNaam:focus, .inputGebruikersnaam:focus, .inputEmail:focus, .inputWachtwoord:focus{
+.input:focus{
   border: 1px solid #FCC63F;
   border-radius: 0;
 }
