@@ -8,6 +8,8 @@ import {
   changeChatKitUser,
 } from "./../../actions";
 
+import TopBarChat from './TopBarChat';
+
 import './SendMessage.css';
 
 class SendMessage extends React.Component {
@@ -40,6 +42,7 @@ class SendMessage extends React.Component {
   render(){
     return(
       <div className="sendMessageContainer">
+      <TopBarChat />
         <form className="sendMessageForm" onSubmit={this.onSubmit}>
           <input className="sendMessageInput" type="text" placeholder="message..." onChange={this.onChange} value={this.state.message}/>
           <button className="sendMessageButton" >
