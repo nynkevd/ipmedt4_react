@@ -1,9 +1,11 @@
 .userInfoFriendsContainer{
   position: relative;
-  margin-top: 24%;
-  margin-left: 10%;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  margin-left: 3vh;
+  width : 90vw;
+  align-items: center;
 }
-
 .pf {
   border-radius: 100%;
   width: 100px;
@@ -12,11 +14,12 @@
 .usernameFriends {
   display: inline-block;
   position: absolute;
-  top: 0;
+  top: 30px;
   margin-left: 15px;
+  font-size: 2em;
 }
 
-.whereFromFriends {
+/* .whereFromFriends {
   position: absolute;
   margin-left: 35%;
   margin-top: -22%;
@@ -55,4 +58,4 @@
 .interestsListFriends {
   position: absolute;
   margin-top: 8.5%;
-}
+} */
