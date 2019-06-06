@@ -24,7 +24,6 @@ const Chat = props => {
       ? <div>
         <TopBar />
         <div className="chatPageContainer">
-          <h1>Chat</h1>
           <ul>
             {
               roomExists.map((room, index) =>
