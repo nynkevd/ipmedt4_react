@@ -13,6 +13,7 @@ export const CHANGE_USERPROFILEPICTURE = "CHANGE_USERPROFILEPICTURE";
 export const CHANGE_USERTRAVELFROM = "CHANGE_USERTRAVELFROM";
 export const CHANGE_USERTRAVELTO = "CHANGE_USERTRAVELTO";
 export const CHANGE_USERDISPLAYNAME = "CHANGE_USERDISPLAYNAME";
+export const CHANGE_CHATROOMCLICKED = "CHANGE_CHATROOMCLICKED";
 
 //Username van de ingelogde gebruiker
 export const changeUserName = userName =>({
@@ -93,4 +94,10 @@ export const changeUserTravelTo = userTravelTo =>({
 export const changeUserDisplayName = userDisplayName =>({
   type: CHANGE_USERDISPLAYNAME,
   payload: userDisplayName,
+})
+
+// Verander naar chatRoom
+export const changeChatroomClicked = clickedChatroom => ({
+  type: CHANGE_CHATROOMCLICKED,
+  payload: clickedChatroom,
 })
