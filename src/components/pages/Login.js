@@ -1,6 +1,6 @@
 //React en benodigheden importeren
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import axios from 'axios';
 //Redux importeren
 import { connect } from "react-redux";
@@ -20,6 +20,13 @@ import './Login.css';
 const md5 = require('md5');
 
 class Login extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      firstLoggedInNumber: null,
+      firstloggedin: true,
+    }
+  }
 
   getUserInfoFromDatabase = _ => {
     //Checken van ingevoerde wachtwoord met de database
@@ -39,7 +46,27 @@ class Login extends React.Component{
 
   onSubmit = event => {
     event.preventDefault();
-    this.props.changeUserName(event.target.value);
+    this.getFL();
+    return;
+  }
+
+  getFL(){
+    axios.get(`http://136.144.230.97:4000/getfirstlogin?username=${this.props.userName}`)
+      .then(response => (this.setState({firstLoggedInNumber: parseInt(response.data.data[0].firstlogin)})))
+        .catch(err => console.error(err))
+    this.checkFirstLogin();
+  }
+
+  //maak een constante die checkt of de firstlogin een waarde van 1 heeft.
+  checkFirstLogin(){
+    if(this.state.firstLoggedInNumber === 1){
+      console.log("setupaccount");
+      this.setState({firstloggedin: true});
+    }
+    if(this.state.firstLoggedInNumber === 0){
+      console.log("search");
+        this.setState({firstloggedin: false});
+    }
   }
 
   validatePasswordInput(){
@@ -53,8 +80,8 @@ class Login extends React.Component{
   }
 
   render() {
-    return(
-      <div>
+    return this.state.firstloggedin
+      ?<div>
         <TopBar />
         <div className="LoginPageContainer">
           <form onSubmit={this.onSubmit} className="form--login">
@@ -76,12 +103,12 @@ class Login extends React.Component{
                 onChange={this.onChangePassword} />
             </div>
             <div>
-            <Link to="/search">
+            <Link to="/setUpAccount">
               <input
                 className="button--login"
                 type="submit"
                 value="Login"
-                onClick={this.onClick}
+                onClick={this.onSubmit}
                 disabled={!this.validatePasswordInput()} />
             </Link>
             </div>
@@ -92,7 +119,7 @@ class Login extends React.Component{
           </form>
         </div>
       </div>
-    );
+      :<Redirect to="/setUpAccount" />
   }
 }
 

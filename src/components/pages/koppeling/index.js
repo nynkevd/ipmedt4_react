@@ -82,3 +82,31 @@ app.get('/userinfo/update', (req,res) => {
     }
   })
 });
+
+app.get('/updatefirstlogin', (req,res) =>{
+  const {username} = req.query;
+  const updateFirstLogin = `UPDATE accounts SET firstlogin=0 WHERE username='${username}';`
+  connection.query(updateFirstLogin, (err,results) => {
+    if(err){
+      return res.send(err);
+    }else{
+      res.send({
+        data: results
+      });
+    }
+  })
+});
+
+app.get('/getfirstlogin', (req,res) =>{
+  const {username} = req.query;
+  const getFirstLoginFromUser = `SELECT password FROM accounts WHERE username='${username}';`
+  connection.query(getFirstLoginFromUser, (err,results) => {
+    if(err){
+      return res.send(err);
+    }else{
+      res.send({
+        data:results
+      })
+    }
+  })
+});
