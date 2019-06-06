@@ -2,35 +2,66 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Chatkit from '@pusher/chatkit-client';
 
+import { connect } from "react-redux";
+import {
+  changeLoggedIn,
+  changeChatKitUser,
+} from "./../../actions";
+
 import TopBar from '../layout/TopBar';
 import SendMessage from './SendMessage';
 import MessageList from './MessageList';
 
-const ChatRoom = () => {
-  const messages = [
-      {
-        message: "hallo ik ben Anouk",
-        sender: "Anouk2",
-        time: new Date(2019, 6, 1, 14, 57, 30, 3),
-      },
-      {
-        message: "Dit is het tweede bericht",
-        sender: "Anouk2",
-        time: new Date(2019, 6, 1, 14, 59, 30, 3),
-      }
-    ];
+class ChatRoom extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {messageList: []}
+  }
 
-    // <MessageList messages={messages} />
-  return(
-    <div className="App">
-        <div id="matches-scherm"></div>
-        <div id="chat-scherm">
-          <MessageList />
-          <SendMessage />
+  componentDidMount(){
+    const currentUser = this.props.chatKitUser;
+    console.log(this.props.chatKitUser);
+
+    // Alleen als de gebruiker is ingelogd kan hij naar de chatroom
+    if(currentUser != null){
+      currentUser.subscribeToRoom({
+        roomId: '31224101',
+        hooks: {
+          onMessage: message => {
+            console.log("New message: ", message.text);
+            console.log(message);
+            this.setState({
+               messageList: [...this.state.messageList, message],
+             });
+          }
+        }
+      })
+    }
+
+  }
+
+  render(){
+    return this.props.loggedIn
+      ?<div className="App">
+          <div id="chatroom-scherm">
+            <MessageList messageList={this.state.messageList} />
+            <SendMessage />
+          </div>
         </div>
+      //Naar de login pagina sturen als er niet ingelogd is
+      : <Redirect to="/login" />
+  }
 
-      </div>
-  )
 }
 
-export default ChatRoom;
+const mapStateToProps = state =>{
+  return {
+    loggedIn: state.loggedIn,
+    chatKitUser: state.chatKitUser,
+  };
+}
+
+export default connect(mapStateToProps,{
+  changeLoggedIn: changeLoggedIn,
+  changeChatKitUser: changeChatKitUser,
+})(ChatRoom);

@@ -1,8 +1,16 @@
 import React from 'react';
+import Message from './Message';
 
-const MessageList = () => {
+
+const MessageList = (props) => {
   return(
-    <div>MessageList</div>
+    <ul>
+      {
+        props.messageList.map((message) =>
+          <Message message={message} key={message.id}/>
+        )
+      }
+    </ul>
   )
 }
 
