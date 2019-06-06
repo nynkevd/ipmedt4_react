@@ -1,5 +1,6 @@
 //React importeren
 import React from 'react';
+
 //CSS importeren
 import './TopBarChat.css';
 
