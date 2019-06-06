@@ -15,6 +15,7 @@ import {
   CHANGE_USERTRAVELTO,
   CHANGE_USERDISPLAYNAME,
   CHANGE_PROFILEPICTURELIST,
+  CHANGE_CHATROOMCLICKED,
  } from "./actions";
 
 //Username van de ingelogde gebruiker veranderen
@@ -167,4 +168,14 @@ export const profilePictureList = (state=[], action) =>{
     default:
       return state;
   }
+}
+
+// ChatroomCard pagina
+export const clickedChatroom = (state="", action) =>{
+  switch(action.type){
+    case CHANGE_CHATROOMCLICKED:
+    return action.payload;
+  default:
+    return state;
+}
 }

@@ -14,6 +14,7 @@ export const CHANGE_USERTRAVELFROM = "CHANGE_USERTRAVELFROM";
 export const CHANGE_USERTRAVELTO = "CHANGE_USERTRAVELTO";
 export const CHANGE_USERDISPLAYNAME = "CHANGE_USERDISPLAYNAME";
 export const CHANGE_PROFILEPICTURELIST = "CHANGE_PROFILEPICTURELIST";
+export const CHANGE_CHATROOMCLICKED = "CHANGE_CHATROOMCLICKED";
 
 //Username van de ingelogde gebruiker
 export const changeUserName = userName =>({
@@ -58,23 +59,24 @@ export const changeChatKitUser = chatKitUser =>({
 export const changeCheckPassword = checkPassword =>({
   type: CHANGE_CHECKPASSWORD,
   payload: checkPassword,
-})
+});
+
 export const changeInputPasswordLogin = inputPasswordLogin =>({
   type: CHANGE_INPUTPASSWORDLOGIN,
   payload: inputPasswordLogin,
-})
+});
 
 //Matches
 export const changeMatches = matches =>({
   type: CHANGE_MATCHES,
   payload: matches,
-})
+});
 
 //Account pagina
 export const changeUserInterests = userInterests =>({
   type: CHANGE_USERINTERESTS,
   payload: userInterests,
-})
+});
 
 export const changeUserProfilePicture = userProfilePicture =>({
   type: CHANGE_USERPROFILEPICTURE,
@@ -84,12 +86,12 @@ export const changeUserProfilePicture = userProfilePicture =>({
 export const changeUserTravelFrom = userTravelFrom =>({
   type: CHANGE_USERTRAVELFROM,
   payload: userTravelFrom,
-})
+});
 
 export const changeUserTravelTo = userTravelTo =>({
   type: CHANGE_USERTRAVELTO,
   payload: userTravelTo,
-})
+});
 
 export const changeUserDisplayName = userDisplayName =>({
   type: CHANGE_USERDISPLAYNAME,
@@ -101,3 +103,9 @@ export const changeProfilePictureList = profilePictureList =>({
   type: CHANGE_PROFILEPICTURELIST,
   payload: profilePictureList,
 })
+
+// Verander naar chatRoom
+export const changeChatroomClicked = clickedChatroom => ({
+  type: CHANGE_CHATROOMCLICKED,
+  payload: clickedChatroom,
+});
