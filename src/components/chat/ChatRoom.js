@@ -12,6 +12,8 @@ import TopBar from '../layout/TopBar';
 import SendMessage from './SendMessage';
 import MessageList from './MessageList';
 
+import './ChatRoom.css';
+
 class ChatRoom extends React.Component {
   constructor(props){
     super(props);
@@ -26,6 +28,7 @@ class ChatRoom extends React.Component {
     if(currentUser != null){
       currentUser.subscribeToRoom({
         roomId: '31224101',
+        messageLimit: 100,
         hooks: {
           onMessage: message => {
             console.log("New message: ", message.text);

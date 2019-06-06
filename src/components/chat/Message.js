@@ -5,17 +5,19 @@ import {
   changeChatKitUser,
 } from "./../../actions";
 
+import './Message.css'
+
 const Message = (props) => {
   const checkUser = () =>{
     if (props.chatKitUser.id === props.message.senderId){
-      return "message message--sent";
+      return "message--sent";
     }else{
-      return "message";
+      return "message--received";
     }
   }
 
   return(
-    <li class={checkUser()}>{props.message.text}</li>
+    <div className={"message " + checkUser()} id={props.message.id}>{props.message.text}</div>
   )
 }
 

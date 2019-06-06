@@ -1,0 +1,21 @@
+.message{
+  display: inline-block;
+  box-sizing: border-box;
+  max-width: 85%;
+  overflow-wrap: break-word;
+  font-size: 1em;
+  padding: 7px;
+  margin: 10px;
+  margin-bottom: 0px;
+  border-radius: 5px;
+}
+
+.message--sent{
+  float: right;
+  background-color: rgb(250, 197, 64);
+}
+
+.message--received{
+  float: left;
+  background-color: #b6b6b6;
+}

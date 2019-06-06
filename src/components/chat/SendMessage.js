@@ -8,6 +8,8 @@ import {
   changeChatKitUser,
 } from "./../../actions";
 
+import './SendMessage.css';
+
 class SendMessage extends React.Component {
   state = ({message: ""});
 
@@ -36,27 +38,25 @@ class SendMessage extends React.Component {
   }
 
   render(){
-    return this.props.loggedIn
-      ?<div>
-        <form onSubmit={this.onSubmit}>
-          <input type="text" placeholder="message..." onChange={this.onChange} value={this.state.message}/>
+    return(
+      <div className="sendMessageContainer">
+        <form className="sendMessageForm" onSubmit={this.onSubmit}>
+          <input className="sendMessageInput" type="text" placeholder="message..." onChange={this.onChange} value={this.state.message}/>
+          <button className="sendMessageButton" >
+            <img className="sendMessageButton__image" src="./img/icons/send.svg" alt="Stuur bericht"/>
+          </button>
         </form>
       </div>
-    //Naar de login pagina sturen als er niet ingelogd is
-    : <Redirect to="/login" />
+    )
   }
 }
 
 const mapStateToProps = state =>{
   return {
-    userName: state.userName,
-    loggedIn: state.loggedIn,
     chatKitUser: state.chatKitUser,
   };
 }
 
 export default connect(mapStateToProps,{
-  changeUserName: changeUserName, //Ik weet even niet of deze gebruikt wordt
-  changeLoggedIn: changeLoggedIn,
   changeChatKitUser: changeChatKitUser,
 })(SendMessage);
