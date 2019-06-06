@@ -1,0 +1,20 @@
+.notFoundPage {
+  width: 100vw;
+  height: 100vh;
+  background-color: #FCC63F;
+}
+
+.notFoundPage__container{
+  width: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.notFoundPage__text {
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  font-size: 2em;
+}

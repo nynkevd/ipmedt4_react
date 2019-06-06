@@ -1,6 +1,6 @@
 //React en benodigheden importeren
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 //Redux importeren
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -14,6 +14,7 @@ import FriendsList from './components/pages/FriendsList';
 import Account from './components/pages/Account';
 import AccountEdit from './components/pages/AccountEdit';
 import InterestsEdit from './components/pages/InterestsEdit';
+import NotFoundPage from './components/pages/NotFoundPage';
 //CSS importeren
 import './App.css';
 
@@ -22,9 +23,9 @@ class App extends React.Component {
     return (
       <Router>
         <div className="app">
+        <Provider store={store}>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Provider store={store}>
+              <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route path="/search" component={Search} />
@@ -33,8 +34,9 @@ class App extends React.Component {
               <Route path="/account" component={Account} />
               <Route path="/editAccount" component={AccountEdit} />
               <Route path="/editInterests" component={InterestsEdit} />
-            </Provider>
+              <Route component={NotFoundPage} />
           </Switch>
+          </Provider>
         </div>
       </Router>
     );
