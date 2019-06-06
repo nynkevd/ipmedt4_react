@@ -12,6 +12,7 @@ import {
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
 import BottomNav from '../layout/BottomNav';
+import ChatRoomCard from '../chat/ChatRoomCard'
 //CSS importeren
 import './Chat.css';
 
@@ -23,6 +24,7 @@ class Chat extends React.Component{
         <TopBar />
         <div className="chatPageContainer">
           <h1>Chat</h1>
+          <ChatRoomCard />
         </div>
         <BottomNav />
       </div>
