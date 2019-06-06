@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import {
   changeLoggedIn,
   changeChatKitUser,
+  changeChatroomClicked,
 } from "./../../actions";
 
 import TopBar from '../layout/TopBar';
@@ -23,16 +24,17 @@ class ChatRoom extends React.Component {
   componentDidMount(){
     const currentUser = this.props.chatKitUser;
     console.log(this.props.chatKitUser);
+    console.log(this.props.clickedChatroom);
 
     // Alleen als de gebruiker is ingelogd kan hij naar de chatroom
     if(currentUser != null){
       currentUser.subscribeToRoom({
-        roomId: '31224101',
+        roomId: this.props.clickedChatroom,
         messageLimit: 100,
         hooks: {
           onMessage: message => {
-            console.log("New message: ", message.text);
-            console.log(message);
+            // console.log("New message: ", message.text);
+            // console.log(message);
             this.setState({
                messageList: [...this.state.messageList, message],
              });
@@ -61,10 +63,12 @@ const mapStateToProps = state =>{
   return {
     loggedIn: state.loggedIn,
     chatKitUser: state.chatKitUser,
+    clickedChatroom: state.clickedChatroom,
   };
 }
 
 export default connect(mapStateToProps,{
   changeLoggedIn: changeLoggedIn,
   changeChatKitUser: changeChatKitUser,
+  changeChatroomClicked: changeChatroomClicked,
 })(ChatRoom);
