@@ -1,18 +1,14 @@
 //React en benodigheden importeren
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-//Redux importeren
-//Eigen componenten importeren
 //CSS importeren
 import './Home.css';
 
 class Home extends React.Component{
-  state = {
-    redirect: false
-  }
+  state = { redirect: false }
 
   componentDidMount() {
-    this.id = setTimeout(() => this.setState({ redirect: true }), 3000)
+    this.id = setTimeout(() => this.setState({ redirect: true }), 1500)
   }
 
   componentWillUnmount() {

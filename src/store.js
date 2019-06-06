@@ -15,6 +15,7 @@ import {
   userTravelFrom,
   userTravelTo,
   userDisplayName,
+  profilePictureList,
   } from "./reducer";
 
 export const store = createStore(
@@ -34,5 +35,6 @@ export const store = createStore(
     userTravelFrom,
     userTravelTo,
     userDisplayName,
+    profilePictureList,
   })
 )
