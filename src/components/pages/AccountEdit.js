@@ -1,10 +1,18 @@
 //React en benodigheden importeren
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from "axios";
 //Redux importeren
 import { connect } from "react-redux";
-import { changeUserName } from "./../../actions";
+import {
+  changeUserName,
+  changeLoggedIn,
+  changeUserInterests,
+  changeUserProfilePicture,
+  changeUserTravelFrom,
+  changeUserTravelTo,
+  changeProfilePictureList,
+} from "./../../actions";
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
 import BottomNav from '../layout/BottomNav';
@@ -17,94 +25,82 @@ import './AccountEdit.css';
 var firstClick = true;
 var close = document.getElementsByClassName("close")[0];
 
+const base_url = "http://136.144.230.97:8080/api/";
+const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
+
 class AccountEdit extends React.Component{
-  state = { profilePicture: "",  pictureList: [], travelFrom: "", travelTo: "", username: this.props.userName} // username moet aangepast worden naar het ingelogde account
-  BASE_URL = "http://136.144.230.97:8080/api/";
-  api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
   componentDidMount(){
-    // Lijst van de mogelijke profielfotos
-    axios.get(this.BASE_URL + "pictures" + this.api_token).then(res => {
-      console.log(res);
-      this.setState({pictureList: res.data});
+    this.getProfilePictureList();
+  }
 
+  //Lijst van alle profielfoto's opvragen van API
+  getProfilePictureList = () => {
+    axios.get(base_url + "pictures" + api_token).then(res => {
+      this.props.changeProfilePictureList(res.data);
       // De userinfo wordt opgevraag en de lijst van profielfotos wordt meegegeven
-      this.getUserInfo(res.data);
+      this.getUserInfo(this.props.profilePictureList);
     });
   }
 
+  //De wijzigingen opslaan in de database
   updateUserInfo = _ => {
     var htmlCollection = document.getElementsByClassName("selected");
-    var arr = Array.prototype.slice.call( htmlCollection );
-    arr = arr[0];
-    arr = arr.getAttribute('id');
-    var newPicId = (parseInt(arr.toString().slice(-1)) + 1);
-
-    this.setState({profilePicture: newPicId});
-    console.log(this.state.profilePicture);
-    console.log(this.state.travelFrom);
-    console.log(this.state.travelTo);
+    var selectedHtmlCollectionArray = Array.prototype.slice.call(htmlCollection);
+    var selectedObject = selectedHtmlCollectionArray[0].getAttribute('id')
+    var newProfilePictureId = (parseInt(selectedObject.toString().slice(-1)) + 1);
+    this.props.changeUserProfilePicture(newProfilePictureId);
 
     if (firstClick) {
       document.getElementById("myModal").style.display = "block";
-      console.log("ḧier komt een pop-up");
       firstClick = false;
     } else {
-
-      console.log(firstClick);
-      // fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}`)
-      // .then()
-
-      fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.state.username}&profilepicture=${this.state.profilePicture}&travelFrom=${this.state.travelFrom}&travelTo=${this.state.travelTo}`)
+      fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.props.userName}&profilepicture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}`)
       .then(this.getUserInfo)
       .catch(err => console.error(err))
-
-      console.log('gelukt');
-
       firstClick = true;
     }
   }
 
+  //De gegevens van de user ophalen van de API
   getUserInfo = (pictureList) => {
-    axios.get(this.BASE_URL + "userinfo/" + this.state.username + this.api_token).then(res => {
-      this.setState({
-        travelFrom: res.data.from,
-        travelTo: res.data.to
-      });
-
+    axios.get(base_url + "userinfo/" + this.props.userName + api_token).then(res => {
+      this.props.changeUserTravelFrom(res.data.from);
+      this.props.changeUserTravelTo(res.data.to);
       // De huidige profielfoto wordt opgevraagd en meegegeven
       this.selectCurrentPicture(res.data.picture, pictureList);
     });
   }
 
+  //De geselecteerde profielfoto opslaan
   selectCurrentPicture = (picture, pictureList) => {
-    // De huidige profielfoto wordt geselecteerd
     for(var i = 0; i < pictureList.length; i++){
       if(pictureList[i] === picture){
         var currentPicture = document.getElementById("profilePicture" + i);
         currentPicture.classList.add("selected");
-        this.setState({profilePicture: i++});
+        this.props.changeUserProfilePicture(i++)
       }
     }
   }
 
-  setFrom = (event) => {
-    if(event.target.value != this.state.travelTo){
-      this.setState({travelFrom: event.target.value});
+  //TravelFrom wijzigen
+  setTravelFrom = (event) => {
+    if(event.target.value !== this.props.userTravelTo){
+      this.props.changeUserTravelFrom(event.target.value)
       document.getElementById("fromErrorMessage").classList.add("hideErrorMessage");
-    }else{
-      //geef error message
+    } else {
+      //Geef error messages als hetzelfde station wordt gekozen als de travelTo
       document.getElementById("fromErrorMessage").classList.remove("hideErrorMessage");
     }
-
   }
 
-  setTo = (event) => {
-    if(event.target.value != this.state.travelFrom){
-      this.setState({travelTo: event.target.value});
+  //TravelTo wijzigen
+  setTravelTo = (event) => {
+    if(event.target.value !== this.props.userTravelFrom){
+      this.props.changeUserTravelTo(event.target.value);
       document.getElementById("toErrorMessage").classList.add("hideErrorMessage");
     }else{
-      //geef error message
+      //Geef error messages als hetzelfde station wordt gekozen als de travelFrom
       document.getElementById("toErrorMessage").classList.remove("hideErrorMessage");
     }
   }
@@ -112,8 +108,8 @@ class AccountEdit extends React.Component{
   newFirstClick = _ => {
     firstClick = true;
   }
-  close = _ => {
-    console.log("hallo");
+
+  closePopUp = _ => {
     document.getElementById("myModal").style.display = "none";
     this.newFirstClick();
   }
@@ -121,17 +117,15 @@ class AccountEdit extends React.Component{
   //Later toevoegen:
   // <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
 
-
-
   render(){
-    return(
-      <div>
+    return this.props.loggedIn
+      ? <div>
         <TopBar />
         <div className="accountEditPageContainer">
           <h1>Edit account</h1>
 
-          <ProfilePictureList pictureList={this.state.pictureList} click={this.pictureOnClick}/>
-          <ReisTraject from={this.state.travelFrom} to={this.state.travelTo} setFrom={this.setFrom} setTo={this.setTo}/>
+          <ProfilePictureList pictureList={this.props.profilePictureList} click={this.pictureOnClick}/>
+          <ReisTraject from={this.props.userTravelFrom} to={this.props.userTravelTo} setFrom={this.setTravelFrom} setTo={this.setTravelTo}/>
 
           <div className="next">
               <button className="button" onClick={this.updateUserInfo}> Bevestig </button> <br /> <br />
@@ -140,7 +134,7 @@ class AccountEdit extends React.Component{
 
           <div id="myModal" className="modal">
             <div className="modal-content">
-              <span className="close" onClick={this.close}>&times;</span>
+              <span className="close" onClick={this.closePopUp}>&times;</span>
               <h2>Weet je het zeker?</h2>
               <Link to="/account">
               <button className="button" onClick={this.updateUserInfo}> Bevestig </button>
@@ -149,18 +143,30 @@ class AccountEdit extends React.Component{
           </div>
 
         </div>
-
       </div>
-    );
+      //Naar de login pagina sturen als er niet ingelogd is
+      : <Redirect to="/login" />
   }
 }
 
 const mapStateToProps = state =>{
-  return {userName: state.userName};
+  return {
+    userName: state.userName,
+    loggedIn: state.loggedIn,
+    userInterests: state.userInterests,
+    userProfilePicture: state.userProfilePicture,
+    userTravelFrom: state.userTravelFrom,
+    userTravelTo: state.userTravelTo,
+    profilePictureList: state.profilePictureList,
+  };
 }
 
 export default connect(mapStateToProps,{
   changeUserName: changeUserName,
+  changeLoggedIn: changeLoggedIn,
+  changeUserInterests: changeUserInterests,
+  changeUserProfilePicture: changeUserProfilePicture,
+  changeUserTravelFrom: changeUserTravelFrom,
+  changeUserTravelTo: changeUserTravelTo,
+  changeProfilePictureList: changeProfilePictureList,
 })(AccountEdit);
-
-//export default AccountEdit;

@@ -14,6 +14,7 @@ import {
   CHANGE_USERTRAVELFROM,
   CHANGE_USERTRAVELTO,
   CHANGE_USERDISPLAYNAME,
+  CHANGE_PROFILEPICTURELIST,
  } from "./actions";
 
 //Username van de ingelogde gebruiker veranderen
@@ -152,6 +153,16 @@ export const userTravelTo = (state="", action) =>{
 export const userDisplayName = (state="", action) =>{
   switch(action.type){
     case CHANGE_USERDISPLAYNAME:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
+//Accountedit pagina
+export const profilePictureList = (state=[], action) =>{
+  switch(action.type){
+    case CHANGE_PROFILEPICTURELIST:
       return action.payload;
     default:
       return state;
