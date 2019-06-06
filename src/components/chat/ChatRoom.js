@@ -9,7 +9,7 @@ import {
   changeChatroomClicked,
 } from "./../../actions";
 
-import TopBar from '../layout/TopBar';
+import TopBarChat from './TopBarChat';
 import SendMessage from './SendMessage';
 import MessageList from './MessageList';
 
@@ -49,6 +49,7 @@ class ChatRoom extends React.Component {
     return this.props.loggedIn
       ?<div className="App">
           <div id="chatroom-scherm">
+            <TopBarChat />
             <MessageList messageList={this.state.messageList} />
             <SendMessage />
           </div>
