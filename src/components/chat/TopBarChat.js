@@ -1,5 +1,6 @@
 //React importeren
 import React from 'react';
+import { Link } from 'react-router-dom';
 // Redux importeren
 import { connect } from "react-redux";
 import {
@@ -15,7 +16,9 @@ import './TopBarChat.css';
 const TopBarChat = (props) =>{
   return(
     <div className="topBarChat">
-      <img className="topBarChat__img" src="./img/NS_logo.png" alt="NS Logo"/>
+      <Link to='/chat' className="chatCardLink">
+      <img className="topBarChat__back" src="./img/icons/arrow_back.svg" alt="Terug"/>
+      </Link>
       <p className="topBarChat__text">{getRoomName(props.clickedChatroom, props.chatKitUser)}</p>
     </div>
   );
