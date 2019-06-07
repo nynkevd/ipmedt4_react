@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-import InterestsFriends from "./InterestsFriends";
-import ReistrajectFriends from "./ReistrajectFriends";
 import UserinfoFriends from "./UserinfoFriends";
 
 import './UserinfoFriends.css';

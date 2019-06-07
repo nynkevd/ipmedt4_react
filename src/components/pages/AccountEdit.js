@@ -15,15 +15,13 @@ import {
 } from "./../../actions";
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
-import BottomNav from '../layout/BottomNav';
 import ProfilePictureList from '../editAccount/ProfilePictureList';
-import UserName from '../editAccount/UserName';
 import ReisTraject from '../editAccount/ReisTraject';
 //CSS importeren
 import './AccountEdit.css';
 
 var firstClick = true;
-var close = document.getElementsByClassName("close")[0];
+// var close = document.getElementsByClassName("close")[0]; //Wordt niet gebruikt maar geen idee of het later nodig is
 
 const base_url = "http://136.144.230.97:8080/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";

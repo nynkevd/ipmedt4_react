@@ -1,6 +1,6 @@
 //React en benodigheden importeren
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 //Redux importeren
 import { Provider } from "react-redux";
 import { store } from "./store";

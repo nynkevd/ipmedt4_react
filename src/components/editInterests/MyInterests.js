@@ -6,8 +6,6 @@ import './MyInterests.css';
 class MyInterests extends React.Component {
 
   deleteOnClick = (event) => {
-    var interestsList = document.getElementById("interestsList").childNodes;
-
     var deleteItem = document.getElementById(event.target.id).id;
     console.log(document.getElementById(deleteItem));
     document.getElementById(deleteItem).parentElement.setAttribute("class", "hidden")

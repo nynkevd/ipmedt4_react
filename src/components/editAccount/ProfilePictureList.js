@@ -1,8 +1,5 @@
 //React importeren
 import React from "react";
-//Redux importeren
-import { connect } from "react-redux";
-import { changeProfilePictureList } from "./../../actions";
 //Eigen componenten importeren
 import ProfilePicture from '../editAccount/ProfilePicture';
 
