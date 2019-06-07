@@ -8,6 +8,7 @@ import { store } from "./store";
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import Register from './components/pages/Register';
+import SetUpAccount from './components/pages/SetUpAccount';
 import Search from './components/pages/Search';
 import Chat from './components/pages/Chat';
 import ChatRoom from './components/chat/ChatRoom'
@@ -29,6 +30,7 @@ class App extends React.Component {
               <Route exact path="/" component={Home} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
+              <Route path="/setUpAccount" component={SetUpAccount} />
               <Route path="/search" component={Search} />
               <Route path="/chat" component={Chat} />
               <Route path="/chatRoom" component={ChatRoom} />

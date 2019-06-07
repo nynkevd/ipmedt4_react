@@ -1,6 +1,6 @@
 //React en benodigheden importeren
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import axios from 'axios';
 //Redux importeren
 import { connect } from "react-redux";
@@ -20,6 +20,13 @@ import './Login.css';
 const md5 = require('md5');
 
 class Login extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      firstLoggedInNumber: null,
+      firstloggedin: true,
+    }
+  }
 
   getUserInfoFromDatabase = _ => {
     //Checken van ingevoerde wachtwoord met de database
@@ -39,7 +46,27 @@ class Login extends React.Component{
 
   onSubmit = event => {
     event.preventDefault();
-    this.props.changeUserName(event.target.value);
+    this.getFirstLoginFromUser();
+  }
+
+  getFirstLoginFromUser(){
+    axios.get(`http://136.144.230.97:4000/getfirstlogin?username=${this.props.userName}`)
+      .then(response => (this.setState({firstLoggedInNumber: parseInt(response.data.data[0].firstlogin)})))
+        .catch(err => console.error(err))
+    this.checkValueFirstLogin();
+  }
+
+  //maak een constante die checkt of de firstlogin een waarde van 1 heeft.
+  checkValueFirstLogin(){
+    if(this.state.firstLoggedInNumber === 1){
+      //Het is de eerste keer dat de gebruiker inlogt
+      this.setState({firstloggedin: true});
+      return <Redirect to='/setUpAccount' />
+    }
+    else if(this.state.firstLoggedInNumber === 0){
+      //De gebruiker heeft al eerder ingelogd
+      this.setState({firstloggedin: false});
+    }
   }
 
   validatePasswordInput(){
@@ -53,8 +80,9 @@ class Login extends React.Component{
   }
 
   render() {
-    return(
-      <div>
+    console.log(this.state.firstloggedin)
+    return this.state.firstloggedin
+      ? <div>
         <TopBar />
         <div className="LoginPageContainer">
           <form onSubmit={this.onSubmit} className="form--login">
@@ -75,16 +103,13 @@ class Login extends React.Component{
                 value={this.props.inputPasswordLogin}
                 onChange={this.onChangePassword} />
             </div>
-            <div>
-            <Link to="/search">
+            {this.checkValueFirstLogin()}
               <input
                 className="button--login"
                 type="submit"
                 value="Login"
-                onClick={this.onClick}
-                disabled={!this.validatePasswordInput()} />
-            </Link>
-            </div>
+                onClick={this.onSubmit}
+                disabled={!this.validatePasswordInput()}/>
             <div className="containerFormItem">
               <p className="text text--noAccount">Nog geen account?</p>
               <Link to="/register" className="text text--register">Klik hier om te registreren</Link>
@@ -92,7 +117,8 @@ class Login extends React.Component{
           </form>
         </div>
       </div>
-    );
+      //naar de search als je niet voor de eerste keer inlogt
+      : <Redirect to="/search" />
   }
 }
 
