@@ -21,6 +21,8 @@ const Chat = props => {
   // roomExists is een array van alle rooms die bestaan
   if(props.chatKitUser !== null){
     roomExists = props.chatKitUser.rooms;
+    //sorteer de lijst van rooms op basis van het tijdstip van het bericht
+    roomExists.sort((a, b) => (a.lastMessageAt < b.lastMessageAt)? 1 : -1);
   }
 
   return props.loggedIn
