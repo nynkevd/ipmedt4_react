@@ -36,7 +36,7 @@ class ChatRoom extends React.Component {
   subscribeToChatroom = (currentUser) => {
     // subscribeToRoom is een functie van ChatKit om aan een room deel te nemen
     currentUser.subscribeToRoom({
-      roomId: this.props.clickedChatroom,
+      roomId: this.props.clickedChatroom.id,
       messageLimit: 100,
       hooks: {
         onMessage: message => {

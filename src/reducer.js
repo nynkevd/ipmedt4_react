@@ -171,7 +171,7 @@ export const profilePictureList = (state=[], action) =>{
 }
 
 // ChatroomCard pagina
-export const clickedChatroom = (state="", action) =>{
+export const clickedChatroom = (state=[], action) =>{
   switch(action.type){
     case CHANGE_CHATROOMCLICKED:
     return action.payload;

@@ -21,7 +21,6 @@ const Chat = props => {
   // roomExists is een array van alle rooms die bestaan
   if(props.chatKitUser !== null){
     roomExists = props.chatKitUser.rooms;
-    console.log(roomExists);
   }
 
   return props.loggedIn

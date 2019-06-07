@@ -30,7 +30,7 @@ class SendMessage extends React.Component {
     // currentUser is een object van de huidige gebruiker
     const currentUser = this.props.chatKitUser;
     // Het id van de room waar de gebruiker op dit moment in zit
-    const currentRoomId = this.props.clickedChatroom;
+    const currentRoomId = this.props.clickedChatroom.id;
 
     // Als het bericht leeg is wordt het niet verzonden
     if(message.trim() === '') return;
