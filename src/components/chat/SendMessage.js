@@ -1,6 +1,7 @@
+//React en benodigheden importeren
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-
+//Redux importeren
 import { connect } from "react-redux";
 import {
   changeUserName,
@@ -8,9 +9,9 @@ import {
   changeChatKitUser,
   changeChatroomClicked,
 } from "./../../actions";
-
+//Eigen componenten importeren
 import TopBarChat from './TopBarChat';
-
+//CSS importeren
 import './SendMessage.css';
 
 class SendMessage extends React.Component {
@@ -26,12 +27,15 @@ class SendMessage extends React.Component {
   }
 
   sendMessage = message => {
-    console.log(message);
-    console.log(this.props.chatKitUser);
+    // currentUser is een object van de huidige gebruiker
     const currentUser = this.props.chatKitUser;
-    const currentRoomId = this.props.clickedChatroom; //Ik weet niet of dit altijd werkt + misschien moet het iets duidelijker
+    // Het id van de room waar de gebruiker op dit moment in zit
+    const currentRoomId = this.props.clickedChatroom;
+
+    // Als het bericht leeg is wordt het niet verzonden
     if(message.trim() === '') return;
 
+    // sendMessage is een functie van ChatKit
     currentUser.sendMessage({
       text: message,
       roomId: currentRoomId,
@@ -43,9 +47,8 @@ class SendMessage extends React.Component {
   render(){
     return(
       <div className="sendMessageContainer">
-      <TopBarChat />
         <form className="sendMessageForm" onSubmit={this.onSubmit}>
-          <input className="sendMessageInput" type="text" placeholder="message..." onChange={this.onChange} value={this.state.message}/>
+          <input className="sendMessageInput" type="text" placeholder="Typ hier je bericht" onChange={this.onChange} value={this.state.message}/>
           <button className="sendMessageButton" >
             <img className="sendMessageButton__image" src="./img/icons/send.svg" alt="Stuur bericht"/>
           </button>

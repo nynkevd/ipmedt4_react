@@ -11,7 +11,7 @@ import Register from './components/pages/Register';
 import SetUpAccount from './components/pages/SetUpAccount';
 import Search from './components/pages/Search';
 import Chat from './components/pages/Chat';
-import ChatRoom from './components/chat/ChatRoom'
+import ChatRoom from './components/pages/ChatRoom'
 import FriendsList from './components/pages/FriendsList';
 import Account from './components/pages/Account';
 import AccountEdit from './components/pages/AccountEdit';

@@ -28,7 +28,7 @@ class ChatRoomCard extends React.Component {
     // console.log(this.props.chatKitUser.rooms[this.props.id].id);
     // console.log(this.props.chatKitUser.rooms[this.props.id].userIds);
     return(
-      <Link to='/chatRoom'>
+      <Link to='/chatRoom' className="chatCardLink">
         <div className="chatCardContainer" onClick={this.onClick}>
           <div>
             <h3 className="chatCardContainer__text">{this.props.room.name}</h3>

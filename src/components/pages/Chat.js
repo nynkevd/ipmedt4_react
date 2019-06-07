@@ -24,25 +24,24 @@ const Chat = props => {
     console.log(roomExists);
   }
 
-
-    return props.loggedIn
-      ? <div>
-        <TopBar />
-        <div className="chatPageContainer">
-          <ul>
-            {
-              roomExists.map((room, index) =>
-              <li>
-                <ChatRoomCard room={room} className="roomCard" id={index} key={index} index={index}/>
-              </li>
-              )
-            }
-          </ul>
-        </div>
-        <BottomNav />
+  return props.loggedIn
+    ? <div>
+      <TopBar />
+      <div className="chatPageContainer">
+        <ul>
+          {
+            roomExists.map((room, index) =>
+            <li key={index} >
+              <ChatRoomCard room={room} className="roomCard" id={index} index={index}/>
+            </li>
+            )
+          }
+        </ul>
       </div>
-      //Naar de login pagina sturen als er niet ingelogd is
-      : <Redirect to="/login" />
+      <BottomNav />
+    </div>
+    //Naar de login pagina sturen als er niet ingelogd is
+    : <Redirect to="/login" />
 }
 
 const mapStateToProps = state =>{

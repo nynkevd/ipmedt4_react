@@ -12,10 +12,11 @@
 
 .message--sent{
   float: right;
-  background-color: rgb(250, 197, 64);
+  color: #fff;
+  background-color: rgb(4, 0, 102);
 }
 
 .message--received{
   float: left;
-  background-color: #b6b6b6;
+  background-color: #e3e3e3;
 }
