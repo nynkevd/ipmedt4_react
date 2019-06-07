@@ -13,3 +13,7 @@
 .chatCardContainer__text{
   color: black;
 }
+
+.chatCardLink{
+  text-decoration: none;
+}

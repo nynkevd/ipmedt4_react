@@ -1,18 +1,19 @@
+//React en benodigheden importeren
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import Chatkit from '@pusher/chatkit-client';
-
+//Redux importeren
 import { connect } from "react-redux";
 import {
   changeLoggedIn,
   changeChatKitUser,
   changeChatroomClicked,
 } from "./../../actions";
-
-import TopBarChat from './TopBarChat';
-import SendMessage from './SendMessage';
-import MessageList from './MessageList';
-
+//Eigen componenten importeren
+import TopBarChat from '../chat/TopBarChat';
+import SendMessage from '../chat/SendMessage';
+import MessageList from '../chat/MessageList';
+//CSS importeren
 import './ChatRoom.css';
 
 class ChatRoom extends React.Component {
@@ -22,33 +23,35 @@ class ChatRoom extends React.Component {
   }
 
   componentDidMount(){
+    // currentUser is een object van de huidige gebruiker van chatkit
     const currentUser = this.props.chatKitUser;
-    console.log(this.props.chatKitUser);
-    console.log(this.props.clickedChatroom);
 
-    // Alleen als de gebruiker is ingelogd kan hij naar de chatroom
+    // Alleen als de gebruiker is ingelogd kan hij naar verschillende chatrooms
     if(currentUser != null){
-      currentUser.subscribeToRoom({
-        roomId: this.props.clickedChatroom,
-        messageLimit: 100,
-        hooks: {
-          onMessage: message => {
-            // console.log("New message: ", message.text);
-            // console.log(message);
-            this.setState({
-               messageList: [...this.state.messageList, message],
-             });
-          }
-        }
-      })
+      this.subscribeToChatroom(currentUser);
     }
+  }
 
+  // Functie om de huidige gebruiker aan de chat deel te laten nemen
+  subscribeToChatroom = (currentUser) => {
+    // subscribeToRoom is een functie van ChatKit om aan een room deel te nemen
+    currentUser.subscribeToRoom({
+      roomId: this.props.clickedChatroom,
+      messageLimit: 100,
+      hooks: {
+        onMessage: message => {
+          this.setState({
+             messageList: [...this.state.messageList, message],
+           });
+        }
+      }
+    })
   }
 
   render(){
     return this.props.loggedIn
       ?<div className="App">
-          <div id="chatroom-scherm">
+          <div id="chatroom-activity">
             <TopBarChat />
             <MessageList messageList={this.state.messageList} />
             <SendMessage />
