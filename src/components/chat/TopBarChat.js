@@ -5,9 +5,9 @@ import './TopBarChat.css';
 
 const TopBarChat = () =>{
   return(
-    <div className="topBar">
-      <div><img className="topBar__Img" src="./img/NS_logo.png" alt="NS Logo"/></div>
-      <div className="topBar__Text">Travel Buddy</div>
+    <div className="topBarChat">
+      <img className="topBarChat__img" src="./img/NS_logo.png" alt="NS Logo"/>
+      <p className="topBarChat__text">Travel Buddy</p>
     </div>
   );
 }
