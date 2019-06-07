@@ -1,16 +1,11 @@
 //React en benodigheden importeren
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 //Redux importeren
 import { connect } from "react-redux";
 import {
-  changeUserName,
-  changeLoggedIn,
   changeChatKitUser,
   changeChatroomClicked,
 } from "./../../actions";
-//Eigen componenten importeren
-import TopBarChat from './TopBarChat';
 //CSS importeren
 import './SendMessage.css';
 
