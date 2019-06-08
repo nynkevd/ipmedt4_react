@@ -30,14 +30,15 @@ class Account extends React.Component{
   componentDidMount(){
     this.getUserInfoFromApi(base_url, api_token);
     this.getUserInterestsFromApi(base_url, api_token);
+    this.getTravelInfoFromDatabase();
   }
 
   //Userinfo ophalen van de API (profielfoto, van, naar, displayName)
   getUserInfoFromApi = (base_url, api_token) => {
     axios.get(base_url + "userinfo/" + this.props.userName + api_token).then(res => {
       this.props.changeUserProfilePicture(res.data.picture);
-      this.props.changeUserTravelFrom(res.data.from);
-      this.props.changeUserTravelTo(res.data.to);
+      // this.props.changeUserTravelFrom(res.data.from);
+      // this.props.changeUserTravelTo(res.data.to);
       this.props.changeUserDisplayName(res.data.name);
     });
   }
@@ -48,6 +49,15 @@ class Account extends React.Component{
       this.props.changeUserInterests(res.data);
     });
   }
+//info ophalen uit de database en de van en naar vullen.
+  getTravelInfoFromDatabase(){
+    axios.get(`http://136.144.230.97:4000/travelinfo?username=${this.props.userName}`)
+      .then(res => {
+        this.props.changeUserTravelTo(res.data.data[0].travelTo);
+        this.props.changeUserTravelFrom(res.data.data[0].travelFrom);
+      })
+        .catch(err => console.error(err))
+  }
 
   render(){
     return this.props.loggedIn
@@ -55,7 +65,7 @@ class Account extends React.Component{
         <TopBar />
         <div className="accountPageContainer">
           <UserInfo profielfoto={this.props.userProfilePicture} naam={this.props.userDisplayName}></UserInfo>
-          <Reistraject van={this.props.userTravelFrom} naar={this.props.userTravelTo}></Reistraject>
+          <Reistraject van={this.props.userTravelFrom} naar={this.props.userTravelTo} />
           <Interests interests={this.props.userInterests}></Interests>
         </div>
         <BottomNav />
