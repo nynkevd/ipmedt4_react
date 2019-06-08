@@ -52,7 +52,8 @@ class ChatRoom extends React.Component {
       ?<div className="App">
           <div id="chatroom-activity">
             <TopBarChat />
-            <MessageList messageList={this.state.messageList} />
+            {/* roomId en currentUser worden meegegeven als variabelen, dit moet uiteindelijk met redux gedaan worden*/}
+            <MessageList messageList={this.state.messageList} roomId={this.props.clickedChatroom.id} currentUser={this.props.chatKitUser}/>
             <SendMessage />
           </div>
         </div>

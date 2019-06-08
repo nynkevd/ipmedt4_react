@@ -30,6 +30,7 @@ class Search extends React.Component{
     chatManager.connect().then(currentUser => {
       this.props.changeChatKitUser(currentUser);
     })
+
     //Matches ophalen en tonen op basis van de ingelogde gebruiker
     this.getMatchesFromSessionUser(this.props.userName);
     //Kijken of er ingelogd is
@@ -38,6 +39,7 @@ class Search extends React.Component{
     } else {
       this.props.changeLoggedIn(false);
     }
+
   }
 
   getMatchesFromSessionUser = username => {
