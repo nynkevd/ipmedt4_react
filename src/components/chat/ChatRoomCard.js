@@ -34,8 +34,6 @@ class ChatRoomCard extends React.Component {
           <div>
             <h3 className="chatCardContainer__text">{getRoomName(this.props.room, this.props.chatKitUser)}</h3>
             <p className="chatCardContainer__text">{"Laatste bericht om: " +  this.props.room.lastMessageAt}</p>
-            
-            // unreadCount is een varaibele die door chatkit wordt bijgehouden met het aantal ongelezen berichten
             <UnreadMessageCount unreadMessages={this.props.room.unreadCount}/>
           </div>
         </div>
