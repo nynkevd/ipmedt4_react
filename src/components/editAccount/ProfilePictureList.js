@@ -1,13 +1,15 @@
 //React importeren
 import React from "react";
+//Redux importeren
+import { connect } from "react-redux";
+import {
+  changeUserProfilePicture,
+  changeProfilePictureList,
+} from "./../../actions";
 //Eigen componenten importeren
 import ProfilePicture from '../editAccount/ProfilePicture';
 
 class ProfilePictureList extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {pictureList: props.profilePictureList};
-  }
 
   pictureOnClick = (event) => {
     var picturesList = document.getElementById("profilePicturesContainer").childNodes;
@@ -20,10 +22,8 @@ class ProfilePictureList extends React.Component{
     var clickedPicture = document.getElementById(event.target.id);
     clickedPicture.classList.add("selected");
 
-    this.setState({profilePicture: event.target.id});
-
-    // Src van de profielfoto die in de database moet komen
-    console.log(clickedPicture.getAttribute("src"));
+    var clickedPictureId = parseInt(event.target.id.toString().slice(-1));
+    this.props.changeUserProfilePicture(clickedPictureId+1);
   }
 
 
@@ -33,8 +33,8 @@ class ProfilePictureList extends React.Component{
         <label className="labelEditAccount">Profielfoto</label>
         <div className="profilePictures" id="profilePicturesContainer">
         {
-          this.props.pictureList.map((picture, index) =>
-            <ProfilePicture picture={picture} className="profilePicture" click={this.pictureOnClick} key={index} index={index}/>
+          this.props.profilePictureList.map((picture, index) =>
+            <ProfilePicture picture={picture} className="profilePicture" onClick={this.pictureOnClick} key={index} index={index}/>
           )
         }
         </div>
@@ -44,4 +44,14 @@ class ProfilePictureList extends React.Component{
   }
 }
 
-export default ProfilePictureList;
+const mapStateToProps = state =>{
+  return {
+    userProfilePicture: state.userProfilePicture,
+    profilePictureList: state.profilePictureList,
+  };
+}
+
+export default connect(mapStateToProps,{
+  changeUserProfilePicture: changeUserProfilePicture,
+  changeProfilePictureList: changeProfilePictureList,
+})(ProfilePictureList);

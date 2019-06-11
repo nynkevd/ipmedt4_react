@@ -1,5 +1,5 @@
+//React importeren
 import React from 'react';
-
 //Redux importeren
 import { connect } from "react-redux";
 import {
@@ -22,12 +22,11 @@ class ReisTraject extends React.Component{
   ];
 
   onChangeUserTravelFrom = event =>{
-    this.props.changeUserTravelFrom(event.target.value);
-    console.log(this.state.from);
+    this.props.from(event);
   }
 
   onChangeUserTravelTo = event =>{
-    this.props.changeUserTravelTo(event.target.value);
+    this.props.to(event);
   }
 
   render(){

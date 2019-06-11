@@ -20,9 +20,6 @@ import ReisTraject from '../editAccount/ReisTraject';
 //CSS importeren
 import './AccountEdit.css';
 
-var firstClick = true;
-// var close = document.getElementsByClassName("close")[0]; //Wordt niet gebruikt maar geen idee of het later nodig is
-
 const base_url = "http://136.144.230.97:8080/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
@@ -43,38 +40,17 @@ class AccountEdit extends React.Component{
 
   //De wijzigingen opslaan in de database
   updateUserInfo = _ => {
-    var htmlCollection = document.getElementsByClassName("selected");
-    var selectedHtmlCollectionArray = Array.prototype.slice.call(htmlCollection);
-    var selectedObject = selectedHtmlCollectionArray[0].getAttribute('id')
-    var newProfilePictureId = (parseInt(selectedObject.toString().slice(-1)) + 1);
-    this.props.changeUserProfilePicture(newProfilePictureId);
-
-    console.log(this.props.userTravelTo);
-    console.log(this.props.userTravelFrom);
-
     this.props.changeUserTravelTo(this.props.userTravelTo);
     this.props.changeUserTravelFrom(this.props.userTravelFrom);
 
     axios.get(`http://136.144.230.97:4000/userinfo/update?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}`)
-      .then(console.log("Succesfully updated info"))
-        .catch(err => console.error(err))
-
-    if (firstClick) {
-      document.getElementById("myModal").style.display = "block";
-      firstClick = false;
-    } else {
-      fetch(`http://136.144.230.97:4000/userinfo/update?username=${this.props.userName}&profilepicture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}`)
       .then(this.getUserInfo)
-      .catch(err => console.error(err))
-      firstClick = true;
-    }
+        .catch(err => console.error(err))
   }
 
   //De gegevens van de user ophalen van de API
   getUserInfo = (pictureList) => {
     axios.get(base_url + "userinfo/" + this.props.userName + api_token).then(res => {
-      // this.props.changeUserTravelFrom(res.data.from);
-      // this.props.changeUserTravelTo(res.data.to);
       // De huidige profielfoto wordt opgevraagd en meegegeven
       this.selectCurrentPicture(res.data.picture, pictureList);
     });
@@ -83,17 +59,17 @@ class AccountEdit extends React.Component{
   //De geselecteerde profielfoto opslaan
   selectCurrentPicture = (picture, pictureList) => {
     for(var i = 0; i < pictureList.length; i++){
+      var number = i+1
       if(pictureList[i] === picture){
         var currentPicture = document.getElementById("profilePicture" + i);
         currentPicture.classList.add("selected");
-        this.props.changeUserProfilePicture(i++)
+        this.props.changeUserProfilePicture(number);
       }
     }
   }
 
   //TravelFrom wijzigen
   setTravelFrom = (event) => {
-    console.log("travelfrom");
     if(event.target.value !== this.props.userTravelTo){
       this.props.changeUserTravelFrom(event.target.value)
       document.getElementById("fromErrorMessage").classList.add("hideErrorMessage");
@@ -105,23 +81,13 @@ class AccountEdit extends React.Component{
 
   //TravelTo wijzigen
   setTravelTo = (event) => {
-    console.log("travelto");
     if(event.target.value !== this.props.userTravelFrom){
       this.props.changeUserTravelTo(event.target.value);
       document.getElementById("toErrorMessage").classList.add("hideErrorMessage");
-    }else{
+    } else {
       //Geef error messages als hetzelfde station wordt gekozen als de travelFrom
       document.getElementById("toErrorMessage").classList.remove("hideErrorMessage");
     }
-  }
-
-  newFirstClick = _ => {
-    firstClick = true;
-  }
-
-  closePopUp = _ => {
-    document.getElementById("myModal").style.display = "none";
-    this.newFirstClick();
   }
 
   //Later toevoegen:
@@ -139,18 +105,8 @@ class AccountEdit extends React.Component{
           <ReisTraject van={this.props.userTravelFrom} naar={this.props.userTravelTo} from={this.setTravelFrom} to={this.setTravelTo}/>
 
           <div className="next">
-              <button className="button" onClick={this.updateUserInfo}> Bevestig </button> <br /> <br />
-              <Link to="/account" onClick={this.newFirstClick} id="back"> <p> Terug naar account </p> </ Link>
-          </div>
-
-          <div id="myModal" className="modal">
-            <div className="modal-content">
-              <span className="close" onClick={this.closePopUp}>&times;</span>
-              <h2>Weet je het zeker?</h2>
-              <Link to="/account">
-              <button className="button" onClick={this.updateUserInfo}> Bevestig </button>
-              </Link>
-            </div>
+              <Link to="/account"><button className="button" onClick={this.updateUserInfo}>Bevestig</button></Link><br /><br />
+              <Link to="/account" id="back"><p>Terug naar account</p></Link>
           </div>
 
         </div>
