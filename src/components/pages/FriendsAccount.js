@@ -12,7 +12,7 @@ import {
 // Eigen componenten importeren
 import UserInfo from '../account/UserInfo';
 import Interests from '../account/Interests';
-import Reistraject from '../account/Reistraject';
+import TravelRoute from '../account/TravelRoute';
 
 // const onClick = () => {
 //   const currentUser = props.chatKitUser;
@@ -67,7 +67,7 @@ class FriendsAccount extends React.Component {
       <div>
         <div className="accountPageContainer">
           <UserInfo profielfoto={this.props.userProfilePicture} naam={this.props.userDisplayName} />
-          <Reistraject van={this.props.userTravelFrom} naar={this.props.userTravelTo} />
+          <TravelRoute van={this.props.userTravelFrom} naar={this.props.userTravelTo} />
 
         </div>
         <div className="buttonsAddAndChat">
