@@ -1,60 +1,24 @@
-.topBar {
+.topBarChat {
   top: 0;
   width: 100%;
   position: fixed;
   background-color: #FCC63F;
   height: 8vh;
   z-index: 100;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-.topBar__Img {
-  width: 16%;
-  position: absolute;
-  margin-top: 3.8%;
-  margin-left: 3.5%;
+.topBarChat__back {
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.topBar__Text {
+.topBarChat__text {
   font-size: 1.3em;
-  margin: 0.78em 23%;
-}
-
-@media(width: 768px){
-  .topBar__Img {
-    width: 14%;
-    position: absolute;
-    margin-top: 2.5%;
-    margin-left: 2.5%;
-  }
-
-  .topBar__Text {
-    font-size: 1.6em;
-    margin: 1em 19%;
-  }
-}
-
-@media(width: 1024px){
-  .topBar__Img {
-    width: 8%;
-    margin-top: 1.4%;
-    margin-left: 1.2%;
-  }
-
-  .topBar__Text {
-    font-size: 1.6em;
-    margin: 0.63em 10.4%;
-  }
-}
-
-@media(min-width: 1280px){
-  .topBar__Img {
-    width: 6%;
-    margin-top: 0.8%;
-    margin-left: 0.8%;
-  }
-
-  .topBar__Text {
-    font-size: 1.7em;
-    margin: 0.8em 7.5%;
-  }
+  /* display: inline-block; */
+  position: absolute;
+  top: 50%;
+  left: 8vh;
+  transform: translateY(-50%);
 }

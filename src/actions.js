@@ -81,7 +81,7 @@ export const changeUserInterests = userInterests =>({
 export const changeUserProfilePicture = userProfilePicture =>({
   type: CHANGE_USERPROFILEPICTURE,
   payload: userProfilePicture,
-})
+});
 
 export const changeUserTravelFrom = userTravelFrom =>({
   type: CHANGE_USERTRAVELFROM,
@@ -96,13 +96,13 @@ export const changeUserTravelTo = userTravelTo =>({
 export const changeUserDisplayName = userDisplayName =>({
   type: CHANGE_USERDISPLAYNAME,
   payload: userDisplayName,
-})
+});
 
-//Accoutedit pagina
+//Accountedit pagina
 export const changeProfilePictureList = profilePictureList =>({
   type: CHANGE_PROFILEPICTURELIST,
   payload: profilePictureList,
-})
+});
 
 // Verander naar chatRoom
 export const changeChatroomClicked = clickedChatroom => ({
