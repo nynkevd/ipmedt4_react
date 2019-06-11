@@ -8,6 +8,12 @@ import {
   changeChatroomClicked,
 } from "./../../actions";
 
+// getRoomName methode importeren
+import {getRoomName} from './methodsChat.js';
+
+//Eigen componenten importeren
+import UnreadMessageCount from './UnreadMessageCount';
+
 // css importeren
 import './ChatRoomCard.css';
 
@@ -18,21 +24,19 @@ class ChatRoomCard extends React.Component {
   }
 
   onClick = event => {
-    this.props.changeChatroomClicked(this.props.room.id);
-    console.log(this.props.clickedChatroom);
-    // console.log(this.props.chatKitUser.rooms[this.props.id].id);
+    this.props.changeChatroomClicked(this.props.room);
   }
-// .customData.userIds
 
   render(){
-    // console.log(this.props.chatKitUser.rooms[this.props.id].id);
-    // console.log(this.props.chatKitUser.rooms[this.props.id].userIds);
     return(
-      <Link to='/chatRoom'>
+      <Link to='/chatRoom' className="chatCardLink">
         <div className="chatCardContainer" onClick={this.onClick}>
           <div>
-            <h3 className="chatCardContainer__text">{this.props.room.name}</h3>
-            <p className="chatCardContainer__text">Last message</p>
+            <h3 className="chatCardContainer__text">{getRoomName(this.props.room, this.props.chatKitUser)}</h3>
+            <p className="chatCardContainer__text">{"Laatste bericht om: " +  this.props.room.lastMessageAt}</p>
+            
+            // unreadCount is een varaibele die door chatkit wordt bijgehouden met het aantal ongelezen berichten
+            <UnreadMessageCount unreadMessages={this.props.room.unreadCount}/>
           </div>
         </div>
       </Link>

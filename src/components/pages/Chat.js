@@ -21,28 +21,28 @@ const Chat = props => {
   // roomExists is een array van alle rooms die bestaan
   if(props.chatKitUser !== null){
     roomExists = props.chatKitUser.rooms;
-    console.log(roomExists);
+    //sorteer de lijst van rooms op basis van het tijdstip van het bericht
+    roomExists.sort((a, b) => (a.lastMessageAt < b.lastMessageAt)? 1 : -1);
   }
 
-
-    return props.loggedIn
-      ? <div>
-        <TopBar />
-        <div className="chatPageContainer">
-          <ul>
-            {
-              roomExists.map((room, index) =>
-              <li>
-                <ChatRoomCard room={room} className="roomCard" id={index} key={index} index={index}/>
-              </li>
-              )
-            }
-          </ul>
-        </div>
-        <BottomNav />
+  return props.loggedIn
+    ? <div>
+      <TopBar />
+      <div className="chatPageContainer">
+        <ul>
+          {
+            roomExists.map((room, index) =>
+            <li key={index} >
+              <ChatRoomCard room={room} className="roomCard" id={index} index={index}/>
+            </li>
+            )
+          }
+        </ul>
       </div>
-      //Naar de login pagina sturen als er niet ingelogd is
-      : <Redirect to="/login" />
+      <BottomNav />
+    </div>
+    //Naar de login pagina sturen als er niet ingelogd is
+    : <Redirect to="/login" />
 }
 
 const mapStateToProps = state =>{

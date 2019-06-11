@@ -4,7 +4,6 @@ const mysql = require('mysql');
 const http = require('http');
 const app = express();
 
-
 // maak een nieuwe server aan en luister naar poort 4000 van de VPS (136.144.230.97)
 const server = http.createServer(app).listen(4000);
 
@@ -14,7 +13,8 @@ const connection = mysql.createConnection({
   host: '136.144.230.97',
   user: 'ipmedt4',
   password: 'ipmedt4_TravelBuddy',
-  database: 'ipmedt4'
+  database: 'ipmedt4',
+  multipleStatements: true,
 });
 
 connection.connect(err =>{
@@ -30,9 +30,9 @@ app.get('/', (req,res) =>{
 });
 
 app.get('/users/add', (req, res) =>{
-  const {username, name, email, password} = req.query;
-  const insertUser = `INSERT INTO accounts ( username, name, email, password) VALUES('${username}','${name}', '${email}', md5('${password}'))`
-  connection.query(insertUser, (err, results) =>{
+  const {username, name, email, password, firstLogin} = req.query;
+  const insertUserIntoDatabase = `INSERT INTO accounts ( username, name, email, password, firstLogin) VALUES('${username}','${name}', '${email}', md5('${password}'))`
+  connection.query(insertUserIntoDatabase, (err, results) =>{
     if(err){
       return res.send(err);
     }else{
@@ -44,8 +44,8 @@ app.get('/users/add', (req, res) =>{
 // haal de informatie van een gebruiker op
 app.get('/login', (req,res) =>{
   const {username, password} = req.query;
-  const getInfo = `SELECT password FROM accounts WHERE username ='${username}'`
-  connection.query(getInfo, (err,results) =>{
+  const getPasswordFromUser = `SELECT password FROM accounts WHERE username='${username}';`
+  connection.query(getPasswordFromUser, (err,results) => {
     if(err){
       return res.send(err);
     }else{
@@ -70,14 +70,56 @@ app.get('/users', (req,res) => {
 });
 
 app.get('/userinfo/update', (req,res) => {
-  const {username, profilepicture} = req.query;
-  const editProfilePicture = `UPDATE user_info SET profile_picture = '${profilepicture}' WHERE username = '${username}'`
+  const {username, profile_picture, travelFrom, travelTo} = req.query;
+  const editProfilePicture = `UPDATE user_info SET profile_picture = '${profile_picture}' WHERE username = '${username}';
+                              UPDATE user_info SET travelTo = '${travelTo}' WHERE username = '${username}';
+                              UPDATE user_info SET travelFrom = '${travelFrom}' WHERE username = '${username}';`
   connection.query(editProfilePicture, (err,results) =>{
     if(err){
       return res.send(err)
     } else {
+      res.send("Succesfully updated")
+    }
+  })
+});
+
+app.get('/travelinfo', (req,res) => {
+  const {username} = req.query;
+  const getTravelInfo = `SELECT * FROM user_info WHERE username = '${username}'`
+  connection.query(getTravelInfo, (err,results) =>{
+    if(err){
+      return res.send(err)
+    } else {
+      res.send({
+        data:results
+      })
+    }
+  })
+});
+
+app.get('/updatefirstlogin', (req,res) =>{
+  const {username} = req.query;
+  const updateFirstLogin = `UPDATE accounts SET firstlogin=0 WHERE username='${username}';`
+  connection.query(updateFirstLogin, (err,results) => {
+    if(err){
+      return res.send(err);
+    }else{
       res.send({
         data: results
+      });
+    }
+  })
+});
+
+app.get('/getfirstlogin', (req,res) =>{
+  const {username} = req.query;
+  const getFirstLoginFromUser = `SELECT firstlogin FROM accounts WHERE username='${username}';`
+  connection.query(getFirstLoginFromUser, (err,results) => {
+    if(err){
+      return res.send(err);
+    }else{
+      res.send({
+        data:results
       })
     }
   })

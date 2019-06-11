@@ -1,8 +1,6 @@
 //React en benodigheden importeren
 import React from "react";
 import { Link } from 'react-router-dom';
-import Chatkit from '@pusher/chatkit-client';
-import axios from 'axios';
 //Redux importeren
 import {connect} from "react-redux";
 import {
@@ -45,12 +43,6 @@ class Register extends React.Component{
     if (userId === null || userId.trim() === '') {
       alert('Invalid userId');
     }
-
-    axios.post('http://localhost:5200/users', { userId }).then(() => {
-      const tokenProvider = new Chatkit.TokenProvider({
-        url: 'http://localhost:5200/authenticate',
-      });
-    });
   }
 
   //Check of de invoervelden aan de voorwaarden voldoen, zodat een veld niet leeg kan zijn
