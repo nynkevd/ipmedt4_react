@@ -11,8 +11,26 @@
   position: relative;
 }
 
-.chatCardContainer__text{
+.chatCardContainer{
   color: black;
+}
+
+.chatCardContainer__name{
+
+}
+
+.chatCardContainer__message{
+  color: rgb(98, 98, 98);
+  font-size: 1em;
+  margin-top: 5px;
+}
+
+.chatCardContainer__time{
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  color: rgb(98, 98, 98);
+  font-size: 0.9em;
 }
 
 .chatCardLink{
@@ -21,7 +39,8 @@
 
 .unreadMessageCount{
   position: absolute;
-  top: 50%;
+  /*bottom moet nog aangepast worden*/
+  bottom: 0;
   transform: translateY(-50%);
   right: 1em;
   background-color: rgb(250, 197, 64);
@@ -36,5 +55,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: black;
+  font-size: 0.9em;
 
 }
