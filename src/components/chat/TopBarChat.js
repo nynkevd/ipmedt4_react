@@ -1,8 +1,5 @@
 //React importeren
 import React from 'react';
-<<<<<<< HEAD
-
-=======
 import { Link } from 'react-router-dom';
 // Redux importeren
 import { connect } from "react-redux";
@@ -12,7 +9,6 @@ import {
 } from "./../../actions";
 // getRoomName methode importeren
 import {getRoomName} from './methodsChat.js';
->>>>>>> dev
 //CSS importeren
 import './TopBarChat.css';
 
