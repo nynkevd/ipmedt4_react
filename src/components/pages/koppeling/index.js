@@ -70,14 +70,28 @@ app.get('/users', (req,res) => {
 });
 
 app.get('/userinfo/update', (req,res) => {
-  const {username, profilepicture} = req.query;
-  const editProfilePicture = `UPDATE user_info SET profile_picture = '${profilepicture}' WHERE username = '${username}'`
+  const {username, profile_picture, travelFrom, travelTo} = req.query;
+  const editProfilePicture = `UPDATE user_info SET profile_picture = '${profile_picture}' WHERE username = '${username}';
+                              UPDATE user_info SET travelTo = '${travelTo}' WHERE username = '${username}';
+                              UPDATE user_info SET travelFrom = '${travelFrom}' WHERE username = '${username}';`
   connection.query(editProfilePicture, (err,results) =>{
     if(err){
       return res.send(err)
     } else {
+      res.send("Succesfully updated")
+    }
+  })
+});
+
+app.get('/travelinfo', (req,res) => {
+  const {username} = req.query;
+  const getTravelInfo = `SELECT * FROM user_info WHERE username = '${username}'`
+  connection.query(getTravelInfo, (err,results) =>{
+    if(err){
+      return res.send(err)
+    } else {
       res.send({
-        data: results
+        data:results
       })
     }
   })
@@ -99,7 +113,7 @@ app.get('/updatefirstlogin', (req,res) =>{
 
 app.get('/getfirstlogin', (req,res) =>{
   const {username} = req.query;
-  const getFirstLoginFromUser = `SELECT password FROM accounts WHERE username='${username}';`
+  const getFirstLoginFromUser = `SELECT firstlogin FROM accounts WHERE username='${username}';`
   connection.query(getFirstLoginFromUser, (err,results) => {
     if(err){
       return res.send(err);

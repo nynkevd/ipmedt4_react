@@ -177,5 +177,5 @@ export const clickedChatroom = (state=[], action) =>{
     return action.payload;
   default:
     return state;
-}
+  }
 }
