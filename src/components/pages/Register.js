@@ -1,6 +1,7 @@
 //React en benodigheden importeren
 import React from "react";
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 //Redux importeren
 import {connect} from "react-redux";
 import {
@@ -12,7 +13,11 @@ import {
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
 //CSS importeren
-import "./Register.css"
+import "./Register.css";
+
+//Arrays voor het controleren van al gebruiker usernames en emails
+var takenUserNames = [];
+var takenEmails = [];
 
 class Register extends React.Component{
 
@@ -50,17 +55,60 @@ class Register extends React.Component{
     return this.props.inputEmail.length > 0 && this.props.inputPassword.length > 4 &&this.props.inputUserName.length > 3 && this.props.inputName.length > 1 ;
   };
 
+  //Opvragen van alle usernames voor error messages
+  getAllTakenUserNames = () => {
+    axios.get(`http://136.144.230.97:4000/users`).then(res => {
+      var lengthArrayUsers = (res.data.data).length;
+      for(var i=0; i<lengthArrayUsers; i++){
+        //Alle usernames in een array zetten
+        takenUserNames.push(res.data.data[i].username);
+      }
+    })
+  }
+
+  //Opvragen van alle emails voor error messages
+  getAllTakenEmails = () => {
+    axios.get(`http://136.144.230.97:4000/users`).then(res => {
+      var lengthArrayUsers = (res.data.data).length;
+      takenEmails = [];
+      for(var i=0; i<lengthArrayUsers; i++){
+        //Alle emails in een array zetten
+        takenEmails.push(res.data.data[i].email);
+      }
+    })
+  }
+
   //Zet de juiste state-informatie naar de waarde van het invoerveld
   onChangeName = event =>{
-    this.props.changeInputName(event.target.value);
+    this.props.changeInputName(event.target.value.toLowerCase());
   }
 
   onChangeEmail = event =>{
-    this.props.changeInputEmail(event.target.value);
+    this.getAllTakenEmails();
+    for(var i=0; i<takenEmails.length; i++){
+      if(event.target.value === takenEmails[i]){
+        //Error messages tonen als de email al gebruikt wordt
+        document.getElementById("emailErrorMessage").classList.remove("hideErrorMessage");
+        break;
+      } else {
+        document.getElementById("emailErrorMessage").classList.add("hideErrorMessage");
+        this.props.changeInputEmail(event.target.value.toLowerCase());
+      }
+    }
   }
 
   onChangeUser = event =>{
-    this.props.changeInputUserName(event.target.value);
+    this.getAllTakenUserNames();
+    for(var i=0; i<takenUserNames.length; i++){
+      if(event.target.value === takenUserNames[i]){
+        //Error messages tonen als de username al gebruikt wordt
+        document.getElementById("userNameErrorMessage").classList.remove("hideErrorMessageRegister");
+        break;
+      } else {
+        document.getElementById("userNameErrorMessage").classList.add("hideErrorMessageRegister");
+        this.props.changeInputUserName(event.target.value.toLowerCase());
+      }
+    }
   }
 
   onChangePassword = event =>{
@@ -94,6 +142,7 @@ class Register extends React.Component{
                 type="text"
                 value={this.props.inputUserName}
                 onChange={this.onChangeUser} />
+              <label className="errorMessageRegister hideErrorMessageRegister" id="userNameErrorMessage">Deze gebruikersnaam is al in gebruik</label>
             </div>
             <div className="containerFormItem" >
               <label className="label">E-mailadres</label>
@@ -102,6 +151,7 @@ class Register extends React.Component{
                 type="email"
                 value={this.props.inputEmail}
                 onChange={this.onChangeEmail} />
+              <label className="errorMessageRegister hideErrorMessageRegister" id="emailErrorMessage">Dit e-mailadres is al in gebruik</label>
             </div>
             <div className="containerFormItem" >
               <label className="label">Wachtwoord</label>
