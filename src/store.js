@@ -17,6 +17,8 @@ import {
   userDisplayName,
   profilePictureList,
   clickedChatroom,
+  myInterests,
+  chosenInterest,
   } from "./reducer";
 
 export const store = createStore(
@@ -38,5 +40,7 @@ export const store = createStore(
     userDisplayName,
     profilePictureList,
     clickedChatroom,
+    myInterests,
+    chosenInterest,
   })
 )

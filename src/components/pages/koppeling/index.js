@@ -31,7 +31,7 @@ app.get('/', (req,res) =>{
 
 app.get('/users/add', (req, res) =>{
   const {username, name, email, password, firstLogin} = req.query;
-  const insertUserIntoDatabase = `INSERT INTO accounts ( username, name, email, password, firstLogin) VALUES('${username}','${name}', '${email}', md5('${password}'))`
+  const insertUserIntoDatabase = `INSERT INTO accounts ( username, name, email, password, firstLogin) VALUES('${username}','${name}', '${email}', md5('${password}'), '1')`
   connection.query(insertUserIntoDatabase, (err, results) =>{
     if(err){
       return res.send(err);
