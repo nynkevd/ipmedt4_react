@@ -86,6 +86,11 @@ class SetUpAccount extends React.Component{
       .then(console.log("Succesfully updated info"))
         .catch(err => console.error(err))
 
+    //voeg gebruiker toe aan de user_info tabel
+    axios.get(`http://136.144.230.97:4000/user_info/add?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}&age=19`)
+      .then(console.log("gebruiker toegeovoegd aan gewenste tabel"))
+        .catch(err => console.error(err))
+
     //user interests
     for(let a = 0; a < this.props.myInterests.length; a++){
     axios.get(`http://136.144.230.97:4000/user_interests/add?username=${this.props.userName}&interest=${this.props.myInterests[a]}`)
@@ -98,16 +103,12 @@ class SetUpAccount extends React.Component{
   onChangeUserTravelFrom = event =>{
     if(this.props.userTravelFrom != "Kies een station"){
       this.props.changeUserTravelFrom(event.target.value);
-    } else{
-      alert("Ohjee");
     }
   }
 
   onChangeUserTravelTo = event =>{
     if(this.props.userTravelTo != "Kies een station"){
       this.props.changeUserTravelTo(event.target.value);
-    } else{
-      alert("ohjee");
     }
   }
 
@@ -123,6 +124,12 @@ class SetUpAccount extends React.Component{
       }
     }
     this.props.changeMyInterests(userInterests);
+  }
+
+  fillAddedInterests(){
+    for(let i = 0; i < this.props.myInterests.length; i++){
+      return <p>{this.props.myInterests[i]}</p>;
+    }
   }
 
   //alle ingevoerde velden opslaan in de database

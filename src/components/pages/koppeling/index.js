@@ -137,3 +137,15 @@ app.get('/user_interests/add', (req, res) =>{
     }
   });
 });
+//voeg een gebruiker aan de de user_info tabel toe
+app.get('/user_info/add', (req, res) =>{
+  const {username,profile_picture, travelFrom, travelTo, age } = req.query;
+  const insertUserInfoIntoDatabase = `INSERT INTO user_info ( username, profile_picture, travelFrom, travelTo, age  ) VALUES('${username}','${profile_picture}','${travelFrom}','${travelFrom}', '${age}' )`
+  connection.query(insertUserInfoIntoDatabase, (err, results) =>{
+    if(err){
+      return res.send(err);
+    }else{
+      return res.send('Succesfully added an user to user_info');
+    }
+  });
+});
