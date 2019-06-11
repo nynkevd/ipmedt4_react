@@ -1,0 +1,15 @@
+.notify {
+  duration: 5000;
+}
+
+/* <ToastContainer
+position="bottom-center"
+autoClose={5000}
+hideProgressBar
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnVisibilityChange
+draggable={false}
+pauseOnHover={false}
+/> */

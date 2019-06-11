@@ -18,7 +18,7 @@ import TopBar from '../layout/TopBar';
 import BottomNav from '../layout/BottomNav';
 import UserInfo from '../account/UserInfo';
 import Interests from '../account/Interests';
-import Reistraject from '../account/Reistraject';
+import TravelRoute from '../account/TravelRoute';
 //CSS importeren
 import './Account.css';
 
@@ -64,9 +64,9 @@ class Account extends React.Component{
       ? <div>
         <TopBar />
         <div className="accountPageContainer">
-          <UserInfo profielfoto={this.props.userProfilePicture} naam={this.props.userDisplayName}></UserInfo>
-          <Reistraject van={this.props.userTravelFrom} naar={this.props.userTravelTo} />
-          <Interests interests={this.props.userInterests}></Interests>
+          <UserInfo profielfoto={this.props.userProfilePicture} naam={this.props.userDisplayName} />
+          <TravelRoute from={this.props.userTravelFrom} to={this.props.userTravelTo} />
+          <Interests interests={this.props.userInterests} />
         </div>
         <BottomNav />
       </div>

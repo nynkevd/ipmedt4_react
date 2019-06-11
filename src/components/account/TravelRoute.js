@@ -1,16 +1,16 @@
 import React from 'react';
 import './UserInfo.css';
 
-const Reistraject = (props) => {
+const TravelRoute = (props) => {
   return(
     <div className="travelRouteContainer">
       <h3 className="travelName">Standaard reistraject</h3>
       <ul className="whereFrom">
-        <li>van: {props.van}</li>
-        <li>naar: {props.naar}</li>
+        <li>van: {props.from}</li>
+        <li>naar: {props.to}</li>
       </ul>
     </div>
   );
 }
 
-export default Reistraject;
+export default TravelRoute;

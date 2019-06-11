@@ -1,5 +1,5 @@
+//React importeren
 import React from 'react';
-
 //Redux importeren
 import { connect } from "react-redux";
 import {
@@ -7,11 +7,7 @@ import {
   changeUserTravelTo
 } from "./../../actions";
 
-class ReisTraject extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {from: props.from, to: props.to };
-  }
+class EditTravelRoute extends React.Component{
 
   stations = [
     "Leiden",
@@ -22,12 +18,11 @@ class ReisTraject extends React.Component{
   ];
 
   onChangeUserTravelFrom = event =>{
-    this.props.changeUserTravelFrom(event.target.value);
-    console.log(this.state.from);
+    this.props.from(event);
   }
 
   onChangeUserTravelTo = event =>{
-    this.props.changeUserTravelTo(event.target.value);
+    this.props.to(event);
   }
 
   render(){
@@ -65,4 +60,4 @@ const mapStateToProps = state =>{
 export default connect(mapStateToProps,{
   changeUserTravelFrom: changeUserTravelFrom,
   changeUserTravelTo: changeUserTravelTo,
-})(ReisTraject);
+})(EditTravelRoute);

@@ -124,3 +124,31 @@ app.get('/getfirstlogin', (req,res) =>{
     }
   })
 });
+
+app.get('/friends/delete', (req,res) =>{
+  const {username, friend} = req.query;
+  const deleteFriend = `DELETE FROM friends WHERE username='${username}' AND friend='${friend}';`
+  connection.query(deleteFriend, (err,results) => {
+    if(err){
+      return res.send(err);
+    }else{
+      res.send({
+        data:results
+      })
+    }
+  })
+});
+
+app.get('/friends/add', (req,res) =>{
+  const {username, friend} = req.query;
+  const addFriend = `INSERT INTO friends(username, friend) VALUES('${username}','${friend}';`
+  connection.query(addFriend, (err,results) => {
+    if(err){
+      return res.send(err);
+    }else{
+      res.send({
+        data:results
+      })
+    }
+  })
+});
