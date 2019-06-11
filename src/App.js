@@ -13,6 +13,7 @@ import Search from './components/pages/Search';
 import Chat from './components/pages/Chat';
 import ChatRoom from './components/pages/ChatRoom'
 import FriendsList from './components/pages/FriendsList';
+import FriendsAccount from './components/pages/FriendsAccount';
 import Account from './components/pages/Account';
 import AccountEdit from './components/pages/AccountEdit';
 import InterestsEdit from './components/pages/InterestsEdit';
@@ -35,6 +36,7 @@ class App extends React.Component {
               <Route path="/chat" component={Chat} />
               <Route path="/chatRoom" component={ChatRoom} />
               <Route path="/friendsList" component={FriendsList} />
+              <Route path="/friendsAccount" component={FriendsAccount} />
               <Route path="/account" component={Account} />
               <Route path="/editAccount" component={AccountEdit} />
               <Route path="/editInterests" component={InterestsEdit} />

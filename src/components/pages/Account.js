@@ -64,9 +64,9 @@ class Account extends React.Component{
       ? <div>
         <TopBar />
         <div className="accountPageContainer">
-          <UserInfo profielfoto={this.props.userProfilePicture} naam={this.props.userDisplayName}></UserInfo>
+          <UserInfo profielfoto={this.props.userProfilePicture} naam={this.props.userDisplayName} />
           <Reistraject van={this.props.userTravelFrom} naar={this.props.userTravelTo} />
-          <Interests interests={this.props.userInterests}></Interests>
+          <Interests interests={this.props.userInterests} />
         </div>
         <BottomNav />
       </div>

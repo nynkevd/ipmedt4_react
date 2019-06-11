@@ -2,11 +2,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // Redux importeren
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import {
   changeChatKitUser,
   changeChatroomClicked,
-} from "./../../actions";
+} from './../../actions';
 // getRoomName methode importeren
 import {getRoomName} from './methodsChat.js';
 //CSS importeren
