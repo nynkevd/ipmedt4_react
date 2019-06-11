@@ -138,3 +138,17 @@ app.get('/friends/delete', (req,res) =>{
     }
   })
 });
+
+app.get('/friends/add', (req,res) =>{
+  const {username, friend} = req.query;
+  const addFriend = `INSERT INTO friends(username, friend) VALUES('${username}','${friend}';`
+  connection.query(addFriend, (err,results) => {
+    if(err){
+      return res.send(err);
+    }else{
+      res.send({
+        data:results
+      })
+    }
+  })
+});
