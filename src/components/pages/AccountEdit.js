@@ -16,7 +16,7 @@ import {
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
 import ProfilePictureList from '../editAccount/ProfilePictureList';
-import ReisTraject from '../editAccount/ReisTraject';
+import EditTravelRoute from '../editAccount/EditTravelRoute';
 //CSS importeren
 import './AccountEdit.css';
 
@@ -102,7 +102,7 @@ class AccountEdit extends React.Component{
 
           <ProfilePictureList pictureList={this.props.profilePictureList} click={this.pictureOnClick}/>
 
-          <ReisTraject van={this.props.userTravelFrom} naar={this.props.userTravelTo} from={this.setTravelFrom} to={this.setTravelTo}/>
+          <EditTravelRoute van={this.props.userTravelFrom} naar={this.props.userTravelTo} from={this.setTravelFrom} to={this.setTravelTo}/>
 
           <div className="next">
               <Link to="/account"><button className="button" onClick={this.updateUserInfo}>Bevestig</button></Link><br /><br />

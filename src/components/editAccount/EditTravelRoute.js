@@ -7,11 +7,7 @@ import {
   changeUserTravelTo
 } from "./../../actions";
 
-class ReisTraject extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {from: props.from, to: props.to };
-  }
+class EditTravelRoute extends React.Component{
 
   stations = [
     "Leiden",
@@ -64,4 +60,4 @@ const mapStateToProps = state =>{
 export default connect(mapStateToProps,{
   changeUserTravelFrom: changeUserTravelFrom,
   changeUserTravelTo: changeUserTravelTo,
-})(ReisTraject);
+})(EditTravelRoute);

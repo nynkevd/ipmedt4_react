@@ -20,9 +20,9 @@ class Home extends React.Component{
       ? <Redirect to="/login" />
       : <div>
         <div className="HomePage">
-          <div className="HomePageContainer">
-            <img className="HomePageImg" src="./img/NS_logo.png" alt="NS logo"/>
-            <h1 className="HomePageText">Travel Buddy</h1>
+          <div className="HomePage__container">
+            <img className="HomePage__container__img" src="./img/logo.svg" alt="Travel Buddy Logo"/>
+            <h1 className="HomePage__container__text">Travel Buddy</h1>
           </div>
         </div>
       </div>
