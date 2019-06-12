@@ -16,6 +16,8 @@ import {
   CHANGE_USERDISPLAYNAME,
   CHANGE_PROFILEPICTURELIST,
   CHANGE_CHATROOMCLICKED,
+  CHANGE_MYINTERESTS,
+  CHANGE_CHOSENINTEREST,
  } from "./actions";
 
 //Username van de ingelogde gebruiker veranderen
@@ -174,6 +176,23 @@ export const profilePictureList = (state=[], action) =>{
 export const clickedChatroom = (state=[], action) =>{
   switch(action.type){
     case CHANGE_CHATROOMCLICKED:
+    return action.payload;
+  default:
+    return state;
+  }
+}
+// SetUpAccount pagina
+export const myInterests = (state=[], action) =>{
+  switch(action.type){
+    case CHANGE_MYINTERESTS:
+    return action.payload;
+  default:
+    return state;
+  }
+}
+export const chosenInterest = (state="", action) =>{
+  switch(action.type){
+    case CHANGE_CHOSENINTEREST:
     return action.payload;
   default:
     return state;

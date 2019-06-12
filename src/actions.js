@@ -15,6 +15,8 @@ export const CHANGE_USERTRAVELTO = "CHANGE_USERTRAVELTO";
 export const CHANGE_USERDISPLAYNAME = "CHANGE_USERDISPLAYNAME";
 export const CHANGE_PROFILEPICTURELIST = "CHANGE_PROFILEPICTURELIST";
 export const CHANGE_CHATROOMCLICKED = "CHANGE_CHATROOMCLICKED";
+export const CHANGE_MYINTERESTS = "CHANGE_MYINTERESTS";
+export const CHANGE_CHOSENINTEREST = "CHANGE_CHOSENINTEREST";
 
 //Username van de ingelogde gebruiker
 export const changeUserName = userName =>({
@@ -108,4 +110,15 @@ export const changeProfilePictureList = profilePictureList =>({
 export const changeChatroomClicked = clickedChatroom => ({
   type: CHANGE_CHATROOMCLICKED,
   payload: clickedChatroom,
+});
+
+//SetUpAccount pagina
+export const changeMyInterests = myInterests => ({
+  type: CHANGE_MYINTERESTS,
+  payload: myInterests,
+});
+
+export const changeChosenInterest = chosenInterest => ({
+  type: CHANGE_CHOSENINTEREST,
+  payload: chosenInterest,
 });
