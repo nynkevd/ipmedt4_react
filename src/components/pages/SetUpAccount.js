@@ -88,7 +88,7 @@ class SetUpAccount extends React.Component{
 
     //voeg gebruiker toe aan de user_info tabel
     axios.get(`http://136.144.230.97:4000/user_info/add?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}&age=19`)
-      .then(console.log("gebruiker toegeovoegd aan gewenste tabel"))
+      .then(console.log("gebruiker toegevoegd aan gewenste tabel"))
         .catch(err => console.error(err))
 
     //user interests
@@ -135,7 +135,7 @@ class SetUpAccount extends React.Component{
   //alle ingevoerde velden opslaan in de database
   saveAllSettings = _ =>{
     userInterests.push(this.props.chosenInterest);
-    // this.updateFirstLogin();
+    this.updateFirstLogin();
     this.updateDatabase();
   }
 
