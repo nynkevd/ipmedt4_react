@@ -22,7 +22,7 @@
   font-size: 1.4em;
 }
 
-.input{
+.input {
   margin-top: 1em;
   padding: 10px;
   font-size: 110%;
@@ -31,7 +31,7 @@
   border-radius: 5px;
 }
 
-.input:focus{
+.input:focus {
   border: 1px solid #FCC63F;
   border-radius: 0;
 }
@@ -46,4 +46,13 @@
   color: #000;
   background-color: #FCC63F;
   box-shadow: 5px 5px 5px #CDCDCD;
+}
+
+.errorMessageRegister {
+  margin-top: 5px;
+  color: red;
+}
+
+.hideErrorMessageRegister {
+  display: none;
 }
