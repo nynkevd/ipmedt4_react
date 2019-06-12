@@ -18,6 +18,7 @@ import {
   CHANGE_CHATROOMCLICKED,
   CHANGE_MYINTERESTS,
   CHANGE_CHOSENINTEREST,
+  CHANGE_CHOSENFRIEND,
  } from "./actions";
 
 //Username van de ingelogde gebruiker veranderen
@@ -193,6 +194,16 @@ export const myInterests = (state=[], action) =>{
 export const chosenInterest = (state="", action) =>{
   switch(action.type){
     case CHANGE_CHOSENINTEREST:
+    return action.payload;
+  default:
+    return state;
+  }
+}
+
+//Friendsaccount bekijken
+export const chosenFriend = (state="", action) =>{
+  switch(action.type){
+    case CHANGE_CHOSENFRIEND:
     return action.payload;
   default:
     return state;
