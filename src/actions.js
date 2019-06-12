@@ -17,6 +17,7 @@ export const CHANGE_PROFILEPICTURELIST = "CHANGE_PROFILEPICTURELIST";
 export const CHANGE_CHATROOMCLICKED = "CHANGE_CHATROOMCLICKED";
 export const CHANGE_MYINTERESTS = "CHANGE_MYINTERESTS";
 export const CHANGE_CHOSENINTEREST = "CHANGE_CHOSENINTEREST";
+export const CHANGE_CHOSENFRIEND = "CHANGE_CHOSENFRIEND";
 
 //Username van de ingelogde gebruiker
 export const changeUserName = userName =>({
@@ -121,4 +122,10 @@ export const changeMyInterests = myInterests => ({
 export const changeChosenInterest = chosenInterest => ({
   type: CHANGE_CHOSENINTEREST,
   payload: chosenInterest,
+});
+
+//FriendAccount pagina bekijken
+export const changeChosenFriend = chosenFriend => ({
+  type: CHANGE_CHOSENFRIEND,
+  payload: chosenFriend,
 });
