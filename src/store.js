@@ -19,6 +19,7 @@ import {
   clickedChatroom,
   myInterests,
   chosenInterest,
+  chosenFriend,
   } from "./reducer";
 
 export const store = createStore(
@@ -42,5 +43,6 @@ export const store = createStore(
     clickedChatroom,
     myInterests,
     chosenInterest,
+    chosenFriend,
   })
 )
