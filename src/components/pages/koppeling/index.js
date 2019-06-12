@@ -165,6 +165,7 @@ app.get('/user_interests/add', (req, res) =>{
     }
   });
 });
+
 //voeg een gebruiker aan de de user_info tabel toe
 app.get('/user_info/add', (req, res) =>{
   const {username,profile_picture, travelFrom, travelTo, age } = req.query;
@@ -176,3 +177,4 @@ app.get('/user_info/add', (req, res) =>{
       return res.send('Succesfully added an user to user_info');
     }
   });
+});
