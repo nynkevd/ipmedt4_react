@@ -13,6 +13,7 @@ import {
 import UserInfo from '../account/UserInfo';
 import Interests from '../account/Interests';
 import TravelRoute from '../account/TravelRoute';
+import FriendButton from '../friendsAccount/FriendButton';
 
 // const onClick = () => {
 //   const currentUser = props.chatKitUser;
@@ -72,11 +73,7 @@ class FriendsAccount extends React.Component {
         </div>
         <div className="buttonsAddAndChat">
         {/* / Als je op de knop drukt, wordt deze persoon aan je FriendsList toegevoegd.*/}
-          <button
-            className="button--add"
-            type="submit"
-            value="Voeg toe"
-            onClick={this.onSubmit} />
+          <FriendButton> </FriendButton>
 
           {/* Als je op de knop drukt, wordt er een room aangemaakt en kom je in die room
            Als de room al bestaat, dan ga je gewoon naar die room toe */}
