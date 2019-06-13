@@ -80,7 +80,7 @@ class Register extends React.Component{
 
   //Zet de juiste state-informatie naar de waarde van het invoerveld
   onChangeName = event =>{
-    this.props.changeInputName(event.target.value.toLowerCase());
+    this.props.changeInputName(event.target.value);
   }
 
   onChangeEmail = event =>{
@@ -88,13 +88,13 @@ class Register extends React.Component{
     for(var i=0; i<takenEmails.length; i++){
       if(event.target.value === takenEmails[i]){
         //Error messages tonen als de email al gebruikt wordt
-        document.getElementById("emailErrorMessage").classList.remove("hideErrorMessage");
+        document.getElementById("emailErrorMessage").classList.remove("hideErrorMessageRegister");
         break;
       } else {
-        document.getElementById("emailErrorMessage").classList.add("hideErrorMessage");
-        this.props.changeInputEmail(event.target.value.toLowerCase());
+        document.getElementById("emailErrorMessage").classList.add("hideErrorMessageRegister");
       }
     }
+    this.props.changeInputEmail(event.target.value.toLowerCase());
   }
 
   onChangeUser = event =>{
@@ -106,9 +106,9 @@ class Register extends React.Component{
         break;
       } else {
         document.getElementById("userNameErrorMessage").classList.add("hideErrorMessageRegister");
-        this.props.changeInputUserName(event.target.value.toLowerCase());
       }
     }
+    this.props.changeInputUserName(event.target.value.toLowerCase());
   }
 
   onChangePassword = event =>{
