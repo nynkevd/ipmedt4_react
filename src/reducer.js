@@ -21,6 +21,7 @@ import {
   CHANGE_CHOSENFRIEND,
   CHANGE_ALLUSERFRIENDS,
   CHANGE_ADDORDELETEFRIEND,
+  CHANGE_MESSAGELIST,
  } from "./actions";
 
 //Username van de ingelogde gebruiker veranderen
@@ -225,6 +226,18 @@ export const addOrDeleteFriend = (state="", action) =>{
   switch(action.type){
     case CHANGE_ADDORDELETEFRIEND:
     return action.payload;
+  default:
+    return state;
+  }
+}
+
+// add message
+export const messageList = (state=[], action) =>{
+  switch(action.type){
+    case CHANGE_MESSAGELIST:
+      var messages = [...state, action.payload];
+      console.log(messages);
+      return messages;
   default:
     return state;
   }

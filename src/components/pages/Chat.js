@@ -7,6 +7,7 @@ import {
   changeUserName,
   changeLoggedIn,
   changeChatKitUser,
+  changeMessageList
 } from "./../../actions";
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
@@ -15,34 +16,84 @@ import ChatRoomCard from '../chat/ChatRoomCard'
 //CSS importeren
 import './Chat.css';
 
-const Chat = props => {
-  var roomExists = []; //Als de gebruiker niet is ingelogd zorgt het voor een error als er geen roomExists bestaat
-
-  // roomExists is een array van alle rooms die bestaan
-  if(props.chatKitUser !== null){
-    roomExists = props.chatKitUser.rooms;
-    //sorteer de lijst van rooms op basis van het tijdstip van het bericht
-    roomExists.sort((a, b) => (a.lastMessageAt < b.lastMessageAt)? 1 : -1);
+class Chat extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = ({
+      chatList: [],
+    })
   }
 
-  return props.loggedIn
-    ? <div>
-      <TopBar />
-      <div className="chatPageContainer">
-        <ul>
-          {
-            roomExists.map((room, index) =>
-            <li key={index} >
-              <ChatRoomCard room={room} className="roomCard" id={index} index={index}/>
-            </li>
-            )
+  componentDidMount(){
+    this.subscribeToRooms();
+    this.mapRooms();
+  }
+
+  subscribeToRooms= () => {
+    var roomList = this.getRooms();
+
+    roomList.forEach(room => {
+      if(!this.props.chatKitUser.isSubscribedTo(room.id)){
+        this.props.chatKitUser.subscribeToRoom({
+          roomId: room.id,
+          messageLimit: 100,
+          hooks: {
+            onMessage: message => {
+              console.log("nieuw bericht: " + message.text);
+              this.props.changeMessageList(message);
+              this.mapRooms();
+            }
           }
-        </ul>
+        })
+      }
+    })
+  }
+
+  getRooms = () => {
+    var roomList = [];
+
+    if(this.props.currentUser !== null){
+      roomList = this.props.chatKitUser.rooms;
+
+      roomList.sort((a, b) => (a.lastMessageAt < b.lastMessageAt)? 1 : -1);
+    }
+
+    return roomList;
+  }
+
+  mapRooms = () => {
+    var rooms = this.getRooms();
+
+    var mappedRooms = (
+      rooms.map((room, index) =>
+        <li key={index} >
+          <ChatRoomCard room={room} className="roomCard" id={index} index={index}/>
+        </li>
+    ));
+
+    this.setState({
+      chatList: mappedRooms,
+    })
+
+  }
+
+  render(){
+    return (this.props.loggedIn
+      ? <div>
+        <TopBar />
+        <div className="chatPageContainer">
+          <ul>
+            {
+              this.state.chatList
+            }
+          </ul>
+        </div>
+        <BottomNav />
       </div>
-      <BottomNav />
-    </div>
-    //Naar de login pagina sturen als er niet ingelogd is
-    : <Redirect to="/login" />
+      //Naar de login pagina sturen als er niet ingelogd is
+      : <Redirect to="/login" />
+    )
+  }
 }
 
 const mapStateToProps = state =>{
@@ -50,6 +101,7 @@ const mapStateToProps = state =>{
     userName: state.userName,
     loggedIn: state.loggedIn,
     chatKitUser: state.chatKitUser,
+    messageList: state.messageList
   };
 }
 
@@ -57,4 +109,5 @@ export default connect(mapStateToProps,{
   changeUserName: changeUserName,
   changeLoggedIn: changeLoggedIn,
   changeChatKitUser: changeChatKitUser,
+  changeMessageList: changeMessageList,
 })(Chat);

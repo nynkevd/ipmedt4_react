@@ -7,44 +7,45 @@ import {
   changeLoggedIn,
   changeChatKitUser,
   changeChatroomClicked,
+  changeMessageList,
 } from "./../../actions";
 //Eigen componenten importeren
 import TopBarChat from '../chat/TopBarChat';
 import SendMessage from '../chat/SendMessage';
 import MessageList from '../chat/MessageList';
+
+import {test} from '../chat/methodsChat.js';
 //CSS importeren
 import './ChatRoom.css';
+
+
 
 class ChatRoom extends React.Component {
   constructor(props){
     super(props);
-    this.state = {messageList: []}
+    this.state = {
+      messageList: [],
+      test: "a",
+    }
   }
 
   componentDidMount(){
     // currentUser is een object van de huidige gebruiker van chatkit
     const currentUser = this.props.chatKitUser;
 
-    // Alleen als de gebruiker is ingelogd kan hij naar verschillende chatrooms
-    if(currentUser != null){
-      this.subscribeToChatroom(currentUser);
-    }
+    this.filterMessages();
   }
 
-  // Functie om de huidige gebruiker aan de chat deel te laten nemen
-  subscribeToChatroom = (currentUser) => {
-    // subscribeToRoom is een functie van ChatKit om aan een room deel te nemen
-    currentUser.subscribeToRoom({
-      roomId: this.props.clickedChatroom.id,
-      messageLimit: 100,
-      hooks: {
-        onMessage: message => {
-          this.setState({
-             messageList: [...this.state.messageList, message],
-           });
-        }
-      }
+  filterMessages = () => {
+    var messagesFiltered = this.props.messageList.filter(message =>
+      message.roomId == this.props.clickedChatroom.id
+    )
+
+    this.setState({
+      messageList: messagesFiltered,
     })
+
+    console.log(this.state.messageList);
   }
 
   render(){
@@ -68,6 +69,7 @@ const mapStateToProps = state =>{
     loggedIn: state.loggedIn,
     chatKitUser: state.chatKitUser,
     clickedChatroom: state.clickedChatroom,
+    messageList: state.messageList,
   };
 }
 
@@ -75,4 +77,5 @@ export default connect(mapStateToProps,{
   changeLoggedIn: changeLoggedIn,
   changeChatKitUser: changeChatKitUser,
   changeChatroomClicked: changeChatroomClicked,
+  changeMessageList: changeMessageList,
 })(ChatRoom);

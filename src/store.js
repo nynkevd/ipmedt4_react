@@ -22,6 +22,7 @@ import {
   chosenFriend,
   allUserFriends,
   addOrDeleteFriend,
+  messageList,
   } from "./reducer";
 
 export const store = createStore(
@@ -48,5 +49,6 @@ export const store = createStore(
     chosenFriend,
     allUserFriends,
     addOrDeleteFriend,
+    messageList,
   })
 )
