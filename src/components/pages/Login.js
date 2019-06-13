@@ -18,6 +18,8 @@ import './Login.css';
 
 //Hash wachtwoord
 const md5 = require('md5');
+//Variable om bij te houden of er een error is
+var error = null;
 
 class Login extends React.Component{
   constructor(props){
@@ -26,6 +28,10 @@ class Login extends React.Component{
       firstLoggedInNumber: null,
       firstloggedin: true,
     }
+  }
+
+  componentDidMount(){
+    this.showHideErrorMessage();
   }
 
   getUserInfoFromDatabase = _ => {
@@ -47,6 +53,7 @@ class Login extends React.Component{
   onSubmit = event => {
     event.preventDefault();
     this.getFirstLoginFromUser();
+    this.validatePasswordInput();
   }
 
   getFirstLoginFromUser(){
@@ -72,15 +79,27 @@ class Login extends React.Component{
   validatePasswordInput(){
     if(this.props.checkPassword === md5(this.props.inputPasswordLogin)){
       this.props.changeLoggedIn(true);
+      error = false;
       return true;
     } else {
       this.props.changeLoggedIn(false);
+      error = true;
       return false;
     }
   }
 
+  //Error message tonen als de gebruikersnaam/wachtwoord onjuist is
+  showHideErrorMessage(){
+    if(error){
+      document.getElementById("loginErrorMessage").classList.remove("hideErrorMessageLogin");
+      this.props.changeInputPasswordLogin("");
+    } else{
+      document.getElementById("loginErrorMessage").classList.add("hideErrorMessageLogin");
+    }
+  }
+
   render() {
-    console.log(this.state.firstloggedin)
+    // console.log(this.state.firstloggedin)
     return this.state.firstloggedin
       ? <div>
         <TopBar />
@@ -108,8 +127,8 @@ class Login extends React.Component{
                 className="button--login"
                 type="submit"
                 value="Login"
-                onClick={this.onSubmit}
-                disabled={!this.validatePasswordInput()}/>
+                onClick={this.onSubmit}/>
+            <label className="errorMessageLogin hideErrorMessageLogin" id="loginErrorMessage">De gebruikersnaam of wachtwoord is onjuist</label>
             <div className="containerFormItem">
               <p className="text text--noAccount">Nog geen account?</p>
               <Link to="/register" className="text text--register">Klik hier om te registreren</Link>

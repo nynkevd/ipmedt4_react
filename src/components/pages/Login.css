@@ -46,10 +46,12 @@
   background-color: #FCC63F;
   box-shadow: 5px 5px 5px #CDCDCD;
 }
+
 .text {
   text-align: center;
   font-size: 0.9em;
 }
+
 .text--noAccount {
   margin-top: 1.5em;
 }
@@ -57,4 +59,13 @@
 .linkRegister {
   color: #000;
   margin-top: 0.5em;
+}
+
+.errorMessageLogin {
+  margin-top: 5px;
+  color: red;
+}
+
+.hideErrorMessageLogin {
+  display: none;
 }
