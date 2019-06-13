@@ -23,7 +23,7 @@ class FriendButton extends React.Component{
   render(){
     return(
       <button className="button__unfriend" onClick={this.unfriend}> Vriend verwijderen </button>
-    )
+    );
   }
 }
 

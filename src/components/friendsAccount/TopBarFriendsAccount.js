@@ -13,7 +13,7 @@ const TopBarFriendsAccount = () => {
       <Link to='/friendslist' className="friendsList">
         <img className="topBarFriendsAccount__back" src="./img/icons/arrow_back.svg" alt="Terug" />
       </Link>
-      <p className="topBarFriendsAccount__text">{props.chatKitUser}</p>
+      <p className="topBarFriendsAccount__text">{this.props.chatKitUser}</p>
     </div>
   );
 }
