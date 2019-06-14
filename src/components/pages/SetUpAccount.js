@@ -106,11 +106,9 @@ class SetUpAccount extends React.Component{
       this.props.changeUserTravelFrom(event.target.value);
       document.getElementById("travelErrorMessage").classList.add("hideErrorMessageSetUp");
     } else {
-      console.log("HETZELFDE!!!");
       //Geef error messages als hetzelfde station wordt gekozen als de travelFrom
       document.getElementById("travelErrorMessage").classList.remove("hideErrorMessageSetUp");
     }
-    // this.props.changeUserTravelFrom(event.target.value);
   }
 
   onChangeUserTravelTo = event =>{
@@ -121,7 +119,6 @@ class SetUpAccount extends React.Component{
       //Geef error messages als hetzelfde station wordt gekozen als de travelFrom
       document.getElementById("travelErrorMessage").classList.remove("hideErrorMessageSetUp");
     }
-    // this.props.changeUserTravelTo(event.target.value);
   }
 
   //verander chosenInterest
