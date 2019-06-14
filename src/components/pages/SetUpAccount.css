@@ -65,3 +65,10 @@
   background-color: #FCC63F;
   box-shadow: 5px 5px 5px #CDCDCD;
 }
+.added {
+  margin-left: 1em;
+}
+#added--interests{
+  font-style: italic;
+  color: #ababab;
+}
