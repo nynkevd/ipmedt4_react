@@ -14,11 +14,20 @@
   box-sizing: border-box;
 }
 
+.topBarChat__img {
+  height: 75%;
+  position: absolute;
+  border-radius: 100%;
+  top: 50%;
+  left: 8vh;
+  transform: translateY(-50%);
+}
+
 .topBarChat__text {
   font-size: 1.3em;
   /* display: inline-block; */
   position: absolute;
   top: 50%;
-  left: 8vh;
+  left: 16vh;
   transform: translateY(-50%);
 }
