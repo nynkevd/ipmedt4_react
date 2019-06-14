@@ -45,9 +45,11 @@ class Register extends React.Component{
   addUserToChatkit = user => {
     const userId = user;
 
-    if (userId === null || userId.trim() === '') {
-      alert('Invalid userId');
-    }
+    console.log(userId);
+
+    axios
+      .post('http://136.144.230.97:5200/users', { userId })
+      .then(() => {console.log("Chatkit User geregistreerd")})
   }
 
   //Check of de invoervelden aan de voorwaarden voldoen, zodat een veld niet leeg kan zijn
@@ -161,7 +163,7 @@ class Register extends React.Component{
                 onChange={this.onChangePassword}
                 type="password" />
             </div>
-            <Link to="/search">
+            <Link to="/login">
               <input
                 className="button"
                 disabled={!this.validateInputFields()}
