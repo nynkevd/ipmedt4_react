@@ -21,6 +21,7 @@ import "./SetUpAccount.css";
 const base_url = "http://136.144.230.97:8080/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 const interests = [];
+var added = [];
 var userInterests = [];
 
 class SetUpAccount extends React.Component{
@@ -35,8 +36,9 @@ class SetUpAccount extends React.Component{
   ];
 
   componentDidMount(){
-    this.getInterestsFromAPI();
     this.getProfilePictureList();
+    this.added = [];
+    this.getInterestsFromAPI();
   }
 
   //Updaten van de variabele firstlogin naar 0 -> false
@@ -70,7 +72,7 @@ class SetUpAccount extends React.Component{
   }
 
   // Mogelijke interesses ophalen uit de database en in array zetten
-  getInterestsFromAPI(){
+  getInterestsFromAPI = () => {
     axios.get(base_url + "interests/" + api_token)
       .then(res => {
         for(let i = 0; i < res.data.length; i++){
@@ -112,34 +114,40 @@ class SetUpAccount extends React.Component{
     }
   }
 
-  //myInterests vullen
-
   //verander chosenInterest
-  onChangeChosenInterest = event =>{
+  onChangeChosenInterest = event => {
     this.props.changeChosenInterest(event.target.value);
-    console.log(this.props.chosenInterest);
     if(!userInterests.includes(this.props.chosenInterest)){
-      if(this.props.chosenInterest != ""){
+      if(this.props.chosenInterest !== "" && this.props.chosenInterest !== "Kies een interesse"){
           userInterests.push(this.props.chosenInterest);
       }
-    }
+    } else{
+      //Moet een foutmelding komen
+        console.log("kan niet");
+      }
     this.props.changeMyInterests(userInterests);
   }
 
-  fillAddedInterests(){
-    for(let i = 0; i < this.props.myInterests.length; i++){
-      return <p>{this.props.myInterests[i]}</p>;
-    }
+  fillAddedInterests = _ => {
+    if(this.props.chosenInterest !== "") {
+      if (!(added.includes(this.props.chosenInterest))) {
+        added.push(this.props.chosenInterest);
+      } return (
+          added.map((addedInterest) =>
+          <p id="added--interests" value={addedInterest} key={addedInterest}> {addedInterest}</p>
+          )
+        );
+      }
   }
 
   //alle ingevoerde velden opslaan in de database
   saveAllSettings = _ =>{
-    userInterests.push(this.props.chosenInterest);
+    if(!userInterests.includes(this.props.chosenInterest)){
+      userInterests.push(this.props.chosenInterest);
+    }
     this.updateFirstLogin();
     this.updateDatabase();
   }
-
-  //Er moet nog een insert in de user_info tabel
 
   render(){
     return this.props.loggedIn
@@ -153,6 +161,9 @@ class SetUpAccount extends React.Component{
                 )}
               </select>
               <span className="my__interests">Toegevoegde interesses</span>
+              <div className="added">
+                {this.fillAddedInterests()}
+              </div>
             </div>
             <h1 className="choose--header">Uw reistraject</h1>
             <div className="choose--route">
