@@ -16,54 +16,16 @@ import {
   changeAddOrDeleteFriend,
 } from './../../actions';
 
+// CSS importeren
+import './FriendsAccount.css';
+
 // Eigen componenten importeren
 import UserInfo from '../friendsAccount/UserInfo';
 import Interests from '../account/Interests';
 import TravelRoute from '../account/TravelRoute';
 import FriendButton from '../friendsAccount/FriendButton';
+import ChatButton from '../friendsAccount/ChatButton';
 
-// const onClick = () => {
-//   const currentUser = props.chatKitUser;
-//   const rooms = currentUser.rooms;
-//   const selectedUser = "nynke";//props.user.toLowerCase();
-//   const roomName = currentUser.id + "_" + selectedUser;
-//   const users = [selectedUser, currentUser.id];
-//   var messageList = [];
-//
-//   if(!checkIfRoomExists(rooms, users)){
-//     createRoom(currentUser, roomName, selectedUser);
-//     // currentUser.subscribeToRoom({
-//     // })
-//   }else{
-//     // En join de room
-//   }
-// }
-//
-// const checkIfRoomExists = (rooms, users) => {
-//   var exists = false
-//   rooms.forEach(function(room){
-//     if(room.customData && room.customData.isDirectMessage){
-//       const roomUsers = room.customData.userIds;
-//       if(roomUsers.sort().join('') === users.sort().join('')){
-//         exists = true;
-//       }
-//     }
-//   });
-//
-//   return exists;
-// }
-//
-// const createRoom = (currentUser, roomName, selectedUser) => {
-//   currentUser.createRoom({
-//     name: roomName,
-//     private: true,
-//     addUserIds: [selectedUser],
-//     customData: {
-//       isDirectMessage: true,
-//       userIds: [currentUser.id, selectedUser]
-//     }
-//   });
-// }
 const base_url = "http://136.144.230.97:8080/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
@@ -131,6 +93,7 @@ class FriendsAccount extends React.Component {
     this.forceUpdate();
   }
   render(){
+    console.log(this.state.userTravelTo);
   // let notify = toast.notify("Vriend toegevoegd");
   return this.props.loggedIn
   ?   // TopBar
@@ -148,11 +111,7 @@ class FriendsAccount extends React.Component {
 
           {/* Als je op de knop drukt, wordt er een room aangemaakt en kom je in die room
            Als de room al bestaat, dan ga je gewoon naar die room toe */}
-          <button
-            className="button--chat"
-            type="submit"
-            value="Chat"
-            onClick={this.onClick} />
+          <ChatButton chosenFriend={this.props.chosenFriend} currentUser={this.props.chatKitUser}></ChatButton>
           </div>
       </div>
       : <Redirect to="/login" />

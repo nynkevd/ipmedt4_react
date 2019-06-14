@@ -46,8 +46,10 @@ class FriendButton extends React.Component{
 
   render(){
     return(
+      <div>
        <button id="button__AOD" className={this.props.buttonClass} onClick={this.addOrDeleteFriend}> {this.props.buttonText} </button>
-
+       <button className="button__unfriend" onClick={this.unfriend}> Vriend verwijderen </button>
+      </div>
     )
   }
 }
