@@ -1,5 +1,6 @@
 // React importeren
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 // Redux importeren
 import { connect } from 'react-redux';
@@ -26,11 +27,11 @@ class ChatButton extends React.Component{
     if(!this.checkIfRoomExists(rooms, users)){
       this.createRoom(currentUser, roomName, selectedUser);
       console.log("Room aangemaakt");
-      currentUser.subscribeToRoom();
+      // currentUser.subscribeToRoom();
       console.log("In de room");
     }else{
       console.log("Naar room gaan");
-      currentUser.subscribeToRoom();
+      // currentUser.subscribeToRoom();
       console.log("In de room");
     }
   }
@@ -89,7 +90,7 @@ class ChatButton extends React.Component{
     }
   render(){
     return(
-        <button className="button_chat" onClick={this.onClick}>Chat</button>
+        <Link to="/chat"><button className="button_chat" onClick={this.onClick}>Chat</button></Link>
     );
   }
 }
