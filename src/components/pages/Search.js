@@ -10,6 +10,8 @@ import {
   changeLoggedIn,
   changeChatKitUser,
   changeMatches,
+  changeAllUserFriends,
+  changeAddOrDeleteFriend,
 } from "./../../actions";
 //Eigen componenten importeren
 import BottomNav from '../layout/BottomNav';
@@ -49,6 +51,11 @@ class Search extends React.Component{
     axios.get(base_url + username + api_token).then(res => {
       this.props.changeMatches(res.data);
     });
+
+    axios.get("http://136.144.230.97:8080/api/friends/" + username + api_token).then(res => {
+      console.log(res.data);
+      this.props.changeAllUserFriends(res.data);
+    });
   };
 
   render(){
@@ -73,6 +80,8 @@ const mapStateToProps = state =>{
     loggedIn: state.loggedIn,
     chatKitUser: state.chatKitUser,
     matches: state.matches,
+    allUserFriends: state.allUserFriends,
+    addOrDeleteFriend: state.addOrDeleteFriend,
   };
 }
 
@@ -81,4 +90,6 @@ export default connect(mapStateToProps,{
   changeLoggedIn: changeLoggedIn,
   changeChatKitUser: changeChatKitUser,
   changeMatches: changeMatches,
+  changeAllUserFriends: changeAllUserFriends,
+  changeAddOrDeleteFriend: changeAddOrDeleteFriend,
 })(Search);
