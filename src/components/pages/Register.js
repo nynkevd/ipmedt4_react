@@ -36,7 +36,7 @@ class Register extends React.Component{
   //Toevoegen van user aan de accounts tabel via een url
   addUserToDatabase = _ =>{
     this.addUserToChatkit(this.props.inputUserName);
-    fetch(`http://136.144.230.97:4000/users/add?username=${this.props.inputUserName}&name=${this.props.inputName}&email=${this.props.inputEmail}&password=${this.props.inputPassword}`)
+    fetch(`https://dataserver.ovtravelbuddy.nl/users/add?username=${this.props.inputUserName}&name=${this.props.inputName}&email=${this.props.inputEmail}&password=${this.props.inputPassword}`)
       .then(this.setUserValuesToEmpty)
       .catch(err => console.error(err))
   }
@@ -48,7 +48,7 @@ class Register extends React.Component{
     console.log(userId);
 
     axios
-      .post('http://136.144.230.97:5200/users', { userId })
+      .post('https://chatserver.ovtravelbuddy.nl/users', { userId })
       .then(() => {console.log("Chatkit User geregistreerd")})
   }
 
@@ -59,7 +59,7 @@ class Register extends React.Component{
 
   //Opvragen van alle usernames voor error messages
   getAllTakenUserNames = () => {
-    axios.get(`http://136.144.230.97:4000/users`).then(res => {
+    axios.get(`https://dataserver.ovtravelbuddy.nl/users`).then(res => {
       var lengthArrayUsers = (res.data.data).length;
       for(var i=0; i<lengthArrayUsers; i++){
         //Alle usernames in een array zetten
@@ -70,7 +70,7 @@ class Register extends React.Component{
 
   //Opvragen van alle emails voor error messages
   getAllTakenEmails = () => {
-    axios.get(`http://136.144.230.97:4000/users`).then(res => {
+    axios.get(`https://dataserver.ovtravelbuddy.nl/users`).then(res => {
       var lengthArrayUsers = (res.data.data).length;
       takenEmails = [];
       for(var i=0; i<lengthArrayUsers; i++){

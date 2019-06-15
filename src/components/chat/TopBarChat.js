@@ -13,7 +13,7 @@ import {getRoomName} from './methodsChat.js';
 //CSS importeren
 import './TopBarChat.css';
 
-const base_url = "http://136.144.230.97:8080/api/";
+const base_url = "https://api.ovtravelbuddy.nl/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
 class TopBarChat extends React.Component {

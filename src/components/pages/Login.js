@@ -36,7 +36,7 @@ class Login extends React.Component{
 
   getUserInfoFromDatabase = _ => {
     //Checken van ingevoerde wachtwoord met de database
-    axios.get(`http://136.144.230.97:4000/login?username=${this.props.userName}`)
+    axios.get(`https://dataserver.ovtravelbuddy.nl/login?username=${this.props.userName}`)
       .then(response => this.props.changeCheckPassword(response.data.data[0].password))
         .catch(err => console.error(err))
   }
@@ -57,7 +57,7 @@ class Login extends React.Component{
   }
 
   getFirstLoginFromUser(){
-    axios.get(`http://136.144.230.97:4000/getfirstlogin?username=${this.props.userName}`)
+    axios.get(`https://dataserver.ovtravelbuddy.nl/getfirstlogin?username=${this.props.userName}`)
       .then(response => (this.setState({firstLoggedInNumber: parseInt(response.data.data[0].firstlogin)})))
         .catch(err => console.error(err))
     this.checkValueFirstLogin();

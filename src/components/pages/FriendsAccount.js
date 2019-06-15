@@ -26,7 +26,7 @@ import TravelRoute from '../account/TravelRoute';
 import FriendButton from '../friendsAccount/FriendButton';
 import ChatButton from '../friendsAccount/ChatButton';
 
-const base_url = "http://136.144.230.97:8080/api/";
+const base_url = "https://api.ovtravelbuddy.nl/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
 class FriendsAccount extends React.Component {

@@ -18,7 +18,7 @@ import ProfilePictureList from '../editAccount/ProfilePictureList';
 
 import "./SetUpAccount.css";
 
-const base_url = "http://136.144.230.97:8080/api/";
+const base_url = "https://api.ovtravelbuddy.nl/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 var added = [];
 var userInterests = [];
@@ -41,7 +41,7 @@ class SetUpAccount extends React.Component{
 
   //Updaten van de variabele firstlogin naar 0 -> false
   updateFirstLogin = _ => {
-    axios.get(`http://136.144.230.97:4000/updatefirstlogin?username=${this.props.userName}`)
+    axios.get(`https://dataserver.ovtravelbuddy.nl/updatefirstlogin?username=${this.props.userName}`)
         .catch(err => console.error(err))
   }
 
@@ -83,18 +83,18 @@ class SetUpAccount extends React.Component{
   // update de database
   updateDatabase(){
     //profilepicture en travelroute
-    axios.get(`http://136.144.230.97:4000/userinfo/update?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}`)
+    axios.get(`https://dataserver.ovtravelbuddy.nl/userinfo/update?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}`)
       .then(console.log("Succesfully updated info"))
         .catch(err => console.error(err))
 
     //voeg gebruiker toe aan de user_info tabel
-    axios.get(`http://136.144.230.97:4000/user_info/add?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}&age=19`)
+    axios.get(`https://dataserver.ovtravelbuddy.nl/user_info/add?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}&age=19`)
       .then(console.log("gebruiker toegevoegd aan gewenste tabel"))
         .catch(err => console.error(err))
 
     //user interests
     for(let a = 0; a < this.props.myInterests.length; a++){
-    axios.get(`http://136.144.230.97:4000/user_interests/add?username=${this.props.userName}&interest=${this.props.myInterests[a]}`)
+    axios.get(`https://dataserver.ovtravelbuddy.nl/user_interests/add?username=${this.props.userName}&interest=${this.props.myInterests[a]}`)
       .then(console.log("Interesse toegevoegd"))
         .catch(err => console.error(err))
     }
