@@ -2,8 +2,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-// ToastManager importeren
-// import toast from 'toasted-notes';
 
 // Redux importeren
 import { connect } from "react-redux";
@@ -25,6 +23,7 @@ import Interests from '../account/Interests';
 import TravelRoute from '../account/TravelRoute';
 import FriendButton from '../friendsAccount/FriendButton';
 import ChatButton from '../friendsAccount/ChatButton';
+import TopBarFriendsAccount from '../friendsAccount/TopBarFriendsAccount';
 
 const base_url = "https://api.ovtravelbuddy.nl/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
@@ -94,25 +93,22 @@ class FriendsAccount extends React.Component {
   }
   render(){
     console.log(this.state.userTravelTo);
-  // let notify = toast.notify("Vriend toegevoegd");
   return this.props.loggedIn
-  ?   // TopBar
-      // Account -> Profielfoto, naam, reistraject, interesses
-      // Knoppen Voeg Toe en Chat
-      <div>
+  ?  <div>
+      <TopBarFriendsAccount />
         <div className="accountPageContainer">
           <UserInfo profielfoto={this.state.userProfilePicture} naam={this.props.chosenFriend} />
           <TravelRoute from={this.state.userTravelFrom} to={this.state.userTravelTo} />
 
         </div>
         <div className="buttonsAddAndChat">
-        {/* / Als je op de knop drukt, wordt deze persoon aan je FriendsList toegevoegd.*/}
-          <FriendButton friend={this.props.chosenFriend} buttonClass={this.state.buttonClass} buttonText={this.state.buttonText} onSubmit={this.updateComp}> </FriendButton>
+        {/* Als je op de knop drukt, wordt deze persoon aan je FriendsList toegevoegd.*/}
+          <FriendButton className="buttonsAddAndChat__addButton" friend={this.props.chosenFriend} buttonClass={this.state.buttonClass} buttonText={this.state.buttonText} onSubmit={this.updateComp}> </FriendButton>
 
           {/* Als je op de knop drukt, wordt er een room aangemaakt en kom je in die room
            Als de room al bestaat, dan ga je gewoon naar die room toe */}
-          <ChatButton chosenFriend={this.props.chosenFriend} currentUser={this.props.chatKitUser}></ChatButton>
-          </div>
+          <ChatButton className="buttonsAddAndChat__chatButton" chosenFriend={this.props.chosenFriend} currentUser={this.props.chatKitUser}></ChatButton>
+        </div>
       </div>
       : <Redirect to="/login" />
 }

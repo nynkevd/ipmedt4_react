@@ -1,14 +1,4 @@
-/* .button__unfriend{
-  color: white;
-}
-.delete {
-  background-color: red;
-}
-.add{
-  background-color: green;
-} */
-
-#button__AOD{
+.button_chat{
   width: 46%;
   padding: 10px;
   margin: auto;
@@ -20,4 +10,9 @@
   color: #000;
   background-color: #FCC63F;
   box-shadow: 5px 5px 5px #CDCDCD;
+  margin-left: 0.6em;
+}
+
+.linkChatButton{
+  text-decoration: none;
 }

@@ -9,6 +9,9 @@ import {
   changeChatroomClicked,
 } from './../../actions';
 
+// CSS importeren
+import './ChatButton.css';
+
 class ChatButton extends React.Component{
   constructor(props){
     super(props);
@@ -91,7 +94,7 @@ class ChatButton extends React.Component{
     }
   render(){
     return(
-      <Link to="/chat"> {/*dit moet veranderd worden, zodat je naar chatroom gaat*/}
+      <Link className="linkChatButton" to="/chat"> {/*dit moet veranderd worden, zodat je naar chatroom gaat*/}
         <button className="button_chat" onClick={this.onClick}>Chat</button>
       </Link>
     );

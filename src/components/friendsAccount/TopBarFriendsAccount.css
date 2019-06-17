@@ -1,0 +1,24 @@
+.topBarFriendsAccount {
+  top: 0;
+  width: 100%;
+  position: fixed;
+  background-color: #FCC63F;
+  height: 8vh;
+  z-index: 100;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.topBarFriendsAccount__back {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.topBarFriendsAccount__text {
+  font-size: 1.3em;
+  /* display: inline-block; */
+  position: absolute;
+  top: 50%;
+  left: 16vh;
+  transform: translateY(-50%);
+}
