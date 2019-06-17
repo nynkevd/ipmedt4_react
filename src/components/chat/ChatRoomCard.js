@@ -67,6 +67,22 @@ class ChatRoomCard extends React.Component {
     time[0] = ("0" + time[0]).slice(-2);
     time[1] = ("0" + time[1]).slice(-2);
 
+    //2 uur bij de tel optellen
+    switch (time[0]){
+      case "22":
+        time[0] = "00";
+        break;
+      case "23":
+        time[0] = "01";
+        break;
+      case "24":
+        time[0] = "02";
+        break;
+      default:
+        time[0] = parseInt(time[0])+2;
+        break;
+    }
+
     // Datum van vandaag
     var d = new Date();
 
