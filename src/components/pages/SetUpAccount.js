@@ -15,6 +15,7 @@ import {
     changeChosenInterest} from "./../../actions";
 
 import ProfilePictureList from '../editAccount/ProfilePictureList';
+import {fillAddedInterests} from '../methods.js';
 
 import "./SetUpAccount.css";
 
@@ -132,24 +133,6 @@ class SetUpAccount extends React.Component{
     this.props.changeMyInterests(userInterests);
   }
 
-  fillAddedInterests = _ => {
-    if(this.props.chosenInterest !== "") {
-      if (!(added.includes(this.props.chosenInterest))) {
-        added.push(this.props.chosenInterest);
-        document.getElementById("intrestErrorMessage").classList.add("hideErrorMessageSetUp");
-        console.log(added[added.length-1])
-      } else if(!(added[added.length-1] === this.props.chosenInterest)) {
-        //Error messages tonen als de interesse al is toegevoegd
-        document.getElementById("intrestErrorMessage").classList.remove("hideErrorMessageSetUp");
-      }
-      return (
-          added.map((addedInterest) =>
-          <p id="added--interests" value={addedInterest} key={addedInterest}> {addedInterest}</p>
-          )
-        );
-      }
-  }
-
   //alle ingevoerde velden opslaan in de database
   saveAllSettings = _ =>{
     if(!userInterests.includes(this.props.chosenInterest)){
@@ -173,7 +156,7 @@ class SetUpAccount extends React.Component{
               </select>
               <span className="my__interests">Toegevoegde interesses</span>
               <div className="added">
-                {this.fillAddedInterests()}
+                {fillAddedInterests(this.props.chosenInterest)}
               </div>
               <p className="errorMessageSetUp hideErrorMessageSetUp" id="intrestErrorMessage">Interesse is al toegevoegd</p>
             </div>

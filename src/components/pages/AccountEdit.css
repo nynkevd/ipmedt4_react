@@ -12,7 +12,7 @@
   justify-items: center;
 }
 
-.inputUsername, .selectTraject {
+.inputUsername, .selectTraject, .choose-interests {
   margin-top: 1em;
   padding: 10px;
   font-size: 110%;
@@ -105,4 +105,25 @@
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* interesses verwijderen en toevoegen */
+
+.icon{
+  display: inline-block;
+  height: 1em;
+  width: 20%;
+}
+
+.interest--p{
+  display: inline-block;
+  width: 30%;
+  margin: 0.6em 0 0;
+  padding: 0;
+}
+
+h2{
+  font-weight: 400;
+  font-size: 1.4em;
+  padding: 0.5em 0;
 }
