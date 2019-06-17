@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import {
   changeUserName,
   changeChatKitUser,
+  changeUserInterests,
   changeChosenFriend,
   changeLoggedIn,
   changeAllUserFriends,
@@ -44,6 +45,7 @@ class FriendsAccount extends React.Component {
 
   componentDidMount(){
     this.getChosenFriendInfoFromApi();
+    this.getUserInterestsFromApi(base_url, api_token);
     // this.getUserFriendsFromApi();
     this.checkIfFriend();
     console.log(this.props.allUserFriends);
@@ -87,6 +89,12 @@ class FriendsAccount extends React.Component {
     });
   }
 
+  getUserInterestsFromApi = (base_url, api_token) => {
+    axios.get(base_url + "interests/" + this.props.userName + api_token).then(res => {
+      this.props.changeUserInterests(res.data);
+    });
+  }
+
   updateComp = _ => {
     console.log("re-render vanuit comp");
     this.forceUpdate();
@@ -99,12 +107,11 @@ class FriendsAccount extends React.Component {
         <div className="accountPageContainer">
           <UserInfo profielfoto={this.state.userProfilePicture} naam={this.props.chosenFriend} />
           <TravelRoute from={this.state.userTravelFrom} to={this.state.userTravelTo} />
-
+          <Interests interests={this.props.userInterests} />
         </div>
         <div className="buttonsAddAndChat">
         {/* Als je op de knop drukt, wordt deze persoon aan je FriendsList toegevoegd.*/}
           <FriendButton className="buttonsAddAndChat__addButton" friend={this.props.chosenFriend} buttonClass={this.state.buttonClass} buttonText={this.state.buttonText} onSubmit={this.updateComp}> </FriendButton>
-
           {/* Als je op de knop drukt, wordt er een room aangemaakt en kom je in die room
            Als de room al bestaat, dan ga je gewoon naar die room toe */}
           <ChatButton className="buttonsAddAndChat__chatButton" chosenFriend={this.props.chosenFriend} currentUser={this.props.chatKitUser}></ChatButton>
@@ -118,6 +125,7 @@ const mapStateToProps = state =>{
   return {
     userName: state.userName,
     chatKitUser: state.chatKitUser,
+    userInterests: state.userInterests,
     clickedChatroom: state.clickedChatroom,
     chosenFriend: state.chosenFriend,
     loggedIn: state.loggedIn,
@@ -129,6 +137,7 @@ const mapStateToProps = state =>{
 export default connect(mapStateToProps,{
   changeUserName: changeUserName,
   changeChatKitUser: changeChatKitUser,
+  changeUserInterests: changeUserInterests,
   changeChosenFriend: changeChosenFriend,
   changeLoggedIn: changeLoggedIn,
   changeAllUserFriends: changeAllUserFriends,

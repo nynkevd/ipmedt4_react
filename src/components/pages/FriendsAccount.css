@@ -1,5 +1,5 @@
 .buttonsAddAndChat{
-  margin-top: 26em;
+  margin-top: 18em;
   margin-left: 1em;
 }
 
@@ -9,5 +9,4 @@
 
 .buttonsAddAndChat__chatButton{
   width: 50%;
-  background-color: red;
 }
