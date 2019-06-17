@@ -1,6 +1,6 @@
 //React en benodigheden importeren
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from "axios";
 import Chatkit from '@pusher/chatkit-client';
 //Redux importeren
@@ -59,13 +59,22 @@ class Search extends React.Component{
   };
 
   render(){
+    console.log(Object.keys(this.props.matches).length);
     return this.props.loggedIn
     ? <div>
         <TopBar />
         <div className="searchPageContainer">
-          <h1>Welkom {this.props.userName}</h1>
-          <h3>Dit zijn jouw matches:</h3>
-          <Matches matches={this.props.matches}></Matches>
+          {Object.keys(this.props.matches).length > 0 ?
+            <div>
+              <h3>Dit zijn jouw matches:</h3>
+              <Matches matches={this.props.matches}></Matches>
+            </div>
+            :
+            <div id="nomatches">
+              <p> Je hebt geen matches </p>
+              <Link to="/editaccount"> <img id="sadLogo" src="./img/logoSad.svg" alt="Travel Buddy Sad Logo"/> </Link>
+            </div>
+          }
         </div>
         <BottomNav />
       </div>
