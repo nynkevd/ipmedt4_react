@@ -1,6 +1,6 @@
 // React importeren
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 // Redux importeren
 import { connect } from 'react-redux';
@@ -12,7 +12,7 @@ import {
 class ChatButton extends React.Component{
   constructor(props){
     super(props);
-
+    this.state=({redirect: ""});
   }
 
   onClick = event => {
@@ -34,12 +34,15 @@ class ChatButton extends React.Component{
       console.log("Naar room gaan");
       // currentUser.subscribeToRoom(); -> dit moet aangepast worden
       console.log("In de room");
+      this.setState({
+        redirect: <Redirect to='/chat' />
+      });
     }
-  }
 
-  // {testfunction = (room) => {
-  //   this.props.changeChatroomClicked(room);
-  // }
+    // this.setState({
+    //   redirect: <Redirect to='/chat' />
+    // })
+  }
 
   checkIfRoomExists = (rooms, users) => {
     var exists = false
@@ -71,6 +74,9 @@ class ChatButton extends React.Component{
       }
     }).then(room=> {
       this.props.changeChatroomClicked(room);
+      this.setState({
+        redirect: <Redirect to='/chat' />
+      });
     });
   }
 
@@ -91,9 +97,11 @@ class ChatButton extends React.Component{
     }
   render(){
     return(
-      <Link to="/chat"> {/*dit moet veranderd worden, zodat je naar chatroom gaat*/}
+      <div>
+        {this.state.redirect}{/*dit moet veranderd worden, zodat je naar chatroom gaat*/}
         <button className="button_chat" onClick={this.onClick}>Chat</button>
-      </Link>
+      </div>
+
     );
   }
 }
