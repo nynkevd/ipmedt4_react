@@ -1,4 +1,18 @@
 .chatPageContainer {
   margin-top: 8vh;
   margin-bottom: 8vh;
+  max-width: 99.9vw;
+}
+
+#nochats p {
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 1em;
+}
+
+#sadLogoChats {
+  margin-top: 1em;
+  margin-left: auto;
+  width: 70vw;
+  margin-left: 15vw;
 }

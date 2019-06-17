@@ -1,3 +1,29 @@
 .searchPageContainer {
   margin-top: 8vh;
+  padding-top: 1em;
+}
+
+#button__interests {
+  width: 50%;
+  padding: 10px;
+  margin-top: 2.5em;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  transform: translate(50%, -50%);
+  background-color: #FCC63F;
+  box-shadow: 5px 5px 5px #CDCDCD;
+}
+#nomatches p {
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 1em;
+}
+
+#sadLogo {
+  margin-top: 1em;
+  margin-left: auto;
+  width: 70vw;
+  margin-left: 15vw;
 }
