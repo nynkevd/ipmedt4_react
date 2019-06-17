@@ -21,6 +21,9 @@ class TopBarChat extends React.Component {
 
   componentDidMount(){
     this.getProfilePicture();
+    this.setState({
+      picture: "",
+    })
     console.log(this.state.picture);
   }
 
@@ -36,7 +39,7 @@ class TopBarChat extends React.Component {
         <Link to='/chat' className="chatCardLink">
           <img className="topBarChat__back" src="./img/icons/arrow_back.svg" alt="Terug"/>
         </Link>
-        <img className="topBarChat__img" src={this.state.picture} alt="Profielfoto"/>
+        <img className="topBarChat__img" src={"https://api.ovtravelbuddy.nl" + this.state.picture} alt="Profielfoto"/>
         <p className="topBarChat__text">{getRoomName(this.props.clickedChatroom, this.props.chatKitUser)}</p>
       </div>
     );

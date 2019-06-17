@@ -19,3 +19,16 @@
 .LineBetweenFriends {
   margin-top: 29%;
 } */
+
+#nofriends p {
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 1em;
+}
+
+#sadLogoFriends {
+  margin-top: 1em;
+  margin-left: auto;
+  width: 70vw;
+  margin-left: 15vw;
+}

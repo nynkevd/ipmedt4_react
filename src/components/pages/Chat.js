@@ -1,6 +1,6 @@
 //React en benodigheden importeren
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 //Redux importeren
 import { connect } from "react-redux";
 import {
@@ -17,7 +17,6 @@ import './Chat.css';
 
 const Chat = props => {
   var roomExists = []; //Als de gebruiker niet is ingelogd zorgt het voor een error als er geen roomExists bestaat
-
   // roomExists is een array van alle rooms die bestaan
   if(props.chatKitUser !== null){
     roomExists = props.chatKitUser.rooms;
@@ -25,10 +24,13 @@ const Chat = props => {
     roomExists.sort((a, b) => (a.lastMessageAt < b.lastMessageAt)? 1 : -1);
   }
 
+  console.log(roomExists.length);
+
   return props.loggedIn
     ? <div>
       <TopBar />
       <div className="chatPageContainer">
+      { roomExists.length > 0 ?
         <ul>
           {
             roomExists.map((room, index) =>
@@ -38,11 +40,19 @@ const Chat = props => {
             )
           }
         </ul>
+        :
+        <div id="nochats">
+          <p> Je hebt geen chats </p>
+          <Link to="/friendsList"> <img id="sadLogoChats" src="./img/logoSad.svg" alt="Travel Buddy Sad Logo"/> </Link>
+        </div>
+      }
       </div>
       <BottomNav />
     </div>
     //Naar de login pagina sturen als er niet ingelogd is
     : <Redirect to="/login" />
+
+
 }
 
 const mapStateToProps = state =>{

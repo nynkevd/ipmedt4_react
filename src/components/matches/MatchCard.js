@@ -10,17 +10,49 @@ import {
 import './MatchCard.css';
 
 class MatchCard extends React.Component {
+
   constructor(props){
     super(props);
+    this.state = ({
+      interestList: "",
+      meerTekst: "",
+    });
+  }
+
+  componentDidMount(){
+    this.mapInterests();
+  }
+
+  mapInterests = () => {
+    var allInterests = this.props.interests;
+    var meerTekst = "";
+
+    if(allInterests.length > 3){
+      var maxInterests = allInterests.splice(0, 3);
+      console.log("TEEEEEEESSSSSSSTTTTTTT: ");
+      meerTekst = "+ " + allInterests.length + " meer";
+    }else{
+      maxInterests = allInterests;
+    }
+
+    var mappedList = maxInterests.map((interest) =>
+      <li key={interest}>{interest}</li>
+    )
+
+    this.setState({
+      interestList: mappedList,
+      meerTekst: meerTekst,
+    });
+
   }
 
   changeFriend = _ => {
     this.props.changeChosenFriend(this.props.user);
   }
 
-  componentDidMount(){
-    this.listInterests();
-  }
+  // componentDidMount(){
+  //   this.listInterests();
+  // }
 
   listInterests = _ => {
 
@@ -30,12 +62,9 @@ class MatchCard extends React.Component {
       <div className="matchCard">
         <Link to="/friendsAccount"><h3 onClick={this.changeFriend}>{this.props.user}</h3> </Link>
         <ul>
-          {
-            this.props.interests.map((interest) =>
-              <li key={interest}>{interest}</li>
-            )
-          }
+          {this.state.interestList}
         </ul>
+        {this.state.meerTekst}
       </div>
     );
   }
