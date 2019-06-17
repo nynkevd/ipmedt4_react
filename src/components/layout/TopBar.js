@@ -7,7 +7,10 @@ import './TopBar.scss';
 const TopBar = () =>{
   return(
     <div className="topBar">
-      <img className="topBar__img" src="./img/logoSmall.svg" alt="Travel Buddy Logo"/>
+      <Link to="/search">
+        <img className="topBar__img" src="./img/logoSmall.svg" alt="Travel Buddy Logo"/>
+      </Link>
+
       <p className="topBar__text">Travel Buddy</p>
       <Link to="/" id="link">
         <img className="topBar__img topBar__img--logout" src="./img/icons/logout.svg" alt="Uitloggen" />
