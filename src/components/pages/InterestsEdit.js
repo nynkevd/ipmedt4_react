@@ -10,7 +10,7 @@ import './InterestsEdit.css';
 
 class InterestsEdit extends React.Component {
   state = { myInterests:[]}
-  BASE_URL = "http://136.144.230.97:8080/api/interests/";
+  BASE_URL = "https://api.ovtravelbuddy.nl/api/interests/";
   TEMP_URL = "localhost:8000/api/interests/"
   username = "Dayella"; //Moet aangepast worden naar de ingelogde gebruiker
   api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";

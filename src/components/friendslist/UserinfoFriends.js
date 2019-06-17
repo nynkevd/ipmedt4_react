@@ -8,7 +8,6 @@ import {
 } from "./../../actions";
 //Eigen componenten importeren
 import './UserinfoFriends.css';
-import Unfriend from './Unfriend';
 
 class UserinfoFriends extends React.Component {
   constructor(props){
@@ -17,7 +16,6 @@ class UserinfoFriends extends React.Component {
 
   changeFriend = _ => {
     this.props.changeChosenFriend(this.props.naam);
-
   }
 
   render(){
@@ -26,7 +24,6 @@ class UserinfoFriends extends React.Component {
       <div className="userInfoFriendsContainer">
         <img src={this.props.profielfoto} alt="profielfoto" className="pf"/>
         <Link to="/friendsAccount"><h2 className="usernameFriends" onClick={this.changeFriend}>{this.props.naam}</h2> </Link>
-        <Unfriend friend={this.props.naam}> </Unfriend>
       </div>
     );
   }

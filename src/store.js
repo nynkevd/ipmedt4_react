@@ -20,6 +20,8 @@ import {
   myInterests,
   chosenInterest,
   chosenFriend,
+  allUserFriends,
+  addOrDeleteFriend,
   } from "./reducer";
 
 export const store = createStore(
@@ -44,5 +46,7 @@ export const store = createStore(
     myInterests,
     chosenInterest,
     chosenFriend,
+    allUserFriends,
+    addOrDeleteFriend,
   })
 )

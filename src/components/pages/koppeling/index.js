@@ -165,6 +165,7 @@ app.get('/user_interests/add', (req, res) =>{
     }
   });
 });
+
 //voeg een gebruiker aan de de user_info tabel toe
 app.get('/user_info/add', (req, res) =>{
   const {username,profile_picture, travelFrom, travelTo, age } = req.query;
@@ -176,3 +177,17 @@ app.get('/user_info/add', (req, res) =>{
       return res.send('Succesfully added an user to user_info');
     }
   });
+});
+
+//vraag de opgeslagen interesses op van een gebruiker
+app.get('/user_interests/get', (req, res) =>{
+  const {username,profile_picture, travelFrom, travelTo, age } = req.query;
+  const getUserInterests = `SELECT interest FROM user_interests WHERE username = '${username}';`
+  connection.query(getUserInterests, (err, results) =>{
+    if(err){
+      return res.send(err);
+    }else{
+      return res.send('Succesfully fetched user interests');
+    }
+  });
+});

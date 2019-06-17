@@ -36,7 +36,7 @@ class Register extends React.Component{
   //Toevoegen van user aan de accounts tabel via een url
   addUserToDatabase = _ =>{
     this.addUserToChatkit(this.props.inputUserName);
-    fetch(`http://136.144.230.97:4000/users/add?username=${this.props.inputUserName}&name=${this.props.inputName}&email=${this.props.inputEmail}&password=${this.props.inputPassword}`)
+    fetch(`https://dataserver.ovtravelbuddy.nl/users/add?username=${this.props.inputUserName}&name=${this.props.inputName}&email=${this.props.inputEmail}&password=${this.props.inputPassword}`)
       .then(this.setUserValuesToEmpty)
       .catch(err => console.error(err))
   }
@@ -45,9 +45,11 @@ class Register extends React.Component{
   addUserToChatkit = user => {
     const userId = user;
 
-    if (userId === null || userId.trim() === '') {
-      alert('Invalid userId');
-    }
+    console.log(userId);
+
+    axios
+      .post('https://chatserver.ovtravelbuddy.nl/users', { userId })
+      .then(() => {console.log("Chatkit User geregistreerd")})
   }
 
   //Check of de invoervelden aan de voorwaarden voldoen, zodat een veld niet leeg kan zijn
@@ -57,7 +59,7 @@ class Register extends React.Component{
 
   //Opvragen van alle usernames voor error messages
   getAllTakenUserNames = () => {
-    axios.get(`http://136.144.230.97:4000/users`).then(res => {
+    axios.get(`https://dataserver.ovtravelbuddy.nl/users`).then(res => {
       var lengthArrayUsers = (res.data.data).length;
       for(var i=0; i<lengthArrayUsers; i++){
         //Alle usernames in een array zetten
@@ -68,7 +70,7 @@ class Register extends React.Component{
 
   //Opvragen van alle emails voor error messages
   getAllTakenEmails = () => {
-    axios.get(`http://136.144.230.97:4000/users`).then(res => {
+    axios.get(`https://dataserver.ovtravelbuddy.nl/users`).then(res => {
       var lengthArrayUsers = (res.data.data).length;
       takenEmails = [];
       for(var i=0; i<lengthArrayUsers; i++){
@@ -80,7 +82,7 @@ class Register extends React.Component{
 
   //Zet de juiste state-informatie naar de waarde van het invoerveld
   onChangeName = event =>{
-    this.props.changeInputName(event.target.value.toLowerCase());
+    this.props.changeInputName(event.target.value);
   }
 
   onChangeEmail = event =>{
@@ -88,13 +90,13 @@ class Register extends React.Component{
     for(var i=0; i<takenEmails.length; i++){
       if(event.target.value === takenEmails[i]){
         //Error messages tonen als de email al gebruikt wordt
-        document.getElementById("emailErrorMessage").classList.remove("hideErrorMessage");
+        document.getElementById("emailErrorMessage").classList.remove("hideErrorMessageRegister");
         break;
       } else {
-        document.getElementById("emailErrorMessage").classList.add("hideErrorMessage");
-        this.props.changeInputEmail(event.target.value.toLowerCase());
+        document.getElementById("emailErrorMessage").classList.add("hideErrorMessageRegister");
       }
     }
+    this.props.changeInputEmail(event.target.value.toLowerCase());
   }
 
   onChangeUser = event =>{
@@ -106,9 +108,9 @@ class Register extends React.Component{
         break;
       } else {
         document.getElementById("userNameErrorMessage").classList.add("hideErrorMessageRegister");
-        this.props.changeInputUserName(event.target.value.toLowerCase());
       }
     }
+    this.props.changeInputUserName(event.target.value.toLowerCase());
   }
 
   onChangePassword = event =>{
@@ -161,7 +163,7 @@ class Register extends React.Component{
                 onChange={this.onChangePassword}
                 type="password" />
             </div>
-            <Link to="/search">
+            <Link to="/login">
               <input
                 className="button"
                 disabled={!this.validateInputFields()}

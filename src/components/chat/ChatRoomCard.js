@@ -37,16 +37,21 @@ class ChatRoomCard extends React.Component {
       direction: 'older',
       limit: 1,
     }).then(messages => {
-      this.getLastMessageTime(messages[0]);
+      // Als er geen berichten zijn kan het niet geladen worden
+      if(messages.length !== 0){
+        this.getLastMessageTime(messages[0]);
 
-      this.setState({
-        lastMessage: messages[0].text,
-      })
+        this.setState({
+          lastMessage: messages[0].text,
+        })
+      }
+
     })
   }
 
   getLastMessageTime(message){
     // Deze functie is echt veeel te lang
+
     var createdAt = message.createdAt;
 
     // Datum van het laatste bericht
@@ -76,6 +81,7 @@ class ChatRoomCard extends React.Component {
         lastMessageTime: date[2] + "-" + date[1] + "-" + date[0],
       });
     }
+
   }
 
   onClick = event => {

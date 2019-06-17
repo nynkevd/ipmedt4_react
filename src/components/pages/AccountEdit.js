@@ -20,7 +20,7 @@ import EditTravelRoute from '../editAccount/EditTravelRoute';
 //CSS importeren
 import './AccountEdit.css';
 
-const base_url = "http://136.144.230.97:8080/api/";
+const base_url = "https://api.ovtravelbuddy.nl/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
 class AccountEdit extends React.Component{
@@ -43,7 +43,7 @@ class AccountEdit extends React.Component{
     this.props.changeUserTravelTo(this.props.userTravelTo);
     this.props.changeUserTravelFrom(this.props.userTravelFrom);
 
-    axios.get(`http://136.144.230.97:4000/userinfo/update?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}`)
+    axios.get(`https://dataserver.ovtravelbuddy.nl/userinfo/update?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}`)
       .then(this.getUserInfo)
         .catch(err => console.error(err))
   }

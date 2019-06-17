@@ -10,6 +10,8 @@ import {
   changeLoggedIn,
   changeChatKitUser,
   changeMatches,
+  changeAllUserFriends,
+  changeAddOrDeleteFriend,
 } from "./../../actions";
 //Eigen componenten importeren
 import BottomNav from '../layout/BottomNav';
@@ -25,7 +27,7 @@ class Search extends React.Component{
     const chatManager = new Chatkit.ChatManager({
         instanceLocator: 'v1:us1:a6e72788-6919-4ade-a86a-7beeaa73aa7d',
         userId: this.props.userName,
-        tokenProvider: new Chatkit.TokenProvider({ url: 'http://136.144.230.97:5200/authenticate' }),
+        tokenProvider: new Chatkit.TokenProvider({ url: 'https://chatserver.ovtravelbuddy.nl/authenticate' }),
     });
     chatManager.connect().then(currentUser => {
       this.props.changeChatKitUser(currentUser);
@@ -43,11 +45,16 @@ class Search extends React.Component{
   }
 
   getMatchesFromSessionUser = username => {
-    const base_url = "http://136.144.230.97:8080/api/match/";
+    const base_url = "https://api.ovtravelbuddy.nl/api/match/";
     const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
     //Matches ophalen
     axios.get(base_url + username + api_token).then(res => {
       this.props.changeMatches(res.data);
+    });
+
+    axios.get("https://api.ovtravelbuddy.nl/api/friends/" + username + api_token).then(res => {
+      console.log(res.data);
+      this.props.changeAllUserFriends(res.data);
     });
   };
 
@@ -73,6 +80,8 @@ const mapStateToProps = state =>{
     loggedIn: state.loggedIn,
     chatKitUser: state.chatKitUser,
     matches: state.matches,
+    allUserFriends: state.allUserFriends,
+    addOrDeleteFriend: state.addOrDeleteFriend,
   };
 }
 
@@ -81,4 +90,6 @@ export default connect(mapStateToProps,{
   changeLoggedIn: changeLoggedIn,
   changeChatKitUser: changeChatKitUser,
   changeMatches: changeMatches,
+  changeAllUserFriends: changeAllUserFriends,
+  changeAddOrDeleteFriend: changeAddOrDeleteFriend,
 })(Search);
