@@ -1,11 +1,12 @@
-.userInfoFriendsContainer{
+.userInfoFriendsContainer {
   position: relative;
   margin-top: 3vh;
   margin-bottom: 3vh;
   margin-left: 3vh;
-  width : 90vw;
+  width: 90vw;
   align-items: center;
 }
+
 .pf {
   border-radius: 100%;
   width: 100px;
@@ -14,7 +15,8 @@
 .usernameFriends {
   display: inline-block;
   position: absolute;
-  top: 30px;
+  transform: translate(0, -50%);
+  top: 50%;
   margin-left: 15px;
   font-size: 2em;
 }

@@ -3,15 +3,22 @@
   width: 100%;
   position: fixed;
   background-color: #FCC63F;
-  height: 8vh;
+  height: 55px;
   margin-bottom: 4vh;
   z-index: 100;
 }
 
 .topBar__img {
   height: 100%;
-  position: absolute;
-  margin-left: 3%;
+  position: relative;
+  margin: 0 3%;
+}
+
+.topBar__img--logout {
+  height: 45%;
+  top: 50%;
+  transform: translate(0, -50%);
+  float: right;
 }
 
 .topBar__text {
@@ -20,6 +27,10 @@
   top: 50%;
   left: 20%;
   transform: translate(0, -50%);
+}
+
+.topBar__link--hidden {
+  display: none;
 }
 
 @media(width: 768px) {

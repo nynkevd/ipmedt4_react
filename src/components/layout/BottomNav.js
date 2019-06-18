@@ -6,20 +6,16 @@ import BottomNavItem from './BottomNavItem';
 import './BottomNav.css';
 
 class BottomNav extends React.Component{
-  render(){
-    return(
-      <div>
-        <div className="bottomNav">
-          <div className="bottomNavGrid">
-            <BottomNavItem className="bottomNavItem" name="Zoek" link="/search" icon="./img/icons/search_icon.svg"/>
-            <BottomNavItem className="bottomNavItem" name="Chat" link="/chat" icon="./img/icons/chat_icon.svg"/>
-            <BottomNavItem className="bottomNavItem" name="Travel Buddies" link="/friendsList" icon="./img/icons/people_icon.svg"/>
-            <BottomNavItem className="bottomNavItem" name="Account" link="/account" icon="./img/icons/account_icon.svg"/>
-          </div>
-        </div>
-      </div>
-    )
-  }
+render(){
+return(
+  <div className="bottomNav">
+    <BottomNavItem name="Zoek" link="/search" icon="./img/icons/search_icon.svg"/>
+    <BottomNavItem name="Chat" link="/chat" icon="./img/icons/chat_icon.svg"/>
+    <BottomNavItem name="Travel Buddies" link="/friendsList" icon="./img/icons/people_icon.svg"/>
+    <BottomNavItem name="Account" link="/account" icon="./img/icons/account_icon.svg"/>
+  </div>
+)
+}
 }
 
 export default BottomNav;
