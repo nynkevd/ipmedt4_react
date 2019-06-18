@@ -43,7 +43,7 @@ const Chat = props => {
         :
         <div id="nochats">
           <p> Je hebt geen chats </p>
-          <Link to="/friendsList"> <img id="sadLogoChats" src="./img/logoSad.svg" alt="Travel Buddy Sad Logo"/> </Link>
+          <Link to="/friendsList"> <img id="sadLogoChats" src="./img/logoSadChat.svg" alt="Travel Buddy Sad Logo"/> </Link>
         </div>
       }
       </div>

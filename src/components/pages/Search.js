@@ -72,7 +72,7 @@ class Search extends React.Component{
             :
             <div id="nomatches">
               <p> Je hebt geen matches </p>
-              <Link to="/editaccount"> <img id="sadLogo" src="./img/logoSad.svg" alt="Travel Buddy Sad Logo"/> </Link>
+              <Link to="/editaccount"> <img id="sadLogo" src="./img/logoSadIntrest.svg" alt="Travel Buddy Sad Logo"/> </Link>
             </div>
           }
         </div>

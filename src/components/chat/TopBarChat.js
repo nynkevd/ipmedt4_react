@@ -28,16 +28,22 @@ class TopBarChat extends React.Component {
   }
 
   getProfilePicture = () =>{
-    axios.get(base_url + "userinfo/" + this.props.clickedChatroom.createdByUserId + api_token).then(res => {
+    axios.get(base_url + "userinfo/" + getRoomName(this.props.clickedChatroom, this.props.chatKitUser) + api_token).then(res => {
       this.setState({picture: res.data.picture});
     });
+  }
+
+  // Als er op de terug knop wordt geklikt, wordt de huidige chatroom ""
+  changeChatroom = () =>{
+    this.props.changeChatroomClicked("");
+    console.log(this.props.chatroomClicked);
   }
 
   render(){
     return(
       <div className="topBarChat">
         <Link to='/chat' className="chatCardLink">
-          <img className="topBarChat__back" src="./img/icons/arrow_back.svg" alt="Terug"/>
+          <img className="topBarChat__back" src="./img/icons/arrow_back.svg" alt="Terug"onClick={this.changeChatroom}/>
         </Link>
         <img className="topBarChat__img" src={"https://api.ovtravelbuddy.nl" + this.state.picture} alt="Profielfoto"/>
         <p className="topBarChat__text">{getRoomName(this.props.clickedChatroom, this.props.chatKitUser)}</p>
