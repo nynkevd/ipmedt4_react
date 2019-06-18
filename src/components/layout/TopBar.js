@@ -1,5 +1,7 @@
 //React importeren
 import React from 'react';
+import {Link} from 'react-router-dom';
+
 //CSS importeren
 import './TopBar.css';
 
