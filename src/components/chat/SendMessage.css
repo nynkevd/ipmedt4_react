@@ -1,4 +1,4 @@
-.sendMessageContainer{
+.sendMessageContainer {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -6,7 +6,7 @@
   height: 61px;
 }
 
-.sendMessageInput{
+.sendMessageContainer__input {
   width: 75%;
   font-size: 1em;
   margin: 10px;
@@ -15,10 +15,18 @@
   border: none;
 }
 
-.sendMessageButton{
-  width: 12%;
+.sendMessageContainer__button {
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  transform: translate(-50%, -50%);
+  height: 30px;
+  width: 30px;
+  box-sizing: border-box;
+  border: none;
+  background-color: Transparent;
 }
 
-.sendMessageButton__image{
-  height: 27px;
+.sendMessageContainer__button__image {
+  height: 30px;
 }

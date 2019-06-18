@@ -115,19 +115,16 @@ class ChatRoomCard extends React.Component {
 
   render(){
     return(
-      <Link to='/chatRoom' className="chatCardLink">
-        <div className="chatCardContainer" onClick={this.onClick}>
-          <div>
-            <img className="chatCardContainer__img" src={"https://api.ovtravelbuddy.nl" + this.state.picture} alt="Profielfoto"/>
-            <h3 className="chatCardContainer__name">{getRoomName(this.props.room, this.props.chatKitUser)}</h3>
-            <p className="chatCardContainer__message">{this.state.lastMessage}</p>
-            <span className="chatCardContainer__time">{this.state.lastMessageTime}</span>
-
-            {/* unreadCount is een varaibele die door chatkit wordt bijgehouden met het aantal ongelezen berichten*/}
-            <UnreadMessageCount unreadMessages={this.props.room.unreadCount}/>
-          </div>
-        </div>
-      </Link>
+      <div className="chatCardContainer" onClick={this.onClick}>
+        <Link to='/chatRoom' className="chatCardContainer__link">
+          <img className="chatCardContainer__link__img" src={"https://api.ovtravelbuddy.nl" + this.state.picture} alt="Profielfoto"/>
+          <h3 className="chatCardContainer__link__name">{getRoomName(this.props.room, this.props.chatKitUser)}</h3>
+          <p className="chatCardContainer__link__message">{this.state.lastMessage}</p>
+          <span className="chatCardContainer__link__time">{this.state.lastMessageTime}</span>
+          {/* unreadCount is een varaibele die door chatkit wordt bijgehouden met het aantal ongelezen berichten*/}
+          <UnreadMessageCount unreadMessages={this.props.room.unreadCount}/>
+          </Link>
+      </div>
       );
     }
 }

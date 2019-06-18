@@ -21,10 +21,12 @@ class UserinfoFriends extends React.Component {
   render(){
     console.log(this.props.chosenFriend);
     return(
-      <div className="userInfoFriendsContainer">
-        <img src={"https://api.ovtravelbuddy.nl" + this.props.profielfoto} alt="profielfoto" className="pf"/>
-        <Link to="/friendsAccount"><h2 className="usernameFriends" onClick={this.changeFriend}>{this.props.naam}</h2> </Link>
-      </div>
+      <Link to="/friendsAccount">
+        <div className="userInfoFriendsContainer">
+          <img src={"https://api.ovtravelbuddy.nl" + this.props.profielfoto} alt="profielfoto" className="pf"/>
+          <h2 className="usernameFriends" onClick={this.changeFriend}>{this.props.naam}</h2>
+        </div>
+      </Link>
     );
   }
 }

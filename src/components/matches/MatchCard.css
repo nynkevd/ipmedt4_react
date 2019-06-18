@@ -1,11 +1,21 @@
-.matchCard{
+.matchCard {
   background-color: #fff;
   box-sizing: border-box;
-  margin: 8px;
-  padding: 8px;
+  padding: 16px;
   border-bottom: 1px solid rgb(221, 221, 221);
 }
 
-li{
+.matchCard__link {
+  text-decoration: none;
+  color: #000;
+}
+
+.matchCard__text {
+  color: #000066;
+  padding-bottom: 5px;
+  font-size: 1.3em;
+}
+
+li {
   list-style: none;
 }

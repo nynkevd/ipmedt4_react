@@ -2,70 +2,47 @@
   padding-top: 1em;
   font-family: 'Roboto', Arial, sans-serif;
   font-size: 1.1em;
-  width: 95.5%;
-  border-bottom-style: solid;
-  border-width: 1px;
-  padding: 2em 0 2em 1em;
+  border-bottom: 1px solid rgb(221, 221, 221);
+  padding: 2em 1em;
   line-height: 1.5em;
   position: relative;
-}
-
-.chatCardContainer {
   color: black;
+  box-sizing: border-box;
 }
 
-.chatCardContainer__img {
-  height: 60%;
+.chatCardContainer__link {
+  text-decoration: none;
+  color: #000;
+}
+
+.chatCardContainer__link__img {
+  height: 80px;
   position: absolute;
   border-radius: 100%;
   top: 50%;
   transform: translateY(-50%);
 }
 
-.chatCardContainer__name {
-  width: 50%;
+.chatCardContainer__link__name {
+  width: 45%;
   margin: 0 auto;
+  padding-bottom: 4px;
 }
 
-.chatCardContainer__message {
+.chatCardContainer__link__message {
   color: rgb(98, 98, 98);
   font-size: 1em;
   margin-top: 5px;
-  width: 50%;
+  width: 45%;
   height: 26px;
   margin: 0 auto;
   overflow: hidden;
 }
 
-.chatCardContainer__time {
+.chatCardContainer__link__time {
   position: absolute;
-  top: 1em;
-  right: 1em;
+  top: 20%;
+  right: 7%;
   color: rgb(98, 98, 98);
-  font-size: 0.9em;
-}
-
-.chatCardLink {
-  text-decoration: none;
-}
-
-.unreadMessageCount {
-  position: absolute;
-  /*bottom moet nog aangepast worden*/
-  bottom: 0;
-  transform: translateY(-50%);
-  right: 1em;
-  background-color: rgb(250, 197, 64);
-  border-radius: 100%;
-  width: 30px;
-  height: 30px;
-}
-
-.unreadMessageCount__text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: black;
   font-size: 0.9em;
 }

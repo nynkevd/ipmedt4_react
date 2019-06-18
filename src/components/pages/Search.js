@@ -66,7 +66,7 @@ class Search extends React.Component{
         <div className="searchPageContainer">
           {Object.keys(this.props.matches).length > 0 ?
             <div>
-              <h3>Dit zijn jouw matches:</h3>
+              <h3 className="searchPageContainer__text">Dit zijn jouw matches:</h3>
               <Matches matches={this.props.matches}></Matches>
             </div>
             :

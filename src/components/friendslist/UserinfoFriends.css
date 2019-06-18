@@ -1,15 +1,13 @@
 .userInfoFriendsContainer {
   position: relative;
-  margin-top: 3vh;
-  margin-bottom: 3vh;
-  margin-left: 3vh;
-  width: 90vw;
+  padding: 16px;
   align-items: center;
+  border-bottom: 1px solid rgb(221, 221, 221);
 }
 
 .pf {
   border-radius: 100%;
-  width: 100px;
+  width: 80px;
 }
 
 .usernameFriends {
@@ -18,7 +16,9 @@
   transform: translate(0, -50%);
   top: 50%;
   margin-left: 15px;
-  font-size: 2em;
+  font-size: 1.5em;
+  color: #000066;
+  font-weight: bold;
 }
 
 .button__unfriend {
