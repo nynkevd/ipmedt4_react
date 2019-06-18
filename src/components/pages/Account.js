@@ -53,8 +53,8 @@ class Account extends React.Component{
   getTravelInfoFromDatabase(){
     axios.get(`https://dataserver.ovtravelbuddy.nl/travelinfo?username=${this.props.userName}`)
       .then(res => {
-        this.props.changeUserTravelTo(res.data.data[0].travelTo);
-        this.props.changeUserTravelFrom(res.data.data[0].travelFrom);
+        this.props.changeUserTravelTo(res.data.data[0].travel_to);
+        this.props.changeUserTravelFrom(res.data.data[0].travel_from);
       })
         .catch(err => console.error(err))
   }

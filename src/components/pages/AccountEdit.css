@@ -34,10 +34,6 @@
   display: block;
 }
 
-.doubleArrow{
-  width: 25px;
-}
-
 .errorMessage{
   color: red;
 }
@@ -105,4 +101,9 @@
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+#back{
+  margin: 0.1em;
+  text-decoration: none;
 }

@@ -58,7 +58,7 @@ class Login extends React.Component{
 
   getFirstLoginFromUser(){
     axios.get(`https://dataserver.ovtravelbuddy.nl/getfirstlogin?username=${this.props.userName}`)
-      .then(response => (this.setState({firstLoggedInNumber: parseInt(response.data.data[0].firstlogin)})))
+      .then(response => (this.setState({firstLoggedInNumber: parseInt(response.data.data[0].first_login)})))
         .catch(err => console.error(err))
     this.checkValueFirstLogin();
   }
