@@ -28,7 +28,7 @@ class TopBarChat extends React.Component {
   }
 
   getProfilePicture = () =>{
-    axios.get(base_url + "userinfo/" + this.props.clickedChatroom.createdByUserId + api_token).then(res => {
+    axios.get(base_url + "userinfo/" + getRoomName(this.props.clickedChatroom, this.props.chatKitUser) + api_token).then(res => {
       this.setState({picture: res.data.picture});
     });
   }

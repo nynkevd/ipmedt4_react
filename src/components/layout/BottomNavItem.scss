@@ -1,34 +1,32 @@
 .bottomNavItem {
   text-decoration: none;
   color: #000;
-}
-
-.bottomNavItemImg {
-  width: 25px;
-}
-
-.bottomNavItemText {
-  font-size: 0.7em;
-}
-
-.bottomNavItemSelected {
-  background-color: #ABABAB;
+  padding: 15px 0;
+  &--selected {
+    background-color: #ABABAB;
+  }
+  &__img {
+    width: 25px;
+  }
+  &__text {
+    font-size: 0.7em;
+  }
 }
 
 @media(width: 768px){
-  .bottomNavItemText {
+  .bottomNavItem__text {
     font-size: 0.9em;
   }
 }
 
 @media(width: 1024px){
-  .bottomNavItemText {
+  .bottomNavItem__text {
     font-size: 0.9em;
   }
 }
 
 @media(min-width: 1280px){
-  .bottomNavItemText {
+  .bottomNavItem__text {
     font-size: 1em;
   }
 }
