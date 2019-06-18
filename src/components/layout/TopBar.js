@@ -1,8 +1,8 @@
 //React en benodigheden importeren
 import React from 'react';
 import { Link } from 'react-router-dom';
-//SCSS importeren
-import './TopBar.scss';
+//CSS importeren
+import './TopBar.css';
 
 const TopBar = () =>{
   return(

@@ -6,27 +6,31 @@
   height: 55px;
   margin-bottom: 4vh;
   z-index: 100;
-  &__img {
-    height: 100%;
-    position: relative;
-    margin: 0 3%;
-    &--logout {
-      height: 45%;
-      top: 50%;
-      transform: translate(0, -50%);
-      float: right;
-    }
-  }
-  &__text {
-    font-size: 1.3em;
-    position: absolute;
-    top: 50%;
-    left: 20%;
-    transform: translate(0, -50%);
-  }
-  &__link--hidden {
-    display: none;
-  }
+}
+
+.topBar__img{
+  height: 100%;
+  position: relative;
+  margin: 0 3%;
+}
+
+.topBar__img--logout {
+  height: 45%;
+  top: 50%;
+  transform: translate(0, -50%);
+  float: right;
+}
+
+.topBar__text {
+  font-size: 1.3em;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(0, -50%);
+}
+
+.topBar__link--hidden {
+  display: none;
 }
 
 @media(width: 768px) {

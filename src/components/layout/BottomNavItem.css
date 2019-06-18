@@ -2,15 +2,18 @@
   text-decoration: none;
   color: #000;
   padding: 15px 0;
-  &--selected {
-    background-color: #ABABAB;
-  }
-  &__img {
-    width: 25px;
-  }
-  &__text {
-    font-size: 0.7em;
-  }
+}
+
+.bottomNavItem--selected {
+  background-color: #ABABAB;
+}
+
+.bottomNavItem__img {
+  width: 25px;
+}
+
+.bottomNavItem__text {
+  font-size: 0.7em;
 }
 
 @media(width: 768px){
