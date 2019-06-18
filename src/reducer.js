@@ -234,21 +234,17 @@ export const addOrDeleteFriend = (state="", action) =>{
 }
 
 // add message
-export const messageList = (state=[], action) =>{
+export const messageList = (state={}, action) =>{
   switch(action.type){
     case CHANGE_MESSAGELIST:
       //console.log(action.payload.roomId);
-      var roomId = action.payload.roomId;
-      var messages = [...state, action.payload];
+      // var roomId = action.payload.roomId;
+      // var messages = [...state, action.payload];
+      // console.log(messages);
+      // return messages;
 
-
-      // var messages = Object.assign({}, state, {
-      //   roomId: action.payload,
-      // })
-      console.log(messages);
-      return messages;
-
-
+      console.log(action.payload);
+      return action.payload;
   default:
     return state;
   }

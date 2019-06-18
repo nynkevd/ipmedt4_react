@@ -41,8 +41,9 @@ class Chat extends React.Component {
           messageLimit: 100,
           hooks: {
             onMessage: message => {
-              console.log("nieuw bericht: " + message.text);
-              this.props.changeMessageList(message);
+              // console.log("nieuw bericht: " + message.text);
+              this.addMessageToList(message);
+              //this.props.changeMessageList(message);
               //this.props.changeChatroomClicked("werkt dit?");
 
               console.log(this.props.clickedChatroom);
@@ -59,10 +60,26 @@ class Chat extends React.Component {
     })
   }
 
+  addMessageToList = (message) => {
+    var messageList = this.props.messageList;
+    var roomId = message.roomId;
+
+    if(messageList[roomId] === undefined){
+      messageList[roomId] = [message];
+    }else{
+      messageList[roomId] = [...messageList[roomId], message];
+    }
+    //messageList[roomId] = message
+    // messageList.
+    //console.log(messageList)
+
+    this.props.changeMessageList(messageList);
+  }
+
   getRooms = () => {
     var roomList = [];
 
-    if(this.props.currentUser !== null){
+    if(this.props.chatKitUser !== null){
       roomList = this.props.chatKitUser.rooms;
 
       roomList.sort((a, b) => (a.lastMessageAt < b.lastMessageAt)? 1 : -1);

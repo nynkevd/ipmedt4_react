@@ -32,7 +32,7 @@ class ChatRoom extends React.Component {
     // currentUser is een object van de huidige gebruiker van chatkit
     const currentUser = this.props.chatKitUser;
 
-    this.filterMessages();
+    //this.filterMessages();
   }
 
   filterMessages = () => {

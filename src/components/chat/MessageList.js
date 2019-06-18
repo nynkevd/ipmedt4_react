@@ -12,10 +12,6 @@ class MessageList extends React.Component {
 
   componentDidMount(){
     this.scrollToBottom();
-
-    this.state = ({
-      filteredMessages: "",
-    })
   }
 
   componentDidUpdate(){
@@ -23,21 +19,11 @@ class MessageList extends React.Component {
     this.scrollToBottom();
   }
 
-  filterMessages = () => {
-    var filteredMessages = this.props.messageList.filter(message =>
-      message.roomId == this.props.clickedChatroom.id);
-
-    this.setState({
-      filteredMessages: filteredMessages,
-    })
-  }
-
   scrollToBottom = () => {
-    var filteredMessages = this.props.messageList.filter(message =>
-      message.roomId == this.props.clickedChatroom.id);
+    var messages = this.props.messageList[this.props.clickedChatroom.id];
 
-    const position = filteredMessages.length - 1;
-    const lastMessageId = filteredMessages[position].id;
+    const position = messages.length - 1;
+    const lastMessageId = messages[position].id;
     const lastMessageElement = document.getElementById(lastMessageId);
 
 
@@ -63,8 +49,7 @@ class MessageList extends React.Component {
       <div className="messageContainer">
         <ul className="messageList">
           {
-            this.props.messageList.filter(message =>
-              message.roomId == this.props.clickedChatroom.id)
+            this.props.messageList[this.props.clickedChatroom.id]
             .map((message) =>
               <li className="messageList__item" key={message.id} id={message.id}><Message message={message}/></li>
             )
