@@ -9,7 +9,8 @@ import {
   changeLoggedIn,
   changeChatKitUser,
   changeCheckPassword,
-  changeInputPasswordLogin
+  changeInputPasswordLogin,
+  changeAllStations,
 } from "./../../actions";
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
@@ -34,6 +35,17 @@ class Login extends React.Component{
     this.showHideErrorMessage();
     //De uitlog knop op display none zetten
     document.getElementById("link").classList.add("topBar__link--hidden");
+    this.setAllStations();
+  }
+
+  setAllStations = _ => {
+    this.props.changeAllStations([
+      "Leiden",
+      "Voorschoten",
+      "Alphen aan den Rijn",
+      "Nieuw Vennep",
+      "De Vink"
+    ]);
   }
 
   getUserInfoFromDatabase = _ => {
@@ -150,6 +162,7 @@ const mapStateToProps = state =>{
     chatKitUser: state.chatKitUser,
     checkPassword: state.checkPassword,
     inputPasswordLogin: state.inputPasswordLogin,
+    allStations: state.allStations,
   };
 }
 
@@ -159,4 +172,5 @@ export default connect(mapStateToProps,{
   changeChatKitUser: changeChatKitUser,
   changeCheckPassword: changeCheckPassword,
   changeInputPasswordLogin: changeInputPasswordLogin,
+  changeAllStations: changeAllStations,
 })(Login);

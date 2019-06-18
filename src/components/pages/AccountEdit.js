@@ -37,7 +37,11 @@ class AccountEdit extends React.Component{
   componentDidMount(){
     this.getProfilePictureList();
     this.getRemainingInterestsFromAPI();
-    this.added = [];
+    added = [];
+    console.log(chosenInterests + " test interesses");
+    chosenInterests = [];
+    console.log(chosenInterests + "test na leeg");
+    interests = [];
   }
 
   //Lijst van alle profielfoto's opvragen van API
@@ -57,18 +61,20 @@ class AccountEdit extends React.Component{
     if(!chosenInterests.includes(this.props.chosenInterest)){
       chosenInterests.push(this.props.chosenInterest);
     }
+    this.props.changeChosenInterest("");
+
+    this.deleteInterestsFromDatabase();
 
     axios.get(`https://dataserver.ovtravelbuddy.nl/userinfo/update?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}`)
       .then(this.getUserInfo)
         .catch(err => console.error(err))
-
-    this.deleteInterestsFromDatabase();
 
     for(let a = 0; a < chosenInterests.length; a++){
     axios.get(`https://dataserver.ovtravelbuddy.nl/user_interests/add?username=${this.props.userName}&interest=${chosenInterests[a]}`)
       .then(console.log("Interesse toegevoegd"))
         .catch(err => console.error(err))
     }
+    chosenInterests = [];
   }
 
   //De gegevens van de user ophalen van de API
@@ -119,7 +125,8 @@ class AccountEdit extends React.Component{
     document.getElementById(deleteItem).parentElement.setAttribute("class", "hidden");
     //verwijderde items in array stoppen
     this.temp_interests.push(deleteItem);
-    console.log(this.temp_interests)
+    console.log(deleteItem);
+    console.log(this.temp_interests);
   }
 
   deleteInterestsFromDatabase(){
@@ -150,9 +157,10 @@ class AccountEdit extends React.Component{
           chosenInterests.push(this.props.chosenInterest);
       }
     }
+    console.log(chosenInterests);
   }
   render(){
-    console.log(chosenInterests)
+    console.log(chosenInterests);
     return this.props.loggedIn
       ? <div>
         <TopBar />
@@ -181,6 +189,7 @@ class AccountEdit extends React.Component{
           {fillAddedInterests(this.props.chosenInterest)}
           <p className="errorMessageSetUp hideErrorMessageSetUp" id="intrestErrorMessage">Interesse is al toegevoegd</p>
           <div className="next">
+
               <Link to="/account"><button className="button" onClick={this.updateUserInfo}>Bevestig</button></Link><br /><br />
               <Link to="/account" id="back"><p>Terug naar account</p></Link>
           </div>
