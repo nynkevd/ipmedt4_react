@@ -1,3 +1,12 @@
 .buttonsAddAndChat{
-  margin-top: 8em;
+  margin-top: 18em;
+  margin-left: 0.8em;
+}
+
+.buttonsAddAndChat__addButton{
+  width: 50%;
+}
+
+.buttonsAddAndChat__chatButton{
+  width: 50%;
 }

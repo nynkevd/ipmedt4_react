@@ -1,4 +1,4 @@
-.userInfoContainer {
+.userInfoContainer{
   position: relative;
   margin-top: 20%;
   margin-left: 3%;
@@ -39,7 +39,7 @@
   margin-top: 10%;
 }
 
-.interestsContainer {
+.interestsAccountContainer {
   position: relative;
   margin-top: 30%;
   margin-left: 3%;
@@ -50,7 +50,7 @@
   margin-top: 5%;
 }
 
-.interestsList {
+.interestsListAccount {
   position: absolute;
-  margin-top: 24%;
+  margin-top: 2%;
 }

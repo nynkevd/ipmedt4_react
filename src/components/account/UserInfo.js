@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import './UserInfo.css';
+import './UserInfoAccount.css';
 
 
 const UserInfo = (props) => {

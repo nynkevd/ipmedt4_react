@@ -1,5 +1,5 @@
 import React from 'react';
-import './UserInfo.css';
+import './UserInfoAccount.css';
 
 const TravelRoute = (props) => {
   return(

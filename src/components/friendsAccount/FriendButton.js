@@ -1,12 +1,15 @@
+// React importeren
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Redux importeren
 import { connect } from "react-redux";
 import {
   changeUserName,
   changeAddOrDeleteFriend,
 } from "./../../actions";
 
+// CSS importeren
 import './FriendButton.css';
 
 class FriendButton extends React.Component{
@@ -46,7 +49,7 @@ class FriendButton extends React.Component{
 
   render(){
     return(
-      <Link to="/friendsList">
+      <Link className="linkFriendButton" to="/friendsList">
         <button id="button__AOD" className={this.props.buttonClass} onClick={this.addOrDeleteFriend}> {this.props.buttonText} </button>
       </Link>
     )
