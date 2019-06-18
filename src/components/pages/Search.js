@@ -12,6 +12,7 @@ import {
   changeMatches,
   changeAllUserFriends,
   changeAddOrDeleteFriend,
+  changeAllStations,
 } from "./../../actions";
 //Eigen componenten importeren
 import BottomNav from '../layout/BottomNav';
@@ -91,6 +92,7 @@ const mapStateToProps = state =>{
     matches: state.matches,
     allUserFriends: state.allUserFriends,
     addOrDeleteFriend: state.addOrDeleteFriend,
+    allStations: state.allStations,
   };
 }
 
@@ -101,4 +103,5 @@ export default connect(mapStateToProps,{
   changeMatches: changeMatches,
   changeAllUserFriends: changeAllUserFriends,
   changeAddOrDeleteFriend: changeAddOrDeleteFriend,
+  changeAllStations: changeAllStations,
 })(Search);

@@ -20,6 +20,7 @@ export const CHANGE_CHOSENINTEREST = "CHANGE_CHOSENINTEREST";
 export const CHANGE_CHOSENFRIEND = "CHANGE_CHOSENFRIEND";
 export const CHANGE_ALLUSERFRIENDS = "CHANGE_ALLUSERFRIENDS";
 export const CHANGE_ADDORDELETEFRIEND = "CHANGE_ADDORDELETEFRIEND";
+export const CHANGE_ALLSTATIONS = "CHANGE_ALLSTATIONS";
 
 //Username van de ingelogde gebruiker
 export const changeUserName = userName =>({
@@ -140,4 +141,9 @@ export const changeAllUserFriends = allUserFriends => ({
 export const changeAddOrDeleteFriend = addOrDeleteFriend => ({
   type: CHANGE_ADDORDELETEFRIEND,
   payload: addOrDeleteFriend,
+});
+
+export const changeAllStations = allStations => ({
+  type: CHANGE_ALLSTATIONS,
+  payload: allStations,
 });

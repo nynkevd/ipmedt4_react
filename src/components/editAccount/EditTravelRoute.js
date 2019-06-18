@@ -9,14 +9,6 @@ import {
 
 class EditTravelRoute extends React.Component{
 
-  stations = [
-    "Leiden",
-    "Voorschoten",
-    "Alphen aan den Rijn",
-    "Nieuw Vennep",
-    "De Vink"
-  ];
-
   onChangeUserTravelFrom = event =>{
     this.props.from(event);
   }
@@ -32,7 +24,7 @@ class EditTravelRoute extends React.Component{
         <form action="">
           <label className="errorMessage hideErrorMessage" id="fromErrorMessage">De stations kunnen niet hetzelfde zijn</label>
           <select value={this.props.userTravelFrom} onChange={this.onChangeUserTravelFrom} className="selectTraject">
-            {this.stations.map((station) =>
+            {this.props.allStations.map((station) =>
               <option value={station} key={station}>{station}</option>
             )}
           </select>
@@ -41,7 +33,7 @@ class EditTravelRoute extends React.Component{
 
           <label className="errorMessage hideErrorMessage" id="toErrorMessage">De stations kunnen niet hetzelfde zijn</label>
           <select value={this.props.userTravelTo} onChange={this.onChangeUserTravelTo} className="selectTraject">
-            {this.stations.map((station) =>
+            {this.props.allStations.map((station) =>
               <option value={station} key={station}>{station}</option>
             )}
           </select>
@@ -54,6 +46,7 @@ const mapStateToProps = state =>{
   return{
     userTravelTo: state.userTravelTo,
     userTravelFrom: state.userTravelFrom,
+    allStations: state.allStations,
   };
 }
 
