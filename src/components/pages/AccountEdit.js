@@ -115,9 +115,11 @@ class AccountEdit extends React.Component{
 
   deleteOnClick = (event) => {
     var deleteItem = document.getElementById(event.target.id).id;
+    console.log(deleteItem)
     document.getElementById(deleteItem).parentElement.setAttribute("class", "hidden");
     //verwijderde items in array stoppen
     this.temp_interests.push(deleteItem);
+    console.log(this.temp_interests)
   }
 
   deleteInterestsFromDatabase(){
