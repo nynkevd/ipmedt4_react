@@ -25,13 +25,7 @@ var userInterests = [];
 
 class SetUpAccount extends React.Component{
   interests = [];
-  stations = [
-    "Leiden",
-    "Voorschoten",
-    "Alphen aan den Rijn",
-    "Nieuw Vennep",
-    "De Vink"
-  ];
+  stations = this.props.allStations;
 
   componentDidMount(){
     this.getProfilePictureList();
@@ -160,6 +154,7 @@ class SetUpAccount extends React.Component{
   }
 
   render(){
+    console.log(this.stations);
     return this.props.loggedIn
       ? <div className="SetUpAccountContainer">
         <div className="choose--form">
@@ -228,6 +223,7 @@ const mapStateToProps = state =>{
     userProfilePicture: state.userProfilePicture,
     myInterests: state.myInterests,
     chosenInterest: state.chosenInterest,
+    allStations: state.allStations,
   };
 }
 

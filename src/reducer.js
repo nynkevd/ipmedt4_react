@@ -21,6 +21,7 @@ import {
   CHANGE_CHOSENFRIEND,
   CHANGE_ALLUSERFRIENDS,
   CHANGE_ADDORDELETEFRIEND,
+  CHANGE_ALLSTATIONS,
  } from "./actions";
 
 //Username van de ingelogde gebruiker veranderen
@@ -224,6 +225,16 @@ export const allUserFriends = (state=[], action) =>{
 export const addOrDeleteFriend = (state="", action) =>{
   switch(action.type){
     case CHANGE_ADDORDELETEFRIEND:
+    return action.payload;
+  default:
+    return state;
+  }
+}
+
+//Stations inladen bij opstart
+export const allStations = (state="", action) =>{
+  switch(action.type){
+    case CHANGE_ALLSTATIONS:
     return action.payload;
   default:
     return state;
