@@ -35,7 +35,7 @@ class TopBarChat extends React.Component {
 
   // Als er op de terug knop wordt geklikt, wordt de huidige chatroom ""
   changeChatroom = () =>{
-    this.props.changeChatroomClicked("");
+    this.props.changeChatroomClicked([]);
     console.log(this.props.chatroomClicked);
   }
 

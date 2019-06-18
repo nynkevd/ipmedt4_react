@@ -10,15 +10,36 @@ import './MessageList.css';
 
 class MessageList extends React.Component {
 
+  componentDidMount(){
+    this.scrollToBottom();
+
+    this.state = ({
+      filteredMessages: "",
+    })
+  }
+
   componentDidUpdate(){
     // Zodra de pagina wordt geopend, en als er een nieuw bericht is, scrollt de pagina automatisch naar beneden
     this.scrollToBottom();
   }
 
+  filterMessages = () => {
+    var filteredMessages = this.props.messageList.filter(message =>
+      message.roomId == this.props.clickedChatroom.id);
+
+    this.setState({
+      filteredMessages: filteredMessages,
+    })
+  }
+
   scrollToBottom = () => {
-    const position = this.props.messageList.length - 1;
-    const lastMessageId = this.props.messageList[position].id;
+    var filteredMessages = this.props.messageList.filter(message =>
+      message.roomId == this.props.clickedChatroom.id);
+
+    const position = filteredMessages.length - 1;
+    const lastMessageId = filteredMessages[position].id;
     const lastMessageElement = document.getElementById(lastMessageId);
+
 
     lastMessageElement.scrollIntoView();
 
@@ -42,7 +63,9 @@ class MessageList extends React.Component {
       <div className="messageContainer">
         <ul className="messageList">
           {
-            this.props.messageList.map((message) =>
+            this.props.messageList.filter(message =>
+              message.roomId == this.props.clickedChatroom.id)
+            .map((message) =>
               <li className="messageList__item" key={message.id} id={message.id}><Message message={message}/></li>
             )
           }

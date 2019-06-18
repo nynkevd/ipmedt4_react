@@ -177,14 +177,16 @@ export const profilePictureList = (state=[], action) =>{
 }
 
 // ChatroomCard pagina
-export const clickedChatroom = (state=[], action) =>{
+export const clickedChatroom = (state="hoi", action) =>{
   switch(action.type){
     case CHANGE_CHATROOMCLICKED:
-    return action.payload;
-  default:
-    return state;
+    console.log(action.payload);
+      return action.payload;
+    default:
+      return state;
   }
 }
+
 // SetUpAccount pagina
 export const myInterests = (state=[], action) =>{
   switch(action.type){
@@ -235,9 +237,18 @@ export const addOrDeleteFriend = (state="", action) =>{
 export const messageList = (state=[], action) =>{
   switch(action.type){
     case CHANGE_MESSAGELIST:
+      //console.log(action.payload.roomId);
+      var roomId = action.payload.roomId;
       var messages = [...state, action.payload];
+
+
+      // var messages = Object.assign({}, state, {
+      //   roomId: action.payload,
+      // })
       console.log(messages);
       return messages;
+
+
   default:
     return state;
   }

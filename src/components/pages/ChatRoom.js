@@ -24,7 +24,6 @@ class ChatRoom extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      messageList: [],
       test: "a",
     }
   }
@@ -41,11 +40,9 @@ class ChatRoom extends React.Component {
       message.roomId == this.props.clickedChatroom.id
     )
 
-    this.setState({
-      messageList: messagesFiltered,
-    })
+    return messagesFiltered;
 
-    console.log(this.state.messageList);
+    //console.log(this.state.messageList);
   }
 
   render(){
@@ -54,7 +51,7 @@ class ChatRoom extends React.Component {
           <div id="chatroom-activity">
             <TopBarChat />
             {/* roomId en currentUser worden meegegeven als variabelen, dit moet uiteindelijk met redux gedaan worden*/}
-            <MessageList messageList={this.state.messageList} roomId={this.props.clickedChatroom.id} currentUser={this.props.chatKitUser}/>
+            <MessageList messageList={this.props.messageList} roomId={this.props.clickedChatroom.id} currentUser={this.props.chatKitUser} clickedChatroom={this.props.clickedChatroom}/>
             <SendMessage />
           </div>
         </div>

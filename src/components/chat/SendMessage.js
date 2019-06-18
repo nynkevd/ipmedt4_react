@@ -22,6 +22,7 @@ class SendMessage extends React.Component {
   }
 
   sendMessage = message => {
+    console.log(this.props.clickedChatroom);
     // currentUser is een object van de huidige gebruiker
     const currentUser = this.props.chatKitUser;
     // Het id van de room waar de gebruiker op dit moment in zit
