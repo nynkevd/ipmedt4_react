@@ -9,6 +9,9 @@ import {
   changeChatroomClicked,
 } from './../../actions';
 
+// CSS importeren
+import './ChatButton.css';
+
 class ChatButton extends React.Component{
   constructor(props){
     super(props);
