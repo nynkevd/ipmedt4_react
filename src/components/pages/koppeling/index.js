@@ -70,10 +70,10 @@ app.get('/users', (req,res) => {
 });
 // verander de waarden van de profielfoto, de van en de naar (reistraject)
 app.get('/userinfo/update', (req,res) => {
-  const {username, profile_picture, travelFrom, travelTo} = req.query;
+  const {username, profile_picture, travel_from, travel_to} = req.query;
   const editProfilePicture = `UPDATE user_info SET profile_picture = '${profile_picture}' WHERE username = '${username}';
-                              UPDATE user_info SET travelTo = '${travelTo}' WHERE username = '${username}';
-                              UPDATE user_info SET travelFrom = '${travelFrom}' WHERE username = '${username}';`
+                              UPDATE user_info SET travel_to = '${travel_to}' WHERE username = '${username}';
+                              UPDATE user_info SET travel_from = '${travel_from}' WHERE username = '${username}';`
   connection.query(editProfilePicture, (err,results) =>{
     if(err){
       return res.send(err)
@@ -99,7 +99,7 @@ app.get('/travelinfo', (req,res) => {
 // Verander de waarde van de firstlogin naar 0
 app.get('/updatefirstlogin', (req,res) =>{
   const {username} = req.query;
-  const updateFirstLogin = `UPDATE accounts SET firstlogin=0 WHERE username='${username}';`
+  const updateFirstLogin = `UPDATE accounts SET first_login=0 WHERE username='${username}';`
   connection.query(updateFirstLogin, (err,results) => {
     if(err){
       return res.send(err);
@@ -113,7 +113,7 @@ app.get('/updatefirstlogin', (req,res) =>{
 // Vraag de waarde van de firstlogin op
 app.get('/getfirstlogin', (req,res) =>{
   const {username} = req.query;
-  const getFirstLoginFromUser = `SELECT firstlogin FROM accounts WHERE username='${username}';`
+  const getFirstLoginFromUser = `SELECT first_login FROM accounts WHERE username='${username}';`
   connection.query(getFirstLoginFromUser, (err,results) => {
     if(err){
       return res.send(err);
@@ -180,8 +180,8 @@ app.get('/user_interests/delete', (req, res) =>{
 
 //voeg een gebruiker aan de de user_info tabel toe
 app.get('/user_info/add', (req, res) =>{
-  const {username,profile_picture, travelFrom, travelTo, age } = req.query;
-  const insertUserInfoIntoDatabase = `INSERT INTO user_info ( username, profile_picture, travelFrom, travelTo, age  ) VALUES('${username}','${profile_picture}','${travelFrom}','${travelTo}', '19' )`
+  const {username,profile_picture, travel_from, travel_to, age } = req.query;
+  const insertUserInfoIntoDatabase = `INSERT INTO user_info ( username, profile_picture, travel_from, travel_to, age  ) VALUES('${username}','${profile_picture}','${travel_from}','${travel_to}', '19' )`
   connection.query(insertUserInfoIntoDatabase, (err, results) =>{
     if(err){
       return res.send(err);
@@ -193,7 +193,7 @@ app.get('/user_info/add', (req, res) =>{
 
 //vraag de opgeslagen interesses op van een gebruiker
 app.get('/user_interests/get', (req, res) =>{
-  const {username,profile_picture, travelFrom, travelTo, age } = req.query;
+  const {username,profile_picture, travel_from, travel_to, age } = req.query;
   const getUserInterests = `SELECT interest FROM user_interests WHERE username = '${username}';`
   connection.query(getUserInterests, (err, results) =>{
     if(err){
