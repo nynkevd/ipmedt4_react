@@ -1,21 +1,21 @@
 .friendsListPageContainer {
-  margin-top: 11vh;
-  margin-bottom: 173px;
+  padding-top: 55px;
+  padding-bottom: 71px;
 }
 
 .friend {
   align-items: center;
 }
 
-/*
-.friendsListPageContainer2 {
-  margin-top: 8vh;
+#nofriends p {
+  text-align: center;
+  font-size: 1.5em;
+  margin-top: 1em;
 }
 
-.friendsListPageContainer3 {
-  margin-top: -14%;
+#sadLogoFriends {
+  margin-top: 1em;
+  margin-left: auto;
+  width: 70vw;
+  margin-left: 15vw;
 }
-
-.LineBetweenFriends {
-  margin-top: 29%;
-} */

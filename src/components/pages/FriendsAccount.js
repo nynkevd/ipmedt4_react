@@ -2,69 +2,31 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-// ToastManager importeren
-// import toast from 'toasted-notes';
 
 // Redux importeren
 import { connect } from "react-redux";
 import {
   changeUserName,
   changeChatKitUser,
+  changeUserInterests,
   changeChosenFriend,
   changeLoggedIn,
   changeAllUserFriends,
   changeAddOrDeleteFriend,
 } from './../../actions';
 
+// CSS importeren
+import './FriendsAccount.css';
+
 // Eigen componenten importeren
 import UserInfo from '../friendsAccount/UserInfo';
 import Interests from '../account/Interests';
 import TravelRoute from '../account/TravelRoute';
 import FriendButton from '../friendsAccount/FriendButton';
+import ChatButton from '../friendsAccount/ChatButton';
+import TopBarFriendsAccount from '../friendsAccount/TopBarFriendsAccount';
 
-// const onClick = () => {
-//   const currentUser = props.chatKitUser;
-//   const rooms = currentUser.rooms;
-//   const selectedUser = "nynke";//props.user.toLowerCase();
-//   const roomName = currentUser.id + "_" + selectedUser;
-//   const users = [selectedUser, currentUser.id];
-//   var messageList = [];
-//
-//   if(!checkIfRoomExists(rooms, users)){
-//     createRoom(currentUser, roomName, selectedUser);
-//     // currentUser.subscribeToRoom({
-//     // })
-//   }else{
-//     // En join de room
-//   }
-// }
-//
-// const checkIfRoomExists = (rooms, users) => {
-//   var exists = false
-//   rooms.forEach(function(room){
-//     if(room.customData && room.customData.isDirectMessage){
-//       const roomUsers = room.customData.userIds;
-//       if(roomUsers.sort().join('') === users.sort().join('')){
-//         exists = true;
-//       }
-//     }
-//   });
-//
-//   return exists;
-// }
-//
-// const createRoom = (currentUser, roomName, selectedUser) => {
-//   currentUser.createRoom({
-//     name: roomName,
-//     private: true,
-//     addUserIds: [selectedUser],
-//     customData: {
-//       isDirectMessage: true,
-//       userIds: [currentUser.id, selectedUser]
-//     }
-//   });
-// }
-const base_url = "http://136.144.230.97:8080/api/";
+const base_url = "https://api.ovtravelbuddy.nl/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
 class FriendsAccount extends React.Component {
@@ -83,6 +45,7 @@ class FriendsAccount extends React.Component {
 
   componentDidMount(){
     this.getChosenFriendInfoFromApi();
+    this.getUserInterestsFromApi(base_url, api_token);
     // this.getUserFriendsFromApi();
     this.checkIfFriend();
     console.log(this.props.allUserFriends);
@@ -126,34 +89,33 @@ class FriendsAccount extends React.Component {
     });
   }
 
+  getUserInterestsFromApi = (base_url, api_token) => {
+    axios.get(base_url + "interests/" + this.props.userName + api_token).then(res => {
+      this.props.changeUserInterests(res.data);
+    });
+  }
+
   updateComp = _ => {
     console.log("re-render vanuit comp");
     this.forceUpdate();
   }
   render(){
-  // let notify = toast.notify("Vriend toegevoegd");
+    console.log(this.state.userTravelTo);
   return this.props.loggedIn
-  ?   // TopBar
-      // Account -> Profielfoto, naam, reistraject, interesses
-      // Knoppen Voeg Toe en Chat
-      <div>
+  ?  <div>
+      <TopBarFriendsAccount />
         <div className="accountPageContainer">
           <UserInfo profielfoto={this.state.userProfilePicture} naam={this.props.chosenFriend} />
           <TravelRoute from={this.state.userTravelFrom} to={this.state.userTravelTo} />
-
+          <Interests interests={this.props.userInterests} />
         </div>
         <div className="buttonsAddAndChat">
-        {/* / Als je op de knop drukt, wordt deze persoon aan je FriendsList toegevoegd.*/}
-          <FriendButton friend={this.props.chosenFriend} buttonClass={this.state.buttonClass} buttonText={this.state.buttonText} onSubmit={this.updateComp}> </FriendButton>
-
+        {/* Als je op de knop drukt, wordt deze persoon aan je FriendsList toegevoegd.*/}
+          <FriendButton className="buttonsAddAndChat__addButton" friend={this.props.chosenFriend} buttonClass={this.state.buttonClass} buttonText={this.state.buttonText} onSubmit={this.updateComp}> </FriendButton>
           {/* Als je op de knop drukt, wordt er een room aangemaakt en kom je in die room
            Als de room al bestaat, dan ga je gewoon naar die room toe */}
-          <button
-            className="button--chat"
-            type="submit"
-            value="Chat"
-            onClick={this.onClick} />
-          </div>
+          <ChatButton className="buttonsAddAndChat__chatButton" chosenFriend={this.props.chosenFriend} currentUser={this.props.chatKitUser}></ChatButton>
+        </div>
       </div>
       : <Redirect to="/login" />
 }
@@ -163,6 +125,7 @@ const mapStateToProps = state =>{
   return {
     userName: state.userName,
     chatKitUser: state.chatKitUser,
+    userInterests: state.userInterests,
     clickedChatroom: state.clickedChatroom,
     chosenFriend: state.chosenFriend,
     loggedIn: state.loggedIn,
@@ -174,6 +137,7 @@ const mapStateToProps = state =>{
 export default connect(mapStateToProps,{
   changeUserName: changeUserName,
   changeChatKitUser: changeChatKitUser,
+  changeUserInterests: changeUserInterests,
   changeChosenFriend: changeChosenFriend,
   changeLoggedIn: changeLoggedIn,
   changeAllUserFriends: changeAllUserFriends,

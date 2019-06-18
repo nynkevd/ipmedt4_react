@@ -7,13 +7,16 @@ import {
   changeChatKitUser,
 } from './../../actions';
 
+// CSS Importeren
+import './TopBarFriendsAccount.css';
+
 const TopBarFriendsAccount = () => {
   return(
     <div className="topBarFriendsAccount">
       <Link to='/friendslist' className="friendsList">
         <img className="topBarFriendsAccount__back" src="./img/icons/arrow_back.svg" alt="Terug" />
       </Link>
-      <p className="topBarFriendsAccount__text">{props.chatKitUser}</p>
+      <p className="topBarFriendsAccount__text"></p>
     </div>
   );
 }

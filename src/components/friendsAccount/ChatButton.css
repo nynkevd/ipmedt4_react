@@ -1,14 +1,17 @@
-#button__AOD{
+.button_chat{
   width: 45%;
   padding: 10px;
-  margin: auto;
-  margin-top: 1.5em;
-  margin-bottom: 0;
   border: none;
   border-radius: 5px;
   font-size: 1em;
   color: #000;
   background-color: #FCC63F;
   box-shadow: 5px 5px 5px #CDCDCD;
+  margin-left: 11.3em;
   position: absolute;
+  margin-top: 1.5em;
+}
+
+.linkChatButton{
+  text-decoration: none;
 }

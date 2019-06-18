@@ -1,12 +1,15 @@
+// React importeren
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Redux importeren
 import { connect } from "react-redux";
 import {
   changeUserName,
   changeAddOrDeleteFriend,
 } from "./../../actions";
 
+// CSS importeren
 import './FriendButton.css';
 
 class FriendButton extends React.Component{
@@ -36,18 +39,19 @@ class FriendButton extends React.Component{
 
   befriend = _ => {
     console.log("ik wil vriendjes zijn met " + this.state.friend);
-    fetch(`http://136.144.230.97:4000/friends/add?username=${this.props.userName}&friend=${this.state.friend}`)
+    fetch(`https://dataserver.ovtravelbuddy.nl/friends/add?username=${this.props.userName}&friend=${this.state.friend}`)
   }
 
   unfriend = _ => {
     console.log("ik wil geen vriendjes meer zijn met " + this.state.friend);
-    fetch(`http://136.144.230.97:4000/friends/delete?username=${this.props.userName}&friend=${this.state.friend}`)
+    fetch(`https://dataserver.ovtravelbuddy.nl/friends/delete?username=${this.props.userName}&friend=${this.state.friend}`)
   }
 
   render(){
     return(
-       <button id="button__AOD" className={this.props.buttonClass} onClick={this.addOrDeleteFriend}> {this.props.buttonText} </button>
-
+      <Link className="linkFriendButton" to="/friendsList">
+        <button id="button__AOD" className={this.props.buttonClass} onClick={this.addOrDeleteFriend}> {this.props.buttonText} </button>
+      </Link>
     )
   }
 }

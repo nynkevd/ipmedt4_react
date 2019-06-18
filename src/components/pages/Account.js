@@ -22,7 +22,7 @@ import TravelRoute from '../account/TravelRoute';
 //CSS importeren
 import './Account.css';
 
-const base_url = "http://136.144.230.97:8080/api/";
+const base_url = "https://api.ovtravelbuddy.nl/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
 class Account extends React.Component{
@@ -51,10 +51,10 @@ class Account extends React.Component{
   }
 //info ophalen uit de database en de van en naar vullen.
   getTravelInfoFromDatabase(){
-    axios.get(`http://136.144.230.97:4000/travelinfo?username=${this.props.userName}`)
+    axios.get(`https://dataserver.ovtravelbuddy.nl/travelinfo?username=${this.props.userName}`)
       .then(res => {
-        this.props.changeUserTravelTo(res.data.data[0].travelTo);
-        this.props.changeUserTravelFrom(res.data.data[0].travelFrom);
+        this.props.changeUserTravelTo(res.data.data[0].travel_to);
+        this.props.changeUserTravelFrom(res.data.data[0].travel_from);
       })
         .catch(err => console.error(err))
   }

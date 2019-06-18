@@ -18,6 +18,8 @@ import './Login.css';
 
 //Hash wachtwoord
 const md5 = require('md5');
+//Variable om bij te houden of er een error is
+var error = null;
 
 class Login extends React.Component{
   constructor(props){
@@ -28,9 +30,15 @@ class Login extends React.Component{
     }
   }
 
+  componentDidMount(){
+    this.showHideErrorMessage();
+    //De uitlog knop op display none zetten
+    document.getElementById("link").classList.add("topBar__link--hidden");
+  }
+
   getUserInfoFromDatabase = _ => {
     //Checken van ingevoerde wachtwoord met de database
-    axios.get(`http://136.144.230.97:4000/login?username=${this.props.userName}`)
+    axios.get(`https://dataserver.ovtravelbuddy.nl/login?username=${this.props.userName}`)
       .then(response => this.props.changeCheckPassword(response.data.data[0].password))
         .catch(err => console.error(err))
   }
@@ -47,11 +55,12 @@ class Login extends React.Component{
   onSubmit = event => {
     event.preventDefault();
     this.getFirstLoginFromUser();
+    this.validatePasswordInput();
   }
 
   getFirstLoginFromUser(){
-    axios.get(`http://136.144.230.97:4000/getfirstlogin?username=${this.props.userName}`)
-      .then(response => (this.setState({firstLoggedInNumber: parseInt(response.data.data[0].firstlogin)})))
+    axios.get(`https://dataserver.ovtravelbuddy.nl/getfirstlogin?username=${this.props.userName}`)
+      .then(response => (this.setState({firstLoggedInNumber: parseInt(response.data.data[0].first_login)})))
         .catch(err => console.error(err))
     this.checkValueFirstLogin();
   }
@@ -72,15 +81,27 @@ class Login extends React.Component{
   validatePasswordInput(){
     if(this.props.checkPassword === md5(this.props.inputPasswordLogin)){
       this.props.changeLoggedIn(true);
+      error = false;
       return true;
     } else {
       this.props.changeLoggedIn(false);
+      error = true;
       return false;
     }
   }
 
+  //Error message tonen als de gebruikersnaam/wachtwoord onjuist is
+  showHideErrorMessage(){
+    if(error){
+      document.getElementById("loginErrorMessage").classList.remove("hideErrorMessageLogin");
+      this.props.changeInputPasswordLogin("");
+    } else{
+      document.getElementById("loginErrorMessage").classList.add("hideErrorMessageLogin");
+    }
+  }
+
   render() {
-    console.log(this.state.firstloggedin)
+    // console.log(this.state.firstloggedin)
     return this.state.firstloggedin
       ? <div>
         <TopBar />
@@ -108,8 +129,8 @@ class Login extends React.Component{
                 className="button--login"
                 type="submit"
                 value="Login"
-                onClick={this.onSubmit}
-                disabled={!this.validatePasswordInput()}/>
+                onClick={this.onSubmit}/>
+            <label className="errorMessageLogin hideErrorMessageLogin" id="loginErrorMessage">De gebruikersnaam of wachtwoord is onjuist</label>
             <div className="containerFormItem">
               <p className="text text--noAccount">Nog geen account?</p>
               <Link to="/register" className="text text--register">Klik hier om te registreren</Link>

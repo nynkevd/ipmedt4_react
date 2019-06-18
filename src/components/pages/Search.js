@@ -1,6 +1,6 @@
 //React en benodigheden importeren
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from "axios";
 import Chatkit from '@pusher/chatkit-client';
 //Redux importeren
@@ -27,7 +27,7 @@ class Search extends React.Component{
     const chatManager = new Chatkit.ChatManager({
         instanceLocator: 'v1:us1:a6e72788-6919-4ade-a86a-7beeaa73aa7d',
         userId: this.props.userName,
-        tokenProvider: new Chatkit.TokenProvider({ url: 'http://136.144.230.97:5200/authenticate' }),
+        tokenProvider: new Chatkit.TokenProvider({ url: 'https://chatserver.ovtravelbuddy.nl/authenticate' }),
     });
     chatManager.connect().then(currentUser => {
       this.props.changeChatKitUser(currentUser);
@@ -45,27 +45,36 @@ class Search extends React.Component{
   }
 
   getMatchesFromSessionUser = username => {
-    const base_url = "http://136.144.230.97:8080/api/match/";
+    const base_url = "https://api.ovtravelbuddy.nl/api/match/";
     const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
     //Matches ophalen
     axios.get(base_url + username + api_token).then(res => {
       this.props.changeMatches(res.data);
     });
 
-    axios.get("http://136.144.230.97:8080/api/friends/" + username + api_token).then(res => {
+    axios.get("https://api.ovtravelbuddy.nl/api/friends/" + username + api_token).then(res => {
       console.log(res.data);
       this.props.changeAllUserFriends(res.data);
     });
   };
 
   render(){
+    console.log(Object.keys(this.props.matches).length);
     return this.props.loggedIn
     ? <div>
         <TopBar />
         <div className="searchPageContainer">
-          <h1>Welkom {this.props.userName}</h1>
-          <h3>Dit zijn jouw matches:</h3>
-          <Matches matches={this.props.matches}></Matches>
+          {Object.keys(this.props.matches).length > 0 ?
+            <div>
+              <h3>Dit zijn jouw matches:</h3>
+              <Matches matches={this.props.matches}></Matches>
+            </div>
+            :
+            <div id="nomatches">
+              <p> Je hebt geen matches </p>
+              <Link to="/editaccount"> <img id="sadLogo" src="./img/logoSadIntrest.svg" alt="Travel Buddy Sad Logo"/> </Link>
+            </div>
+          }
         </div>
         <BottomNav />
       </div>

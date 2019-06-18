@@ -12,21 +12,32 @@ import {
   changeUserTravelFrom,
   changeUserTravelTo,
   changeProfilePictureList,
+  changeMyInterests,
+  changeChosenInterest,
 } from "./../../actions";
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
 import ProfilePictureList from '../editAccount/ProfilePictureList';
 import EditTravelRoute from '../editAccount/EditTravelRoute';
+import {fillAddedInterests} from '../methods.js';
 //CSS importeren
 import './AccountEdit.css';
 
-const base_url = "http://136.144.230.97:8080/api/";
+const base_url = "https://api.ovtravelbuddy.nl/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
+var temp_interests;
+var interests;
+var added = [];
+var chosenInterests = [];
 
 class AccountEdit extends React.Component{
+  temp_interests = [];
+  interests = [];
 
   componentDidMount(){
     this.getProfilePictureList();
+    this.getRemainingInterestsFromAPI();
+    this.added = [];
   }
 
   //Lijst van alle profielfoto's opvragen van API
@@ -43,9 +54,21 @@ class AccountEdit extends React.Component{
     this.props.changeUserTravelTo(this.props.userTravelTo);
     this.props.changeUserTravelFrom(this.props.userTravelFrom);
 
-    axios.get(`http://136.144.230.97:4000/userinfo/update?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}`)
+    if(!chosenInterests.includes(this.props.chosenInterest)){
+      chosenInterests.push(this.props.chosenInterest);
+    }
+
+    axios.get(`https://dataserver.ovtravelbuddy.nl/userinfo/update?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}`)
       .then(this.getUserInfo)
         .catch(err => console.error(err))
+
+    this.deleteInterestsFromDatabase();
+
+    for(let a = 0; a < chosenInterests.length; a++){
+    axios.get(`https://dataserver.ovtravelbuddy.nl/user_interests/add?username=${this.props.userName}&interest=${chosenInterests[a]}`)
+      .then(console.log("Interesse toegevoegd"))
+        .catch(err => console.error(err))
+    }
   }
 
   //De gegevens van de user ophalen van de API
@@ -90,10 +113,46 @@ class AccountEdit extends React.Component{
     }
   }
 
-  //Later toevoegen:
-  // <UserName username={this.state.username} onSubmit={this.onUsernameChange}/>
+  deleteOnClick = (event) => {
+    var deleteItem = document.getElementById(event.target.id).id;
+    console.log(deleteItem)
+    document.getElementById(deleteItem).parentElement.setAttribute("class", "hidden");
+    //verwijderde items in array stoppen
+    this.temp_interests.push(deleteItem);
+    console.log(this.temp_interests)
+  }
 
+  deleteInterestsFromDatabase(){
+    for(let i = 0; i < this.temp_interests.length; i ++){
+      axios.get(`https://dataserver.ovtravelbuddy.nl/user_interests/delete?username=${this.props.userName}&interest=${this.temp_interests[i]}` )
+        .then(console.log("deleted"))
+          .catch(err => console.error(err))
+        }
+  }
+
+  getRemainingInterestsFromAPI = () => {
+    console.log(this.props.userInterests);
+    this.interests = [];
+    axios.get(base_url + "interests/" + api_token)
+      .then(res => {
+        for(let i = 0; i < res.data.length; i++){
+          if(!(this.props.userInterests.includes(res.data[i].toString()))){
+            this.interests.push((res.data[i]).toString());
+          }
+        }
+      });
+  }
+
+  onChangeChosenInterest = event => {
+    this.props.changeChosenInterest(event.target.value);
+    if(!chosenInterests.includes(this.props.chosenInterest)){
+      if(this.props.chosenInterest !== "" && this.props.chosenInterest !== "Kies een interesse"){
+          chosenInterests.push(this.props.chosenInterest);
+      }
+    }
+  }
   render(){
+    console.log(chosenInterests)
     return this.props.loggedIn
       ? <div>
         <TopBar />
@@ -103,13 +162,29 @@ class AccountEdit extends React.Component{
           <ProfilePictureList pictureList={this.props.profilePictureList} click={this.pictureOnClick}/>
 
           <EditTravelRoute van={this.props.userTravelFrom} naar={this.props.userTravelTo} from={this.setTravelFrom} to={this.setTravelTo}/>
-
+          <h2>Uw interesses</h2>
+          <div id="interestsList">
+            {
+              this.props.userInterests.map((interest, index) =>
+              <div>
+                    <p className="interest--p" key={index}>{interest}</p>
+                    <img onClick={this.deleteOnClick} id={interest} className="icon test" src="./img/icons/trash.svg" alt="verwijder item" />
+              </div>
+              )
+              }
+          </div>
+          <select className="choose-interests" value={this.props.chosenInterest} onChange={this.onChangeChosenInterest}>
+            {this.interests.map((interest) =>
+              <option value={interest} key={interest}>{interest}</option>
+            )}
+          </select>
+          {fillAddedInterests(this.props.chosenInterest)}
+          <p className="errorMessageSetUp hideErrorMessageSetUp" id="intrestErrorMessage">Interesse is al toegevoegd</p>
           <div className="next">
               <Link to="/account"><button className="button" onClick={this.updateUserInfo}>Bevestig</button></Link><br /><br />
               <Link to="/account" id="back"><p>Terug naar account</p></Link>
           </div>
-
-        </div>
+      </div>
       </div>
       //Naar de login pagina sturen als er niet ingelogd is
       : <Redirect to="/login" />
@@ -125,6 +200,8 @@ const mapStateToProps = state =>{
     userTravelFrom: state.userTravelFrom,
     userTravelTo: state.userTravelTo,
     profilePictureList: state.profilePictureList,
+    chosenInterest: state.chosenInterest,
+    myInterests: state.myInterests,
   };
 }
 
@@ -136,4 +213,6 @@ export default connect(mapStateToProps,{
   changeUserTravelFrom: changeUserTravelFrom,
   changeUserTravelTo: changeUserTravelTo,
   changeProfilePictureList: changeProfilePictureList,
+  changeChosenInterest: changeChosenInterest,
+  changeMyInterests: changeMyInterests,
 })(AccountEdit);
