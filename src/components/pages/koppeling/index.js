@@ -166,18 +166,6 @@ app.get('/user_interests/add', (req, res) =>{
   });
 });
 
-app.get('/user_interests/delete', (req, res) =>{
-  const {username,interest} = req.query;
-  const deletetUserInterestsFromDatabase = `DELETE FROM user_interests WHERE user = '${username}' AND interest = '${interest}')`
-  connection.query(deletetUserInterestsFromDatabase, (err, results) =>{
-    if(err){
-      return res.send(err);
-    }else{
-      return res.send('Succesfully deleted an interest');
-    }
-  });
-});
-
 //voeg een gebruiker aan de de user_info tabel toe
 app.get('/user_info/add', (req, res) =>{
   const {username,profile_picture, travel_from, travel_to, age } = req.query;

@@ -1,38 +1,34 @@
 // React en benodigdheden importeren
 import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 // Redux importeren
 import { connect } from "react-redux";
 import {
   changeChatKitUser,
   changeChatroomClicked,
 } from "./../../actions";
+
 // getRoomName methode importeren
 import {getRoomName} from './methodsChat.js';
+
 //Eigen componenten importeren
 import UnreadMessageCount from './UnreadMessageCount';
+
 // css importeren
 import './ChatRoomCard.css';
-
-const base_url = "https://api.ovtravelbuddy.nl/api/";
-const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 
 class ChatRoomCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: props.id,
+      id:props.id,
       lastMessage: "",
       lastMessageTime: "",
-      room: props.room,
-      picture: "",
     };
   }
 
   componentDidMount(){
     this.getLastMessage();
-    this.getProfilePicture();
   }
 
   getLastMessage(){
@@ -55,6 +51,7 @@ class ChatRoomCard extends React.Component {
 
   getLastMessageTime(message){
     // Deze functie is echt veeel te lang
+
     var createdAt = message.createdAt;
 
     // Datum van het laatste bericht
@@ -69,22 +66,6 @@ class ChatRoomCard extends React.Component {
     // Zet een 0 voor de tijd
     time[0] = ("0" + time[0]).slice(-2);
     time[1] = ("0" + time[1]).slice(-2);
-
-    //2 uur bij de tel optellen
-    switch (time[0]){
-      case "22":
-        time[0] = "00";
-        break;
-      case "23":
-        time[0] = "01";
-        break;
-      case "24":
-        time[0] = "02";
-        break;
-      default:
-        time[0] = parseInt(time[0])+2;
-        break;
-    }
 
     // Datum van vandaag
     var d = new Date();
@@ -107,18 +88,11 @@ class ChatRoomCard extends React.Component {
     this.props.changeChatroomClicked(this.props.room);
   }
 
-  getProfilePicture = () =>{
-    axios.get(base_url + "userinfo/" + getRoomName(this.state.room, this.props.chatKitUser) + api_token).then(res => {
-      this.setState({picture: res.data.picture});
-    });
-  }
-
   render(){
     return(
       <Link to='/chatRoom' className="chatCardLink">
         <div className="chatCardContainer" onClick={this.onClick}>
           <div>
-            <img className="chatCardContainer__img" src={"https://api.ovtravelbuddy.nl" + this.state.picture} alt="Profielfoto"/>
             <h3 className="chatCardContainer__name">{getRoomName(this.props.room, this.props.chatKitUser)}</h3>
             <p className="chatCardContainer__message">{this.state.lastMessage}</p>
             <span className="chatCardContainer__time">{this.state.lastMessageTime}</span>

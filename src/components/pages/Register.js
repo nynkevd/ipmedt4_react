@@ -23,8 +23,6 @@ class Register extends React.Component{
 
   componentDidMount(){
     this.setUserValuesToEmpty();
-    //De uitlog knop op display none zetten
-    document.getElementById("link").classList.add("topBar__link--hidden");
   }
 
   //Zet de values van de user leeg

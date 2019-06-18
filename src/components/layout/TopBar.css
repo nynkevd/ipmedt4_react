@@ -3,30 +3,23 @@
   width: 100%;
   position: fixed;
   background-color: #FCC63F;
-  height: 55px;
+  height: 8vh;
   margin-bottom: 4vh;
   z-index: 100;
-  &__img {
-    height: 100%;
-    position: relative;
-    margin: 0 3%;
-    &--logout {
-      height: 45%;
-      top: 50%;
-      transform: translate(0, -50%);
-      float: right;
-    }
-  }
-  &__text {
-    font-size: 1.3em;
-    position: absolute;
-    top: 50%;
-    left: 20%;
-    transform: translate(0, -50%);
-  }
-  &__link--hidden {
-    display: none;
-  }
+}
+
+.topBar__img {
+  height: 100%;
+  position: absolute;
+  margin-left: 3%;
+}
+
+.topBar__text {
+  font-size: 1.3em;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(0, -50%);
 }
 
 @media(width: 768px) {

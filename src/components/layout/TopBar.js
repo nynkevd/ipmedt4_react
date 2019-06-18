@@ -1,8 +1,9 @@
-//React en benodigheden importeren
+//React importeren
 import React from 'react';
-import { Link } from 'react-router-dom';
-//SCSS importeren
-import './TopBar.scss';
+import {Link} from 'react-router-dom';
+
+//CSS importeren
+import './TopBar.css';
 
 const TopBar = () =>{
   return(
@@ -12,9 +13,6 @@ const TopBar = () =>{
       </Link>
 
       <p className="topBar__text">Travel Buddy</p>
-      <Link to="/" id="link">
-        <img className="topBar__img topBar__img--logout" src="./img/icons/logout.svg" alt="Uitloggen" />
-      </Link>
     </div>
   );
 }
