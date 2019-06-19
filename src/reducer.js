@@ -22,6 +22,7 @@ import {
   CHANGE_ALLUSERFRIENDS,
   CHANGE_ADDORDELETEFRIEND,
   CHANGE_ALLSTATIONS,
+  CHANGE_REMAININGINTERESTS,
  } from "./actions";
 
 //Username van de ingelogde gebruiker veranderen
@@ -235,6 +236,15 @@ export const addOrDeleteFriend = (state="", action) =>{
 export const allStations = (state="", action) =>{
   switch(action.type){
     case CHANGE_ALLSTATIONS:
+    return action.payload;
+  default:
+    return state;
+  }
+}
+
+export const remainingInterests = (state=[], action) =>{
+  switch(action.type){
+    case CHANGE_REMAININGINTERESTS:
     return action.payload;
   default:
     return state;

@@ -14,6 +14,7 @@ import {
   changeProfilePictureList,
   changeMyInterests,
   changeChosenInterest,
+  changeRemainingInterests,
 } from "./../../actions";
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
@@ -26,13 +27,18 @@ import './AccountEdit.css';
 const base_url = "https://api.ovtravelbuddy.nl/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 var temp_interests;
-var interests;
 var added = [];
 var chosenInterests = [];
 
 class AccountEdit extends React.Component{
   temp_interests = [];
-  interests = [];
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      interests: [],
+    }
+  }
 
   componentDidMount(){
     this.getProfilePictureList();
@@ -41,7 +47,7 @@ class AccountEdit extends React.Component{
     console.log(chosenInterests + " test interesses");
     chosenInterests = [];
     console.log(chosenInterests + "test na leeg");
-    interests = [];
+    this.state.interests = [];
   }
 
   //Lijst van alle profielfoto's opvragen van API
@@ -140,11 +146,12 @@ class AccountEdit extends React.Component{
   getRemainingInterestsFromAPI = () => {
     console.log(this.props.userInterests);
     this.interests = [];
-    axios.get(base_url + "interests/" + api_token)
+    axios.get(base_url + "interests" + api_token)
       .then(res => {
         for(let i = 0; i < res.data.length; i++){
           if(!(this.props.userInterests.includes(res.data[i].toString()))){
-            this.interests.push((res.data[i]).toString());
+            this.state.interests.push((res.data[i]).toString());
+            this.props.changeRemainingInterests(this.state.interests);
           }
         }
       });
@@ -161,6 +168,7 @@ class AccountEdit extends React.Component{
   }
   render(){
     console.log(chosenInterests);
+    console.log(this.props.remainingInterests);
     return this.props.loggedIn
       ? <div>
         <TopBar />
@@ -182,7 +190,7 @@ class AccountEdit extends React.Component{
               }
           </div>
           <select className="choose-interests" value={this.props.chosenInterest} onChange={this.onChangeChosenInterest}>
-            {this.interests.map((interest) =>
+            {this.props.remainingInterests.map((interest) =>
               <option value={interest} key={interest}>{interest}</option>
             )}
           </select>
@@ -211,6 +219,7 @@ const mapStateToProps = state =>{
     profilePictureList: state.profilePictureList,
     chosenInterest: state.chosenInterest,
     myInterests: state.myInterests,
+    remainingInterests: state.remainingInterests,
   };
 }
 
@@ -224,4 +233,5 @@ export default connect(mapStateToProps,{
   changeProfilePictureList: changeProfilePictureList,
   changeChosenInterest: changeChosenInterest,
   changeMyInterests: changeMyInterests,
+  changeRemainingInterests: changeRemainingInterests,
 })(AccountEdit);
