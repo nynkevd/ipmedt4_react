@@ -177,13 +177,13 @@ export const profilePictureList = (state=[], action) =>{
 }
 
 // ChatroomCard pagina
-export const currentChatroom = (state="hoi", action) =>{
+export const currentChatroom = (state="", action) =>{
   switch(action.type){
     case CHANGE_CURRENTCHATROOM:
-    console.log(action.payload);
+    //console.log(action.payload);
       return action.payload;
     default:
-      console.log("default " + state)
+      //console.log("default " + state)
       return state;
   }
 }
@@ -235,18 +235,19 @@ export const addOrDeleteFriend = (state="", action) =>{
 }
 
 // add message
-export const messageList = (state={}, action) =>{
+export const messageList = (state=[], action) =>{
   switch(action.type){
     case CHANGE_MESSAGELIST:
-      //console.log(action.payload.roomId);
-      // var roomId = action.payload.roomId;
-      // var messages = [...state, action.payload];
-      // console.log(messages);
-      // return messages;
-
-      //console.log(action.payload);
+    //In object zetten:
+      // if(state[action.payload.roomId] === undefined){
+      //   state[action.payload.roomId] = [action.payload.message];
+      // }else{
+      //   state[action.payload.roomId] = [...state[action.payload.roomId], action.payload.message];
+      // }
+      //
+      // return state;
       return action.payload;
-  default:
-    return state;
+    default:
+      return state;
   }
 }

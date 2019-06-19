@@ -35,16 +35,18 @@ class TopBarChat extends React.Component {
 
   // Als er op de terug knop wordt geklikt, wordt de huidige chatroom ""
   changeChatroom = () =>{
-    this.props.changeCurrentChatroom([]);
+    this.props.changeCurrentChatroom("");
     console.log(this.props.currentChatroom);
+
+    //redirect naar chat
   }
 
   render(){
     return(
       <div className="topBarChat">
-        <Link to='/chat' className="chatCardLink">
-          <img className="topBarChat__back" src="./img/icons/arrow_back.svg" alt="Terug"onClick={this.changeChatroom}/>
-        </Link>
+
+        <img className="topBarChat__back" src="./img/icons/arrow_back.svg" alt="Terug" onClick={this.changeChatroom}/>
+
         <img className="topBarChat__img" src={"https://api.ovtravelbuddy.nl" + this.state.picture} alt="Profielfoto"/>
         <p className="topBarChat__text">{getRoomName(this.props.currentChatroom, this.props.chatKitUser)}</p>
       </div>

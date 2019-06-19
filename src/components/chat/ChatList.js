@@ -8,7 +8,7 @@ import {
   changeLoggedIn,
   changeChatKitUser,
   changeMessageList,
-  changeChatroomClicked,
+  changeCurrentChatroom,
 } from "./../../actions";
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
@@ -26,54 +26,9 @@ class ChatList extends React.Component {
   }
 
   componentDidMount(){
-    console.log(this.props.clickedChatroom);
-    this.subscribeToRooms();
+    // console.log(this.props.currentChatroom);
+    // this.subscribeToRooms();
     this.mapRooms();
-  }
-
-  subscribeToRooms= () => {
-    var roomList = this.getRooms();
-
-    roomList.forEach(room => {
-      if(!this.props.chatKitUser.isSubscribedTo(room.id)){
-        this.props.chatKitUser.subscribeToRoom({
-          roomId: room.id,
-          messageLimit: 100,
-          hooks: {
-            onMessage: message => {
-              // console.log("nieuw bericht: " + message.text);
-              this.addMessageToList(message);
-              //this.props.changeMessageList(message);
-              //this.props.changeChatroomClicked("werkt dit?");
-
-              console.log(this.props.clickedChatroom);
-
-              if(this.props.clickedChatroom === []){
-                //console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                this.mapRooms();
-              }
-
-            }
-          }
-        })
-      }
-    })
-  }
-
-  addMessageToList = (message) => {
-    var messageList = this.props.messageList;
-    var roomId = message.roomId;
-
-    if(messageList[roomId] === undefined){
-      messageList[roomId] = [message];
-    }else{
-      messageList[roomId] = [...messageList[roomId], message];
-    }
-    //messageList[roomId] = message
-    // messageList.
-    // console.log(messageList)
-
-    this.props.changeMessageList(messageList);
   }
 
   getRooms = () => {
@@ -105,8 +60,7 @@ class ChatList extends React.Component {
   }
 
   render(){
-    return (this.props.loggedIn
-      ? <div>
+    return (<div>
         <TopBar />
         <div className="chatPageContainer">
           <ul>
@@ -117,8 +71,7 @@ class ChatList extends React.Component {
         </div>
         <BottomNav />
       </div>
-      //Naar de login pagina sturen als er niet ingelogd is
-      : <Redirect to="/login" />
+
     )
   }
 }
@@ -129,7 +82,7 @@ const mapStateToProps = state =>{
     loggedIn: state.loggedIn,
     chatKitUser: state.chatKitUser,
     messageList: state.messageList,
-    clickedChatroom: state.clickedChatroom,
+    currentChatroom: state.currentChatroom,
   };
 }
 

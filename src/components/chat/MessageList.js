@@ -5,6 +5,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import {
   changeMessageList,
+  changeCurrentChatroom,
 } from "./../../actions";
 //Eigen componenten importeren
 import Message from './Message';
@@ -17,6 +18,7 @@ class MessageList extends React.Component {
 
   componentDidMount(){
     this.scrollToBottom();
+    console.log(this.props.messageList[this.props.currentChatroom.id]);
   }
 
   componentDidUpdate(){
@@ -25,7 +27,10 @@ class MessageList extends React.Component {
   }
 
   scrollToBottom = () => {
-    var filteredMessages = this.props.messageList.filter(message =>
+    //var messages = this.props.messageList[this.props.currentChatroom.id];
+    //[this.props.currentChatroom.id]
+
+    var messages = this.props.messageList.filter(message =>
       message.roomId == this.props.currentChatroom.id);
 
     const position = messages.length - 1;
@@ -55,7 +60,9 @@ class MessageList extends React.Component {
       <div className="messageContainer">
         <ul className="messageList">
           {
-            this.props.messageList[this.props.currentChatroom.id]
+            /*this.props.messageList[this.props.currentChatroom.id]*/
+            this.props.messageList.filter(message =>
+              message.roomId == this.props.currentChatroom.id)
             .map((message) =>
               <li className="messageList__item" key={message.id} id={message.id}><Message message={message}/></li>
             )
@@ -69,9 +76,13 @@ class MessageList extends React.Component {
 const mapStateToProps = state =>{
   return {
     messageList: state.messageList,
+    currentChatroom: state.currentChatroom,
   };
 }
 
 export default connect(mapStateToProps,{
   changeMessageList: changeMessageList,
+  changeCurrentChatroom: changeCurrentChatroom,
 })(MessageList);
+
+//export default MessageList;

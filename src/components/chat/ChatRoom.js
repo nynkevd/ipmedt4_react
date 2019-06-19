@@ -32,12 +32,16 @@ class ChatRoom extends React.Component {
     // currentUser is een object van de huidige gebruiker van chatkit
     const currentUser = this.props.chatKitUser;
 
+    console.log(this.props.berichtjes[this.props.currentChatroom]);
+
+    //console.log(this.props.currentChatroom);
+
     //this.filterMessages();
   }
 
   filterMessages = () => {
     var messagesFiltered = this.props.messageList.filter(message =>
-      message.roomId == this.props.currentChatroom.id
+      message.roomId === this.props.currentChatroom.id
     )
 
     return messagesFiltered;
@@ -46,17 +50,14 @@ class ChatRoom extends React.Component {
   }
 
   render(){
-    return this.props.loggedIn
-      ?<div className="App">
+    return<div className="App">
           <div id="chatroom-activity">
             <TopBarChat />
             {/* roomId en currentUser worden meegegeven als variabelen, dit moet uiteindelijk met redux gedaan worden*/}
-            <MessageList messageList={this.props.messageList} roomId={this.props.currentChatroom.id} currentUser={this.props.chatKitUser} currentChatroom={this.props.currentChatroom}/>
+            <MessageList berichtjes={this.props.messageList[this.props.currentChatroom.id]} roomId={this.props.currentChatroom.id} currentUser={this.props.chatKitUser} currentChatroom={this.props.currentChatroom}/>
             <SendMessage />
           </div>
         </div>
-      //Naar de login pagina sturen als er niet ingelogd is
-      : <Redirect to="/login" />
   }
 
 }
