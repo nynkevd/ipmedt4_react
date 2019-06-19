@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import {
   changeLoggedIn,
   changeChatKitUser,
-  changeChatroomClicked,
+  changeCurrentChatroom,
   changeMessageList,
 } from "./../../actions";
 //Eigen componenten importeren
@@ -37,7 +37,7 @@ class ChatRoom extends React.Component {
 
   filterMessages = () => {
     var messagesFiltered = this.props.messageList.filter(message =>
-      message.roomId == this.props.clickedChatroom.id
+      message.roomId == this.props.currentChatroom.id
     )
 
     return messagesFiltered;
@@ -50,7 +50,8 @@ class ChatRoom extends React.Component {
       ?<div className="App">
           <div id="chatroom-activity">
             <TopBarChat />
-            <MessageList roomId={this.props.clickedChatroom.id} currentUser={this.props.chatKitUser} clickedChatroom={this.props.clickedChatroom}/>
+            {/* roomId en currentUser worden meegegeven als variabelen, dit moet uiteindelijk met redux gedaan worden*/}
+            <MessageList messageList={this.props.messageList} roomId={this.props.currentChatroom.id} currentUser={this.props.chatKitUser} currentChatroom={this.props.currentChatroom}/>
             <SendMessage />
           </div>
         </div>
@@ -64,7 +65,7 @@ const mapStateToProps = state =>{
   return {
     loggedIn: state.loggedIn,
     chatKitUser: state.chatKitUser,
-    clickedChatroom: state.clickedChatroom,
+    currentChatroom: state.currentChatroom,
     messageList: state.messageList,
   };
 }
@@ -72,5 +73,6 @@ const mapStateToProps = state =>{
 export default connect(mapStateToProps,{
   changeLoggedIn: changeLoggedIn,
   changeChatKitUser: changeChatKitUser,
+  changeCurrentChatroom: changeCurrentChatroom,
   changeMessageList: changeMessageList,
 })(ChatRoom);

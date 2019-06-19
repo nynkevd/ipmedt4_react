@@ -6,7 +6,7 @@ import axios from 'axios';
 import { connect } from "react-redux";
 import {
   changeChatKitUser,
-  changeChatroomClicked,
+  changeCurrentChatroom,
 } from "./../../actions";
 // getRoomName methode importeren
 import {getRoomName} from './methodsChat.js';
@@ -104,9 +104,7 @@ class ChatRoomCard extends React.Component {
   }
 
   onClick = () => {
-    console.log(this.props.room);
-    this.props.changeChatroomClicked(this.props.room);
-    //console.log(this.props.clickedChatroom);
+    this.props.changeCurrentChatroom(this.props.room);
   }
 
   getProfilePicture = () =>{
@@ -135,11 +133,11 @@ class ChatRoomCard extends React.Component {
 const mapStateToProps = state =>{
   return {
     chatKitUser: state.chatKitUser,
-    clickedChatroom: state.clickedChatroom,
+    currentChatroom: state.currentChatroom,
   };
 }
 
 export default connect(mapStateToProps,{
   changeChatKitUser: changeChatKitUser,
-  changeChatroomClicked: changeChatroomClicked,
+  changeCurrentChatroom: changeCurrentChatroom,
 })(ChatRoomCard);
