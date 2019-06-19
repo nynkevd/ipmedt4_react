@@ -76,7 +76,7 @@ class ChatButton extends React.Component{
         userIds: [currentUser.id, selectedUser]
       }
     }).then(room=> {
-      this.props.changeChatroomClicked(room);
+      //this.props.changeChatroomClicked(room);
       this.setState({
         redirect: <Redirect to='/chat' />
       });

@@ -180,9 +180,9 @@ export const profilePictureList = (state=[], action) =>{
 export const clickedChatroom = (state="hoi", action) =>{
   switch(action.type){
     case CHANGE_CHATROOMCLICKED:
-    console.log(action.payload);
       return action.payload;
     default:
+      console.log("default " + state)
       return state;
   }
 }
@@ -243,7 +243,7 @@ export const messageList = (state={}, action) =>{
       // console.log(messages);
       // return messages;
 
-      console.log(action.payload);
+      //console.log(action.payload);
       return action.payload;
   default:
     return state;

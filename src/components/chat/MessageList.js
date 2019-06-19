@@ -1,6 +1,11 @@
 //React en benodigheden importeren
 import React from 'react';
 import axios from "axios";
+//Redux importeren
+import { connect } from "react-redux";
+import {
+  changeMessageList,
+} from "./../../actions";
 //Eigen componenten importeren
 import Message from './Message';
 //CSS importeren
@@ -60,4 +65,12 @@ class MessageList extends React.Component {
   }
 }
 
-export default MessageList;
+const mapStateToProps = state =>{
+  return {
+    messageList: state.messageList,
+  };
+}
+
+export default connect(mapStateToProps,{
+  changeMessageList: changeMessageList,
+})(MessageList);

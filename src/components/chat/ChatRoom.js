@@ -50,8 +50,7 @@ class ChatRoom extends React.Component {
       ?<div className="App">
           <div id="chatroom-activity">
             <TopBarChat />
-            {/* roomId en currentUser worden meegegeven als variabelen, dit moet uiteindelijk met redux gedaan worden*/}
-            <MessageList messageList={this.props.messageList} roomId={this.props.clickedChatroom.id} currentUser={this.props.chatKitUser} clickedChatroom={this.props.clickedChatroom}/>
+            <MessageList roomId={this.props.clickedChatroom.id} currentUser={this.props.chatKitUser} clickedChatroom={this.props.clickedChatroom}/>
             <SendMessage />
           </div>
         </div>
@@ -73,6 +72,5 @@ const mapStateToProps = state =>{
 export default connect(mapStateToProps,{
   changeLoggedIn: changeLoggedIn,
   changeChatKitUser: changeChatKitUser,
-  changeChatroomClicked: changeChatroomClicked,
   changeMessageList: changeMessageList,
 })(ChatRoom);

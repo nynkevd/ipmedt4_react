@@ -104,6 +104,7 @@ class ChatRoomCard extends React.Component {
   }
 
   onClick = () => {
+    console.log(this.props.room);
     this.props.changeChatroomClicked(this.props.room);
     //console.log(this.props.clickedChatroom);
   }

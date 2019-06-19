@@ -38,6 +38,7 @@ class SendMessage extends React.Component {
     });
 
     this.setState({message: ""});
+
   }
 
   render(){
@@ -63,5 +64,4 @@ const mapStateToProps = state =>{
 
 export default connect(mapStateToProps,{
   changeChatKitUser: changeChatKitUser,
-  changeChatroomClicked: changeChatroomClicked,
 })(SendMessage);
