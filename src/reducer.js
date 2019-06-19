@@ -15,7 +15,7 @@ import {
   CHANGE_USERTRAVELTO,
   CHANGE_USERDISPLAYNAME,
   CHANGE_PROFILEPICTURELIST,
-  CHANGE_CHATROOMCLICKED,
+  CHANGE_CURRENTCHATROOM,
   CHANGE_MYINTERESTS,
   CHANGE_CHOSENINTEREST,
   CHANGE_CHOSENFRIEND,
@@ -177,9 +177,9 @@ export const profilePictureList = (state=[], action) =>{
 }
 
 // ChatroomCard pagina
-export const clickedChatroom = (state="hoi", action) =>{
+export const currentChatroom = (state="hoi", action) =>{
   switch(action.type){
-    case CHANGE_CHATROOMCLICKED:
+    case CHANGE_CURRENTCHATROOM:
     console.log(action.payload);
       return action.payload;
     default:

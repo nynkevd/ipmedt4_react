@@ -126,7 +126,7 @@ const mapStateToProps = state =>{
     userName: state.userName,
     chatKitUser: state.chatKitUser,
     userInterests: state.userInterests,
-    clickedChatroom: state.clickedChatroom,
+    currentChatroom: state.currentChatroom,
     chosenFriend: state.chosenFriend,
     loggedIn: state.loggedIn,
     allUserFriends: state.allUserFriends,

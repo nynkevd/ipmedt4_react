@@ -8,7 +8,7 @@ import {
   changeLoggedIn,
   changeChatKitUser,
   changeMessageList,
-  changeChatroomClicked,
+  changeCurrentChatroom,
 } from "./../../actions";
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
@@ -26,7 +26,7 @@ class Chat extends React.Component {
   }
 
   componentDidMount(){
-    console.log(this.props.clickedChatroom);
+    console.log(this.props.currentChatroom);
     this.subscribeToRooms();
     this.mapRooms();
   }
@@ -43,11 +43,10 @@ class Chat extends React.Component {
             onMessage: message => {
               console.log("nieuw bericht: " + message.text);
               this.props.changeMessageList(message);
-              //this.props.changeChatroomClicked("werkt dit?");
 
-              console.log(this.props.clickedChatroom);
+              console.log(this.props.currentChatroom);
 
-              if(this.props.clickedChatroom === []){
+              if(this.props.currentChatroom === []){
                 console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
                 this.mapRooms();
               }
@@ -112,7 +111,7 @@ const mapStateToProps = state =>{
     loggedIn: state.loggedIn,
     chatKitUser: state.chatKitUser,
     messageList: state.messageList,
-    clickedChatroom: state.clickedChatroom,
+    currentChatroom: state.currentChatroom,
   };
 }
 
@@ -121,5 +120,5 @@ export default connect(mapStateToProps,{
   changeLoggedIn: changeLoggedIn,
   changeChatKitUser: changeChatKitUser,
   changeMessageList: changeMessageList,
-  changeChatroomClicked: changeChatroomClicked,
+  changeCurrentChatroom: changeCurrentChatroom,
 })(Chat);

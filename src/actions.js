@@ -14,7 +14,7 @@ export const CHANGE_USERTRAVELFROM = "CHANGE_USERTRAVELFROM";
 export const CHANGE_USERTRAVELTO = "CHANGE_USERTRAVELTO";
 export const CHANGE_USERDISPLAYNAME = "CHANGE_USERDISPLAYNAME";
 export const CHANGE_PROFILEPICTURELIST = "CHANGE_PROFILEPICTURELIST";
-export const CHANGE_CHATROOMCLICKED = "CHANGE_CHATROOMCLICKED";
+export const CHANGE_CURRENTCHATROOM = "CHANGE_CURRENTCHATROOM";
 export const CHANGE_MYINTERESTS = "CHANGE_MYINTERESTS";
 export const CHANGE_CHOSENINTEREST = "CHANGE_CHOSENINTEREST";
 export const CHANGE_CHOSENFRIEND = "CHANGE_CHOSENFRIEND";
@@ -111,9 +111,9 @@ export const changeProfilePictureList = profilePictureList =>({
 });
 
 // Verander naar chatRoom
-export const changeChatroomClicked = clickedChatroom => ({
-  type: CHANGE_CHATROOMCLICKED,
-  payload: clickedChatroom,
+export const changeCurrentChatroom = currentChatroom => ({
+  type: CHANGE_CURRENTCHATROOM,
+  payload: currentChatroom,
 });
 
 //SetUpAccount pagina
