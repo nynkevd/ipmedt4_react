@@ -32,7 +32,6 @@ class Friend extends React.Component{
     return(
       <div className="friend">
         <UserinfoFriends profielfoto={this.state.profilepicture} naam={this.state.username}></UserinfoFriends>
-        <hr className="LineBetweenFriends"/>
       </div>
     )
   }

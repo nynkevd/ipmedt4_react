@@ -12,6 +12,7 @@ import {
   changeMatches,
   changeAllUserFriends,
   changeAddOrDeleteFriend,
+  changeAllStations,
 } from "./../../actions";
 //Eigen componenten importeren
 import BottomNav from '../layout/BottomNav';
@@ -66,7 +67,7 @@ class Search extends React.Component{
         <div className="searchPageContainer">
           {Object.keys(this.props.matches).length > 0 ?
             <div>
-              <h3>Dit zijn jouw matches:</h3>
+              <h3 className="searchPageContainer__text">Dit zijn jouw matches:</h3>
               <Matches matches={this.props.matches}></Matches>
             </div>
             :
@@ -91,6 +92,7 @@ const mapStateToProps = state =>{
     matches: state.matches,
     allUserFriends: state.allUserFriends,
     addOrDeleteFriend: state.addOrDeleteFriend,
+    allStations: state.allStations,
   };
 }
 
@@ -101,4 +103,5 @@ export default connect(mapStateToProps,{
   changeMatches: changeMatches,
   changeAllUserFriends: changeAllUserFriends,
   changeAddOrDeleteFriend: changeAddOrDeleteFriend,
+  changeAllStations: changeAllStations,
 })(Search);

@@ -26,7 +26,7 @@ class FriendsList extends React.Component{
           <UserFriendsList />
           :
           <div id="nofriends">
-            <p> Je hebt geen vrienden </p>
+            <p> Je hebt geen Travel Buddies</p>
             <Link to="/search"> <img id="sadLogoFriends" src="./img/logoSadFriends.svg" alt="Travel Buddy Sad Logo"/> </Link>
           </div>
         }

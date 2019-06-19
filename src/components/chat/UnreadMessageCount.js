@@ -1,4 +1,5 @@
 import React from 'react';
+import './UnreadMessageCount.css'; 
 
 const UnreadMessageCount = (props) => {
   // Als het aantal ongelezen berichten niet 0 is wordt er laten zien hoeveel ongelezen bercihten er zijn

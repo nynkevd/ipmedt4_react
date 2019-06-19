@@ -42,10 +42,10 @@ class SendMessage extends React.Component {
   render(){
     return(
       <div className="sendMessageContainer">
-        <form className="sendMessageForm" onSubmit={this.onSubmit}>
-          <input className="sendMessageInput" type="text" placeholder="Typ hier je bericht" onChange={this.onChange} value={this.state.message}/>
-          <button className="sendMessageButton" >
-            <img className="sendMessageButton__image" src="./img/icons/send.svg" alt="Stuur bericht"/>
+        <form onSubmit={this.onSubmit}>
+          <input className="sendMessageContainer__input" type="text" placeholder="Typ hier je bericht" onChange={this.onChange} value={this.state.message}/>
+          <button className="sendMessageContainer__button" >
+            <img className="sendMessageContainer__button__image" src="./img/icons/send.svg" alt="Stuur bericht"/>
           </button>
         </form>
       </div>

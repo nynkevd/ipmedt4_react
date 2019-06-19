@@ -3,7 +3,6 @@ import React from "react";
   //setup account en account edit
 function fillAddedInterests (chosenInterest) {
   console.log(chosenInterest);
-  added = [];
   if(chosenInterest !== "") {
     if (!(added.includes(chosenInterest))) {
       added.push(chosenInterest);
@@ -19,6 +18,7 @@ function fillAddedInterests (chosenInterest) {
         )
       );
     }
+    added = [];
 }
 
 

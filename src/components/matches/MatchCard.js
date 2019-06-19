@@ -59,13 +59,15 @@ class MatchCard extends React.Component {
   }
   render(){
     return(
-      <div className="matchCard">
-        <Link to="/friendsAccount"><h3 onClick={this.changeFriend}>{this.props.user}</h3> </Link>
-        <ul>
-          {this.state.interestList}
-        </ul>
-        {this.state.meerTekst}
-      </div>
+      <Link to="/friendsAccount" className="matchCard__link">
+        <div className="matchCard">
+          <h3 className="matchCard__text" onClick={this.changeFriend}>{this.props.user}</h3>
+          <ul>
+            {this.state.interestList}
+          </ul>
+          {this.state.meerTekst}
+        </div>
+      </Link>
     );
   }
 };

@@ -1,0 +1,19 @@
+.unreadMessageCount {
+  position: absolute;
+  bottom: 10%;
+  right: 8%;
+  transform: translate(0, -50%);
+  background-color: rgb(250, 197, 64);
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+}
+
+.unreadMessageCount__text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 0.9em;
+}

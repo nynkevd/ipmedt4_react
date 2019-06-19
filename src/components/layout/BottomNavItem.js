@@ -4,18 +4,16 @@ import { NavLink } from 'react-router-dom';
 //CSS importeren
 import './BottomNavItem.css';
 
-class BottomNavItem extends React.Component{
-  render(){
-    return(
-      <NavLink className="bottomNavItem" activeClassName="bottomNavItem--selected" to={this.props.link}>
-        <div>
-          <img className="bottomNavItem__img" src={this.props.icon} alt="Icon dat hoort bij de pagina"/>
-          <br />
-          <p className="bottomNavItem__text">{this.props.name}</p>
-        </div>
-      </NavLink>
-    )
-  }
+const BottomNavItem = (props) =>{
+  return(
+    <NavLink className="bottomNavItem" activeClassName="bottomNavItem--selected" to={props.link}>
+      <div>
+        <img className="bottomNavItem__img" src={props.icon} alt="Icon dat hoort bij de pagina"/>
+        <br />
+        <p className="bottomNavItem__text">{props.name}</p>
+      </div>
+    </NavLink>
+  );
 }
 
 export default BottomNavItem;
