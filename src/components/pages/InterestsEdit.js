@@ -22,7 +22,6 @@ class InterestsEdit extends React.Component {
   getUserInterests = () => {
     //Lijst van de huidige interesses opvragen
     axios.get(this.BASE_URL + this.username + this.api_token).then(res =>{
-      console.log(res);
       this.setState({myInterests: res.data})
     })
   }

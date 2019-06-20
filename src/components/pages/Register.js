@@ -47,8 +47,6 @@ class Register extends React.Component{
   addUserToChatkit = user => {
     const userId = user;
 
-    console.log(userId);
-
     axios
       .post('https://chatserver.ovtravelbuddy.nl/users', { userId })
       .then(() => {console.log("Chatkit User geregistreerd")})

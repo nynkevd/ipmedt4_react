@@ -16,6 +16,7 @@ import {
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
 import ProfilePictureList from '../editAccount/ProfilePictureList';
+import {fillAddedInterests} from '../methods.js';
 //CSS importeren
 import "./SetUpAccount.css";
 
@@ -81,18 +82,15 @@ class SetUpAccount extends React.Component{
   updateDatabase(){
     //profilepicture en travelroute
     axios.get(`https://dataserver.ovtravelbuddy.nl/userinfo/update?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}`)
-      .then(console.log("Succesfully updated info"))
         .catch(err => console.error(err))
 
     //voeg gebruiker toe aan de user_info tabel
     axios.get(`https://dataserver.ovtravelbuddy.nl/user_info/add?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}&age=19`)
-      .then(console.log("gebruiker toegevoegd aan gewenste tabel"))
         .catch(err => console.error(err))
 
     //user interests
     for(let a = 0; a < this.props.myInterests.length; a++){
     axios.get(`https://dataserver.ovtravelbuddy.nl/user_interests/add?username=${this.props.userName}&interest=${this.props.myInterests[a]}`)
-      .then(console.log("Interesse toegevoegd"))
         .catch(err => console.error(err))
     }
   }
@@ -129,24 +127,6 @@ class SetUpAccount extends React.Component{
     this.props.changeMyInterests(userInterests);
   }
 
-  fillAddedInterests = _ => {
-    if(this.props.chosenInterest !== "") {
-      if (!(added.includes(this.props.chosenInterest))) {
-        added.push(this.props.chosenInterest);
-        document.getElementById("interestErrorMessage").classList.add("setUpAccountPageContainer__interest_errorMessage--hide");
-        console.log(added[added.length-1])
-      } else if(!(added[added.length-1] === this.props.chosenInterest)) {
-        //Error messages tonen als de interesse al is toegevoegd
-        document.getElementById("interestErrorMessage").classList.remove("setUpAccountPageContainer__interest_errorMessage--hide");
-      }
-      return (
-          added.map((addedInterest) =>
-          <p id="added--interests" value={addedInterest} key={addedInterest}> {addedInterest}</p>
-          )
-        );
-      }
-  }
-
   //alle ingevoerde velden opslaan in de database
   saveAllSettings = _ =>{
     if(!userInterests.includes(this.props.chosenInterest)){
@@ -175,7 +155,7 @@ class SetUpAccount extends React.Component{
               </div>
               <span className="setUpAccountPageContainer__interest__text">Toegevoegde interesses</span>
               <div className="setUpAccountPageContainer__interest__interestAdded">
-                {this.fillAddedInterests()}
+                {fillAddedInterests()}
               </div>
             </div>
 

@@ -12,19 +12,20 @@
 }
 
 .inputUsername, .selectTraject, .choose-interests {
-  margin-top: 1em;
+  background-color: White;
   padding: 10px;
   font-size: 110%;
-  border: 1px solid rgb(199, 199, 199);
+  border: 2px solid #003373;
   border-radius: 5px;
   box-sizing: border-box;
   min-width: 160px;
   width: 50vw;
+  height: 3em;
+  outline: none;
 }
 
-.inputUsername:focus {
-  border: 1px solid #FCC63F;
-  border-radius: 0;
+.inputUsername, .selectTraject {
+  margin-top: 1em;
 }
 
 .labelEditAccount {
@@ -74,38 +75,6 @@
   display: block;
 }
 
-.modal {
-  display: none;
-  /* Hidden by default */
-  position: fixed;
-  /* Stay in place */
-  z-index: 1;
-  /* Sit on top */
-  padding-top: 100px;
-  /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%;
-  /* Full width */
-  height: 100%;
-  /* Full height */
-  overflow: auto;
-  /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0);
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
 /* The Close Button */
 .close {
   color: #aaaaaa;
@@ -134,8 +103,13 @@
   padding: 0;
 }
 
+#interestsList {
+  margin-bottom: 0.5em;
+}
+
 h2 {
   font-weight: 400;
   font-size: 1.4em;
   padding: 0.5em 0;
+  margin: 0;
 }

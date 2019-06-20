@@ -29,7 +29,6 @@ class MatchCard extends React.Component {
 
     if(allInterests.length > 3){
       var maxInterests = allInterests.splice(0, 3);
-      console.log("TEEEEEEESSSSSSSTTTTTTT: ");
       meerTekst = "+ " + allInterests.length + " meer";
     }else{
       maxInterests = allInterests;

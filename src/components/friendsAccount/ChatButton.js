@@ -1,6 +1,6 @@
 // React importeren
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 // Redux importeren
 import { connect } from 'react-redux';
@@ -19,7 +19,6 @@ class ChatButton extends React.Component{
   }
 
   onClick = event => {
-    console.log("onclick");
     const currentUser = this.props.chatKitUser;
     const rooms = currentUser.rooms;
     const selectedUser = this.props.chosenFriend.toLowerCase();//props.user.toLowerCase();
@@ -28,15 +27,10 @@ class ChatButton extends React.Component{
     var messageList = [];
 
     if(!this.checkIfRoomExists(rooms, users)){
-      console.log(currentUser.id);
       this.createRoom(currentUser, roomName, selectedUser);
-      console.log("Room aangemaakt");
       // currentUser.subscribeToRoom(); -> dit moet aangepast worden
-      console.log("In de room");
     }else{
-      console.log("Naar room gaan");
       // currentUser.subscribeToRoom(); -> dit moet aangepast worden
-      console.log("In de room");
       this.setState({
         redirect: <Redirect to='/chat' />
       });
@@ -52,9 +46,7 @@ class ChatButton extends React.Component{
     rooms.forEach(function(room){
       if(room.customData && room.customData.isDirectMessage){
         const roomUsers = room.customData.userIds;
-        console.log(rooms);
         if(roomUsers.sort().join('') === users.sort().join('')){
-          console.log(room);
           exists = true;
           // this.testfunction(room);
         }
@@ -65,7 +57,6 @@ class ChatButton extends React.Component{
   }
 
   createRoom = (currentUser, roomName, selectedUser) => {
-    console.log(selectedUser);
     currentUser.createRoom({
       name: roomName,
       private: true,
@@ -83,7 +74,6 @@ class ChatButton extends React.Component{
   }
 
   subscribeToChatroom = (currentUser) => {
-    console.log("In room");
       // subscribeToRoom is een functie van ChatKit om aan een room deel te nemen
       currentUser.subscribeToRoom({
         roomId: this.props.currentChatroom.id,
