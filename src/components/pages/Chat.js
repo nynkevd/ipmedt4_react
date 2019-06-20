@@ -26,14 +26,12 @@ class Chat extends React.Component{
 
   subscribeToRooms= () => {
     var roomList = this.getRooms();
-
-    console.log(roomList);
-
+    
     roomList.forEach(room => {
       if(!this.props.chatKitUser.isSubscribedTo(room.id)){
         this.props.chatKitUser.subscribeToRoom({
           roomId: room.id,
-          messageLimit: 100,
+          messageLimit: 50,
           hooks: {
             onMessage: message => {
               this.addMessageToList(message);
@@ -57,19 +55,7 @@ class Chat extends React.Component{
   }
 
   addMessageToList = (message) => {
-    //var messageList = this.props.messageList;
-    //var roomId = message.roomId;
-
-    // In object zetten:
-    // this.props.changeMessageList({
-    //   roomId: roomId,
-    //   message: message
-    // });
-
-    //console.log(this.props.messageList);
-
-    this.props.changeMessageList([...this.props.messageList, message]);
-    // ^^ dit werkt
+    this.props.changeMessageList(message);
   }
 
   render(){

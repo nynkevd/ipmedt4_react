@@ -1,12 +1,12 @@
-.sendMessageContainer {
+.sendMessageForm {
   position: absolute;
   bottom: 0;
   width: 100%;
-  background-color: rgb(174, 186, 191);
+  background-color: #CBCBCB;
   height: 61px;
 }
 
-.sendMessageContainer__input {
+.sendMessageForm__input {
   width: 75%;
   font-size: 1em;
   margin: 10px;
@@ -15,7 +15,7 @@
   border: none;
 }
 
-.sendMessageContainer__button {
+.sendMessageForm__button {
   position: absolute;
   top: 50%;
   right: 2%;
@@ -27,6 +27,6 @@
   background-color: Transparent;
 }
 
-.sendMessageContainer__button__image {
+.sendMessageForm__button__image {
   height: 30px;
 }
