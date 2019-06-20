@@ -6,9 +6,8 @@
 
 .profilePictures {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: auto auto auto;
   grid-gap: 20px;
-  margin-top: 1em;
   justify-items: center;
 }
 
@@ -120,7 +119,7 @@
   cursor: pointer;
 }
 
-#back{
+#back {
   margin: 0.1em;
   text-decoration: none;
 }

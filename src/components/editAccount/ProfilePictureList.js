@@ -29,17 +29,13 @@ class ProfilePictureList extends React.Component{
 
   render(){
     return(
-      <div>
-        <label className="labelEditAccount">Profielfoto</label>
-        <div className="profilePictures" id="profilePicturesContainer">
-        {
-          this.props.profilePictureList.map((picture, index) =>
-            <ProfilePicture picture={picture} className="profilePicture" onClick={this.pictureOnClick} key={index} index={index}/>
-          )
-        }
-        </div>
+      <div className="profilePictures" id="profilePicturesContainer">
+      {
+        this.props.profilePictureList.map((picture, index) =>
+          <ProfilePicture picture={picture} className="profilePicture" onClick={this.pictureOnClick} key={index} index={index}/>
+        )
+      }
       </div>
-
     )
   }
 }

@@ -13,7 +13,6 @@ import {
 import ChatList from './../chat/ChatList';
 import ChatRoom from './../chat/ChatRoom';
 import ChatRoomCard from './../chat/ChatRoomCard';
-//CSS importeren
 
 class Chat extends React.Component{
   constructor(props){
@@ -31,7 +30,6 @@ class Chat extends React.Component{
     console.log(roomList);
 
     roomList.forEach(room => {
-
       if(!this.props.chatKitUser.isSubscribedTo(room.id)){
         this.props.chatKitUser.subscribeToRoom({
           roomId: room.id,
@@ -39,8 +37,6 @@ class Chat extends React.Component{
           hooks: {
             onMessage: message => {
               this.addMessageToList(message);
-              //redirect of remap
-              //console.log(message);
             }
           }
         })
