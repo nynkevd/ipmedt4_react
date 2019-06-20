@@ -22,7 +22,6 @@ class SendMessage extends React.Component {
   }
 
   sendMessage = message => {
-    console.log(this.props.currentChatroom);
     // currentUser is een object van de huidige gebruiker
     const currentUser = this.props.chatKitUser;
     // Het id van de room waar de gebruiker op dit moment in zit
@@ -38,19 +37,16 @@ class SendMessage extends React.Component {
     });
 
     this.setState({message: ""});
-
   }
 
   render(){
     return(
-      <div className="sendMessageContainer">
-        <form onSubmit={this.onSubmit}>
-          <input autoFocus className="sendMessageContainer__input" type="text" placeholder="Typ hier je bericht" onChange={this.onChange} value={this.state.message}/>
-          <button className="sendMessageContainer__button" >
-            <img className="sendMessageContainer__button__image" src="./img/icons/send.svg" alt="Stuur bericht"/>
-          </button>
-        </form>
-      </div>
+      <form className="sendMessageForm" onSubmit={this.onSubmit}>
+        <input autoFocus className="sendMessageForm__input" type="text" placeholder="Typ hier je bericht" onChange={this.onChange} value={this.state.message}/>
+        <button className="sendMessageForm__button" >
+          <img className="sendMessageForm__button__image" src="./img/icons/send.svg" alt="Stuur bericht"/>
+        </button>
+      </form>
     )
   }
 }

@@ -1,6 +1,5 @@
 //React importeren
 import React from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 // Redux importeren
 import { connect } from 'react-redux';
@@ -21,33 +20,28 @@ class TopBarChat extends React.Component {
 
   componentDidMount(){
     this.getProfilePicture();
-    this.setState({
-      picture: "",
-    })
-    console.log(this.state.picture);
   }
 
   getProfilePicture = () =>{
+    // Vraagt de profielfoto van de andere gebruiker op. getRoomName is een functie die in methodsChat.js staat.
     axios.get(base_url + "userinfo/" + getRoomName(this.props.currentChatroom, this.props.chatKitUser) + api_token).then(res => {
       this.setState({picture: res.data.picture});
     });
   }
 
-  // Als er op de terug knop wordt geklikt, wordt de huidige chatroom ""
+  // Als er op de terug knop wordt geklikt, wordt de huidige chatroom "", hierdoor wordt het component in Chat.js automatisch veranderd van ChatRoom naar ChatList
   changeChatroom = () =>{
     this.props.changeCurrentChatroom("");
-    console.log(this.props.currentChatroom);
-
-    //redirect naar chat
   }
 
   render(){
     return(
       <div className="topBarChat">
-
+        {/*Back Arrow*/}
         <img className="topBarChat__back" src="./img/icons/arrow_back.svg" alt="Terug" onClick={this.changeChatroom}/>
-
+        {/*Profielfoto van de andere gebruiker*/}
         <img className="topBarChat__img" src={"https://api.ovtravelbuddy.nl" + this.state.picture} alt="Profielfoto"/>
+        {/*Naam van de andere gebruiker*/}
         <p className="topBarChat__text">{getRoomName(this.props.currentChatroom, this.props.chatKitUser)}</p>
       </div>
     );

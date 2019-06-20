@@ -1,13 +1,9 @@
 //React en benodigheden importeren
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
 //Redux importeren
 import { connect } from "react-redux";
 import {
-  changeUserName,
-  changeLoggedIn,
   changeChatKitUser,
-  changeCurrentChatroom,
 } from "./../../actions";
 //Eigen componenten importeren
 import TopBar from '../layout/TopBar';
@@ -25,10 +21,9 @@ class ChatList extends React.Component {
   }
 
   componentDidMount(){
-    // console.log(this.props.currentChatroom);
-    // this.subscribeToRooms();
     this.mapRooms();
   }
+
 
   getRooms = () => {
     var roomList = [];
@@ -36,7 +31,31 @@ class ChatList extends React.Component {
     if(this.props.chatKitUser !== null){
       roomList = this.props.chatKitUser.rooms;
 
-      roomList.sort((a, b) => (a.lastMessageAt < b.lastMessageAt)? 1 : -1);
+      //Bij het sorteren van de rooms wordt rekening gehouden met de rooms die nog geen berichten hebben. Deze worden gesorteerd op basis van de datum en tijd waarop ze aangemaakt zijn.
+      roomList.sort((a, b) => {
+        var aLastMessage = a.lastMessageAt;
+        var bLastMessage = b.lastMessageAt;
+        var aCreated = a.createdAt;
+        var bCreated = b.createdAt;
+
+        if(aLastMessage === undefined){
+          if(aCreated < bLastMessage) return 1;
+          if(aCreated > bLastMessage) return -1;
+        }
+
+        if(bLastMessage === undefined){
+          if(aLastMessage < bCreated) return 1;
+          if(aLastMessage > bCreated) return -1;
+        }
+
+        if(aLastMessage === undefined && bLastMessage === undefined){
+          if(aCreated < bCreated) return 1;
+          if(aCreated > bCreated) return -1;
+        }
+
+        if(aLastMessage < bLastMessage) return 1;
+        if(aLastMessage > bLastMessage) return -1;
+      });
     }
 
     return roomList;
@@ -77,15 +96,10 @@ class ChatList extends React.Component {
 
 const mapStateToProps = state =>{
   return {
-    userName: state.userName,
-    loggedIn: state.loggedIn,
     chatKitUser: state.chatKitUser,
-    currentChatroom: state.currentChatroom,
   };
 }
 
 export default connect(mapStateToProps,{
-  changeUserName: changeUserName,
-  changeLoggedIn: changeLoggedIn,
   changeChatKitUser: changeChatKitUser,
 })(ChatList);

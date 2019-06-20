@@ -173,6 +173,7 @@ class AccountEdit extends React.Component{
               }
           </div>
           <select className="choose-interests" value={this.props.chosenInterest} onChange={this.onChangeChosenInterest}>
+            <option value="" disabled selected>Kies je interesses</option>
             {interests.map((interest) =>
               <option value={interest} key={interest}>{interest}</option>
             )}

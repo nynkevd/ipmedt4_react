@@ -249,16 +249,8 @@ export const allStations = (state="", action) =>{
   export const messageList = (state=[], action) =>{
     switch(action.type){
       case CHANGE_MESSAGELIST:
-      //In object zetten:
-        // if(state[action.payload.roomId] === undefined){
-        //   state[action.payload.roomId] = [action.payload.message];
-        // }else{
-        //   state[action.payload.roomId] = [...state[action.payload.roomId], action.payload.message];
-        // }
-        //
-        // return state;
-        //console.log(action.payload);
-        return action.payload;
+        // Alle berichten worden in één array gezet. Dit omdat het realtime chatten niet werkt als het in een object wordt opgeslagen waarbij de berichten gesorteerd zijn op room
+        return [...state, action.payload];
       default:
         return state;
       }
