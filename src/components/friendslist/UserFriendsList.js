@@ -19,7 +19,6 @@ class UserFriendsList extends React.Component {
 
   componentDidMount(){
     this.getFriendsFromApi(base_url, api_token);
-    console.log(this.state.friends.length);
   }
 
   getFriendsFromApi = (base_url, api_token) => {
@@ -29,7 +28,6 @@ class UserFriendsList extends React.Component {
   }
 
   render(){
-    console.log(this.state.friends.length);
     return (
       <div>
       {

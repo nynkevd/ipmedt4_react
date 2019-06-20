@@ -17,7 +17,6 @@ const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A
 
 class FriendsList extends React.Component{
   render(){
-    console.log(this.props.allUserFriends);
     return this.props.loggedIn
       ? <div>
         <TopBar />

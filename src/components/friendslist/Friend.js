@@ -28,7 +28,6 @@ class Friend extends React.Component{
   }
 
   render(){
-    console.log(this.state.profilepicture);
     return(
       <div className="friend">
         <UserinfoFriends profielfoto={this.state.profilepicture} naam={this.state.username}></UserinfoFriends>

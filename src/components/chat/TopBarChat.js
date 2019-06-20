@@ -1,6 +1,5 @@
 //React importeren
 import React from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 // Redux importeren
 import { connect } from 'react-redux';

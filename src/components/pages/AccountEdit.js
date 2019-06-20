@@ -25,18 +25,15 @@ import './AccountEdit.css';
 
 const base_url = "https://api.ovtravelbuddy.nl/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
-var temp_interests;
-var added = [];
 var chosenInterests = [];
 var interests = [];
+var temp_interests = [];
 
 class AccountEdit extends React.Component{
-  temp_interests = [];
 
   componentDidMount(){
     this.getProfilePictureList();
     this.getRemainingInterestsFromAPI();
-    added = [];
     chosenInterests = [];
     interests = [];
   }
@@ -116,23 +113,22 @@ class AccountEdit extends React.Component{
     }
   }
 
+//verwijderde items in array stoppen
   deleteOnClick = (event) => {
     var deleteItem = document.getElementById(event.target.id).id;
     document.getElementById(deleteItem).parentElement.setAttribute("class", "hidden");
-    //verwijderde items in array stoppen
-    this.temp_interests.push(deleteItem);
+    temp_interests.push(deleteItem);
   }
 
   deleteInterestsFromDatabase(){
-    for(let i = 0; i < this.temp_interests.length; i ++){
-      axios.get(`https://dataserver.ovtravelbuddy.nl/user_interests/delete?username=${this.props.userName}&interest=${this.temp_interests[i]}` )
+    for(let i = 0; i < temp_interests.length; i ++){
+      axios.get(`https://dataserver.ovtravelbuddy.nl/user_interests/delete?username=${this.props.userName}&interest=${temp_interests[i]}` )
         .then(console.log("deleted"))
           .catch(err => console.error(err))
         }
   }
 
   getRemainingInterestsFromAPI = () => {
-    this.interests = [];
     axios.get(base_url + "interests" + api_token)
       .then(res => {
         for(let i = 0; i < res.data.length; i++){
@@ -166,12 +162,13 @@ class AccountEdit extends React.Component{
             {
               this.props.userInterests.map((interest, index) =>
               <div key={interest}>
-                    <p className="interest--p" key={index}>{interest}</p>
+                    <p className="interest--p">{interest}</p>
                     <img onClick={this.deleteOnClick} id={interest} className="icon test" src="./img/icons/trash.svg" alt="verwijder item" />
               </div>
               )
               }
           </div>
+          <h2>Voeg interesses toe</h2>
           <select className="choose-interests" value={this.props.chosenInterest} onChange={this.onChangeChosenInterest}>
             {interests.map((interest) =>
               <option value={interest} key={interest}>{interest}</option>

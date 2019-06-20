@@ -15,6 +15,7 @@ import {
     changeChosenInterest} from "./../../actions";
 
 import ProfilePictureList from '../editAccount/ProfilePictureList';
+import {fillAddedInterests} from '../methods.js';
 
 import "./SetUpAccount.css";
 
@@ -66,7 +67,7 @@ class SetUpAccount extends React.Component{
   // Mogelijke interesses ophalen uit de database en in array zetten
   getInterestsFromAPI = () => {
     this.interests = [];
-    axios.get(base_url + "interests/" + api_token)
+    axios.get(base_url + "interests" + api_token)
       .then(res => {
         for(let i = 0; i < res.data.length; i++){
           this.interests.push((res.data[i]).toString());
@@ -78,18 +79,15 @@ class SetUpAccount extends React.Component{
   updateDatabase(){
     //profilepicture en travelroute
     axios.get(`https://dataserver.ovtravelbuddy.nl/userinfo/update?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}`)
-      .then(console.log("Succesfully updated info"))
         .catch(err => console.error(err))
 
     //voeg gebruiker toe aan de user_info tabel
     axios.get(`https://dataserver.ovtravelbuddy.nl/user_info/add?username=${this.props.userName}&profile_picture=${this.props.userProfilePicture}&travelFrom=${this.props.userTravelFrom}&travelTo=${this.props.userTravelTo}&age=19`)
-      .then(console.log("gebruiker toegevoegd aan gewenste tabel"))
         .catch(err => console.error(err))
 
     //user interests
     for(let a = 0; a < this.props.myInterests.length; a++){
     axios.get(`https://dataserver.ovtravelbuddy.nl/user_interests/add?username=${this.props.userName}&interest=${this.props.myInterests[a]}`)
-      .then(console.log("Interesse toegevoegd"))
         .catch(err => console.error(err))
     }
   }
@@ -126,24 +124,6 @@ class SetUpAccount extends React.Component{
     this.props.changeMyInterests(userInterests);
   }
 
-  fillAddedInterests = _ => {
-    if(this.props.chosenInterest !== "") {
-      if (!(added.includes(this.props.chosenInterest))) {
-        added.push(this.props.chosenInterest);
-        document.getElementById("intrestErrorMessage").classList.add("hideErrorMessageSetUp");
-        console.log(added[added.length-1])
-      } else if(!(added[added.length-1] === this.props.chosenInterest)) {
-        //Error messages tonen als de interesse al is toegevoegd
-        document.getElementById("intrestErrorMessage").classList.remove("hideErrorMessageSetUp");
-      }
-      return (
-          added.map((addedInterest) =>
-          <p id="added--interests" value={addedInterest} key={addedInterest}> {addedInterest}</p>
-          )
-        );
-      }
-  }
-
   //alle ingevoerde velden opslaan in de database
   saveAllSettings = _ =>{
     if(!userInterests.includes(this.props.chosenInterest)){
@@ -154,7 +134,6 @@ class SetUpAccount extends React.Component{
   }
 
   render(){
-    console.log(this.stations);
     return this.props.loggedIn
       ? <div className="SetUpAccountContainer">
         <div className="choose--form">
@@ -168,7 +147,7 @@ class SetUpAccount extends React.Component{
               </select>
               <span className="my__interests">Toegevoegde interesses</span>
               <div className="added">
-                {this.fillAddedInterests()}
+                {fillAddedInterests()}
               </div>
               <p className="errorMessageSetUp hideErrorMessageSetUp" id="intrestErrorMessage">Interesse is al toegevoegd</p>
             </div>
@@ -198,7 +177,6 @@ class SetUpAccount extends React.Component{
             <p className="errorMessageSetUp hideErrorMessageSetUp" id="travelErrorMessage">Stations kunnen niet hetzelfde zijn</p>
             <ProfilePictureList pictureList={this.props.profilePictureList} click={this.pictureOnClick}/>
           </div>
-
 
           <Link to="/search">
             <input

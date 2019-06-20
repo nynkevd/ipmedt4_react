@@ -24,26 +24,22 @@ class FriendButton extends React.Component{
 
 //Het daadwerkelijk aanroepen van de functies
   addOrDeleteFriend = _ => {
-    if (this.props.addOrDeleteFriend == "add") {
+    if (this.props.addOrDeleteFriend === "add") {
       this.befriend();
       // this.render();
-      console.log("re-render");
       this.setState({ state: this.state });
-    } else if (this.props.addOrDeleteFriend == "delete") {
+    } else if (this.props.addOrDeleteFriend === "delete") {
       this.unfriend();
       // this.render();
-      console.log("re-render");
       this.setState({ state: this.state });
     }
   }
 
   befriend = _ => {
-    console.log("ik wil vriendjes zijn met " + this.state.friend);
     fetch(`https://dataserver.ovtravelbuddy.nl/friends/add?username=${this.props.userName}&friend=${this.state.friend}`)
   }
 
   unfriend = _ => {
-    console.log("ik wil geen vriendjes meer zijn met " + this.state.friend);
     fetch(`https://dataserver.ovtravelbuddy.nl/friends/delete?username=${this.props.userName}&friend=${this.state.friend}`)
   }
 

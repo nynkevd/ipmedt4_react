@@ -40,7 +40,6 @@
 }
 
 .interestsAccountContainer {
-  position: relative;
   margin-top: 30%;
   margin-left: 3%;
 }
@@ -48,8 +47,4 @@
 .interestName {
   position: absolute;
   margin-top: 5%;
-}
-
-.interestsListAccount {
-  position: absolute;
 }

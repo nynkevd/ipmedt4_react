@@ -7,13 +7,13 @@ const Interests = (props) => {
   return(
     <div className="interestsAccountContainer">
       <h3>Interesses</h3>
-      <ul className="interestsListAccount">
+      <div>
         {
           props.interests.map((interest, index) =>
-            <li key={index}>{interest}</li>
+            <p key={index}>{interest}</p>
           )
         }
-      </ul>
+      </div>
     </div>
   )
 }

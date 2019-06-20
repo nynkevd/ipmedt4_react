@@ -10,16 +10,11 @@ import {
 import './UserinfoFriends.css';
 
 class UserinfoFriends extends React.Component {
-  constructor(props){
-    super(props);
-  }
-
   changeFriend = _ => {
     this.props.changeChosenFriend(this.props.naam);
   }
 
   render(){
-    console.log(this.props.chosenFriend);
     return(
       <Link to="/friendsAccount">
         <div className="userInfoFriendsContainer">

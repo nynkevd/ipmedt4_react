@@ -48,15 +48,9 @@ class FriendsAccount extends React.Component {
     this.getUserInterestsFromApi(base_url, api_token);
     // this.getUserFriendsFromApi();
     this.checkIfFriend();
-    console.log(this.props.allUserFriends);
   }
 
   checkIfFriend = _ => {
-    // HIER MOET ER WORDEN GECHECKED OF DE GERENDERDE USER  VOORKOMT IN DE VRIENDENLIJST VAN DE INGELOGDE USER
-    // LUKT ME NIET MOET ER NOG NAAR KIJKEN!!!!!
-    console.log(this.props.chosenFriend +  " CHOSEN FRIEND");
-    console.log(this.props.allUserFriends +" FRIENDS");
-
     if (this.props.allUserFriends.length == 0){
       this.props.changeAddOrDeleteFriend("add");
       this.setState({buttonClass: "add"});
@@ -65,7 +59,6 @@ class FriendsAccount extends React.Component {
 
     for(var i = 0; i < this.props.allUserFriends.length; i++){
       if (this.props.allUserFriends[i] == this.props.chosenFriend){
-        console.log("user " + this.props.allUserFriends[i]);
         this.props.changeAddOrDeleteFriend("delete");
         this.setState({buttonClass: "delete"});
         this.setState({buttonText: "Vriend Verwijderen"});
@@ -96,11 +89,9 @@ class FriendsAccount extends React.Component {
   }
 
   updateComp = _ => {
-    console.log("re-render vanuit comp");
     this.forceUpdate();
   }
   render(){
-    console.log(this.state.userTravelTo);
   return this.props.loggedIn
   ?  <div>
       <TopBarFriendsAccount />
