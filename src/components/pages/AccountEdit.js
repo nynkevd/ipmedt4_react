@@ -26,21 +26,18 @@ import './AccountEdit.css';
 const base_url = "https://api.ovtravelbuddy.nl/api/";
 const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
 var temp_interests;
-var interests;
 var added = [];
 var chosenInterests = [];
+var interests = [];
 
 class AccountEdit extends React.Component{
   temp_interests = [];
-  interests = [];
 
   componentDidMount(){
     this.getProfilePictureList();
     this.getRemainingInterestsFromAPI();
     added = [];
-    console.log(chosenInterests + " test interesses");
     chosenInterests = [];
-    console.log(chosenInterests + "test na leeg");
     interests = [];
   }
 
@@ -121,12 +118,9 @@ class AccountEdit extends React.Component{
 
   deleteOnClick = (event) => {
     var deleteItem = document.getElementById(event.target.id).id;
-    console.log(deleteItem)
     document.getElementById(deleteItem).parentElement.setAttribute("class", "hidden");
     //verwijderde items in array stoppen
     this.temp_interests.push(deleteItem);
-    console.log(deleteItem);
-    console.log(this.temp_interests);
   }
 
   deleteInterestsFromDatabase(){
@@ -138,13 +132,12 @@ class AccountEdit extends React.Component{
   }
 
   getRemainingInterestsFromAPI = () => {
-    console.log(this.props.userInterests);
     this.interests = [];
     axios.get(base_url + "interests" + api_token)
       .then(res => {
         for(let i = 0; i < res.data.length; i++){
           if(!(this.props.userInterests.includes(res.data[i].toString()))){
-            this.interests.push((res.data[i]).toString());
+            interests.push((res.data[i]).toString());
           }
         }
       });
@@ -157,10 +150,8 @@ class AccountEdit extends React.Component{
           chosenInterests.push(this.props.chosenInterest);
       }
     }
-    console.log(chosenInterests);
   }
   render(){
-    console.log(chosenInterests);
     return this.props.loggedIn
       ? <div>
         <TopBar />
@@ -174,7 +165,7 @@ class AccountEdit extends React.Component{
           <div id="interestsList">
             {
               this.props.userInterests.map((interest, index) =>
-              <div>
+              <div key={interest}>
                     <p className="interest--p" key={index}>{interest}</p>
                     <img onClick={this.deleteOnClick} id={interest} className="icon test" src="./img/icons/trash.svg" alt="verwijder item" />
               </div>
@@ -182,7 +173,7 @@ class AccountEdit extends React.Component{
               }
           </div>
           <select className="choose-interests" value={this.props.chosenInterest} onChange={this.onChangeChosenInterest}>
-            {this.interests.map((interest) =>
+            {interests.map((interest) =>
               <option value={interest} key={interest}>{interest}</option>
             )}
           </select>
