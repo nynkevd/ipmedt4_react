@@ -13,9 +13,10 @@ import {
     changeUserProfilePicture,
     changeMyInterests,
     changeChosenInterest} from "./../../actions";
-
+//Eigen componenten importeren
+import TopBar from '../layout/TopBar';
 import ProfilePictureList from '../editAccount/ProfilePictureList';
-
+//CSS importeren
 import "./SetUpAccount.css";
 
 const base_url = "https://api.ovtravelbuddy.nl/api/";
@@ -29,6 +30,8 @@ class SetUpAccount extends React.Component{
 
   componentDidMount(){
     this.getProfilePictureList();
+    //De uitlog knop op display none zetten
+    document.getElementById("link").classList.add("topBar__link--hidden");
     this.added = [];
     this.getInterestsFromAPI();
   }
@@ -66,7 +69,7 @@ class SetUpAccount extends React.Component{
   // Mogelijke interesses ophalen uit de database en in array zetten
   getInterestsFromAPI = () => {
     this.interests = [];
-    axios.get(base_url + "interests/" + api_token)
+    axios.get(base_url + "interests" + api_token)
       .then(res => {
         for(let i = 0; i < res.data.length; i++){
           this.interests.push((res.data[i]).toString());
@@ -98,20 +101,20 @@ class SetUpAccount extends React.Component{
   onChangeUserTravelFrom = event =>{
     if(event.target.value !== this.props.userTravelTo){
       this.props.changeUserTravelFrom(event.target.value);
-      document.getElementById("travelErrorMessage").classList.add("hideErrorMessageSetUp");
+      document.getElementById("travelErrorMessage").classList.add("setUpAccountPageContainer__route__errorMessage--hide");
     } else {
       //Geef error messages als hetzelfde station wordt gekozen als de travelFrom
-      document.getElementById("travelErrorMessage").classList.remove("hideErrorMessageSetUp");
+      document.getElementById("travelErrorMessage").classList.remove("setUpAccountPageContainer__route__errorMessage--hide");
     }
   }
 
   onChangeUserTravelTo = event =>{
     if(event.target.value !== this.props.userTravelFrom){
       this.props.changeUserTravelTo(event.target.value);
-      document.getElementById("travelErrorMessage").classList.add("hideErrorMessageSetUp");
+      document.getElementById("travelErrorMessage").classList.add("setUpAccountPageContainer__route__errorMessage--hide");
     } else {
       //Geef error messages als hetzelfde station wordt gekozen als de travelFrom
-      document.getElementById("travelErrorMessage").classList.remove("hideErrorMessageSetUp");
+      document.getElementById("travelErrorMessage").classList.remove("setUpAccountPageContainer__route__errorMessage--hide");
     }
   }
 
@@ -130,11 +133,11 @@ class SetUpAccount extends React.Component{
     if(this.props.chosenInterest !== "") {
       if (!(added.includes(this.props.chosenInterest))) {
         added.push(this.props.chosenInterest);
-        document.getElementById("intrestErrorMessage").classList.add("hideErrorMessageSetUp");
+        document.getElementById("interestErrorMessage").classList.add("setUpAccountPageContainer__interest_errorMessage--hide");
         console.log(added[added.length-1])
       } else if(!(added[added.length-1] === this.props.chosenInterest)) {
         //Error messages tonen als de interesse al is toegevoegd
-        document.getElementById("intrestErrorMessage").classList.remove("hideErrorMessageSetUp");
+        document.getElementById("interestErrorMessage").classList.remove("setUpAccountPageContainer__interest_errorMessage--hide");
       }
       return (
           added.map((addedInterest) =>
@@ -154,59 +157,62 @@ class SetUpAccount extends React.Component{
   }
 
   render(){
-    console.log(this.stations);
     return this.props.loggedIn
-      ? <div className="SetUpAccountContainer">
-        <div className="choose--form">
-          <div className="my--settings">
-            <h1 className="choose--header" >Voeg interesses toe</h1>
-              <select value={this.props.chosenInterest} onChange={this.onChangeChosenInterest} className="choose--interests">
-                <option value="" disabled selected>Kies je interesses</option>
-                {this.interests.map((interest) =>
-                  <option value={interest} key={interest}>{interest}</option>
-                )}
+      ? <div>
+          <TopBar />
+          <div className="setUpAccountPageContainer">
+
+            <div className="setUpAccountPageContainer__interest">
+              <h1 className="setUpAccountPageContainer__interest__title" >Voeg interesses toe</h1>
+              <select value={this.props.chosenInterest} onChange={this.onChangeChosenInterest} className="setUpAccountPageContainer__interest__choose">
+              <option value="" disabled selected>Kies je interesses</option>
+              {this.interests.map((interest) =>
+                <option value={interest} key={interest}>{interest}</option>
+              )}
               </select>
-              <span className="my__interests">Toegevoegde interesses</span>
-              <div className="added">
+              <div className="setUpAccountPageContainer__interest__errorMessage setUpAccountPageContainer__interest_errorMessage--hide" id="interestErrorMessage">
+                <p className="setUpAccountPageContainer__interest__errorMessage__text">Interesse is al toegevoegd</p>
+              </div>
+              <span className="setUpAccountPageContainer__interest__text">Toegevoegde interesses</span>
+              <div className="setUpAccountPageContainer__interest__interestAdded">
                 {this.fillAddedInterests()}
               </div>
-              <p className="errorMessageSetUp hideErrorMessageSetUp" id="intrestErrorMessage">Interesse is al toegevoegd</p>
             </div>
-            <h1 className="choose--header">Uw reistraject</h1>
-            <div className="choose--route">
-              <span className="choose--text">van: </span>
-              <span className="choose--text">naar: </span>
-            </div>
-            <div className="set--route">
-              <div className="my--settings">
-                <select value={this.props.userTravelFrom} onChange={this.onChangeUserTravelFrom} className="choose--interests">
-                  <option value="" disabled selected>Kies je station</option>
-                  {this.stations.map((station) =>
-                    <option value={station} key={station}>{station}</option>
-                  )}
-                </select>
-              </div>
-              <div className="my--settings">
-                <select value={this.props.userTravelTo} onChange={this.onChangeUserTravelTo} className="choose--interests">
-                  <option value="" disabled selected>Kies je station</option>
-                  {this.stations.map((station) =>
-                    <option value={station} key={station}>{station}</option>
-                  )}
-                </select>
+
+            <div className="setUpAccountPageContainer__route">
+              <h1 className="setUpAccountPageContainer__route__title">Uw reistraject</h1>
+              <span className="setUpAccountPageContainer__route__to">van: </span>
+              <select value={this.props.userTravelFrom} onChange={this.onChangeUserTravelFrom} className="setUpAccountPageContainer__route__choose">
+                <option value="" disabled selected>Kies je station</option>
+                {this.stations.map((station) =>
+                  <option value={station} key={station}>{station}</option>
+                )}
+              </select>
+              <span className="setUpAccountPageContainer__route__from">naar: </span>
+              <select value={this.props.userTravelTo} onChange={this.onChangeUserTravelTo} className="setUpAccountPageContainer__route__choose">
+                <option value="" disabled selected>Kies je station</option>
+                {this.stations.map((station) =>
+                  <option value={station} key={station}>{station}</option>
+                )}
+              </select>
+              <div className="setUpAccountPageContainer__route__errorMessage setUpAccountPageContainer__route__errorMessage--hide" id="travelErrorMessage">
+                <p className="setUpAccountPageContainer__route__errorMessage__text">Stations kunnen niet hetzelfde zijn</p>
               </div>
             </div>
-            <p className="errorMessageSetUp hideErrorMessageSetUp" id="travelErrorMessage">Stations kunnen niet hetzelfde zijn</p>
-            <ProfilePictureList pictureList={this.props.profilePictureList} click={this.pictureOnClick}/>
+
+            <div className="setUpAccountPageContainer_profilePictureList">
+              <h1 className="setUpAccountPageContainer_profilePictureList__title" >Kies een profielfoto</h1>
+              <ProfilePictureList pictureList={this.props.profilePictureList} click={this.pictureOnClick} className="setUpAccountPageContainer_profilePictureList2"/>
+            </div>
+
+            <Link to="/search" className="setUpAccountPageContainer__link">
+              <input
+                className="setUpAccountPageContainer__link__button"
+                type="submit"
+                value="Opslaan"
+                onClick={this.saveAllSettings} />
+            </Link>
           </div>
-
-
-          <Link to="/search">
-            <input
-              className="button--choose"
-              type="submit"
-              value="Opslaan"
-              onClick={this.saveAllSettings} />
-          </Link>
         </div>
       //Naar de login pagina als een gebruiker niet is ingelogd
       : <Redirect to="/login" />

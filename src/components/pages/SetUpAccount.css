@@ -1,24 +1,18 @@
-.SetUpAccountContainer {
-  margin: 0.5em auto;
-  width: 100%;
-  font-family: "Roboto", sans-serif;
+.setUpAccountPageContainer {
+  padding-top: 55px;
 }
 
-.choose--form {
+.setUpAccountPageContainer__interest {
+  margin: 0 auto;
   width: 80%;
-  margin: 1em auto;
 }
 
-.my--settings {
-  display: block;
-  margin: 0.5em 0;
+.setUpAccountPageContainer__interest__title, .setUpAccountPageContainer__route__title, .setUpAccountPageContainer_profilePictureList__title {
+  font-size: 1.4em;
+  margin: 1.5em auto 1em auto;
 }
 
-.my__interests {
-  display: block;
-}
-
-.choose--interests {
+.setUpAccountPageContainer__interest__choose {
   font-size: 1em;
   width: 100%;
   height: 3em;
@@ -30,43 +24,38 @@
   border-width: 2px;
 }
 
-.choose--header {
-  font-size: 1.4em;
-  font-weight: 200;
-  margin: 0.5em 0;
-}
-
-.choose--route {
-  display: inline-block;
-  width: 20%;
-}
-
-.set--route {
-  display: inline-block;
-  width: 60%;
-}
-
-.choose--text {
+.setUpAccountPageContainer__interest__text {
   display: block;
+}
+
+.setUpAccountPageContainer__route {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.setUpAccountPageContainer__route__to, .setUpAccountPageContainer__route__from {
+  display: inline-block;
   font-size: 1.2em;
   font-weight: 400;
-  margin: 2.5em 0;
+  margin: 1em 0;
+  width: 25%;
 }
 
-.button--choose {
-  display: block;
-  width: 60%;
-  padding: 10px;
-  text-decoration: none;
-  margin: 0 auto;
-  border: none;
+.setUpAccountPageContainer__route__choose {
+  font-size: 1em;
+  width: 100%;
+  height: 3em;
+  margin: 0.5em 0;
+  padding: 0.3em;
+  background-color: White;
+  border-color: #003373;
   border-radius: 5px;
-  font-size: 1.3em;
-  background-color: #FCC63F;
-  box-shadow: 5px 5px 5px #CDCDCD;
+  border-width: 2px;
+  display: inline-block;
+  width: 75%;
 }
 
-.added {
+.setUpAccountPageContainer__interest__interestAdded {
   margin-left: 1em;
 }
 
@@ -75,11 +64,43 @@
   color: #ababab;
 }
 
-.errorMessageSetUp {
-  margin-top: 5px;
-  color: red;
+.setUpAccountPageContainer_profilePictureList {
+  width: 80%;
+  margin: 0 auto;
 }
 
-.hideErrorMessageSetUp {
+.setUpAccountPageContainer_profilePictureList2 {
+  width: 80%;
+}
+
+.setUpAccountPageContainer__link {
+  text-decoration: none;
+}
+
+.setUpAccountPageContainer__link__button {
+  display: block;
+  width: 80%;
+  padding: 10px;
+  margin: 2em auto;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.3em;
+  background-color: #FCC63F;
+  box-shadow: 5px 5px 5px #CDCDCD;
+}
+
+.setUpAccountPageContainer__interest__errorMessage, .setUpAccountPageContainer__route__errorMessage {
+  background-color: rgba(255, 0, 0, 0.2);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 0, 0, 0.1);
+  padding: 0.7em 0.6em;
+  margin: 0.7em 0;
+}
+
+.setUpAccountPageContainer__interest__errorMessage__text, .setUpAccountPageContainer__route__errorMessage__text {
+  color: #740a01;
+}
+
+.setUpAccountPageContainer__interest_errorMessage--hide, .setUpAccountPageContainer__route__errorMessage--hide {
   display: none;
 }

@@ -34,7 +34,6 @@ class App extends React.Component {
               <Route path="/setUpAccount" component={SetUpAccount} />
               <Route path="/search" component={Search} />
               <Route path="/chat" component={Chat} />
-              <Route path="/chatRoom" component={ChatRoom} />
               <Route path="/friendsList" component={FriendsList} />
               <Route path="/friendsAccount" component={FriendsAccount} />
               <Route path="/account" component={Account} />
