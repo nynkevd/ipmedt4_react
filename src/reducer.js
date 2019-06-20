@@ -257,7 +257,7 @@ export const allStations = (state="", action) =>{
         // }
         //
         // return state;
-        console.log(action.payload);
+        //console.log(action.payload);
         return action.payload;
       default:
         return state;

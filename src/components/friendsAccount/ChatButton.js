@@ -31,35 +31,50 @@ class ChatButton extends React.Component{
       console.log(currentUser.id);
       this.createRoom(currentUser, roomName, selectedUser);
       console.log("Room aangemaakt");
-      // currentUser.subscribeToRoom(); -> dit moet aangepast worden
       console.log("In de room");
     }else{
       console.log("Naar room gaan");
-      // currentUser.subscribeToRoom(); -> dit moet aangepast worden
       console.log("In de room");
       this.setState({
         redirect: <Redirect to='/chat' />
       });
     }
-
-    // this.setState({
-    //   redirect: <Redirect to='/chat' />
-    // })
   }
 
   checkIfRoomExists = (rooms, users) => {
-    var exists = false
-    rooms.forEach(function(room){
-      if(room.customData && room.customData.isDirectMessage){
-        const roomUsers = room.customData.userIds;
+    var exists = false;
+    console.log(this);
+
+    for(var i = 0; i < rooms.length; i++){
+      console.log(this);
+      if(rooms[i].customData && rooms[i].customData.isDirectMessage){
+        console.log(this);
+        const roomUsers = rooms[i].customData.userIds;
         console.log(rooms);
         if(roomUsers.sort().join('') === users.sort().join('')){
-          console.log(room);
+          console.log(rooms[i]);
+          this.props.changeCurrentChatroom(rooms[i]);
           exists = true;
-          // this.testfunction(room);
+          var currentRoom = rooms[i];
+          //testfunction(room);
         }
       }
-    });
+    }
+
+    // rooms.forEach(function(room){
+    //   if(room.customData && room.customData.isDirectMessage){
+    //     console.log(this);
+    //     const roomUsers = room.customData.userIds;
+    //     console.log(rooms);
+    //     if(roomUsers.sort().join('') === users.sort().join('')){
+    //       console.log(room);
+    //       //this.props.changeCurrentChatroom(room);
+    //       exists = true;
+    //       var currentRoom = room;
+    //       //testfunction(room);
+    //     }
+    //   }
+    // });
 
     return exists;
   }
@@ -74,29 +89,30 @@ class ChatButton extends React.Component{
         isDirectMessage: true,
         userIds: [currentUser.id, selectedUser]
       }
-    }).then(room=> {
+    }).then(room => {
       this.props.changeCurrentChatroom(room); //moet dit?
+      //console.log(this.state.currentChatroon);
       this.setState({
         redirect: <Redirect to='/chat' />
       });
     });
   }
 
-  subscribeToChatroom = (currentUser) => {
-    console.log("In room");
-      // subscribeToRoom is een functie van ChatKit om aan een room deel te nemen
-      currentUser.subscribeToRoom({
-        roomId: this.props.currentChatroom.id,
-        messageLimit: 100,
-        hooks: {
-          onMessage: message => {
-            this.setState({
-               messageList: [...this.state.messageList, message],
-             });
-          }
-        }
-      });
-    }
+  // subscribeToChatroom = (currentUser) => {
+  //   console.log("In room");
+  //     // subscribeToRoom is een functie van ChatKit om aan een room deel te nemen
+  //     currentUser.subscribeToRoom({
+  //       roomId: this.props.currentChatroom.id,
+  //       messageLimit: 100,
+  //       hooks: {
+  //         onMessage: message => {
+  //           this.setState({
+  //              messageList: [...this.state.messageList, message],
+  //            });
+  //         }
+  //       }
+  //     });
+  //   }
   render(){
     return(
       <div>

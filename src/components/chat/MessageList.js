@@ -17,7 +17,10 @@ import './MessageList.css';
 class MessageList extends React.Component {
 
   componentDidMount(){
-    this.scrollToBottom();
+    if(this.props.messageLis !== undefined){
+      this.scrollToBottom();
+    }
+
     //console.log(this.props.messageList[this.props.currentChatroom.id]);
   }
 
@@ -30,17 +33,26 @@ class MessageList extends React.Component {
     //var messages = this.props.messageList[this.props.currentChatroom.id];
     //[this.props.currentChatroom.id]
 
+    console.log(this.props.messageList);
+
     var messages = this.props.messageList.filter(message =>
       message.roomId == this.props.currentChatroom.id);
 
-    const position = messages.length - 1;
-    const lastMessageId = messages[position].id;
-    const lastMessageElement = document.getElementById(lastMessageId);
+    console.log(messages)
+
+    if(messages.length > 0){
+      const position = messages.length - 1;
+        console.log(position)
+      const lastMessageId = messages[position].id;
+      const lastMessageElement = document.getElementById(lastMessageId);
+
+    ;
+      lastMessageElement.scrollIntoView();
+
+      this.setReadCursor(lastMessageId); // Niet heel goed om dit hier aan te roepen aangezien hij voor elk bericht wordt uitgevoerd zodra dit component laadt.
+    };
 
 
-    lastMessageElement.scrollIntoView();
-
-    this.setReadCursor(lastMessageId); // Niet heel goed om dit hier aan te roepen aangezien hij voor elk bericht wordt uitgevoerd zodra dit component laadt.
   }
 
   // Markeert de berichten als gelezen
@@ -67,6 +79,7 @@ class MessageList extends React.Component {
               <li className="messageList__item" key={message.id} id={message.id}><Message message={message}/></li>
             )
           }
+          <li id="test" ></li>
         </ul>
       </div>
     )
