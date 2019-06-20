@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import {
   changeChosenFriend,
+  changePageToReturnTo,
 } from "./../../actions";
 //CSS importeren
 import './UserinfoFriends.css';
@@ -15,6 +16,7 @@ class UserinfoFriends extends React.Component {
   }
 
   changeFriend = _ => {
+    this.props.changePageToReturnTo("/FriendsList");
     this.props.changeChosenFriend(this.props.naam);
   }
 
@@ -34,9 +36,11 @@ class UserinfoFriends extends React.Component {
 const mapStateToProps = state =>{
   return {
     chosenFriend: state.chosenFriend,
+    pageToReturnTo: state.pageToReturnTo,
   };
 }
 
 export default connect(mapStateToProps,{
   changeChosenFriend: changeChosenFriend,
+  changePageToReturnTo: changePageToReturnTo,
 })(UserinfoFriends);

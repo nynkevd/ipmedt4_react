@@ -22,6 +22,7 @@ export const CHANGE_ALLUSERFRIENDS = "CHANGE_ALLUSERFRIENDS";
 export const CHANGE_ADDORDELETEFRIEND = "CHANGE_ADDORDELETEFRIEND";
 export const CHANGE_ALLSTATIONS = "CHANGE_ALLSTATIONS";
 export const CHANGE_MESSAGELIST = "CHANGE_MESSAGELIST";
+export const CHANGE_PAGETORETURNTO = "CHANGE_PAGETORETURNTO";
 
 //Username van de ingelogde gebruiker
 export const changeUserName = userName =>({
@@ -153,4 +154,9 @@ export const changeAllStations = allStations => ({
 export const changeMessageList = message => ({
   type: CHANGE_MESSAGELIST,
   payload: message,
+});
+
+export const changePageToReturnTo = pageToReturnTo => ({
+  type: CHANGE_PAGETORETURNTO,
+  payload: pageToReturnTo,
 });

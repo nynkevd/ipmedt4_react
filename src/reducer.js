@@ -23,6 +23,7 @@ import {
   CHANGE_ADDORDELETEFRIEND,
   CHANGE_ALLSTATIONS,
   CHANGE_MESSAGELIST,
+  CHANGE_PAGETORETURNTO
  } from "./actions";
 
 //Username van de ingelogde gebruiker veranderen
@@ -263,3 +264,12 @@ export const allStations = (state="", action) =>{
         return state;
       }
   }
+
+export const pageToReturnTo = (state="", action) => {
+  switch(action.type){
+    case CHANGE_PAGETORETURNTO:
+      return action.payload;
+    default:
+      return state;
+  }
+}

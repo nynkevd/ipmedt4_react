@@ -5,15 +5,16 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   changeChatKitUser,
+  changePageToReturnTo,
 } from './../../actions';
 
 // CSS Importeren
 import './TopBarFriendsAccount.css';
 
-const TopBarFriendsAccount = () => {
+const TopBarFriendsAccount = (props) => {
   return(
     <div className="topBarFriendsAccount">
-      <Link to='/friendslist' className="friendsList">
+      <Link to={props.pageToReturnTo} className="friendsList">
         <img className="topBarFriendsAccount__back" src="./img/icons/arrow_back.svg" alt="Terug" />
       </Link>
       <p className="topBarFriendsAccount__text"></p>
@@ -24,9 +25,11 @@ const TopBarFriendsAccount = () => {
 const mapStateToProps = state => {
   return{
     chatKitUser: state.chatKitUser,
+    pageToReturnTo: state.pageToReturnTo,
   };
 }
 
 export default connect(mapStateToProps, {
   changeChatKitUser: changeChatKitUser,
+  changePageToReturnTo: changePageToReturnTo,
 })(TopBarFriendsAccount);

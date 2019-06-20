@@ -13,6 +13,7 @@ import {
   changeLoggedIn,
   changeAllUserFriends,
   changeAddOrDeleteFriend,
+  changePageToReturnTo,
 } from './../../actions';
 
 // CSS importeren
@@ -103,6 +104,7 @@ class FriendsAccount extends React.Component {
     console.log(this.state.userTravelTo);
   return this.props.loggedIn
   ?  <div>
+  // Redux, state veranderd als je van search komt of als je van friendslist komt
       <TopBarFriendsAccount />
         <div className="accountPageContainer">
           <UserInfo profielfoto={this.state.userProfilePicture} naam={this.props.chosenFriend} />
@@ -131,6 +133,7 @@ const mapStateToProps = state =>{
     loggedIn: state.loggedIn,
     allUserFriends: state.allUserFriends,
     addOrDeleteFriend: state.addOrDeleteFriend,
+    pageToReturnTo: state.pageToReturnTo,
   };
 }
 
@@ -142,4 +145,5 @@ export default connect(mapStateToProps,{
   changeLoggedIn: changeLoggedIn,
   changeAllUserFriends: changeAllUserFriends,
   changeAddOrDeleteFriend: changeAddOrDeleteFriend,
+  changePageToReturnTo: changePageToReturnTo,
 })(FriendsAccount);
