@@ -7,7 +7,6 @@ import {
   changeUserName,
   changeLoggedIn,
   changeChatKitUser,
-  changeMessageList,
   changeCurrentChatroom,
 } from "./../../actions";
 //Eigen componenten importeren
@@ -81,7 +80,6 @@ const mapStateToProps = state =>{
     userName: state.userName,
     loggedIn: state.loggedIn,
     chatKitUser: state.chatKitUser,
-    messageList: state.messageList,
     currentChatroom: state.currentChatroom,
   };
 }
@@ -90,5 +88,4 @@ export default connect(mapStateToProps,{
   changeUserName: changeUserName,
   changeLoggedIn: changeLoggedIn,
   changeChatKitUser: changeChatKitUser,
-  changeMessageList: changeMessageList,
 })(ChatList);

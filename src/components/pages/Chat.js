@@ -40,6 +40,7 @@ class Chat extends React.Component{
             onMessage: message => {
               this.addMessageToList(message);
               //redirect of remap
+              //console.log(message);
             }
           }
         })
@@ -60,8 +61,8 @@ class Chat extends React.Component{
   }
 
   addMessageToList = (message) => {
-    var messageList = this.props.messageList;
-    var roomId = message.roomId;
+    //var messageList = this.props.messageList;
+    //var roomId = message.roomId;
 
     // In object zetten:
     // this.props.changeMessageList({
@@ -80,7 +81,7 @@ class Chat extends React.Component{
       this.props.loggedIn
       ? this.props.currentChatroom === ""
         ? <ChatList />
-        : <ChatRoom berichtjes={this.props.messageList}/>
+        : <ChatRoom />
       : <Redirect to="/login" />
     );
   }

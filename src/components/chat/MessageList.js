@@ -18,7 +18,7 @@ class MessageList extends React.Component {
 
   componentDidMount(){
     this.scrollToBottom();
-    console.log(this.props.messageList[this.props.currentChatroom.id]);
+    //console.log(this.props.messageList[this.props.currentChatroom.id]);
   }
 
   componentDidUpdate(){

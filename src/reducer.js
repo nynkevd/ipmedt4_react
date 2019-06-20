@@ -246,6 +246,7 @@ export const messageList = (state=[], action) =>{
       // }
       //
       // return state;
+      console.log(action.payload);
       return action.payload;
     default:
       return state;
