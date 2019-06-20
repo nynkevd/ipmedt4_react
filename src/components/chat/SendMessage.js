@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import {
   changeChatKitUser,
-  changeChatroomClicked,
+  changeCurrentChatroom,
 } from "./../../actions";
 //CSS importeren
 import './SendMessage.css';
@@ -22,10 +22,11 @@ class SendMessage extends React.Component {
   }
 
   sendMessage = message => {
+    console.log(this.props.currentChatroom);
     // currentUser is een object van de huidige gebruiker
     const currentUser = this.props.chatKitUser;
     // Het id van de room waar de gebruiker op dit moment in zit
-    const currentRoomId = this.props.clickedChatroom.id;
+    const currentRoomId = this.props.currentChatroom.id;
 
     // Als het bericht leeg is wordt het niet verzonden
     if(message.trim() === '') return;
@@ -37,6 +38,7 @@ class SendMessage extends React.Component {
     });
 
     this.setState({message: ""});
+
   }
 
   render(){
@@ -56,11 +58,11 @@ class SendMessage extends React.Component {
 const mapStateToProps = state =>{
   return {
     chatKitUser: state.chatKitUser,
-    clickedChatroom: state.clickedChatroom,
+    currentChatroom: state.currentChatroom,
   };
 }
 
 export default connect(mapStateToProps,{
   changeChatKitUser: changeChatKitUser,
-  changeChatroomClicked: changeChatroomClicked,
+  changeCurrentChatroom: changeCurrentChatroom,
 })(SendMessage);

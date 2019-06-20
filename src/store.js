@@ -16,13 +16,14 @@ import {
   userTravelTo,
   userDisplayName,
   profilePictureList,
-  clickedChatroom,
+  currentChatroom,
   myInterests,
   chosenInterest,
   chosenFriend,
   allUserFriends,
   addOrDeleteFriend,
   allStations,
+  messageList,
   } from "./reducer";
 
 export const store = createStore(
@@ -43,12 +44,13 @@ export const store = createStore(
     userTravelTo,
     userDisplayName,
     profilePictureList,
-    clickedChatroom,
+    currentChatroom,
     myInterests,
     chosenInterest,
     chosenFriend,
     allUserFriends,
     addOrDeleteFriend,
     allStations,
+    messageList,
   })
 )

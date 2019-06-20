@@ -14,13 +14,14 @@ export const CHANGE_USERTRAVELFROM = "CHANGE_USERTRAVELFROM";
 export const CHANGE_USERTRAVELTO = "CHANGE_USERTRAVELTO";
 export const CHANGE_USERDISPLAYNAME = "CHANGE_USERDISPLAYNAME";
 export const CHANGE_PROFILEPICTURELIST = "CHANGE_PROFILEPICTURELIST";
-export const CHANGE_CHATROOMCLICKED = "CHANGE_CHATROOMCLICKED";
+export const CHANGE_CURRENTCHATROOM = "CHANGE_CURRENTCHATROOM";
 export const CHANGE_MYINTERESTS = "CHANGE_MYINTERESTS";
 export const CHANGE_CHOSENINTEREST = "CHANGE_CHOSENINTEREST";
 export const CHANGE_CHOSENFRIEND = "CHANGE_CHOSENFRIEND";
 export const CHANGE_ALLUSERFRIENDS = "CHANGE_ALLUSERFRIENDS";
 export const CHANGE_ADDORDELETEFRIEND = "CHANGE_ADDORDELETEFRIEND";
 export const CHANGE_ALLSTATIONS = "CHANGE_ALLSTATIONS";
+export const CHANGE_MESSAGELIST = "CHANGE_MESSAGELIST";
 
 //Username van de ingelogde gebruiker
 export const changeUserName = userName =>({
@@ -111,9 +112,9 @@ export const changeProfilePictureList = profilePictureList =>({
 });
 
 // Verander naar chatRoom
-export const changeChatroomClicked = clickedChatroom => ({
-  type: CHANGE_CHATROOMCLICKED,
-  payload: clickedChatroom,
+export const changeCurrentChatroom = currentChatroom => ({
+  type: CHANGE_CURRENTCHATROOM,
+  payload: currentChatroom,
 });
 
 //SetUpAccount pagina
@@ -146,4 +147,10 @@ export const changeAddOrDeleteFriend = addOrDeleteFriend => ({
 export const changeAllStations = allStations => ({
   type: CHANGE_ALLSTATIONS,
   payload: allStations,
+});
+
+//add message
+export const changeMessageList = message => ({
+  type: CHANGE_MESSAGELIST,
+  payload: message,
 });

@@ -6,7 +6,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   changeChatKitUser,
-  changeChatroomClicked,
+  changeCurrentChatroom,
 } from './../../actions';
 
 // CSS importeren
@@ -57,7 +57,6 @@ class ChatButton extends React.Component{
           console.log(room);
           exists = true;
           // this.testfunction(room);
-          // this.props.changeChatroomClicked(room); -> dit moet nog aangepast worden
         }
       }
     });
@@ -76,7 +75,7 @@ class ChatButton extends React.Component{
         userIds: [currentUser.id, selectedUser]
       }
     }).then(room=> {
-      this.props.changeChatroomClicked(room);
+      this.props.changeCurrentChatroom(room); //moet dit?
       this.setState({
         redirect: <Redirect to='/chat' />
       });
@@ -87,7 +86,7 @@ class ChatButton extends React.Component{
     console.log("In room");
       // subscribeToRoom is een functie van ChatKit om aan een room deel te nemen
       currentUser.subscribeToRoom({
-        roomId: this.props.clickedChatroom.id,
+        roomId: this.props.currentChatroom.id,
         messageLimit: 100,
         hooks: {
           onMessage: message => {
@@ -112,11 +111,11 @@ class ChatButton extends React.Component{
 const mapStateToProps = state =>{
   return {
     chatKitUser: state.chatKitUser,
-    clickedChatroom: state.clickedChatroom,
+    currentChatroom: state.currentUserChatroom,
   };
 }
 
 export default connect(mapStateToProps, {
   changeChatKitUser: changeChatKitUser,
-  changeChatroomClicked: changeChatroomClicked,
+  changeCurrentChatroom: changeCurrentChatroom,
 })(ChatButton);

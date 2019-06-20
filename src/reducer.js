@@ -15,13 +15,14 @@ import {
   CHANGE_USERTRAVELTO,
   CHANGE_USERDISPLAYNAME,
   CHANGE_PROFILEPICTURELIST,
-  CHANGE_CHATROOMCLICKED,
+  CHANGE_CURRENTCHATROOM,
   CHANGE_MYINTERESTS,
   CHANGE_CHOSENINTEREST,
   CHANGE_CHOSENFRIEND,
   CHANGE_ALLUSERFRIENDS,
   CHANGE_ADDORDELETEFRIEND,
   CHANGE_ALLSTATIONS,
+  CHANGE_MESSAGELIST,
  } from "./actions";
 
 //Username van de ingelogde gebruiker veranderen
@@ -177,14 +178,17 @@ export const profilePictureList = (state=[], action) =>{
 }
 
 // ChatroomCard pagina
-export const clickedChatroom = (state=[], action) =>{
+export const currentChatroom = (state="", action) =>{
   switch(action.type){
-    case CHANGE_CHATROOMCLICKED:
-    return action.payload;
-  default:
-    return state;
+    case CHANGE_CURRENTCHATROOM:
+    //console.log(action.payload);
+      return action.payload;
+    default:
+      //console.log("default " + state)
+      return state;
   }
 }
+
 // SetUpAccount pagina
 export const myInterests = (state=[], action) =>{
   switch(action.type){
@@ -240,3 +244,22 @@ export const allStations = (state="", action) =>{
     return state;
   }
 }
+
+  // add message
+  export const messageList = (state=[], action) =>{
+    switch(action.type){
+      case CHANGE_MESSAGELIST:
+      //In object zetten:
+        // if(state[action.payload.roomId] === undefined){
+        //   state[action.payload.roomId] = [action.payload.message];
+        // }else{
+        //   state[action.payload.roomId] = [...state[action.payload.roomId], action.payload.message];
+        // }
+        //
+        // return state;
+        console.log(action.payload);
+        return action.payload;
+      default:
+        return state;
+      }
+  }

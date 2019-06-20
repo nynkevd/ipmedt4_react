@@ -6,7 +6,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import {
   changeChatKitUser,
-  changeChatroomClicked,
+  changeCurrentChatroom,
 } from './../../actions';
 // getRoomName methode importeren
 import {getRoomName} from './methodsChat.js';
@@ -28,25 +28,27 @@ class TopBarChat extends React.Component {
   }
 
   getProfilePicture = () =>{
-    axios.get(base_url + "userinfo/" + getRoomName(this.props.clickedChatroom, this.props.chatKitUser) + api_token).then(res => {
+    axios.get(base_url + "userinfo/" + getRoomName(this.props.currentChatroom, this.props.chatKitUser) + api_token).then(res => {
       this.setState({picture: res.data.picture});
     });
   }
 
   // Als er op de terug knop wordt geklikt, wordt de huidige chatroom ""
   changeChatroom = () =>{
-    this.props.changeChatroomClicked("");
-    console.log(this.props.chatroomClicked);
+    this.props.changeCurrentChatroom("");
+    console.log(this.props.currentChatroom);
+
+    //redirect naar chat
   }
 
   render(){
     return(
       <div className="topBarChat">
-        <Link to='/chat' className="chatCardLink">
-          <img className="topBarChat__back" src="./img/icons/arrow_back.svg" alt="Terug"onClick={this.changeChatroom}/>
-        </Link>
+
+        <img className="topBarChat__back" src="./img/icons/arrow_back.svg" alt="Terug" onClick={this.changeChatroom}/>
+
         <img className="topBarChat__img" src={"https://api.ovtravelbuddy.nl" + this.state.picture} alt="Profielfoto"/>
-        <p className="topBarChat__text">{getRoomName(this.props.clickedChatroom, this.props.chatKitUser)}</p>
+        <p className="topBarChat__text">{getRoomName(this.props.currentChatroom, this.props.chatKitUser)}</p>
       </div>
     );
   }
@@ -55,11 +57,11 @@ class TopBarChat extends React.Component {
 const mapStateToProps = state =>{
   return {
     chatKitUser: state.chatKitUser,
-    clickedChatroom: state.clickedChatroom,
+    currentChatroom: state.currentChatroom,
   };
 }
 
 export default connect(mapStateToProps,{
   changeChatKitUser: changeChatKitUser,
-  changeChatroomClicked: changeChatroomClicked,
+  changeCurrentChatroom: changeCurrentChatroom,
 })(TopBarChat);
