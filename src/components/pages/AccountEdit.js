@@ -16,7 +16,7 @@ import {
   changeChosenInterest,
 } from "./../../actions";
 //Eigen componenten importeren
-import TopBar from '../layout/TopBar';
+import TopBarEditAccount from '../editAccount/TopBarEditAccount';
 import ProfilePictureList from '../editAccount/ProfilePictureList';
 import EditTravelRoute from '../editAccount/EditTravelRoute';
 import {fillAddedInterests} from '../methods.js';
@@ -154,9 +154,8 @@ class AccountEdit extends React.Component{
   render(){
     return this.props.loggedIn
       ? <div>
-        <TopBar />
+        <TopBarEditAccount />
         <div className="accountEditPageContainer">
-          <h1>Edit account</h1>
 
           <ProfilePictureList pictureList={this.props.profilePictureList} click={this.pictureOnClick}/>
 
@@ -180,9 +179,7 @@ class AccountEdit extends React.Component{
           {fillAddedInterests(this.props.chosenInterest)}
           <p className="errorMessageSetUp hideErrorMessageSetUp" id="intrestErrorMessage">Interesse is al toegevoegd</p>
           <div className="next">
-
-              <Link to="/account"><button className="button" onClick={this.updateUserInfo}>Bevestig</button></Link><br /><br />
-              <Link to="/account" id="back"><p>Terug naar account</p></Link>
+              <Link to="/account"><button className="button" onClick={this.updateUserInfo}>Bevestig</button></Link>
           </div>
       </div>
       </div>
