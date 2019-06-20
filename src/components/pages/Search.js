@@ -13,6 +13,7 @@ import {
   changeAllUserFriends,
   changeAddOrDeleteFriend,
   changeAllStations,
+  changePageToReturnTo,
 } from "./../../actions";
 //Eigen componenten importeren
 import BottomNav from '../layout/BottomNav';
@@ -36,6 +37,7 @@ class Search extends React.Component{
 
     //Matches ophalen en tonen op basis van de ingelogde gebruiker
     this.getMatchesFromSessionUser(this.props.userName);
+    this.props.changePageToReturnTo("/Search");
     //Kijken of er ingelogd is
     if(this.props.userName !== ""){
       this.props.changeLoggedIn(true);
@@ -93,6 +95,7 @@ const mapStateToProps = state =>{
     allUserFriends: state.allUserFriends,
     addOrDeleteFriend: state.addOrDeleteFriend,
     allStations: state.allStations,
+    pageToReturnTo: state.pageToReturnTo,
   };
 }
 
@@ -104,4 +107,5 @@ export default connect(mapStateToProps,{
   changeAllUserFriends: changeAllUserFriends,
   changeAddOrDeleteFriend: changeAddOrDeleteFriend,
   changeAllStations: changeAllStations,
+  changePageToReturnTo: changePageToReturnTo,
 })(Search);

@@ -24,6 +24,7 @@ import {
   addOrDeleteFriend,
   allStations,
   messageList,
+  pageToReturnTo,
   } from "./reducer";
 
 export const store = createStore(
@@ -52,5 +53,6 @@ export const store = createStore(
     addOrDeleteFriend,
     allStations,
     messageList,
+    pageToReturnTo,
   })
 )

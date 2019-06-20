@@ -12,8 +12,11 @@
 .userName {
   display: inline-block;
   position: absolute;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   margin-left: 15px;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .editIcon {
@@ -45,11 +48,7 @@
   margin-left: 3%;
 }
 
-.interestName {
-  position: absolute;
-  margin-top: 5%;
-}
-
 .interestsListAccount {
   position: absolute;
+  margin-top: 0.3em;
 }
