@@ -140,7 +140,7 @@ class AccountEdit extends React.Component{
   getRemainingInterestsFromAPI = () => {
     console.log(this.props.userInterests);
     this.interests = [];
-    axios.get(base_url + "interests/" + api_token)
+    axios.get(base_url + "interests" + api_token)
       .then(res => {
         for(let i = 0; i < res.data.length; i++){
           if(!(this.props.userInterests.includes(res.data[i].toString()))){

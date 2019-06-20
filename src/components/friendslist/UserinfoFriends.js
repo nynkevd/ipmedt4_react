@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import {
   changeChosenFriend,
 } from "./../../actions";
-//Eigen componenten importeren
+//CSS importeren
 import './UserinfoFriends.css';
 
 class UserinfoFriends extends React.Component {
@@ -23,8 +23,8 @@ class UserinfoFriends extends React.Component {
     return(
       <Link to="/friendsAccount">
         <div className="userInfoFriendsContainer">
-          <img src={"https://api.ovtravelbuddy.nl" + this.props.profielfoto} alt="profielfoto" className="pf"/>
-          <h2 className="usernameFriends" onClick={this.changeFriend}>{this.props.naam}</h2>
+          <img src={"https://api.ovtravelbuddy.nl" + this.props.profielfoto} alt="profielfoto" className="userInfoFriendsContainer__profilePicture"/>
+          <h2 className="userInfoFriendsContainer__usernameFriends" onClick={this.changeFriend}>{this.props.naam}</h2>
         </div>
       </Link>
     );

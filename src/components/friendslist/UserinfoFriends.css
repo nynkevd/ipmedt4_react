@@ -5,12 +5,12 @@
   border-bottom: 1px solid rgb(221, 221, 221);
 }
 
-.pf {
+.userInfoFriendsContainer__profilePicture {
   border-radius: 100%;
   width: 80px;
 }
 
-.usernameFriends {
+.userInfoFriendsContainer__usernameFriends {
   display: inline-block;
   position: absolute;
   transform: translate(0, -50%);

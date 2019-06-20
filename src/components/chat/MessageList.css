@@ -1,12 +1,12 @@
-.messageList__item{
+.messageContainer {
+  padding-top: 55px;
+  margin-bottom: 71px;
+}
+
+.messageList__item {
   display: block;
   box-sizing: border-box;
   width: 100%;
   /* max-width: 100vw; */
   overflow: hidden;
-}
-
-.messageList{
-  margin-bottom: 70px; /* veranderen? */
-  margin-top: 70px; /* veranderen? */
 }
