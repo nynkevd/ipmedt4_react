@@ -90,7 +90,7 @@ class FriendsAccount extends React.Component {
   }
 
   getUserInterestsFromApi = (base_url, api_token) => {
-    axios.get(base_url + "interests/" + this.props.userName + api_token).then(res => {
+    axios.get(base_url + "interests/" + this.props.chosenFriend + api_token).then(res => {
       this.props.changeUserInterests(res.data);
     });
   }

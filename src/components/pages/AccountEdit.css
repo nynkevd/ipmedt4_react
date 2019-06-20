@@ -120,6 +120,11 @@
   cursor: pointer;
 }
 
+#back{
+  margin: 0.1em;
+  text-decoration: none;
+}
+
 /* interesses verwijderen en toevoegen */
 .icon {
   display: inline-block;

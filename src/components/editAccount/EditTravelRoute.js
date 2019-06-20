@@ -29,7 +29,6 @@ class EditTravelRoute extends React.Component{
             )}
           </select>
 
-          <img src="./img/icons/double-arrow.svg" alt="Van/naar pijltjes" className="doubleArrow"/>
 
           <label className="errorMessage hideErrorMessage" id="toErrorMessage">De stations kunnen niet hetzelfde zijn</label>
           <select value={this.props.userTravelTo} onChange={this.onChangeUserTravelTo} className="selectTraject">
