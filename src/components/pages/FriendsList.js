@@ -13,7 +13,7 @@ import UserFriendsList from '../friendslist/UserFriendsList';
 //CSS importeren
 import './FriendsList.css';
 
-const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
+const api_token = process.env.REACT_APP_API_TOKEN;
 
 class FriendsList extends React.Component{
   render(){

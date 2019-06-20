@@ -13,7 +13,7 @@ class InterestsEdit extends React.Component {
   BASE_URL = "https://api.ovtravelbuddy.nl/api/interests/";
   TEMP_URL = "localhost:8000/api/interests/"
   username = "Dayella"; //Moet aangepast worden naar de ingelogde gebruiker
-  api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
+  api_token = process.env.REACT_APP_API_TOKEN;
 
   componentDidMount(){
     this.getUserInterests();

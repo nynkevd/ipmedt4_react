@@ -47,7 +47,7 @@ class Search extends React.Component{
 
   getMatchesFromSessionUser = username => {
     const base_url = "https://api.ovtravelbuddy.nl/api/match/";
-    const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
+    const api_token = process.env.REACT_APP_API_TOKEN;
     //Matches ophalen
     axios.get(base_url + username + api_token).then(res => {
       this.props.changeMatches(res.data);

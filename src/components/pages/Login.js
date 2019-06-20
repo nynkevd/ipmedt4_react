@@ -21,6 +21,7 @@ import './Login.css';
 const md5 = require('md5');
 //Variable om bij te houden of er een error is
 var error = null;
+const api_token = process.env.REACT_APP_API_TOKEN;
 
 class Login extends React.Component{
   constructor(props){
@@ -39,13 +40,11 @@ class Login extends React.Component{
   }
 
   setAllStations = _ => {
-    this.props.changeAllStations([
-      "Leiden",
-      "Voorschoten",
-      "Alphen aan den Rijn",
-      "Nieuw Vennep",
-      "De Vink"
-    ]);
+    axios.get(`https://api.ovtravelbuddy.nl/api/stations` + api_token)
+    .then(res => {
+      this.props.changeAllStations(res.data);
+    })
+    .catch(err => console.error(err));
   }
 
   getUserInfoFromDatabase = _ => {

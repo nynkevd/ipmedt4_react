@@ -16,7 +16,7 @@ import UnreadMessageCount from './UnreadMessageCount';
 import './ChatRoomCard.css';
 
 const base_url = "https://api.ovtravelbuddy.nl/api/";
-const api_token = "?api_token=rx7Mi675A1WDEvZPsGnrgvwkCEeOKlrX7rIPoXocluBKnupp9A02OLz7QcSL";
+const api_token = process.env.REACT_APP_API_TOKEN;
 
 class ChatRoomCard extends React.Component {
   constructor(props) {
