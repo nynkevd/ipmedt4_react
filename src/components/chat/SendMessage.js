@@ -43,7 +43,7 @@ class SendMessage extends React.Component {
     return(
       <div className="sendMessageContainer">
         <form onSubmit={this.onSubmit}>
-          <input className="sendMessageContainer__input" type="text" placeholder="Typ hier je bericht" onChange={this.onChange} value={this.state.message}/>
+          <input autoFocus className="sendMessageContainer__input" type="text" placeholder="Typ hier je bericht" onChange={this.onChange} value={this.state.message}/>
           <button className="sendMessageContainer__button" >
             <img className="sendMessageContainer__button__image" src="./img/icons/send.svg" alt="Stuur bericht"/>
           </button>
