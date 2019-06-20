@@ -23,7 +23,6 @@ import {
   allUserFriends,
   addOrDeleteFriend,
   allStations,
-  remainingInterests,
   } from "./reducer";
 
 export const store = createStore(
@@ -51,6 +50,5 @@ export const store = createStore(
     allUserFriends,
     addOrDeleteFriend,
     allStations,
-    remainingInterests,
   })
 )
