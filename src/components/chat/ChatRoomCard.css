@@ -10,12 +10,8 @@
   box-sizing: border-box;
 }
 
-.chatCardContainer__link {
-  text-decoration: none;
-  color: #000;
-}
 
-.chatCardContainer__link__img {
+.chatCardContainer__img {
   height: 80px;
   position: absolute;
   border-radius: 100%;
@@ -23,13 +19,13 @@
   transform: translateY(-50%);
 }
 
-.chatCardContainer__link__name {
+.chatCardContainer__name {
   width: 45%;
   margin: 0 auto;
   padding-bottom: 4px;
 }
 
-.chatCardContainer__link__message {
+.chatCardContainer__message {
   color: rgb(98, 98, 98);
   font-size: 1em;
   margin-top: 5px;
@@ -39,7 +35,7 @@
   overflow: hidden;
 }
 
-.chatCardContainer__link__time {
+.chatCardContainer__time {
   position: absolute;
   top: 20%;
   right: 7%;
