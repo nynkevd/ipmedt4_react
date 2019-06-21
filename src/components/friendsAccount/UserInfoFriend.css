@@ -1,0 +1,19 @@
+.userInfoFriendContainer {
+  position: relative;
+  margin: 3%;
+}
+
+.userInfoFriendContainer__profilePicture {
+  border-radius: 100%;
+  width: 100px;
+}
+
+.userInfoFriendContainer__userName {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  margin-left: 15px;
+  transform: translate(0, -50%);
+  font-size: 2em;
+  font-weight: bold;
+}

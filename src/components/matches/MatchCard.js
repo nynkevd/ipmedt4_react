@@ -3,14 +3,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 //Redux importeren
 import { connect } from "react-redux";
-import {
-  changeChosenFriend,
-} from "./../../actions";
+import { changeChosenFriend } from "./../../actions";
 //CSS importeren
 import './MatchCard.css';
 
 class MatchCard extends React.Component {
-
   constructor(props){
     super(props);
     this.state = ({
@@ -49,18 +46,11 @@ class MatchCard extends React.Component {
     this.props.changeChosenFriend(this.props.user);
   }
 
-  // componentDidMount(){
-  //   this.listInterests();
-  // }
-
-  listInterests = _ => {
-
-  }
   render(){
     return(
-      <Link to="/friendsAccount" className="matchCard__link"  onClick={this.changeFriend}>
-        <div className="matchCard">
-          <h3 className="matchCard__text">{this.props.user}</h3>
+      <Link to="/friendsAccount" className="matchCardLink"  onClick={this.changeFriend}>
+        <div className="matchCardLink__container">
+          <h3 className="matchCardLink__container__text">{this.props.user}</h3>
           <ul>
             {this.state.interestList}
           </ul>

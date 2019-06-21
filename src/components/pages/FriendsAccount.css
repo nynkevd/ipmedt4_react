@@ -1,12 +1,10 @@
-.buttonsAddAndChat{
-  margin-top: 18.1em;
-  margin-left: 0.8em;
+.friendsAccountPageContainer {
+  padding-top: 55px;
 }
 
-.buttonsAddAndChat__addButton{
-  width: 50%;
-}
-
-.buttonsAddAndChat__chatButton{
-  width: 50%;
+.friendsAccountPageContainer__buttons {
+  margin: 9% 3%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
 }

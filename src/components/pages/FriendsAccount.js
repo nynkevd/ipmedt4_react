@@ -1,8 +1,7 @@
-// React importeren
+// React en benodigheden importeren
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-
 // Redux importeren
 import { connect } from "react-redux";
 import {
@@ -15,12 +14,10 @@ import {
   changeAddOrDeleteFriend,
   changePageToReturnTo,
 } from './../../actions';
-
 // CSS importeren
 import './FriendsAccount.css';
-
 // Eigen componenten importeren
-import UserInfo from '../friendsAccount/UserInfo';
+import UserInfoFriend from '../friendsAccount/UserInfoFriend';
 import Interests from '../account/Interests';
 import TravelRoute from '../account/TravelRoute';
 import FriendButton from '../friendsAccount/FriendButton';
@@ -52,14 +49,14 @@ class FriendsAccount extends React.Component {
   }
 
   checkIfFriend = _ => {
-    if (this.props.allUserFriends.length == 0){
+    if (this.props.allUserFriends.length === 0){
       this.props.changeAddOrDeleteFriend("add");
       this.setState({buttonClass: "add"});
       this.setState({buttonText: "Vriend Toevoegen"});
     }
 
     for(var i = 0; i < this.props.allUserFriends.length; i++){
-      if (this.props.allUserFriends[i] == this.props.chosenFriend){
+      if (this.props.allUserFriends[i] === this.props.chosenFriend){
         this.props.changeAddOrDeleteFriend("delete");
         this.setState({buttonClass: "delete"});
         this.setState({buttonText: "Vriend Verwijderen"});
@@ -94,20 +91,20 @@ class FriendsAccount extends React.Component {
   }
   render(){
   return this.props.loggedIn
-  ?  <div>
-  // Redux, state veranderd als je van search komt of als je van friendslist komt
+    ? <div>
+      {/* Redux, state veranderd als je van search komt of als je van friendslist komt*/}
       <TopBarFriendsAccount />
-        <div className="accountPageContainer">
-          <UserInfo profielfoto={this.state.userProfilePicture} naam={this.props.chosenFriend} />
+        <div className="friendsAccountPageContainer">
+          <UserInfoFriend profielfoto={this.state.userProfilePicture} naam={this.props.chosenFriend} />
           <TravelRoute from={this.state.userTravelFrom} to={this.state.userTravelTo} />
           <Interests interests={this.props.userInterests} />
-        </div>
-        <div className="buttonsAddAndChat">
-        {/* Als je op de knop drukt, wordt deze persoon aan je FriendsList toegevoegd.*/}
-          <FriendButton className="buttonsAddAndChat__addButton" friend={this.props.chosenFriend} buttonClass={this.state.buttonClass} buttonText={this.state.buttonText} onSubmit={this.updateComp}> </FriendButton>
-          {/* Als je op de knop drukt, wordt er een room aangemaakt en kom je in die room
-           Als de room al bestaat, dan ga je gewoon naar die room toe */}
-          <ChatButton className="buttonsAddAndChat__chatButton" chosenFriend={this.props.chosenFriend} currentUser={this.props.chatKitUser}></ChatButton>
+          <div className="friendsAccountPageContainer__buttons">
+          {/* Als je op de knop drukt, wordt deze persoon aan je FriendsList toegevoegd.*/}
+            <FriendButton friend={this.props.chosenFriend} buttonClass={this.state.buttonClass} buttonText={this.state.buttonText} onSubmit={this.updateComp} />
+            {/* Als je op de knop drukt, wordt er een room aangemaakt en kom je in die room
+             Als de room al bestaat, dan ga je gewoon naar die room toe */}
+            <ChatButton chosenFriend={this.props.chosenFriend} currentUser={this.props.chatKitUser} />
+          </div>
         </div>
       </div>
       : <Redirect to="/login" />

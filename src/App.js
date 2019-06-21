@@ -11,12 +11,10 @@ import Register from './components/pages/Register';
 import SetUpAccount from './components/pages/SetUpAccount';
 import Search from './components/pages/Search';
 import Chat from './components/pages/Chat';
-import ChatRoom from './components/chat/ChatRoom'
 import FriendsList from './components/pages/FriendsList';
 import FriendsAccount from './components/pages/FriendsAccount';
 import Account from './components/pages/Account';
 import AccountEdit from './components/pages/AccountEdit';
-import InterestsEdit from './components/pages/InterestsEdit';
 import NotFoundPage from './components/pages/NotFoundPage';
 //CSS importeren
 import './App.css';
@@ -38,7 +36,6 @@ class App extends React.Component {
               <Route path="/friendsAccount" component={FriendsAccount} />
               <Route path="/account" component={Account} />
               <Route path="/editAccount" component={AccountEdit} />
-              <Route path="/editInterests" component={InterestsEdit} />
               <Route component={NotFoundPage} />
           </Switch>
           </Provider>

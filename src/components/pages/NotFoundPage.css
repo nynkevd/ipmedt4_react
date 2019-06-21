@@ -12,7 +12,7 @@
   transform: translate(-50%, -50%);
 }
 
-.notFoundPage__text {
+.notFoundPage__container__text {
   text-align: center;
   text-decoration: none;
   color: #000;

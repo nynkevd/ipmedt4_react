@@ -5,28 +5,22 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
 import {
   changeLoggedIn,
-  changeCurrentChatroom,
-  changeChatKitUser,
   changeMessageList,
 } from "./../../actions";
 //Eigen componenten importeren
 import ChatList from './../chat/ChatList';
 import ChatRoom from './../chat/ChatRoom';
-import ChatRoomCard from './../chat/ChatRoomCard';
 
 class Chat extends React.Component{
-  constructor(props){
-    super(props);
-  }
-
   componentDidMount(){
     this.props.changeMessageList([]);
     this.subscribeToRooms();
+    var roomList = 0;
   }
 
   subscribeToRooms= () => {
     var roomList = this.getRooms();
-    
+
     roomList.forEach(room => {
       if(!this.props.chatKitUser.isSubscribedTo(room.id)){
         this.props.chatKitUser.subscribeToRoom({
@@ -47,7 +41,6 @@ class Chat extends React.Component{
 
     if(this.props.chatKitUser !== null){
       roomList = this.props.chatKitUser.rooms;
-
       roomList.sort((a, b) => (a.lastMessageAt < b.lastMessageAt)? 1 : -1);
     }
 

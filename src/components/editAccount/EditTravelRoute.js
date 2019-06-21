@@ -6,6 +6,8 @@ import {
   changeUserTravelFrom,
   changeUserTravelTo
 } from "./../../actions";
+//CSS importeren
+import "./EditTravelRoute.css";
 
 class EditTravelRoute extends React.Component{
 
@@ -19,24 +21,25 @@ class EditTravelRoute extends React.Component{
 
   render(){
     return(
-      <div>
-        <label className="labelEditAccount">Reistraject</label>
+      <div class="editTravelRouteContainer">
+        <h1 className="editTravelRouteContainer__title">Verander uw reistraject</h1>
         <form action="">
-          <label className="errorMessage hideErrorMessage" id="fromErrorMessage">De stations kunnen niet hetzelfde zijn</label>
-          <select value={this.props.userTravelFrom} onChange={this.onChangeUserTravelFrom} className="selectTraject">
+          <span className="editTravelRouteContainer__routeTo">van: </span>
+          <select value={this.props.userTravelFrom} onChange={this.onChangeUserTravelFrom} className="editTravelRouteContainer__routeChoose">
             {this.props.allStations.map((station) =>
               <option value={station} key={station}>{station}</option>
             )}
           </select>
-
-
-          <label className="errorMessage hideErrorMessage" id="toErrorMessage">De stations kunnen niet hetzelfde zijn</label>
-          <select value={this.props.userTravelTo} onChange={this.onChangeUserTravelTo} className="selectTraject">
+          <span className="editTravelRouteContainer__routeFrom">naar: </span>
+          <select value={this.props.userTravelTo} onChange={this.onChangeUserTravelTo} className="editTravelRouteContainer__routeChoose">
             {this.props.allStations.map((station) =>
               <option value={station} key={station}>{station}</option>
             )}
           </select>
         </form>
+        <div className="editTravelRouteContainer__errorMessage editTravelRouteContainer__errorMessage--hide" id="routeErrorMessage">
+        <p className="editTravelRouteContainer__errorMessage__text">De stations kunnen niet hetzelfde zijn</p>
+        </div>
       </div>
     )
   }

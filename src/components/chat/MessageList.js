@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import {
   changeMessageList,
   changeCurrentChatroom,
-  changeChatKitUser,
 } from "./../../actions";
 //Eigen componenten importeren
 import Message from './Message';
@@ -28,7 +27,7 @@ class MessageList extends React.Component {
 
   scrollToBottom = () => {
     var messages = this.props.messageList.filter(message =>
-      message.roomId == this.props.currentChatroom.id);
+      message.roomId === this.props.currentChatroom.id);
 
     // Scrollt alleen als er berichten zijn
     if(messages.length > 0){
@@ -62,7 +61,7 @@ class MessageList extends React.Component {
         {
           // De berichten worden gefilterd zodat je alleen de berichten in de huidige room kan zien, aangezien het opslaan in een object in redux niet realtime wil werken
           this.props.messageList.filter(message =>
-            message.roomId == this.props.currentChatroom.id)
+            message.roomId === this.props.currentChatroom.id)
           .map((message) =>
             <li className="messageList__item" key={message.id} id={message.id}><Message message={message}/></li>
           )

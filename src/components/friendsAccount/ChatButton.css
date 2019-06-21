@@ -1,5 +1,5 @@
-.button_chat{
-  width: 45%;
+.chatButton {
+  width: 100%;
   padding: 10px;
   border: none;
   border-radius: 5px;
@@ -7,11 +7,4 @@
   color: #000;
   background-color: #FCC63F;
   box-shadow: 5px 5px 5px #CDCDCD;
-  margin-left: 11.3em;
-  position: absolute;
-  margin-top: 1.5em;
-}
-
-.linkChatButton{
-  text-decoration: none;
 }

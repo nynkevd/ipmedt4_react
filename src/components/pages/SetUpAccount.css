@@ -2,12 +2,15 @@
   padding-top: 55px;
 }
 
-.setUpAccountPageContainer__interest {
+.setUpAccountPageContainer__interest,
+.setUpAccountPageContainer_profilePictureList {
   margin: 0 auto;
   width: 80%;
 }
 
-.setUpAccountPageContainer__interest__title, .setUpAccountPageContainer__route__title, .setUpAccountPageContainer_profilePictureList__title {
+.setUpAccountPageContainer__interest__title,
+.setUpAccountPageContainer__route__title,
+.setUpAccountPageContainer_profilePictureList__title {
   font-size: 1.4em;
   margin: 1.5em auto 1em auto;
 }
@@ -24,16 +27,13 @@
   border-width: 2px;
 }
 
-.setUpAccountPageContainer__interest__text {
-  display: block;
-}
-
 .setUpAccountPageContainer__route {
   margin: 0 auto;
   width: 80%;
 }
 
-.setUpAccountPageContainer__route__to, .setUpAccountPageContainer__route__from {
+.setUpAccountPageContainer__route__to,
+.setUpAccountPageContainer__route__from {
   display: inline-block;
   font-size: 1.2em;
   font-weight: 400;
@@ -55,24 +55,6 @@
   width: 75%;
 }
 
-.setUpAccountPageContainer__interest__interestAdded {
-  margin-left: 1em;
-}
-
-#added--interests {
-  font-style: italic;
-  color: #ababab;
-}
-
-.setUpAccountPageContainer_profilePictureList {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.setUpAccountPageContainer_profilePictureList2 {
-  width: 80%;
-}
-
 .setUpAccountPageContainer__link {
   text-decoration: none;
 }
@@ -89,7 +71,7 @@
   box-shadow: 5px 5px 5px #CDCDCD;
 }
 
-.setUpAccountPageContainer__interest__errorMessage, .setUpAccountPageContainer__route__errorMessage {
+.setUpAccountPageContainer__route__errorMessage {
   background-color: rgba(255, 0, 0, 0.2);
   border-radius: 5px;
   border: 1px solid rgba(255, 0, 0, 0.1);
@@ -97,10 +79,10 @@
   margin: 0.7em 0;
 }
 
-.setUpAccountPageContainer__interest__errorMessage__text, .setUpAccountPageContainer__route__errorMessage__text {
+.setUpAccountPageContainer__route__errorMessage__text {
   color: #740a01;
 }
 
-.setUpAccountPageContainer__interest_errorMessage--hide, .setUpAccountPageContainer__route__errorMessage--hide {
+.setUpAccountPageContainer__route__errorMessage--hide {
   display: none;
 }

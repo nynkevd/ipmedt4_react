@@ -56,13 +56,11 @@ class Search extends React.Component{
     });
 
     axios.get("https://api.ovtravelbuddy.nl/api/friends/" + username + api_token).then(res => {
-      console.log(res.data);
       this.props.changeAllUserFriends(res.data);
     });
   };
 
   render(){
-    console.log(Object.keys(this.props.matches).length);
     return this.props.loggedIn
     ? <div>
         <TopBar />
@@ -73,9 +71,11 @@ class Search extends React.Component{
               <Matches matches={this.props.matches}></Matches>
             </div>
             :
-            <div id="nomatches">
-              <p> Je hebt geen matches </p>
-              <Link to="/editaccount"> <img id="sadLogo" src="./img/logoSadIntrest.svg" alt="Travel Buddy Sad Logo"/> </Link>
+            <div>
+              <p className="searchPageContainer__noMatches">Je hebt geen matches</p>
+              <Link to="/editaccount">
+                <img className="searchPageContainer__noMatches__logo" src="./img/logoSadIntrest.svg" alt="Travel Buddy Sad Logo"/>
+              </Link>
             </div>
           }
         </div>

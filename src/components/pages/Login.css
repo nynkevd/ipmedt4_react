@@ -1,8 +1,8 @@
-.LoginPageContainer {
-  margin-top: 8vh;
+.loginPageContainer {
+  padding-top: 55px;
 }
 
-.form--login {
+.loginPageContainer__form {
   width: 70%;
   position: absolute;
   top: 50%;
@@ -11,18 +11,18 @@
   box-sizing: border-box;
 }
 
-.form__item {
+.loginPageContainer__form__item {
   display: grid;
   grid-template-columns: 1fr;
   margin-top: 1.5em;
 }
 
-.label {
+.loginPageContainer__form__item__label {
   margin-top: 0.5em;
   font-size: 1.4em;
 }
 
-.input {
+.loginPageContainer__form__item__input {
   margin-top: 1em;
   padding: 10px;
   font-size: 110%;
@@ -31,12 +31,12 @@
   border-radius: 5px;
 }
 
-.input:focus {
+.loginPageContainer__form__item__input:focus {
   border: 1px solid #FCC63F;
   border-radius: 0;
 }
 
-.button--login {
+.loginPageContainer__form__button {
   width: 100%;
   padding: 10px;
   margin-top: 2.5em;
@@ -47,25 +47,34 @@
   box-shadow: 5px 5px 5px #CDCDCD;
 }
 
-.text {
+.loginPageContainer__form__register {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 1em;
   text-align: center;
   font-size: 0.9em;
 }
 
-.text--noAccount {
+.loginPageContainer__form__register__textNoAccount {
   margin-top: 1.5em;
 }
 
-.linkRegister {
+.loginPageContainer__form__register__link {
   color: #000;
-  margin-top: 0.5em;
 }
 
-.errorMessageLogin {
-  margin-top: 5px;
-  color: red;
+.loginPageContainer__form__errorMessage {
+  background-color: rgba(255, 0, 0, 0.2);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 0, 0, 0.1);
+  padding: 0.7em 0.6em;
+  margin: 1.2em 0 0 0;
 }
 
-.hideErrorMessageLogin {
+.loginPageContainer__form__errorMessage__text {
+  color: #740a01;
+}
+
+.loginPageContainer__form__errorMessage--hide {
   display: none;
 }

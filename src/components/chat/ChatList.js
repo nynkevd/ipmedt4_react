@@ -1,5 +1,6 @@
 //React en benodigheden importeren
 import React from 'react';
+import { Link } from 'react-router-dom'
 //Redux importeren
 import { connect } from "react-redux";
 import {
@@ -11,6 +12,8 @@ import BottomNav from '../layout/BottomNav';
 import ChatRoomCard from '../chat/ChatRoomCard'
 //CSS importeren
 import './ChatList.css';
+
+var roomList = [];
 
 class ChatList extends React.Component {
   constructor(props){
@@ -26,8 +29,6 @@ class ChatList extends React.Component {
 
 
   getRooms = () => {
-    var roomList = [];
-
     if(this.props.chatKitUser !== null){
       roomList = this.props.chatKitUser.rooms;
 
@@ -81,15 +82,23 @@ class ChatList extends React.Component {
     return (<div>
         <TopBar />
         <div className="chatPageContainer">
-          <ul>
-            {
-              this.state.chatList
-            }
-          </ul>
+        { roomList.length > 0 ?
+            <ul>
+              {
+                this.state.chatList
+              }
+            </ul>
+          :
+          <div>
+            <p className="chatPageContainer__noChats">Je hebt geen chats</p>
+            <Link to="/friendsList">
+              <img className="chatPageContainer__noChats__logo"src="./img/logoSadChat.svg" alt="Travel Buddy Sad Logo"/>
+              </Link>
+          </div>
+        }
         </div>
         <BottomNav />
       </div>
-
     )
   }
 }

@@ -1,6 +1,5 @@
 //React en benodigheden importeren
 import React from 'react';
-import axios from "axios";
 import { Link, Redirect } from 'react-router-dom';
 //Redux importeren
 import { connect } from "react-redux";
@@ -9,11 +8,8 @@ import { changeLoggedIn } from "./../../actions";
 import TopBar from '../layout/TopBar';
 import BottomNav from '../layout/BottomNav';
 import UserFriendsList from '../friendslist/UserFriendsList';
-
 //CSS importeren
 import './FriendsList.css';
-
-const api_token = process.env.REACT_APP_API_TOKEN;
 
 class FriendsList extends React.Component{
   render(){
@@ -24,9 +20,11 @@ class FriendsList extends React.Component{
         {this.props.allUserFriends.length > 0 ?
           <UserFriendsList />
           :
-          <div id="nofriends">
-            <p> Je hebt geen Travel Buddies</p>
-            <Link to="/search"> <img id="sadLogoFriends" src="./img/logoSadFriends.svg" alt="Travel Buddy Sad Logo"/> </Link>
+          <div>
+            <p className="friendsListPageContainer__noFriends">Je hebt geen Travel Buddies</p>
+            <Link to="/search">
+              <img className="friendsListPageContainer__noFriends__logo" src="./img/logoSadFriends.svg" alt="Travel Buddy Sad Logo"/>
+            </Link>
           </div>
         }
         </div>

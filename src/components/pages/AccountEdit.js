@@ -95,10 +95,10 @@ class AccountEdit extends React.Component{
   setTravelFrom = (event) => {
     if(event.target.value !== this.props.userTravelTo){
       this.props.changeUserTravelFrom(event.target.value)
-      document.getElementById("fromErrorMessage").classList.add("hideErrorMessage");
+      document.getElementById("routeErrorMessage").classList.add("editTravelRouteContainer__errorMessage--hide");
     } else {
       //Geef error messages als hetzelfde station wordt gekozen als de travelTo
-      document.getElementById("fromErrorMessage").classList.remove("hideErrorMessage");
+      document.getElementById("routeErrorMessage").classList.remove("editTravelRouteContainer__errorMessage--hide");
     }
   }
 
@@ -106,10 +106,10 @@ class AccountEdit extends React.Component{
   setTravelTo = (event) => {
     if(event.target.value !== this.props.userTravelFrom){
       this.props.changeUserTravelTo(event.target.value);
-      document.getElementById("toErrorMessage").classList.add("hideErrorMessage");
+      document.getElementById("routeErrorMessage").classList.add("editTravelRouteContainer__errorMessage--hide");
     } else {
       //Geef error messages als hetzelfde station wordt gekozen als de travelFrom
-      document.getElementById("toErrorMessage").classList.remove("hideErrorMessage");
+      document.getElementById("routeErrorMessage").classList.remove("editTravelRouteContainer__errorMessage--hide");
     }
   }
 
@@ -153,33 +153,43 @@ class AccountEdit extends React.Component{
         <TopBarEditAccount />
         <div className="accountEditPageContainer">
 
-          <ProfilePictureList pictureList={this.props.profilePictureList} click={this.pictureOnClick}/>
+          <div className="accountEditPageContainer__profilePictureList">
+            <h1 className="accountEditPageContainer__profilePictureList__title">Verander uw profielfoto</h1>
+            <ProfilePictureList pictureList={this.props.profilePictureList} click={this.pictureOnClick}/>
+          </div>
 
           <EditTravelRoute van={this.props.userTravelFrom} naar={this.props.userTravelTo} from={this.setTravelFrom} to={this.setTravelTo}/>
-          <h2>Uw interesses</h2>
-          <div id="interestsList">
-            {
-              this.props.userInterests.map((interest, index) =>
-              <div key={interest}>
-                    <p className="interest--p">{interest}</p>
-                    <img onClick={this.deleteOnClick} id={interest} className="icon test" src="./img/icons/trash.svg" alt="verwijder item" />
-              </div>
-              )
-              }
+
+          <div className="accountEditPageContainer__deleteInterests">
+            <h1 className="accountEditPageContainer__deleteInterests__title">Verwijder interesses</h1>
+            <div>
+              {
+                this.props.userInterests.map((interest, index) =>
+                <div key={interest}>
+                      <p className="accountEditPageContainer__deleteInterests__interest">{interest}</p>
+                      <img onClick={this.deleteOnClick} id={interest} className="accountEditPageContainer__deleteInterests__icon" src="./img/icons/trash.svg" alt="verwijder item" />
+                </div>
+                )
+                }
+            </div>
           </div>
-          <h2>Voeg interesses toe</h2>
-          <select className="choose-interests" value={this.props.chosenInterest} onChange={this.onChangeChosenInterest}>
-            <option value="" disabled selected>Kies je interesses</option>
-            {interests.map((interest) =>
-              <option value={interest} key={interest}>{interest}</option>
-            )}
-          </select>
-          {fillAddedInterests(this.props.chosenInterest)}
-          <p className="errorMessageSetUp hideErrorMessageSetUp" id="intrestErrorMessage">Interesse is al toegevoegd</p>
-          <div className="next">
-              <Link to="/account"><button className="button" onClick={this.updateUserInfo}>Bevestig</button></Link>
+
+          <div className="accountEditPageContainer__addInterests">
+            <h1 className="accountEditPageContainer__addInterests__title">Voeg interesses toe</h1>
+            <select className="accountEditPageContainer__addInterests__choose" value={this.props.chosenInterest} onChange={this.onChangeChosenInterest}>
+              <option value="" disabled selected>Kies een interesse</option>
+              {interests.map((interest) =>
+                <option value={interest} key={interest}>{interest}</option>
+              )}
+            </select>
+            {fillAddedInterests(this.props.chosenInterest)}
+            <div id="interestErrorMessage">{/*Deze div moet er staan omdat hier de error message komt vanuit fillAddedInterests()*/}</div>
           </div>
-      </div>
+
+          <Link to="/account" className="accountEditPageContainer__link">
+          <button className="accountEditPageContainer__link__button" onClick={this.updateUserInfo}>Bevestig</button>
+          </Link>
+        </div>
       </div>
       //Naar de login pagina sturen als er niet ingelogd is
       : <Redirect to="/login" />

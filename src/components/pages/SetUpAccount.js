@@ -22,7 +22,6 @@ import "./SetUpAccount.css";
 
 const base_url = "https://api.ovtravelbuddy.nl/api/";
 const api_token = process.env.REACT_APP_API_TOKEN;
-var added = [];
 var userInterests = [];
 
 class SetUpAccount extends React.Component{
@@ -33,7 +32,6 @@ class SetUpAccount extends React.Component{
     this.getProfilePictureList();
     //De uitlog knop op display none zetten
     document.getElementById("link").classList.add("topBar__link--hidden");
-    this.added = [];
     this.getInterestsFromAPI();
   }
 
@@ -142,25 +140,13 @@ class SetUpAccount extends React.Component{
           <TopBar />
           <div className="setUpAccountPageContainer">
 
-            <div className="setUpAccountPageContainer__interest">
-              <h1 className="setUpAccountPageContainer__interest__title" >Voeg interesses toe</h1>
-              <select value={this.props.chosenInterest} onChange={this.onChangeChosenInterest} className="setUpAccountPageContainer__interest__choose">
-              <option value="" disabled selected>Kies je interesses</option>
-              {this.interests.map((interest) =>
-                <option value={interest} key={interest}>{interest}</option>
-              )}
-              </select>
-              <div className="setUpAccountPageContainer__interest__errorMessage setUpAccountPageContainer__interest_errorMessage--hide" id="interestErrorMessage">
-                <p className="setUpAccountPageContainer__interest__errorMessage__text">Interesse is al toegevoegd</p>
-              </div>
-              <span className="setUpAccountPageContainer__interest__text">Toegevoegde interesses</span>
-              <div className="setUpAccountPageContainer__interest__interestAdded">
-                {fillAddedInterests()}
-              </div>
+            <div className="setUpAccountPageContainer_profilePictureList">
+              <h1 className="setUpAccountPageContainer_profilePictureList__title" >Kies een profielfoto</h1>
+              <ProfilePictureList pictureList={this.props.profilePictureList} click={this.pictureOnClick}/>
             </div>
 
             <div className="setUpAccountPageContainer__route">
-              <h1 className="setUpAccountPageContainer__route__title">Uw reistraject</h1>
+              <h1 className="setUpAccountPageContainer__route__title">Selecteer uw reistraject</h1>
               <span className="setUpAccountPageContainer__route__to">van: </span>
               <select value={this.props.userTravelFrom} onChange={this.onChangeUserTravelFrom} className="setUpAccountPageContainer__route__choose">
                 <option value="" disabled selected>Kies je station</option>
@@ -180,9 +166,16 @@ class SetUpAccount extends React.Component{
               </div>
             </div>
 
-            <div className="setUpAccountPageContainer_profilePictureList">
-              <h1 className="setUpAccountPageContainer_profilePictureList__title" >Kies een profielfoto</h1>
-              <ProfilePictureList pictureList={this.props.profilePictureList} click={this.pictureOnClick} className="setUpAccountPageContainer_profilePictureList2"/>
+            <div className="setUpAccountPageContainer__interest">
+              <h1 className="setUpAccountPageContainer__interest__title" >Voeg interesses toe</h1>
+              <select value={this.props.chosenInterest} onChange={this.onChangeChosenInterest} className="setUpAccountPageContainer__interest__choose">
+              <option value="" disabled selected>Kies je interesses</option>
+              {this.interests.map((interest) =>
+                <option value={interest} key={interest}>{interest}</option>
+              )}
+              </select>
+              {fillAddedInterests(this.props.chosenInterest)}
+              <div id="interestErrorMessage">{/*Deze div moet er staan omdat hier de error message komt vanuit fillAddedInterests()*/}</div>
             </div>
 
             <Link to="/search" className="setUpAccountPageContainer__link">

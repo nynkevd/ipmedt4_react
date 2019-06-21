@@ -1,0 +1,27 @@
+.userInfoContainer {
+  position: relative;
+  margin-top: 20%;
+  margin-left: 3%;
+}
+
+.userInfoContainer__profilePicture {
+  border-radius: 100%;
+  width: 100px;
+}
+
+.userInfoContainer__userName {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 15px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.userInfoContainer__editIcon {
+  width: 24px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

@@ -1,0 +1,8 @@
+.travelRouteContainer {
+  margin-left: 3%;
+  margin-top: 5%;
+}
+
+.travelRouteContainer__route {
+  line-height: 1.3;
+}

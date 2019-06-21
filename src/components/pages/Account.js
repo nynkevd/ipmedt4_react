@@ -37,8 +37,6 @@ class Account extends React.Component{
   getUserInfoFromApi = (base_url, api_token) => {
     axios.get(base_url + "userinfo/" + this.props.userName + api_token).then(res => {
       this.props.changeUserProfilePicture(res.data.picture);
-      // this.props.changeUserTravelFrom(res.data.from);
-      // this.props.changeUserTravelTo(res.data.to);
       this.props.changeUserDisplayName(res.data.name);
     });
   }
@@ -49,7 +47,8 @@ class Account extends React.Component{
       this.props.changeUserInterests(res.data);
     });
   }
-//info ophalen uit de database en de van en naar vullen.
+
+  //Info ophalen uit de database en de van en naar vullen.
   getTravelInfoFromDatabase(){
     axios.get(`https://dataserver.ovtravelbuddy.nl/travelinfo?username=${this.props.userName}`)
       .then(res => {

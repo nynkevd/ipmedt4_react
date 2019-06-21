@@ -15,7 +15,7 @@ import TopBar from '../layout/TopBar';
 //CSS importeren
 import "./Register.css";
 
-//Arrays voor het controleren van al gebruiker usernames en emails
+//Arrays voor het controleren van al gebruikte usernames en emails
 var takenUserNames = [];
 var takenEmails = [];
 
@@ -90,10 +90,10 @@ class Register extends React.Component{
     for(var i=0; i<takenEmails.length; i++){
       if(event.target.value === takenEmails[i]){
         //Error messages tonen als de email al gebruikt wordt
-        document.getElementById("emailErrorMessage").classList.remove("hideErrorMessageRegister");
+        document.getElementById("emailErrorMessage").classList.remove("registerPageContainer__form__item__errorMessage--hide");
         break;
       } else {
-        document.getElementById("emailErrorMessage").classList.add("hideErrorMessageRegister");
+        document.getElementById("emailErrorMessage").classList.add("registerPageContainer__form__item__errorMessage--hide");
       }
     }
     this.props.changeInputEmail(event.target.value.toLowerCase());
@@ -104,10 +104,10 @@ class Register extends React.Component{
     for(var i=0; i<takenUserNames.length; i++){
       if(event.target.value === takenUserNames[i]){
         //Error messages tonen als de username al gebruikt wordt
-        document.getElementById("userNameErrorMessage").classList.remove("hideErrorMessageRegister");
+        document.getElementById("userNameErrorMessage").classList.remove("registerPageContainer__form__item__errorMessage--hide");
         break;
       } else {
-        document.getElementById("userNameErrorMessage").classList.add("hideErrorMessageRegister");
+        document.getElementById("userNameErrorMessage").classList.add("registerPageContainer__form__item__errorMessage--hide");
       }
     }
     this.props.changeInputUserName(event.target.value.toLowerCase());
@@ -127,45 +127,49 @@ class Register extends React.Component{
       <div>
         <TopBar />
         <div className="registerPageContainer">
-          <form className="formRegister" onSubmit={this.onSubmit}>
-            <div className="containerFormItem" >
-              <label className="label">Naam</label>
+          <form className="registerPageContainer__form" onSubmit={this.onSubmit}>
+            <div className="registerPageContainer__form__item" >
+              <label className="registerPageContainer__form__item__label">Naam</label>
               <input
-                className="input input--name"
+                className="registerPageContainer__form__item__input input--name"
                 autoFocus
                 type="text"
                 value={this.props.inputName}
                 onChange={this.onChangeName} />
             </div>
-            <div className="containerFormItem" >
-              <label className="label">Gebruikersnaam</label>
+            <div className="registerPageContainer__form__item" >
+              <label className="registerPageContainer__form__item__label">Gebruikersnaam</label>
               <input
-                className="input input--username"
+                className="registerPageContainer__form__item__input input--username"
                 type="text"
                 value={this.props.inputUserName}
                 onChange={this.onChangeUser} />
-              <label className="errorMessageRegister hideErrorMessageRegister" id="userNameErrorMessage">Deze gebruikersnaam is al in gebruik</label>
+              <div className="registerPageContainer__form__item__errorMessage registerPageContainer__form__item__errorMessage--hide" id="userNameErrorMessage">
+                <p className="registerPageContainer__form__item__errorMessage__text">Deze gebruikersnaam is al in gebruik</p>
+              </div>
             </div>
-            <div className="containerFormItem" >
-              <label className="label">E-mailadres</label>
+            <div className="registerPageContainer__form__item" >
+              <label className="registerPageContainer__form__item__label">E-mailadres</label>
               <input
-                className="input input--email"
+                className="registerPageContainer__form__item__input input--email"
                 type="email"
                 value={this.props.inputEmail}
                 onChange={this.onChangeEmail} />
-              <label className="errorMessageRegister hideErrorMessageRegister" id="emailErrorMessage">Dit e-mailadres is al in gebruik</label>
+                <div className="registerPageContainer__form__item__errorMessage registerPageContainer__form__item__errorMessage--hide" id="emailErrorMessage">
+                  <p className="registerPageContainer__form__item__errorMessage__text">Dit e-mailadres is al in gebruik</p>
+                </div>
             </div>
-            <div className="containerFormItem" >
-              <label className="label">Wachtwoord</label>
+            <div className="registerPageContainer__form__item" >
+              <label className="registerPageContainer__form__item__label">Wachtwoord</label>
               <input
-                className="input input--password"
+                className="registerPageContainer__form__item__input input--password"
                 value={this.props.inputPassword}
                 onChange={this.onChangePassword}
                 type="password" />
             </div>
             <Link to="/login">
               <input
-                className="button"
+                className="registerPageContainer__form__button"
                 disabled={!this.validateInputFields()}
                 type="submit"
                 value="Registreer"

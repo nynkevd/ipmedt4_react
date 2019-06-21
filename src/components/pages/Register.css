@@ -2,7 +2,7 @@
   padding-top: 55px;
 }
 
-.formRegister {
+.registerPageContainer__form {
   width: 70%;
   position: absolute;
   top: 50%;
@@ -11,18 +11,18 @@
   box-sizing: border-box;
 }
 
-.containerFormItem {
+.registerPageContainer__form__item {
   display: grid;
   grid-template-columns: 1fr;
   margin-top: 1.5em;
 }
 
-.label {
+.registerPageContainer__form__item__label {
   margin-top: 0.5em;
   font-size: 1.4em;
 }
 
-.input {
+.registerPageContainer__form__item__input {
   margin-top: 1em;
   padding: 10px;
   font-size: 110%;
@@ -31,12 +31,12 @@
   border-radius: 5px;
 }
 
-.input:focus {
+.registerPageContainer__form__item__input:focus {
   border: 1px solid #FCC63F;
   border-radius: 0;
 }
 
-.button {
+.registerPageContainer__form__button {
   width: 100%;
   padding: 10px;
   margin-top: 2.5em;
@@ -48,11 +48,18 @@
   box-shadow: 5px 5px 5px #CDCDCD;
 }
 
-.errorMessageRegister {
-  margin-top: 5px;
-  color: red;
+.registerPageContainer__form__item__errorMessage {
+  background-color: rgba(255, 0, 0, 0.2);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 0, 0, 0.1);
+  padding: 0.7em 0.6em;
+  margin: 1.2em 0 0 0;
 }
 
-.hideErrorMessageRegister {
+.registerPageContainer__form__item__errorMessage__text {
+  color: #740a01;
+}
+
+.registerPageContainer__form__item__errorMessage--hide {
   display: none;
 }

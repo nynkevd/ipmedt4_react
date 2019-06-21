@@ -104,10 +104,10 @@ class Login extends React.Component{
   //Error message tonen als de gebruikersnaam/wachtwoord onjuist is
   showHideErrorMessage(){
     if(error){
-      document.getElementById("loginErrorMessage").classList.remove("hideErrorMessageLogin");
+      document.getElementById("loginErrorMessage").classList.remove("loginPageContainer__form__errorMessage--hide");
       this.props.changeInputPasswordLogin("");
     } else{
-      document.getElementById("loginErrorMessage").classList.add("hideErrorMessageLogin");
+      document.getElementById("loginErrorMessage").classList.add("loginPageContainer__form__errorMessage--hide");
     }
   }
 
@@ -115,35 +115,37 @@ class Login extends React.Component{
     return this.state.firstloggedin
       ? <div>
         <TopBar />
-        <div className="LoginPageContainer">
-          <form onSubmit={this.onSubmit} className="form--login">
-            <div className="form__item" id="gebruikersnaam" >
-              <label className="label">Gebruikersnaam</label>
+        <div className="loginPageContainer">
+          <form onSubmit={this.onSubmit} className="loginPageContainer__form">
+            <div className="loginPageContainer__form__item" id="gebruikersnaam" >
+              <label className="loginPageContainer__form__item__label">Gebruikersnaam</label>
               <input
-                className="input"
+                className="loginPageContainer__form__item__input"
                 autoFocus
                 type="text"
                 value={this.props.userName}
                 onChange={this.onChangeUserName} />
             </div>
-            <div className="form__item" id="wachtwoord" >
-              <label className="label">Wachtwoord</label>
+            <div className="loginPageContainer__form__item" id="wachtwoord" >
+              <label className="loginPageContainer__form__item__label">Wachtwoord</label>
               <input
-                className="input"
+                className="loginPageContainer__form__item__input"
                 type="password"
                 value={this.props.inputPasswordLogin}
                 onChange={this.onChangePassword} />
             </div>
             {this.checkValueFirstLogin()}
               <input
-                className="button--login"
+                className="loginPageContainer__form__button"
                 type="submit"
                 value="Login"
                 onClick={this.onSubmit}/>
-            <label className="errorMessageLogin hideErrorMessageLogin" id="loginErrorMessage">De gebruikersnaam of wachtwoord is onjuist</label>
-            <div className="containerFormItem">
-              <p className="text text--noAccount">Nog geen account?</p>
-              <Link to="/register" className="text text--register">Klik hier om te registreren</Link>
+            <div className="loginPageContainer__form__errorMessage loginPageContainer__form__errorMessage--hide" id="loginErrorMessage">
+              <p className="loginPageContainer__form__errorMessage__text">De gebruikersnaam en/of wachtwoord is onjuist</p>
+            </div>
+            <div className="loginPageContainer__form__register">
+              <p className="loginPageContainer__form__register__textNoAccount">Nog geen account?</p>
+              <Link to="/register" className="loginPageContainer__form__register__link">Klik hier om te registreren</Link>
             </div>
           </form>
         </div>

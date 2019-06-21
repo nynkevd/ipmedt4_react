@@ -1,8 +1,9 @@
+//REact en benodigheden importeren
 import React from 'react';
 import axios from 'axios';
-
+//Eigen componenten importeren
 import UserinfoFriends from "./UserinfoFriends";
-
+//CSS importeren
 import './UserinfoFriends.css';
 
 const base_url = "https://api.ovtravelbuddy.nl/api/";

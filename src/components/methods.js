@@ -1,20 +1,29 @@
+//React importeren
 import React from "react";
-  var added = [];
-  //setup account en account edit
+//CSS importeren
+import "./methods.css";
+
+var added = [];
+//setup account en account edit
 function fillAddedInterests (chosenInterest) {
   console.log(chosenInterest);
   if(chosenInterest !== "") {
     if (!(added.includes(chosenInterest))) {
       added.push(chosenInterest);
-      // document.getElementById("intrestErrorMessage").classList.add("hideErrorMessageSetUp");
+      document.getElementById("interestErrorMessage").classList.add("errorMessage--hide");
       console.log(added[added.length-1])
     } else if(!(added[added.length-1] === chosenInterest)) {
       //Error messages tonen als de interesse al is toegevoegd
-      // document.getElementById("intrestErrorMessage").classList.remove("hideErrorMessageSetUp");
+      document.getElementById("interestErrorMessage").classList.remove("errorMessage--hide");
     }
     return (
         added.map((addedInterest) =>
-        <p id="added--interests" value={addedInterest} key={addedInterest}> {addedInterest}</p>
+        <div>
+          <div className="errorMessage errorMessage--hide" id="interestErrorMessage">
+            <p className="errorMessage__text">Interesse is al toegevoegd</p>
+          </div>
+          <p id="added--interests" value={addedInterest} key={addedInterest}> {addedInterest}</p>
+        </div>
         )
       );
     }

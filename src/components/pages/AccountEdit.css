@@ -1,115 +1,66 @@
 .accountEditPageContainer {
-  margin-top: 5vh;
-  margin-bottom: 12vh;
-  padding: 15px;
+  padding-top: 55px;
 }
 
-.profilePictures {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-gap: 20px;
-  justify-items: center;
+.accountEditPageContainer__profilePictureList,
+.accountEditPageContainer__deleteInterests,
+.accountEditPageContainer__addInterests {
+  margin: 0 auto;
+  width: 80%;
 }
 
-.inputUsername, .selectTraject, .choose-interests {
+.accountEditPageContainer__profilePictureList__title,
+.accountEditPageContainer__deleteInterests__title,
+.accountEditPageContainer__addInterests__title {
+  font-size: 1.4em;
+  margin: 1.5em auto 1em auto;
+}
+
+.accountEditPageContainer__profilePictureList__title {
+  margin-top: 1em;
+}
+
+.accountEditPageContainer__deleteInterests__interest {
+  display: inline-block;
+  width: 50%;
+  margin: 0.6em 0 0;
+  padding: 0;
+}
+
+.accountEditPageContainer__deleteInterests__icon {
+  display: inline-block;
+  height: 1em;
+  width: 10%;
+}
+
+.accountEditPageContainer__addInterests__choose {
   background-color: White;
   padding: 10px;
   font-size: 110%;
   border: 2px solid #003373;
   border-radius: 5px;
   box-sizing: border-box;
-  min-width: 160px;
-  width: 50vw;
+  width: 100%;
   height: 3em;
   outline: none;
 }
 
-.inputUsername, .selectTraject {
-  margin-top: 1em;
+.accountEditPageContainer__link {
+  text-decoration: none;
 }
 
-.labelEditAccount {
-  margin-top: 1em;
-  font-size: 1.4em;
+.accountEditPageContainer__link__button {
   display: block;
-}
-
-.doubleArrow {
-  width: 25px;
-}
-
-.errorMessage {
-  color: red;
-}
-
-.hideErrorMessage {
-  display: none;
-}
-
-.next {
-  position: absolute;
-  left: 50%;
-  width: 50%;
-  transform: translate(-50%, 0);
-}
-
-.button {
-  width: 100%;
-  padding: 12px;
-  margin: auto;
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
+  width: 80%;
+  padding: 10px;
+  margin: 2em auto;
   border: none;
   border-radius: 5px;
   font-size: 1.3em;
-  color: #000;
   background-color: #FCC63F;
   box-shadow: 5px 5px 5px #CDCDCD;
 }
 
 .hidden {
   display: none;
-}
-
-.visible {
-  display: block;
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover, .close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* interesses verwijderen en toevoegen */
-.icon {
-  display: inline-block;
-  height: 1em;
-  width: 20%;
-}
-
-.interest--p {
-  display: inline-block;
-  width: 30%;
-  margin: 0.6em 0 0;
-  padding: 0;
-}
-
-#interestsList {
-  margin-bottom: 0.5em;
-}
-
-h2 {
-  font-weight: 400;
-  font-size: 1.4em;
-  padding: 0.5em 0;
-  margin: 0;
 }

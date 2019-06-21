@@ -8,11 +8,13 @@ import {
 } from "./../../actions";
 //Eigen componenten importeren
 import ProfilePicture from '../editAccount/ProfilePicture';
+//CSS importeren
+import "./ProfilePictureList.css";
 
 class ProfilePictureList extends React.Component{
 
   pictureOnClick = (event) => {
-    var picturesList = document.getElementById("profilePicturesContainer").childNodes;
+    var picturesList = document.getElementById("profilePictures").childNodes;
 
     picturesList.forEach(function(picture){
       var image = picture.childNodes;
@@ -29,10 +31,10 @@ class ProfilePictureList extends React.Component{
 
   render(){
     return(
-      <div className="profilePictures" id="profilePicturesContainer">
+      <div className="profilePictureList" id="profilePictures">
       {
         this.props.profilePictureList.map((picture, index) =>
-          <ProfilePicture picture={picture} className="profilePicture" onClick={this.pictureOnClick} key={index} index={index}/>
+          <ProfilePicture picture={picture} onClick={this.pictureOnClick} key={index} index={index}/>
         )
       }
       </div>

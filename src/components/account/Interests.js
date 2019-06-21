@@ -1,7 +1,7 @@
 //React importeren
 import React from 'react';
 //CSS importeren
-import './UserInfoAccount.css';
+import './Interests.css';
 
 const Interests = (props) => {
   return(
@@ -10,7 +10,7 @@ const Interests = (props) => {
       <div>
         {
           props.interests.map((interest, index) =>
-            <p key={index}>{interest}</p>
+            <p key={index} className="interestsAccountContainer__interest">{interest}</p>
           )
         }
       </div>
