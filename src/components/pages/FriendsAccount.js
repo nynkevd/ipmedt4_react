@@ -31,7 +31,7 @@ class FriendsAccount extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      userProfilePicture: null,
+      userProfilePicture: "/img/placeholder.png",
       userTravelFrom: null,
       userTravelTo: null,
       isFriend: null,

@@ -16,7 +16,7 @@ const base_url = "https://api.ovtravelbuddy.nl/api/";
 const api_token = process.env.REACT_APP_API_TOKEN;
 
 class TopBarChat extends React.Component {
-  state = {picture: null}
+  state = {picture: "/img/placeholder.png"}
 
   componentDidMount(){
     this.getProfilePicture();

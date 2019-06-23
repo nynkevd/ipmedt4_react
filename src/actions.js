@@ -23,6 +23,7 @@ export const CHANGE_ADDORDELETEFRIEND = "CHANGE_ADDORDELETEFRIEND";
 export const CHANGE_ALLSTATIONS = "CHANGE_ALLSTATIONS";
 export const CHANGE_MESSAGELIST = "CHANGE_MESSAGELIST";
 export const CHANGE_PAGETORETURNTO = "CHANGE_PAGETORETURNTO";
+export const CLEAR_MESSAGELIST = "CLEAR_MESSAGELIST";
 
 //Username van de ingelogde gebruiker
 export const changeUserName = userName =>({
@@ -154,6 +155,11 @@ export const changeAllStations = allStations => ({
 export const changeMessageList = message => ({
   type: CHANGE_MESSAGELIST,
   payload: message,
+});
+
+// Verwijder alle berichten
+export const clearMessageList = () => ({
+  type: CLEAR_MESSAGELIST,
 });
 
 export const changePageToReturnTo = pageToReturnTo => ({

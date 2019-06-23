@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import {
   changeLoggedIn,
   changeMessageList,
+  clearMessageList,
 } from "./../../actions";
 //Eigen componenten importeren
 import ChatList from './../chat/ChatList';
@@ -13,7 +14,7 @@ import ChatRoom from './../chat/ChatRoom';
 
 class Chat extends React.Component{
   componentDidMount(){
-    this.props.changeMessageList([]);
+    this.props.clearMessageList([]);
     this.subscribeToRooms();
     var roomList = 0;
   }
@@ -75,4 +76,5 @@ const mapStateToProps = state =>{
 export default connect(mapStateToProps,{
   changeLoggedIn: changeLoggedIn,
   changeMessageList: changeMessageList,
+  clearMessageList: clearMessageList,
 })(Chat);

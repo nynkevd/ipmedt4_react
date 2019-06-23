@@ -23,7 +23,8 @@ import {
   CHANGE_ADDORDELETEFRIEND,
   CHANGE_ALLSTATIONS,
   CHANGE_MESSAGELIST,
-  CHANGE_PAGETORETURNTO
+  CHANGE_PAGETORETURNTO,
+  CLEAR_MESSAGELIST,
  } from "./actions";
 
 //Username van de ingelogde gebruiker veranderen
@@ -252,6 +253,8 @@ export const allStations = (state="", action) =>{
       case CHANGE_MESSAGELIST:
         // Alle berichten worden in één array gezet. Dit omdat het realtime chatten niet werkt als het in een object wordt opgeslagen waarbij de berichten gesorteerd zijn op room
         return [...state, action.payload];
+      case CLEAR_MESSAGELIST:
+        return [];
       default:
         return state;
       }

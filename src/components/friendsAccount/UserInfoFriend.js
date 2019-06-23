@@ -4,6 +4,7 @@ import React from 'react';
 import './UserInfoFriend.css';
 
 const UserInfoFriend = (props) => {
+  console.log(props.profielfoto);
   return(
     <div className="userInfoFriendContainer">
       <img src={"https://api.ovtravelbuddy.nl" + props.profielfoto} alt="profielfoto" className="userInfoFriendContainer__profilePicture"/>

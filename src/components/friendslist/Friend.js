@@ -14,7 +14,7 @@ class Friend extends React.Component{
     super(props);
     this.state = {
       username: props.username,
-      profilepicture: null,
+      profilepicture: '/img/placeholder.png',
     }
   }
 
