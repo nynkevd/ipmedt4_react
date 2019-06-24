@@ -2,6 +2,7 @@
 import React from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import axios from 'axios';
+import Chatkit from '@pusher/chatkit-client';
 //Redux importeren
 import { connect } from "react-redux";
 import {
@@ -92,6 +93,7 @@ class Login extends React.Component{
   validatePasswordInput(){
     if(this.props.checkPassword === md5(this.props.inputPasswordLogin)){
       this.props.changeLoggedIn(true);
+      this.connectToChatkit();
       error = false;
       return true;
     } else {
@@ -99,6 +101,20 @@ class Login extends React.Component{
       error = true;
       return false;
     }
+  }
+
+  connectToChatkit = () => {
+    //ChatManager aanmaken voor het chatten
+    const chatManager = new Chatkit.ChatManager({
+        instanceLocator: 'v1:us1:a6e72788-6919-4ade-a86a-7beeaa73aa7d',
+        userId: this.props.userName,
+        tokenProvider: new Chatkit.TokenProvider({ url: 'https://chatserver.ovtravelbuddy.nl/authenticate' }),
+    });
+
+    chatManager.connect().then(currentUser => {
+      this.props.changeChatKitUser(currentUser);
+    })
+
   }
 
   //Error message tonen als de gebruikersnaam/wachtwoord onjuist is

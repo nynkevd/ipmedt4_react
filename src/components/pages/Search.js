@@ -32,24 +32,9 @@ class Search extends React.Component{
     //Kijken of er ingelogd is
     if(this.props.userName !== ""){
       this.props.changeLoggedIn(true);
-      this.connectToChatkit();
     } else {
       this.props.changeLoggedIn(false);
-    }    
-  }
-
-  connectToChatkit = () => {
-    //ChatManager aanmaken voor het chatten
-    const chatManager = new Chatkit.ChatManager({
-        instanceLocator: 'v1:us1:a6e72788-6919-4ade-a86a-7beeaa73aa7d',
-        userId: this.props.userName,
-        tokenProvider: new Chatkit.TokenProvider({ url: 'https://chatserver.ovtravelbuddy.nl/authenticate' }),
-    });
-
-    chatManager.connect().then(currentUser => {
-      this.props.changeChatKitUser(currentUser);
-    })
-
+    }
   }
 
   getMatchesFromSessionUser = username => {
