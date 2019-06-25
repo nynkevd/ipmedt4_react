@@ -21,7 +21,7 @@ class EditTravelRoute extends React.Component{
 
   render(){
     return(
-      <div class="editTravelRouteContainer">
+      <div className="editTravelRouteContainer">
         <h1 className="editTravelRouteContainer__title">Verander uw reistraject</h1>
         <form action="">
           <span className="editTravelRouteContainer__routeTo">van: </span>

@@ -116,7 +116,7 @@ class AccountEdit extends React.Component{
 //verwijderde items in array stoppen
   deleteOnClick = (event) => {
     var deleteItem = document.getElementById(event.target.id).id;
-    document.getElementById(deleteItem).parentElement.setAttribute("class", "hidden");
+    document.getElementById(deleteItem).parentElement.setAttribute("className", "hidden");
     temp_interests.push(deleteItem);
   }
 
@@ -177,7 +177,7 @@ class AccountEdit extends React.Component{
           <div className="accountEditPageContainer__addInterests">
             <h1 className="accountEditPageContainer__addInterests__title">Voeg interesses toe</h1>
             <select className="accountEditPageContainer__addInterests__choose" value={this.props.chosenInterest} onChange={this.onChangeChosenInterest}>
-              <option value="" disabled selected>Kies een interesse</option>
+              <option value="" disabled>Kies een interesse</option>
               {interests.map((interest) =>
                 <option value={interest} key={interest}>{interest}</option>
               )}
