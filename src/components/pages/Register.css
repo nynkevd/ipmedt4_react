@@ -63,3 +63,10 @@
 .registerPageContainer__form__item__errorMessage--hide {
   display: none;
 }
+
+@media(width: 1024px) {
+  .registerPageContainer__form__button {
+    width: 50%;
+    margin-left: 25%;
+  }
+}

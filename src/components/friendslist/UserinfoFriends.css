@@ -17,6 +17,13 @@
   top: 50%;
   margin-left: 15px;
   font-size: 1.5em;
-  color: #000066;
+  color: #000;
   font-weight: bold;
+}
+
+@media(width: 1024px) {
+  .userInfoFriendsContainer__usernameFriends {
+    margin-left: 1.8%;
+    font-size: 1.7em;
+  }
 }

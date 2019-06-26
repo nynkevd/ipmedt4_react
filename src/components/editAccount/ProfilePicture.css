@@ -7,3 +7,9 @@
   box-sizing: border-box;
   border: 3px solid rgb(250, 197, 64);
 }
+
+@media(width: 1024px) {
+  .profilePictureImg {
+    width: 80%;
+  }
+}

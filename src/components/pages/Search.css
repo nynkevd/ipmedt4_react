@@ -20,3 +20,10 @@
   width: 70vw;
   margin-left: 15vw;
 }
+
+@media(width: 1024px) {
+  .searchPageContainer__noMatches__logo {
+    width: 40vw;
+    margin-left: 31vw;
+  }
+}

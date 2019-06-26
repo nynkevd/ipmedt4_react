@@ -16,14 +16,8 @@
   font-size: 0.7em;
 }
 
-@media(width: 768px) {
-  .bottomNavItemText {
-    font-size: 0.9em;
-  }
-}
-
 @media(width: 1024px) {
-  .bottomNavItemText {
+  .bottomNavItem__text {
     font-size: 0.9em;
   }
 }

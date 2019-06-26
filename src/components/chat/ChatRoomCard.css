@@ -42,3 +42,19 @@
   color: rgb(98, 98, 98);
   font-size: 0.9em;
 }
+
+@media(width: 1024px) {
+  .chatCardContainer__img{
+    height: 90px;
+    margin-left: 0.4%;
+  }
+
+  .chatCardContainer__name {
+    font-size: 1.3em;
+    margin-left: 14%;
+  }
+
+  .chatCardContainer__message {
+    margin-left: 14%;
+  }
+}

@@ -25,3 +25,19 @@
   top: 0;
   right: 0;
 }
+
+@media(width: 1024px) {
+  .userInfoContainer {
+    margin-top: 9.5%;
+  }
+
+  .userInfoContainer__userName {
+    font-size: 2.3em;
+    margin-left: 0.9em;
+  }
+
+  .userInfoContainer__editIcon {
+    width: 28px;
+    right: 1%;
+  }
+}

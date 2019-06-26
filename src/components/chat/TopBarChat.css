@@ -30,3 +30,9 @@
   left: 16vh;
   transform: translateY(-50%);
 }
+
+@media(width: 1024px) {
+  .topBarChat__text {
+    font-size: 1.6em;
+  }
+}

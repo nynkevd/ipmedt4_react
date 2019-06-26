@@ -30,3 +30,19 @@
 .sendMessageForm__button__image {
   height: 30px;
 }
+
+@media(width: 1024px) {
+  .sendMessageForm__input {
+    width: 90.7%;
+  }
+
+  .sendMessageForm__button {
+    right: 0%;
+    height: 35px;
+    width: 35px;
+}
+
+    .sendMessageForm__button__image {
+      height: 35px;
+    }
+}

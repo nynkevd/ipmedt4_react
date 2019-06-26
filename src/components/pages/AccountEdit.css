@@ -64,3 +64,18 @@
 .hidden {
   display: none;
 }
+
+@media(width: 1024px) {
+  .accountEditPageContainer__profilePictureList__title{
+    padding: 1em;
+  }
+
+  .accountEditPageContainer__deleteInterests__icon {
+    height: 1.2em;
+  }
+
+  .accountEditPageContainer__deleteInterests__interest{
+    font-size: 1.1em;
+  }
+
+}

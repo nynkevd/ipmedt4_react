@@ -21,3 +21,9 @@
   left: 9vh;
   transform: translateY(-50%);
 }
+
+@media(min-width: 1024px) {
+  .topBarEditAccount__text {
+    font-size: 1.6em;
+  }
+}

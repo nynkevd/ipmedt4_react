@@ -8,7 +8,7 @@ class NotFoundPage extends React.Component{
   state = { redirect: false }
 
   componentDidMount() {
-    this.id = setTimeout(() => this.setState({ redirect: true }), 5000)
+    // this.id = setTimeout(() => this.setState({ redirect: true }), 5000)
   }
 
   componentWillUnmount() {
@@ -22,7 +22,7 @@ class NotFoundPage extends React.Component{
           <div className="notFoundPage">
             <div className="notFoundPage__container">
               <p className="notFoundPage__container__text">Oops, deze pagina is niet beschikbaar</p>
-              <img src="./img/logoSad.svg" alt="Travel Buddy Sad Logo"/>
+              <img className="notFoundPage__container__img" src="./img/logoSad.svg" alt="Travel Buddy Sad Logo"/>
               <p className="notFoundPage__container__text">U wordt binnen 5 seconden doorverwezen naar de login pagina.</p>
             </div>
           </div>

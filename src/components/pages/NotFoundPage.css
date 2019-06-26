@@ -18,3 +18,17 @@
   color: #000;
   font-size: 1em;
 }
+
+@media(width: 1024px) {
+  .notFoundPage__container__img{
+    width: 60%;
+    margin-left: 20%;
+  }
+
+  .notFoundPage__container__text {
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    font-size: 1.3em;
+  }
+}

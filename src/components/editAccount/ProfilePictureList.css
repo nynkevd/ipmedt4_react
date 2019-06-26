@@ -4,3 +4,11 @@
   grid-gap: 20px;
   justify-items: center;
 }
+
+@media(width: 1024px) {
+  .profilePictureList {
+    grid-gap: 20px;
+    column-gap: 0px;
+    margin-left: 6%;
+  }
+}
