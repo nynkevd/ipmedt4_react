@@ -37,13 +37,13 @@ class Login extends React.Component{
     this.showHideErrorMessage();
     //De uitlog knop op display none zetten
     document.getElementById("link").classList.add("topBar__link--hidden");
-    this.setAllStations();
+    // this.setAllStations();
   }
 
   setAllStations = _ => {
     axios.get(`https://api.ovtravelbuddy.nl/api/stations` + api_token)
     .then(res => {
-      this.props.changeAllStations(res.data);
+    this.props.changeAllStations(res.data);
     })
     .catch(err => console.error(err));
   }
