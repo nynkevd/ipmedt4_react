@@ -25,7 +25,7 @@ class ChatRoomCard extends React.Component {
       lastMessage: "",
       lastMessageTime: "",
       room: props.room,
-      picture: "",
+      picture: "/img/placeholder.png",
     };
   }
 
