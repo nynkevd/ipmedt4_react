@@ -8,7 +8,7 @@ class NotFoundPage extends React.Component{
   state = { redirect: false }
 
   componentDidMount() {
-    // this.id = setTimeout(() => this.setState({ redirect: true }), 5000)
+    this.id = setTimeout(() => this.setState({ redirect: true }), 5000)
   }
 
   componentWillUnmount() {
