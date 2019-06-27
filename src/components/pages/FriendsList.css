@@ -15,3 +15,17 @@
   width: 70vw;
   margin-left: 15vw;
 }
+
+@media(width: 1024px) {
+  .friendsListPageContainer__noFriends__logo {
+    width: 40vw;
+    margin-left: 31vw;
+  }
+}
+
+@media(min-width: 1280px) {
+  .friendsListPageContainer__noFriends__logo {
+    width: 30vw;
+    margin-left: 35vw;
+  }
+}

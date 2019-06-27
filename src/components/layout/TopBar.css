@@ -54,6 +54,17 @@
 @media(min-width: 1280px) {
   .topBar__text {
     font-size: 1.7em;
-    left: 10%;
+    left: 6%;
+  }
+
+  .topBar__img {
+    margin: 0 2%;
+  }
+
+  .topBar__img--logout {
+    height: 60%;
+    top: 50%;
+    transform: translate(0, -50%);
+    float: right;
   }
 }

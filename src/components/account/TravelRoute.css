@@ -13,3 +13,14 @@
     font-size: 1.1em;
   }
 }
+
+@media(min-width: 1280px) {
+  .travelRouteContainer {
+    font-size: 1.1em;
+  }
+
+  .travelRouteContainer {
+    margin-top: 3%;
+  }
+
+}

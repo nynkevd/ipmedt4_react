@@ -70,3 +70,15 @@
     margin-left: 25%;
   }
 }
+
+@media(min-width: 1280px) {
+  .registerPageContainer__form__button {
+    width: 50%;
+    margin-left: 25%;
+  }
+
+  .registerPageContainer__form__item {
+    width: 60%;
+    margin-left: 20%;
+  }
+}

@@ -12,3 +12,13 @@
     font-size: 1.1em;
   }
 }
+
+@media(min-width: 1280px) {
+  .interestsAccountContainer {
+    font-size: 1.1em;
+  }
+
+  .interestsAccountContainer {
+    margin-top: 3%;
+  }
+}

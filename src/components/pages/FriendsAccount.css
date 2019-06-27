@@ -8,3 +8,15 @@
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 10px;
 }
+
+@media(width: 1024px) {
+  .friendsAccountPageContainer__buttons {
+    margin-left: 10%;
+  }
+}
+
+@media(min-width: 1280px) {
+  .friendsAccountPageContainer__buttons {
+    margin-left: 12%;
+  }
+}

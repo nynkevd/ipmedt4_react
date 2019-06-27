@@ -17,3 +17,9 @@
   font-size: 2em;
   font-weight: bold;
 }
+
+@media(min-width: 1280px) {
+  .userInfoFriendContainer__profilePicture {
+    width: 120px;
+  }
+}

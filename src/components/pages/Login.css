@@ -93,3 +93,23 @@
     padding: 0.2em;
   }
 }
+
+@media(min-width: 1280px) {
+  .loginPageContainer__form__button{
+    width: 50%;
+    margin-left: 25%;
+  }
+
+  .loginPageContainer__form__register {
+    font-size: 1.1em;
+  }
+
+  .loginPageContainer__form__register__textNoAccount{
+    padding: 0.2em;
+  }
+
+  .loginPageContainer__form__item {
+    width: 75%;
+    margin-left: 12.5%;
+  }
+}

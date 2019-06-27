@@ -27,3 +27,10 @@
     margin-left: 31vw;
   }
 }
+
+@media(min-width: 1280px) {
+  .searchPageContainer__noMatches__logo {
+    width: 30vw;
+    margin-left: 35vw;
+  }
+}

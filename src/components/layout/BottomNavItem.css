@@ -23,7 +23,7 @@
 }
 
 @media(min-width: 1280px) {
-  .bottomNavItemText {
+  .bottomNavItem__text {
     font-size: 1em;
   }
 }

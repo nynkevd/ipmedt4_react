@@ -8,3 +8,15 @@
   background-color: #FCC63F;
   box-shadow: 5px 5px 5px #CDCDCD;
 }
+
+@media(width: 1024px) {
+  #button__AOD {
+    width: 80%;
+  }
+}
+
+@media(min-width: 1280px) {
+  #button__AOD {
+    width: 80%;
+  }
+}

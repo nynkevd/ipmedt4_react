@@ -36,3 +36,9 @@
     font-size: 1.6em;
   }
 }
+
+@media(min-width: 1280px) {
+  .topBarChat__text {
+    font-size: 1.6em;
+  }
+}

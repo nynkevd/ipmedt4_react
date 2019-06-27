@@ -40,9 +40,25 @@
     right: 0%;
     height: 35px;
     width: 35px;
+  }
+
+  .sendMessageForm__button__image {
+    height: 35px;
+  }
 }
 
-    .sendMessageForm__button__image {
-      height: 35px;
-    }
+@media(min-width: 1280px) {
+  .sendMessageForm__input {
+    width: 94.7%;
+  }
+
+  .sendMessageForm__button {
+    right: 0%;
+    height: 35px;
+    width: 35px;
+  }
+
+  .sendMessageForm__button__image {
+    height: 35px;
+  }
 }

@@ -36,15 +36,15 @@
 
 @media(min-width: 1280px) {
   .HomePage__container__img {
-    width: 60%;
+    width: 50%;
     position: absolute;
     margin-top: 0%;
     margin-left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -20%);
   }
 
   .HomePage__container__text {
-    margin-top: 15%;
+    margin-top: 55%;
     font-size: 2.5em;
   }
 }

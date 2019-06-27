@@ -58,3 +58,24 @@
     margin-left: 14%;
   }
 }
+
+@media(min-width: 1280px) {
+  .chatCardContainer__img{
+    height: 100px;
+    margin-left: 0.6%;
+  }
+
+  .chatCardContainer__name {
+    margin-left: 8%;
+    font-size: 1.4em;
+  }
+
+  .chatCardContainer__message {
+    margin-left: 8%;
+    font-size: 1.1em;
+  }
+
+  .chatCardContainer__time {
+    font-size: 1em;
+  }
+}
