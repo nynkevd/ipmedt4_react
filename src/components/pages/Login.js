@@ -37,7 +37,7 @@ class Login extends React.Component{
     this.showHideErrorMessage();
     //De uitlog knop op display none zetten
     document.getElementById("link").classList.add("topBar__link--hidden");
-    // this.setAllStations();
+    this.setAllStations();
   }
 
   setAllStations = _ => {

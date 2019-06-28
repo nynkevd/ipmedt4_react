@@ -21,26 +21,26 @@ class EditTravelRoute extends React.Component{
 
   render(){
     return(
-      <div className="editTravelRouteContainer"></div>
-      //   <h1 className="editTravelRouteContainer__title">Verander uw reistraject</h1>
-      //   <form action="">
-      //     <span className="editTravelRouteContainer__routeTo">van: </span>
-      //     <select value={this.props.userTravelFrom} onChange={this.onChangeUserTravelFrom} className="editTravelRouteContainer__routeChoose">
-      //       {this.props.allStations.map((station) =>
-      //         <option value={station} key={station}>{station}</option>
-      //       )}
-      //     </select>
-      //     <span className="editTravelRouteContainer__routeFrom">naar: </span>
-      //     <select value={this.props.userTravelTo} onChange={this.onChangeUserTravelTo} className="editTravelRouteContainer__routeChoose">
-      //       {this.props.allStations.map((station) =>
-      //         <option value={station} key={station}>{station}</option>
-      //       )}
-      //     </select>
-      //   </form>
-      //   <div className="editTravelRouteContainer__errorMessage editTravelRouteContainer__errorMessage--hide" id="routeErrorMessage">
-      //   <p className="editTravelRouteContainer__errorMessage__text">De stations kunnen niet hetzelfde zijn</p>
-      //   </div>
-      // </div>
+      <div className="editTravelRouteContainer">
+        <h1 className="editTravelRouteContainer__title">Verander uw reistraject</h1>
+        <form action="">
+          <span className="editTravelRouteContainer__routeTo">van: </span>
+          <select value={this.props.userTravelFrom} onChange={this.onChangeUserTravelFrom} className="editTravelRouteContainer__routeChoose">
+            {this.props.allStations.map((station) =>
+              <option value={station} key={station}>{station}</option>
+            )}
+          </select>
+          <span className="editTravelRouteContainer__routeFrom">naar: </span>
+          <select value={this.props.userTravelTo} onChange={this.onChangeUserTravelTo} className="editTravelRouteContainer__routeChoose">
+            {this.props.allStations.map((station) =>
+              <option value={station} key={station}>{station}</option>
+            )}
+          </select>
+        </form>
+        <div className="editTravelRouteContainer__errorMessage editTravelRouteContainer__errorMessage--hide" id="routeErrorMessage">
+        <p className="editTravelRouteContainer__errorMessage__text">De stations kunnen niet hetzelfde zijn</p>
+        </div>
+      </div>
     )
   }
 }

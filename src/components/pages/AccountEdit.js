@@ -65,8 +65,7 @@ class AccountEdit extends React.Component{
 
     for(let a = 0; a < chosenInterests.length; a++){
     axios.get(`https://dataserver.ovtravelbuddy.nl/user_interests/add?username=${this.props.userName}&interest=${chosenInterests[a]}`)
-      .then(console.log("Interesse toegevoegd"))
-        .catch(err => console.error(err))
+      .catch(err => console.error(err))
     }
     chosenInterests = [];
   }
@@ -122,10 +121,9 @@ class AccountEdit extends React.Component{
 
   deleteInterestsFromDatabase(){
     for(let i = 0; i < temp_interests.length; i ++){
-      axios.get(`https://dataserver.ovtravelbuddy.nl/user_interests/delete?username=${this.props.userName}&interest=${temp_interests[i]}` )
-        .then(console.log("deleted"))
-          .catch(err => console.error(err))
-        }
+      axios.get(`https://dataserver.ovtravelbuddy.nl/user_interests/delete?username=${this.props.userName}&interest=${temp_interests[i]}`)
+        .catch(err => console.error(err))
+    }
   }
 
   getRemainingInterestsFromAPI = () => {

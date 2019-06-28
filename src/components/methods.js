@@ -6,12 +6,10 @@ import "./methods.css";
 var added = [];
 //setup account en account edit
 function fillAddedInterests (chosenInterest) {
-  console.log(chosenInterest);
   if(chosenInterest !== "") {
     if (!(added.includes(chosenInterest))) {
       added.push(chosenInterest);
       document.getElementById("interestErrorMessage").classList.add("errorMessage--hide");
-      console.log(added[added.length-1])
     } else if(!(added[added.length-1] === chosenInterest)) {
       //Error messages tonen als de interesse al is toegevoegd
       document.getElementById("interestErrorMessage").classList.remove("errorMessage--hide");

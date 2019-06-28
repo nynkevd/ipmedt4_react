@@ -1,6 +1,6 @@
 //React en benodigheden importeren
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 //Redux importeren
 import { connect } from "react-redux";
 import {
@@ -14,7 +14,6 @@ import ChatRoom from './../chat/ChatRoom';
 class Chat extends React.Component{
   componentDidMount(){
     this.subscribeToRooms();
-    var roomList = 0;
   }
 
   subscribeToRooms= () => {

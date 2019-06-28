@@ -48,8 +48,6 @@ class MessageList extends React.Component {
     this.props.chatKitUser.setReadCursor({
       roomId: this.props.currentChatroom.id,
       position: position
-    }).then(() => {
-      console.log("Bericht gelezen!")
     }).catch(err => {
       console.log(`Oops ${err}`)
     })
